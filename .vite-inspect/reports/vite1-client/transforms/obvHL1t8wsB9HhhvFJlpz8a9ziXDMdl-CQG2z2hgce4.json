@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/framesync/dist/es/create-render-step.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function createRenderStep(runNextFrame) {\n    let toRun = [];\n    let toRunNextFrame = [];\n    let numToRun = 0;\n    let isProcessing = false;\n    let flushNextFrame = false;\n    const toKeepAlive = new WeakSet();\n    const step = {\n        schedule: (callback, keepAlive = false, immediate = false) => {\n            const addToCurrentFrame = immediate && isProcessing;\n            const buffer = addToCurrentFrame ? toRun : toRunNextFrame;\n            if (keepAlive)\n                toKeepAlive.add(callback);\n            if (buffer.indexOf(callback) === -1) {\n                buffer.push(callback);\n                if (addToCurrentFrame && isProcessing)\n                    numToRun = toRun.length;\n            }\n            return callback;\n        },\n        cancel: (callback) => {\n            const index = toRunNextFrame.indexOf(callback);\n            if (index !== -1)\n                toRunNextFrame.splice(index, 1);\n            toKeepAlive.delete(callback);\n        },\n        process: (frameData) => {\n            if (isProcessing) {\n                flushNextFrame = true;\n                return;\n            }\n            isProcessing = true;\n            [toRun, toRunNextFrame] = [toRunNextFrame, toRun];\n            toRunNextFrame.length = 0;\n            numToRun = toRun.length;\n            if (numToRun) {\n                for (let i = 0; i < numToRun; i++) {\n                    const callback = toRun[i];\n                    callback(frameData);\n                    if (toKeepAlive.has(callback)) {\n                        step.schedule(callback);\n                        runNextFrame();\n                    }\n                }\n            }\n            isProcessing = false;\n            if (flushNextFrame) {\n                flushNextFrame = false;\n                step.process(frameData);\n            }\n        },\n    };\n    return step;\n}\n\nexport { createRenderStep };\n",
+      "start": 1743409708600,
+      "end": 1743409708609,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/stringify/stringifyDocument.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isNode } from '../nodes/identity.js';\nimport { createStringifyContext, stringify } from './stringify.js';\nimport { indentComment, lineComment } from './stringifyComment.js';\n\nfunction stringifyDocument(doc, options) {\n    const lines = [];\n    let hasDirectives = options.directives === true;\n    if (options.directives !== false && doc.directives) {\n        const dir = doc.directives.toString(doc);\n        if (dir) {\n            lines.push(dir);\n            hasDirectives = true;\n        }\n        else if (doc.directives.docStart)\n            hasDirectives = true;\n    }\n    if (hasDirectives)\n        lines.push('---');\n    const ctx = createStringifyContext(doc, options);\n    const { commentString } = ctx.options;\n    if (doc.commentBefore) {\n        if (lines.length !== 1)\n            lines.unshift('');\n        const cs = commentString(doc.commentBefore);\n        lines.unshift(indentComment(cs, ''));\n    }\n    let chompKeep = false;\n    let contentComment = null;\n    if (doc.contents) {\n        if (isNode(doc.contents)) {\n            if (doc.contents.spaceBefore && hasDirectives)\n                lines.push('');\n            if (doc.contents.commentBefore) {\n                const cs = commentString(doc.contents.commentBefore);\n                lines.push(indentComment(cs, ''));\n            }\n            // top-level block scalars need to be indented if followed by a comment\n            ctx.forceBlockIndent = !!doc.comment;\n            contentComment = doc.contents.comment;\n        }\n        const onChompKeep = contentComment ? undefined : () => (chompKeep = true);\n        let body = stringify(doc.contents, ctx, () => (contentComment = null), onChompKeep);\n        if (contentComment)\n            body += lineComment(body, '', commentString(contentComment));\n        if ((body[0] === '|' || body[0] === '>') &&\n            lines[lines.length - 1] === '---') {\n            // Top-level block scalars with a preceding doc marker ought to use the\n            // same line for their header.\n            lines[lines.length - 1] = `--- ${body}`;\n        }\n        else\n            lines.push(body);\n    }\n    else {\n        lines.push(stringify(doc.contents, ctx));\n    }\n    if (doc.directives?.docEnd) {\n        if (doc.comment) {\n            const cs = commentString(doc.comment);\n            if (cs.includes('\\n')) {\n                lines.push('...');\n                lines.push(indentComment(cs, ''));\n            }\n            else {\n                lines.push(`... ${cs}`);\n            }\n        }\n        else {\n            lines.push('...');\n        }\n    }\n    else {\n        let dc = doc.comment;\n        if (dc && chompKeep)\n            dc = dc.replace(/^\\n+/, '');\n        if (dc) {\n            if ((!chompKeep || contentComment) && lines[lines.length - 1] !== '')\n                lines.push('');\n            lines.push(indentComment(commentString(dc), ''));\n        }\n    }\n    return lines.join('\\n') + '\\n';\n}\n\nexport { stringifyDocument };\n",
+      "start": 1743409708641,
+      "end": 1743409708650,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/env.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import configs from '#slidev/configs'\nimport { objectMap } from '@antfu/utils'\nimport { computed } from 'vue'\n\nexport { configs }\n\nexport const mode = __DEV__ ? 'dev' : 'build'\n\nexport const slideAspect = computed(() => configs.aspectRatio)\nexport const slideWidth = computed(() => configs.canvasWidth)\n\n// To honor the aspect ratio more as possible, we need to approximate the height to the next integer.\n// Doing this, we will prevent on print, to create an additional empty white page after each page.\nexport const slideHeight = computed(() => Math.ceil(slideWidth.value / slideAspect.value))\n\nexport const themeVars = computed(() => {\n  return objectMap(configs.themeConfig || {}, (k, v) => [`--slidev-theme-${k}`, v])\n})\n\nexport const slidesTitle = configs.slidesTitle\n\nexport const pathPrefix = import.meta.env.BASE_URL + (__SLIDEV_HASH_ROUTE__ ? '#/' : '')\n",
+      "start": 1743409708382,
+      "end": 1743409708414,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import configs from \"#slidev/configs\";\nimport { objectMap } from \"@antfu/utils\";\nimport { computed } from \"vue\";\nexport { configs };\nexport const mode = __DEV__ ? \"dev\" : \"build\";\nexport const slideAspect = computed(() => configs.aspectRatio);\nexport const slideWidth = computed(() => configs.canvasWidth);\nexport const slideHeight = computed(() => Math.ceil(slideWidth.value / slideAspect.value));\nexport const themeVars = computed(() => {\n  return objectMap(configs.themeConfig || {}, (k, v) => [`--slidev-theme-${k}`, v]);\n});\nexport const slidesTitle = configs.slidesTitle;\nexport const pathPrefix = import.meta.env.BASE_URL + (__SLIDEV_HASH_ROUTE__ ? \"#/\" : \"\");\n",
+      "start": 1743409708414,
+      "end": 1743409708488,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/env.ts"
+        ],
+        "sourcesContent": [
+          "import configs from '#slidev/configs'\nimport { objectMap } from '@antfu/utils'\nimport { computed } from 'vue'\n\nexport { configs }\n\nexport const mode = __DEV__ ? 'dev' : 'build'\n\nexport const slideAspect = computed(() => configs.aspectRatio)\nexport const slideWidth = computed(() => configs.canvasWidth)\n\n// To honor the aspect ratio more as possible, we need to approximate the height to the next integer.\n// Doing this, we will prevent on print, to create an additional empty white page after each page.\nexport const slideHeight = computed(() => Math.ceil(slideWidth.value / slideAspect.value))\n\nexport const themeVars = computed(() => {\n  return objectMap(configs.themeConfig || {}, (k, v) => [`--slidev-theme-${k}`, v])\n})\n\nexport const slidesTitle = configs.slidesTitle\n\nexport const pathPrefix = import.meta.env.BASE_URL + (__SLIDEV_HASH_ROUTE__ ? '#/' : '')\n"
+        ],
+        "mappings": "AAAA,OAAO,aAAa;AACpB,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AAEzB,SAAS;AAEF,aAAM,OAAO,UAAU,QAAQ;AAE/B,aAAM,cAAc,SAAS,MAAM,QAAQ,WAAW;AACtD,aAAM,aAAa,SAAS,MAAM,QAAQ,WAAW;AAIrD,aAAM,cAAc,SAAS,MAAM,KAAK,KAAK,WAAW,QAAQ,YAAY,KAAK,CAAC;AAElF,aAAM,YAAY,SAAS,MAAM;AACtC,SAAO,UAAU,QAAQ,eAAe,CAAC,GAAG,CAAC,GAAG,MAAM,CAAC,kBAAkB,CAAC,IAAI,CAAC,CAAC;AAClF,CAAC;AAEM,aAAM,cAAc,QAAQ;AAE5B,aAAM,aAAa,YAAY,IAAI,YAAY,wBAAwB,OAAO;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708488,
+      "end": 1743409708488,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import configs from \"#slidev/configs\";\nimport { objectMap } from \"@antfu/utils\";\nimport { computed } from \"vue\";\nexport { configs };\nexport const mode = false ? \"dev\" : \"build\";\nexport const slideAspect = computed(() => configs.aspectRatio);\nexport const slideWidth = computed(() => configs.canvasWidth);\nexport const slideHeight = computed(() => Math.ceil(slideWidth.value / slideAspect.value));\nexport const themeVars = computed(() => {\n  return objectMap(configs.themeConfig || {}, (k, v) => [`--slidev-theme-${k}`, v]);\n});\nexport const slidesTitle = configs.slidesTitle;\nexport const pathPrefix = \"/\" + (false ? \"#/\" : \"\");\n",
+      "start": 1743409708488,
+      "end": 1743409708580,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708580,
+      "end": 1743409708580,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/compose/resolve-block-scalar.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Scalar } from '../nodes/Scalar.js';\n\nfunction resolveBlockScalar(ctx, scalar, onError) {\n    const start = scalar.offset;\n    const header = parseBlockScalarHeader(scalar, ctx.options.strict, onError);\n    if (!header)\n        return { value: '', type: null, comment: '', range: [start, start, start] };\n    const type = header.mode === '>' ? Scalar.BLOCK_FOLDED : Scalar.BLOCK_LITERAL;\n    const lines = scalar.source ? splitLines(scalar.source) : [];\n    // determine the end of content & start of chomping\n    let chompStart = lines.length;\n    for (let i = lines.length - 1; i >= 0; --i) {\n        const content = lines[i][1];\n        if (content === '' || content === '\\r')\n            chompStart = i;\n        else\n            break;\n    }\n    // shortcut for empty contents\n    if (chompStart === 0) {\n        const value = header.chomp === '+' && lines.length > 0\n            ? '\\n'.repeat(Math.max(1, lines.length - 1))\n            : '';\n        let end = start + header.length;\n        if (scalar.source)\n            end += scalar.source.length;\n        return { value, type, comment: header.comment, range: [start, end, end] };\n    }\n    // find the indentation level to trim from start\n    let trimIndent = scalar.indent + header.indent;\n    let offset = scalar.offset + header.length;\n    let contentStart = 0;\n    for (let i = 0; i < chompStart; ++i) {\n        const [indent, content] = lines[i];\n        if (content === '' || content === '\\r') {\n            if (header.indent === 0 && indent.length > trimIndent)\n                trimIndent = indent.length;\n        }\n        else {\n            if (indent.length < trimIndent) {\n                const message = 'Block scalars with more-indented leading empty lines must use an explicit indentation indicator';\n                onError(offset + indent.length, 'MISSING_CHAR', message);\n            }\n            if (header.indent === 0)\n                trimIndent = indent.length;\n            contentStart = i;\n            if (trimIndent === 0 && !ctx.atRoot) {\n                const message = 'Block scalar values in collections must be indented';\n                onError(offset, 'BAD_INDENT', message);\n            }\n            break;\n        }\n        offset += indent.length + content.length + 1;\n    }\n    // include trailing more-indented empty lines in content\n    for (let i = lines.length - 1; i >= chompStart; --i) {\n        if (lines[i][0].length > trimIndent)\n            chompStart = i + 1;\n    }\n    let value = '';\n    let sep = '';\n    let prevMoreIndented = false;\n    // leading whitespace is kept intact\n    for (let i = 0; i < contentStart; ++i)\n        value += lines[i][0].slice(trimIndent) + '\\n';\n    for (let i = contentStart; i < chompStart; ++i) {\n        let [indent, content] = lines[i];\n        offset += indent.length + content.length + 1;\n        const crlf = content[content.length - 1] === '\\r';\n        if (crlf)\n            content = content.slice(0, -1);\n        /* istanbul ignore if already caught in lexer */\n        if (content && indent.length < trimIndent) {\n            const src = header.indent\n                ? 'explicit indentation indicator'\n                : 'first line';\n            const message = `Block scalar lines must not be less indented than their ${src}`;\n            onError(offset - content.length - (crlf ? 2 : 1), 'BAD_INDENT', message);\n            indent = '';\n        }\n        if (type === Scalar.BLOCK_LITERAL) {\n            value += sep + indent.slice(trimIndent) + content;\n            sep = '\\n';\n        }\n        else if (indent.length > trimIndent || content[0] === '\\t') {\n            // more-indented content within a folded block\n            if (sep === ' ')\n                sep = '\\n';\n            else if (!prevMoreIndented && sep === '\\n')\n                sep = '\\n\\n';\n            value += sep + indent.slice(trimIndent) + content;\n            sep = '\\n';\n            prevMoreIndented = true;\n        }\n        else if (content === '') {\n            // empty line\n            if (sep === '\\n')\n                value += '\\n';\n            else\n                sep = '\\n';\n        }\n        else {\n            value += sep + content;\n            sep = ' ';\n            prevMoreIndented = false;\n        }\n    }\n    switch (header.chomp) {\n        case '-':\n            break;\n        case '+':\n            for (let i = chompStart; i < lines.length; ++i)\n                value += '\\n' + lines[i][0].slice(trimIndent);\n            if (value[value.length - 1] !== '\\n')\n                value += '\\n';\n            break;\n        default:\n            value += '\\n';\n    }\n    const end = start + header.length + scalar.source.length;\n    return { value, type, comment: header.comment, range: [start, end, end] };\n}\nfunction parseBlockScalarHeader({ offset, props }, strict, onError) {\n    /* istanbul ignore if should not happen */\n    if (props[0].type !== 'block-scalar-header') {\n        onError(props[0], 'IMPOSSIBLE', 'Block scalar header not found');\n        return null;\n    }\n    const { source } = props[0];\n    const mode = source[0];\n    let indent = 0;\n    let chomp = '';\n    let error = -1;\n    for (let i = 1; i < source.length; ++i) {\n        const ch = source[i];\n        if (!chomp && (ch === '-' || ch === '+'))\n            chomp = ch;\n        else {\n            const n = Number(ch);\n            if (!indent && n)\n                indent = n;\n            else if (error === -1)\n                error = offset + i;\n        }\n    }\n    if (error !== -1)\n        onError(error, 'UNEXPECTED_TOKEN', `Block scalar header includes extra characters: ${source}`);\n    let hasSpace = false;\n    let comment = '';\n    let length = source.length;\n    for (let i = 1; i < props.length; ++i) {\n        const token = props[i];\n        switch (token.type) {\n            case 'space':\n                hasSpace = true;\n            // fallthrough\n            case 'newline':\n                length += token.source.length;\n                break;\n            case 'comment':\n                if (strict && !hasSpace) {\n                    const message = 'Comments must be separated from other tokens by white space characters';\n                    onError(token, 'MISSING_CHAR', message);\n                }\n                length += token.source.length;\n                comment = token.source.substring(1);\n                break;\n            case 'error':\n                onError(token, 'UNEXPECTED_TOKEN', token.message);\n                length += token.source.length;\n                break;\n            /* istanbul ignore next should not happen */\n            default: {\n                const message = `Unexpected token in block scalar header: ${token.type}`;\n                onError(token, 'UNEXPECTED_TOKEN', message);\n                const ts = token.source;\n                if (ts && typeof ts === 'string')\n                    length += ts.length;\n            }\n        }\n    }\n    return { mode, indent, chomp, comment, length };\n}\n/** @returns Array of lines split up as `[indent, content]` */\nfunction splitLines(source) {\n    const split = source.split(/\\n( *)/);\n    const first = split[0];\n    const m = first.match(/^( *)/);\n    const line0 = m?.[1]\n        ? [m[1], first.slice(m[1].length)]\n        : ['', first];\n    const lines = [line0];\n    for (let i = 1; i < split.length; i += 2)\n        lines.push([split[i], split[i + 1]]);\n    return lines;\n}\n\nexport { resolveBlockScalar };\n",
+      "start": 1743409708658,
+      "end": 1743409708667,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708667,
+      "end": 1743409708667,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    }
+  ]
+}

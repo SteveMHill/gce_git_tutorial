@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/style-value-types/dist/es/numbers/units.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isString } from '../utils.mjs';\n\nconst createUnitType = (unit) => ({\n    test: (v) => isString(v) && v.endsWith(unit) && v.split(' ').length === 1,\n    parse: parseFloat,\n    transform: (v) => `${v}${unit}`,\n});\nconst degrees = createUnitType('deg');\nconst percent = createUnitType('%');\nconst px = createUnitType('px');\nconst vh = createUnitType('vh');\nconst vw = createUnitType('vw');\nconst progressPercentage = Object.assign(Object.assign({}, percent), { parse: (v) => percent.parse(v) / 100, transform: (v) => percent.transform(v * 100) });\n\nexport { degrees, percent, progressPercentage, px, vh, vw };\n",
+      "start": 1743409708612,
+      "end": 1743409708617,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708617,
+      "end": 1743409708617,
+      "order": "normal"
+    }
+  ]
+}

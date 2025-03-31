@@ -1,0 +1,164 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/vue/dist/vue.esm-bundler.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n* vue v3.5.13\n* (c) 2018-present Yuxi (Evan) You and Vue contributors\n* @license MIT\n**/\nimport * as runtimeDom from '@vue/runtime-dom';\nimport { initCustomFormatter, registerRuntimeCompiler, warn } from '@vue/runtime-dom';\nexport * from '@vue/runtime-dom';\nimport { compile } from '@vue/compiler-dom';\nimport { isString, NOOP, genCacheKey, extend, generateCodeFrame } from '@vue/shared';\n\nfunction initDev() {\n  {\n    initCustomFormatter();\n  }\n}\n\nif (!!(process.env.NODE_ENV !== \"production\")) {\n  initDev();\n}\nconst compileCache = /* @__PURE__ */ Object.create(null);\nfunction compileToFunction(template, options) {\n  if (!isString(template)) {\n    if (template.nodeType) {\n      template = template.innerHTML;\n    } else {\n      !!(process.env.NODE_ENV !== \"production\") && warn(`invalid template option: `, template);\n      return NOOP;\n    }\n  }\n  const key = genCacheKey(template, options);\n  const cached = compileCache[key];\n  if (cached) {\n    return cached;\n  }\n  if (template[0] === \"#\") {\n    const el = document.querySelector(template);\n    if (!!(process.env.NODE_ENV !== \"production\") && !el) {\n      warn(`Template element not found or is empty: ${template}`);\n    }\n    template = el ? el.innerHTML : ``;\n  }\n  const opts = extend(\n    {\n      hoistStatic: true,\n      onError: !!(process.env.NODE_ENV !== \"production\") ? onError : void 0,\n      onWarn: !!(process.env.NODE_ENV !== \"production\") ? (e) => onError(e, true) : NOOP\n    },\n    options\n  );\n  if (!opts.isCustomElement && typeof customElements !== \"undefined\") {\n    opts.isCustomElement = (tag) => !!customElements.get(tag);\n  }\n  const { code } = compile(template, opts);\n  function onError(err, asWarning = false) {\n    const message = asWarning ? err.message : `Template compilation error: ${err.message}`;\n    const codeFrame = err.loc && generateCodeFrame(\n      template,\n      err.loc.start.offset,\n      err.loc.end.offset\n    );\n    warn(codeFrame ? `${message}\n${codeFrame}` : message);\n  }\n  const render = new Function(\"Vue\", code)(runtimeDom);\n  render._rc = true;\n  return compileCache[key] = render;\n}\nregisterRuntimeCompiler(compileToFunction);\n\nexport { compileToFunction as compile };\n",
+      "start": 1743409708350,
+      "end": 1743409708351,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708351,
+      "end": 1743409708351,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "/**\n* vue v3.5.13\n* (c) 2018-present Yuxi (Evan) You and Vue contributors\n* @license MIT\n**/\nimport * as runtimeDom from \"@vue/runtime-dom\";\nimport { initCustomFormatter, registerRuntimeCompiler, warn } from \"@vue/runtime-dom\";\nexport * from \"@vue/runtime-dom\";\nimport { compile } from \"@vue/compiler-dom\";\nimport { isString, NOOP, genCacheKey, extend, generateCodeFrame } from \"@vue/shared\";\nfunction initDev() {\n  {\n    initCustomFormatter();\n  }\n}\nif (false) {\n  initDev();\n}\nconst compileCache = /* @__PURE__ */ Object.create(null);\nfunction compileToFunction(template, options) {\n  if (!isString(template)) {\n    if (template.nodeType) {\n      template = template.innerHTML;\n    } else {\n      return NOOP;\n    }\n  }\n  const key = genCacheKey(template, options);\n  const cached = compileCache[key];\n  if (cached) {\n    return cached;\n  }\n  if (template[0] === \"#\") {\n    const el = document.querySelector(template);\n    if (false) {\n      warn(`Template element not found or is empty: ${template}`);\n    }\n    template = el ? el.innerHTML : ``;\n  }\n  const opts = extend(\n    {\n      hoistStatic: true,\n      onError: false ? onError : void 0,\n      onWarn: false ? (e) => onError(e, true) : NOOP\n    },\n    options\n  );\n  if (!opts.isCustomElement && typeof customElements !== \"undefined\") {\n    opts.isCustomElement = (tag) => !!customElements.get(tag);\n  }\n  const { code } = compile(template, opts);\n  function onError(err, asWarning = false) {\n    const message = asWarning ? err.message : `Template compilation error: ${err.message}`;\n    const codeFrame = err.loc && generateCodeFrame(\n      template,\n      err.loc.start.offset,\n      err.loc.end.offset\n    );\n    warn(codeFrame ? `${message}\n${codeFrame}` : message);\n  }\n  const render = new Function(\"Vue\", code)(runtimeDom);\n  render._rc = true;\n  return compileCache[key] = render;\n}\nregisterRuntimeCompiler(compileToFunction);\nexport { compileToFunction as compile };\n",
+      "start": 1743409708351,
+      "end": 1743409708363,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708364,
+      "end": 1743409708364,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708364,
+      "end": 1743409708364,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708364,
+      "end": 1743409708364,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708364,
+      "end": 1743409708364,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708365,
+      "end": 1743409708365,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708365,
+      "end": 1743409708369,
+      "order": "normal"
+    }
+  ]
+}

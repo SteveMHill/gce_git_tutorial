@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/stringify/stringify.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { anchorIsValid } from '../doc/anchors.js';\nimport { isPair, isAlias, isNode, isScalar, isCollection } from '../nodes/identity.js';\nimport { stringifyComment } from './stringifyComment.js';\nimport { stringifyString } from './stringifyString.js';\n\nfunction createStringifyContext(doc, options) {\n    const opt = Object.assign({\n        blockQuote: true,\n        commentString: stringifyComment,\n        defaultKeyType: null,\n        defaultStringType: 'PLAIN',\n        directives: null,\n        doubleQuotedAsJSON: false,\n        doubleQuotedMinMultiLineLength: 40,\n        falseStr: 'false',\n        flowCollectionPadding: true,\n        indentSeq: true,\n        lineWidth: 80,\n        minContentWidth: 20,\n        nullStr: 'null',\n        simpleKeys: false,\n        singleQuote: null,\n        trueStr: 'true',\n        verifyAliasOrder: true\n    }, doc.schema.toStringOptions, options);\n    let inFlow;\n    switch (opt.collectionStyle) {\n        case 'block':\n            inFlow = false;\n            break;\n        case 'flow':\n            inFlow = true;\n            break;\n        default:\n            inFlow = null;\n    }\n    return {\n        anchors: new Set(),\n        doc,\n        flowCollectionPadding: opt.flowCollectionPadding ? ' ' : '',\n        indent: '',\n        indentStep: typeof opt.indent === 'number' ? ' '.repeat(opt.indent) : '  ',\n        inFlow,\n        options: opt\n    };\n}\nfunction getTagObject(tags, item) {\n    if (item.tag) {\n        const match = tags.filter(t => t.tag === item.tag);\n        if (match.length > 0)\n            return match.find(t => t.format === item.format) ?? match[0];\n    }\n    let tagObj = undefined;\n    let obj;\n    if (isScalar(item)) {\n        obj = item.value;\n        let match = tags.filter(t => t.identify?.(obj));\n        if (match.length > 1) {\n            const testMatch = match.filter(t => t.test);\n            if (testMatch.length > 0)\n                match = testMatch;\n        }\n        tagObj =\n            match.find(t => t.format === item.format) ?? match.find(t => !t.format);\n    }\n    else {\n        obj = item;\n        tagObj = tags.find(t => t.nodeClass && obj instanceof t.nodeClass);\n    }\n    if (!tagObj) {\n        const name = obj?.constructor?.name ?? typeof obj;\n        throw new Error(`Tag not resolved for ${name} value`);\n    }\n    return tagObj;\n}\n// needs to be called before value stringifier to allow for circular anchor refs\nfunction stringifyProps(node, tagObj, { anchors, doc }) {\n    if (!doc.directives)\n        return '';\n    const props = [];\n    const anchor = (isScalar(node) || isCollection(node)) && node.anchor;\n    if (anchor && anchorIsValid(anchor)) {\n        anchors.add(anchor);\n        props.push(`&${anchor}`);\n    }\n    const tag = node.tag ? node.tag : tagObj.default ? null : tagObj.tag;\n    if (tag)\n        props.push(doc.directives.tagString(tag));\n    return props.join(' ');\n}\nfunction stringify(item, ctx, onComment, onChompKeep) {\n    if (isPair(item))\n        return item.toString(ctx, onComment, onChompKeep);\n    if (isAlias(item)) {\n        if (ctx.doc.directives)\n            return item.toString(ctx);\n        if (ctx.resolvedAliases?.has(item)) {\n            throw new TypeError(`Cannot stringify circular structure without alias nodes`);\n        }\n        else {\n            if (ctx.resolvedAliases)\n                ctx.resolvedAliases.add(item);\n            else\n                ctx.resolvedAliases = new Set([item]);\n            item = item.resolve(ctx.doc);\n        }\n    }\n    let tagObj = undefined;\n    const node = isNode(item)\n        ? item\n        : ctx.doc.createNode(item, { onTagObj: o => (tagObj = o) });\n    if (!tagObj)\n        tagObj = getTagObject(ctx.doc.schema.tags, node);\n    const props = stringifyProps(node, tagObj, ctx);\n    if (props.length > 0)\n        ctx.indentAtStart = (ctx.indentAtStart ?? 0) + props.length + 1;\n    const str = typeof tagObj.stringify === 'function'\n        ? tagObj.stringify(node, ctx, onComment, onChompKeep)\n        : isScalar(node)\n            ? stringifyString(node, ctx, onComment, onChompKeep)\n            : node.toString(ctx, onComment, onChompKeep);\n    if (!props)\n        return str;\n    return isScalar(node) || str[0] === '{' || str[0] === '['\n        ? `${props} ${str}`\n        : `${props}\\n${ctx.indent}${str}`;\n}\n\nexport { createStringifyContext, stringify };\n",
+      "start": 1743409708654,
+      "end": 1743409708662,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    }
+  ]
+}

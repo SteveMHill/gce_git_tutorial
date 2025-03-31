@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/path-data-parser/lib/normalize.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// Normalize path to include only M, L, C, and Z commands\nexport function normalize(segments) {\n    const out = [];\n    let lastType = '';\n    let cx = 0, cy = 0;\n    let subx = 0, suby = 0;\n    let lcx = 0, lcy = 0;\n    for (const { key, data } of segments) {\n        switch (key) {\n            case 'M':\n                out.push({ key: 'M', data: [...data] });\n                [cx, cy] = data;\n                [subx, suby] = data;\n                break;\n            case 'C':\n                out.push({ key: 'C', data: [...data] });\n                cx = data[4];\n                cy = data[5];\n                lcx = data[2];\n                lcy = data[3];\n                break;\n            case 'L':\n                out.push({ key: 'L', data: [...data] });\n                [cx, cy] = data;\n                break;\n            case 'H':\n                cx = data[0];\n                out.push({ key: 'L', data: [cx, cy] });\n                break;\n            case 'V':\n                cy = data[0];\n                out.push({ key: 'L', data: [cx, cy] });\n                break;\n            case 'S': {\n                let cx1 = 0, cy1 = 0;\n                if (lastType === 'C' || lastType === 'S') {\n                    cx1 = cx + (cx - lcx);\n                    cy1 = cy + (cy - lcy);\n                }\n                else {\n                    cx1 = cx;\n                    cy1 = cy;\n                }\n                out.push({ key: 'C', data: [cx1, cy1, ...data] });\n                lcx = data[0];\n                lcy = data[1];\n                cx = data[2];\n                cy = data[3];\n                break;\n            }\n            case 'T': {\n                const [x, y] = data;\n                let x1 = 0, y1 = 0;\n                if (lastType === 'Q' || lastType === 'T') {\n                    x1 = cx + (cx - lcx);\n                    y1 = cy + (cy - lcy);\n                }\n                else {\n                    x1 = cx;\n                    y1 = cy;\n                }\n                const cx1 = cx + 2 * (x1 - cx) / 3;\n                const cy1 = cy + 2 * (y1 - cy) / 3;\n                const cx2 = x + 2 * (x1 - x) / 3;\n                const cy2 = y + 2 * (y1 - y) / 3;\n                out.push({ key: 'C', data: [cx1, cy1, cx2, cy2, x, y] });\n                lcx = x1;\n                lcy = y1;\n                cx = x;\n                cy = y;\n                break;\n            }\n            case 'Q': {\n                const [x1, y1, x, y] = data;\n                const cx1 = cx + 2 * (x1 - cx) / 3;\n                const cy1 = cy + 2 * (y1 - cy) / 3;\n                const cx2 = x + 2 * (x1 - x) / 3;\n                const cy2 = y + 2 * (y1 - y) / 3;\n                out.push({ key: 'C', data: [cx1, cy1, cx2, cy2, x, y] });\n                lcx = x1;\n                lcy = y1;\n                cx = x;\n                cy = y;\n                break;\n            }\n            case 'A': {\n                const r1 = Math.abs(data[0]);\n                const r2 = Math.abs(data[1]);\n                const angle = data[2];\n                const largeArcFlag = data[3];\n                const sweepFlag = data[4];\n                const x = data[5];\n                const y = data[6];\n                if (r1 === 0 || r2 === 0) {\n                    out.push({ key: 'C', data: [cx, cy, x, y, x, y] });\n                    cx = x;\n                    cy = y;\n                }\n                else {\n                    if (cx !== x || cy !== y) {\n                        const curves = arcToCubicCurves(cx, cy, x, y, r1, r2, angle, largeArcFlag, sweepFlag);\n                        curves.forEach(function (curve) {\n                            out.push({ key: 'C', data: curve });\n                        });\n                        cx = x;\n                        cy = y;\n                    }\n                }\n                break;\n            }\n            case 'Z':\n                out.push({ key: 'Z', data: [] });\n                cx = subx;\n                cy = suby;\n                break;\n        }\n        lastType = key;\n    }\n    return out;\n}\nfunction degToRad(degrees) {\n    return (Math.PI * degrees) / 180;\n}\nfunction rotate(x, y, angleRad) {\n    const X = x * Math.cos(angleRad) - y * Math.sin(angleRad);\n    const Y = x * Math.sin(angleRad) + y * Math.cos(angleRad);\n    return [X, Y];\n}\nfunction arcToCubicCurves(x1, y1, x2, y2, r1, r2, angle, largeArcFlag, sweepFlag, recursive) {\n    const angleRad = degToRad(angle);\n    let params = [];\n    let f1 = 0, f2 = 0, cx = 0, cy = 0;\n    if (recursive) {\n        [f1, f2, cx, cy] = recursive;\n    }\n    else {\n        [x1, y1] = rotate(x1, y1, -angleRad);\n        [x2, y2] = rotate(x2, y2, -angleRad);\n        const x = (x1 - x2) / 2;\n        const y = (y1 - y2) / 2;\n        let h = (x * x) / (r1 * r1) + (y * y) / (r2 * r2);\n        if (h > 1) {\n            h = Math.sqrt(h);\n            r1 = h * r1;\n            r2 = h * r2;\n        }\n        const sign = (largeArcFlag === sweepFlag) ? -1 : 1;\n        const r1Pow = r1 * r1;\n        const r2Pow = r2 * r2;\n        const left = r1Pow * r2Pow - r1Pow * y * y - r2Pow * x * x;\n        const right = r1Pow * y * y + r2Pow * x * x;\n        const k = sign * Math.sqrt(Math.abs(left / right));\n        cx = k * r1 * y / r2 + (x1 + x2) / 2;\n        cy = k * -r2 * x / r1 + (y1 + y2) / 2;\n        f1 = Math.asin(parseFloat(((y1 - cy) / r2).toFixed(9)));\n        f2 = Math.asin(parseFloat(((y2 - cy) / r2).toFixed(9)));\n        if (x1 < cx) {\n            f1 = Math.PI - f1;\n        }\n        if (x2 < cx) {\n            f2 = Math.PI - f2;\n        }\n        if (f1 < 0) {\n            f1 = Math.PI * 2 + f1;\n        }\n        if (f2 < 0) {\n            f2 = Math.PI * 2 + f2;\n        }\n        if (sweepFlag && f1 > f2) {\n            f1 = f1 - Math.PI * 2;\n        }\n        if (!sweepFlag && f2 > f1) {\n            f2 = f2 - Math.PI * 2;\n        }\n    }\n    let df = f2 - f1;\n    if (Math.abs(df) > (Math.PI * 120 / 180)) {\n        const f2old = f2;\n        const x2old = x2;\n        const y2old = y2;\n        if (sweepFlag && f2 > f1) {\n            f2 = f1 + (Math.PI * 120 / 180) * (1);\n        }\n        else {\n            f2 = f1 + (Math.PI * 120 / 180) * (-1);\n        }\n        x2 = cx + r1 * Math.cos(f2);\n        y2 = cy + r2 * Math.sin(f2);\n        params = arcToCubicCurves(x2, y2, x2old, y2old, r1, r2, angle, 0, sweepFlag, [f2, f2old, cx, cy]);\n    }\n    df = f2 - f1;\n    const c1 = Math.cos(f1);\n    const s1 = Math.sin(f1);\n    const c2 = Math.cos(f2);\n    const s2 = Math.sin(f2);\n    const t = Math.tan(df / 4);\n    const hx = 4 / 3 * r1 * t;\n    const hy = 4 / 3 * r2 * t;\n    const m1 = [x1, y1];\n    const m2 = [x1 + hx * s1, y1 - hy * c1];\n    const m3 = [x2 + hx * s2, y2 - hy * c2];\n    const m4 = [x2, y2];\n    m2[0] = 2 * m1[0] - m2[0];\n    m2[1] = 2 * m1[1] - m2[1];\n    if (recursive) {\n        return [m2, m3, m4].concat(params);\n    }\n    else {\n        params = [m2, m3, m4].concat(params);\n        const curves = [];\n        for (let i = 0; i < params.length; i += 3) {\n            const r1 = rotate(params[i][0], params[i][1], angleRad);\n            const r2 = rotate(params[i + 1][0], params[i + 1][1], angleRad);\n            const r3 = rotate(params[i + 2][0], params[i + 2][1], angleRad);\n            curves.push([r1[0], r1[1], r2[0], r2[1], r3[0], r3[1]]);\n        }\n        return curves;\n    }\n}\n",
+      "start": 1743409708491,
+      "end": 1743409708521,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    }
+  ]
+}

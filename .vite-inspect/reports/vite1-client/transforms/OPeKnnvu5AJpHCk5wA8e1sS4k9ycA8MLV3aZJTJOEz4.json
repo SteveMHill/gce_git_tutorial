@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/chunk-Q7VUVKE6.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  configureSvgSize,\n  log,\n  select_default\n} from \"./chunk-3L32CQKD.mjs\";\nimport {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// src/rendering-util/insertElementsForSize.js\nvar getDiagramElement = /* @__PURE__ */ __name((id, securityLevel) => {\n  let sandboxElement;\n  if (securityLevel === \"sandbox\") {\n    sandboxElement = select_default(\"#i\" + id);\n  }\n  const root = securityLevel === \"sandbox\" ? select_default(sandboxElement.nodes()[0].contentDocument.body) : select_default(\"body\");\n  const svg = root.select(`[id=\"${id}\"]`);\n  return svg;\n}, \"getDiagramElement\");\n\n// src/rendering-util/setupViewPortForSVG.ts\nvar setupViewPortForSVG = /* @__PURE__ */ __name((svg, padding, cssDiagram, useMaxWidth) => {\n  svg.attr(\"class\", cssDiagram);\n  const { width, height, x, y } = calculateDimensionsWithPadding(svg, padding);\n  configureSvgSize(svg, height, width, useMaxWidth);\n  const viewBox = createViewBox(x, y, width, height, padding);\n  svg.attr(\"viewBox\", viewBox);\n  log.debug(`viewBox configured: ${viewBox} with padding: ${padding}`);\n}, \"setupViewPortForSVG\");\nvar calculateDimensionsWithPadding = /* @__PURE__ */ __name((svg, padding) => {\n  const bounds = svg.node()?.getBBox() || { width: 0, height: 0, x: 0, y: 0 };\n  return {\n    width: bounds.width + padding * 2,\n    height: bounds.height + padding * 2,\n    x: bounds.x,\n    y: bounds.y\n  };\n}, \"calculateDimensionsWithPadding\");\nvar createViewBox = /* @__PURE__ */ __name((x, y, width, height, padding) => {\n  return `${x - padding} ${y - padding} ${width} ${height}`;\n}, \"createViewBox\");\n\nexport {\n  getDiagramElement,\n  setupViewPortForSVG\n};\n",
+      "start": 1743409709189,
+      "end": 1743409709301,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/path-data-parser/lib/parser.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "const COMMAND = 0;\nconst NUMBER = 1;\nconst EOD = 2;\nconst PARAMS = { A: 7, a: 7, C: 6, c: 6, H: 1, h: 1, L: 2, l: 2, M: 2, m: 2, Q: 4, q: 4, S: 4, s: 4, T: 2, t: 2, V: 1, v: 1, Z: 0, z: 0 };\nfunction tokenize(d) {\n    const tokens = new Array();\n    while (d !== '') {\n        if (d.match(/^([ \\t\\r\\n,]+)/)) {\n            d = d.substr(RegExp.$1.length);\n        }\n        else if (d.match(/^([aAcChHlLmMqQsStTvVzZ])/)) {\n            tokens[tokens.length] = { type: COMMAND, text: RegExp.$1 };\n            d = d.substr(RegExp.$1.length);\n        }\n        else if (d.match(/^(([-+]?[0-9]+(\\.[0-9]*)?|[-+]?\\.[0-9]+)([eE][-+]?[0-9]+)?)/)) {\n            tokens[tokens.length] = { type: NUMBER, text: `${parseFloat(RegExp.$1)}` };\n            d = d.substr(RegExp.$1.length);\n        }\n        else {\n            return [];\n        }\n    }\n    tokens[tokens.length] = { type: EOD, text: '' };\n    return tokens;\n}\nfunction isType(token, type) {\n    return token.type === type;\n}\nexport function parsePath(d) {\n    const segments = [];\n    const tokens = tokenize(d);\n    let mode = 'BOD';\n    let index = 0;\n    let token = tokens[index];\n    while (!isType(token, EOD)) {\n        let paramsCount = 0;\n        const params = [];\n        if (mode === 'BOD') {\n            if (token.text === 'M' || token.text === 'm') {\n                index++;\n                paramsCount = PARAMS[token.text];\n                mode = token.text;\n            }\n            else {\n                return parsePath('M0,0' + d);\n            }\n        }\n        else if (isType(token, NUMBER)) {\n            paramsCount = PARAMS[mode];\n        }\n        else {\n            index++;\n            paramsCount = PARAMS[token.text];\n            mode = token.text;\n        }\n        if ((index + paramsCount) < tokens.length) {\n            for (let i = index; i < index + paramsCount; i++) {\n                const numbeToken = tokens[i];\n                if (isType(numbeToken, NUMBER)) {\n                    params[params.length] = +numbeToken.text;\n                }\n                else {\n                    throw new Error('Param not a number: ' + mode + ',' + numbeToken.text);\n                }\n            }\n            if (typeof PARAMS[mode] === 'number') {\n                const segment = { key: mode, data: params };\n                segments.push(segment);\n                index += paramsCount;\n                token = tokens[index];\n                if (mode === 'M')\n                    mode = 'L';\n                if (mode === 'm')\n                    mode = 'l';\n            }\n            else {\n                throw new Error('Bad segment: ' + mode);\n            }\n        }\n        else {\n            throw new Error('Path data ended short');\n        }\n    }\n    return segments;\n}\nexport function serialize(segments) {\n    const tokens = [];\n    for (const { key, data } of segments) {\n        tokens.push(key);\n        switch (key) {\n            case 'C':\n            case 'c':\n                tokens.push(data[0], `${data[1]},`, data[2], `${data[3]},`, data[4], data[5]);\n                break;\n            case 'S':\n            case 's':\n            case 'Q':\n            case 'q':\n                tokens.push(data[0], `${data[1]},`, data[2], data[3]);\n                break;\n            default:\n                tokens.push(...data);\n                break;\n        }\n    }\n    return tokens.join(' ');\n}\n",
+      "start": 1743409708491,
+      "end": 1743409708520,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708521,
+      "end": 1743409708521,
+      "order": "normal"
+    }
+  ]
+}

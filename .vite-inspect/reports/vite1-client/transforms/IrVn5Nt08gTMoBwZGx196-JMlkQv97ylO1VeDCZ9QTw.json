@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!--\n  Usage:\n```md\n---\nlayout: two-cols-header\n---\nThis spans both\n::left::\n# Left\nThis shows on the left\n::right::\n# Right\nThis shows on the right\n::bottom::\nThis shows at the bottom, aligned to the end (bottom) of the grid\n```\n-->\n\n<script setup lang=\"ts\">\nconst props = defineProps({\n  class: {\n    type: String,\n  },\n  layoutClass: {\n    type: String,\n  },\n})\n</script>\n\n<template>\n  <div class=\"slidev-layout two-cols-header w-full h-full\" :class=\"layoutClass\">\n    <div class=\"col-header\">\n      <slot />\n    </div>\n    <div class=\"col-left\" :class=\"props.class\">\n      <slot name=\"left\" />\n    </div>\n    <div class=\"col-right\" :class=\"props.class\">\n      <slot name=\"right\" />\n    </div>\n    <div class=\"col-bottom\" :class=\"props.class\">\n      <slot name=\"bottom\" />\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.two-cols-header {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  grid-template-rows: repeat(2, 1fr);\n}\n\n.col-header {\n  grid-area: 1 / 1 / 2 / 3;\n}\n.col-left {\n  grid-area: 2 / 1 / 3 / 2;\n}\n.col-right {\n  grid-area: 2 / 2 / 3 / 3;\n}\n.col-bottom {\n  align-self: end;\n  grid-area: 3 / 1 / 3 / 3;\n}\n</style>\n",
+      "start": 1743409708877,
+      "end": 1743409708888,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708888,
+      "end": 1743409708889,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708889,
+      "end": 1743409708889,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=style&index=0&scoped=d9d910a6&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-d9d910a6\"]]);\n",
+      "start": 1743409708889,
+      "end": 1743409708946,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=style&index=0&scoped=d9d910a6&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-d9d910a6\"]]);\n",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue?vue&type=style&index=0&scoped=d9d910a6&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-d9d910a6\"]]);\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACrJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC7I,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,QAAQ,CAAC,IAAI,CAAC,GAAG,CAAC;AACnJ,MAAM,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,MAAM,CAAC,MAAM,CAAC;AACpD,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    }
+  ]
+}

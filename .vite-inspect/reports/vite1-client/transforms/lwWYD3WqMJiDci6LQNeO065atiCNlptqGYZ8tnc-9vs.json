@@ -1,0 +1,176 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/theme/layoutHelper.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { CSSProperties } from 'vue'\n\n/**\n * Resolve urls from frontmatter and append with the base url\n */\nexport function resolveAssetUrl(url: string) {\n  if (url.startsWith('/'))\n    return import.meta.env.BASE_URL + url.slice(1)\n  return url\n}\n\nexport function handleBackground(background?: string, dim = false): CSSProperties {\n  const isColor = background && ['#', 'rgb', 'hsl'].some(v => background.indexOf(v) === 0)\n\n  const style = {\n    background: isColor\n      ? background\n      : undefined,\n    color: (background && !isColor)\n      ? 'black'\n      : undefined,\n    backgroundImage: isColor\n      ? undefined\n      : background\n        ? dim\n          ? `linear-gradient(#0000, #0000), url(${resolveAssetUrl(background)})`\n          : `url(\"${resolveAssetUrl(background)}\")`\n        : undefined,\n    backgroundRepeat: 'no-repeat',\n    backgroundPosition: 'center',\n    backgroundSize: 'cover',\n  }\n\n  if (!style.background)\n    delete style.background\n\n  return style\n}\n",
+      "start": 1743409709036,
+      "end": 1743409709044,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "export function resolveAssetUrl(url) {\n  if (url.startsWith(\"/\"))\n    return import.meta.env.BASE_URL + url.slice(1);\n  return url;\n}\nexport function handleBackground(background, dim = false) {\n  const isColor = background && [\"#\", \"rgb\", \"hsl\"].some((v) => background.indexOf(v) === 0);\n  const style = {\n    background: isColor ? background : void 0,\n    color: background && !isColor ? \"black\" : void 0,\n    backgroundImage: isColor ? void 0 : background ? dim ? `linear-gradient(#0000, #0000), url(${resolveAssetUrl(background)})` : `url(\"${resolveAssetUrl(background)}\")` : void 0,\n    backgroundRepeat: \"no-repeat\",\n    backgroundPosition: \"center\",\n    backgroundSize: \"cover\"\n  };\n  if (!style.background)\n    delete style.background;\n  return style;\n}\n",
+      "start": 1743409709044,
+      "end": 1743409709067,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/theme/layoutHelper.ts"
+        ],
+        "sourcesContent": [
+          "import type { CSSProperties } from 'vue'\n\n/**\n * Resolve urls from frontmatter and append with the base url\n */\nexport function resolveAssetUrl(url: string) {\n  if (url.startsWith('/'))\n    return import.meta.env.BASE_URL + url.slice(1)\n  return url\n}\n\nexport function handleBackground(background?: string, dim = false): CSSProperties {\n  const isColor = background && ['#', 'rgb', 'hsl'].some(v => background.indexOf(v) === 0)\n\n  const style = {\n    background: isColor\n      ? background\n      : undefined,\n    color: (background && !isColor)\n      ? 'black'\n      : undefined,\n    backgroundImage: isColor\n      ? undefined\n      : background\n        ? dim\n          ? `linear-gradient(#0000, #0000), url(${resolveAssetUrl(background)})`\n          : `url(\"${resolveAssetUrl(background)}\")`\n        : undefined,\n    backgroundRepeat: 'no-repeat',\n    backgroundPosition: 'center',\n    backgroundSize: 'cover',\n  }\n\n  if (!style.background)\n    delete style.background\n\n  return style\n}\n"
+        ],
+        "mappings": "AAKO,gBAAS,gBAAgB,KAAa;AAC3C,MAAI,IAAI,WAAW,GAAG;AACpB,WAAO,YAAY,IAAI,WAAW,IAAI,MAAM,CAAC;AAC/C,SAAO;AACT;AAEO,gBAAS,iBAAiB,YAAqB,MAAM,OAAsB;AAChF,QAAM,UAAU,cAAc,CAAC,KAAK,OAAO,KAAK,EAAE,KAAK,OAAK,WAAW,QAAQ,CAAC,MAAM,CAAC;AAEvF,QAAM,QAAQ;AAAA,IACZ,YAAY,UACR,aACA;AAAA,IACJ,OAAQ,cAAc,CAAC,UACnB,UACA;AAAA,IACJ,iBAAiB,UACb,SACA,aACE,MACE,sCAAsC,gBAAgB,UAAU,CAAC,MACjE,QAAQ,gBAAgB,UAAU,CAAC,OACrC;AAAA,IACN,kBAAkB;AAAA,IAClB,oBAAoB;AAAA,IACpB,gBAAgB;AAAA,EAClB;AAEA,MAAI,CAAC,MAAM;AACT,WAAO,MAAM;AAEf,SAAO;AACT;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709067,
+      "end": 1743409709067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "export function resolveAssetUrl(url) {\n  if (url.startsWith(\"/\"))\n    return \"/\" + url.slice(1);\n  return url;\n}\nexport function handleBackground(background, dim = false) {\n  const isColor = background && [\"#\", \"rgb\", \"hsl\"].some((v) => background.indexOf(v) === 0);\n  const style = {\n    background: isColor ? background : void 0,\n    color: background && !isColor ? \"black\" : void 0,\n    backgroundImage: isColor ? void 0 : background ? dim ? `linear-gradient(#0000, #0000), url(${resolveAssetUrl(background)})` : `url(\"${resolveAssetUrl(background)}\")` : void 0,\n    backgroundRepeat: \"no-repeat\",\n    backgroundPosition: \"center\",\n    backgroundSize: \"cover\"\n  };\n  if (!style.background)\n    delete style.background;\n  return style;\n}\n",
+      "start": 1743409709067,
+      "end": 1743409709260,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    }
+  ]
+}

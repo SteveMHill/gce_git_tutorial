@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/framesync/dist/es/index.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { onNextFrame, defaultTimestep } from './on-next-frame.mjs';\nimport { createRenderStep } from './create-render-step.mjs';\n\nconst maxElapsed = 40;\nlet useDefaultElapsed = true;\nlet runNextFrame = false;\nlet isProcessing = false;\nconst frame = {\n    delta: 0,\n    timestamp: 0,\n};\nconst stepsOrder = [\n    \"read\",\n    \"update\",\n    \"preRender\",\n    \"render\",\n    \"postRender\",\n];\nconst steps = stepsOrder.reduce((acc, key) => {\n    acc[key] = createRenderStep(() => (runNextFrame = true));\n    return acc;\n}, {});\nconst sync = stepsOrder.reduce((acc, key) => {\n    const step = steps[key];\n    acc[key] = (process, keepAlive = false, immediate = false) => {\n        if (!runNextFrame)\n            startLoop();\n        return step.schedule(process, keepAlive, immediate);\n    };\n    return acc;\n}, {});\nconst cancelSync = stepsOrder.reduce((acc, key) => {\n    acc[key] = steps[key].cancel;\n    return acc;\n}, {});\nconst flushSync = stepsOrder.reduce((acc, key) => {\n    acc[key] = () => steps[key].process(frame);\n    return acc;\n}, {});\nconst processStep = (stepId) => steps[stepId].process(frame);\nconst processFrame = (timestamp) => {\n    runNextFrame = false;\n    frame.delta = useDefaultElapsed\n        ? defaultTimestep\n        : Math.max(Math.min(timestamp - frame.timestamp, maxElapsed), 1);\n    frame.timestamp = timestamp;\n    isProcessing = true;\n    stepsOrder.forEach(processStep);\n    isProcessing = false;\n    if (runNextFrame) {\n        useDefaultElapsed = false;\n        onNextFrame(processFrame);\n    }\n};\nconst startLoop = () => {\n    runNextFrame = true;\n    useDefaultElapsed = true;\n    if (!isProcessing)\n        onNextFrame(processFrame);\n};\nconst getFrameData = () => frame;\n\nexport default sync;\nexport { cancelSync, flushSync, getFrameData };\n",
+      "start": 1743409708590,
+      "end": 1743409708598,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708598,
+      "end": 1743409708598,
+      "order": "normal"
+    }
+  ]
+}

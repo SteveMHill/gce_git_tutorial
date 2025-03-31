@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/parser/dist/chunk-SIS7SDEP.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  parseAspectRatio\n} from \"./chunk-47YLTX76.mjs\";\n\n// src/core.ts\nimport { ensurePrefix } from \"@antfu/utils\";\nimport YAML from \"yaml\";\n\n// src/config.ts\nimport { toArray, uniq } from \"@antfu/utils\";\nfunction getDefaultConfig() {\n  return {\n    theme: \"default\",\n    title: \"Slidev\",\n    titleTemplate: \"%s - Slidev\",\n    addons: [],\n    remoteAssets: false,\n    monaco: true,\n    monacoTypesSource: \"local\",\n    monacoTypesAdditionalPackages: [],\n    monacoTypesIgnorePackages: [],\n    monacoRunAdditionalDeps: [],\n    download: false,\n    export: {},\n    info: false,\n    highlighter: \"shiki\",\n    twoslash: true,\n    lineNumbers: false,\n    colorSchema: \"auto\",\n    routerMode: \"history\",\n    aspectRatio: 16 / 9,\n    canvasWidth: 980,\n    exportFilename: \"\",\n    selectable: false,\n    themeConfig: {},\n    fonts: {},\n    favicon: \"https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png\",\n    drawings: {},\n    plantUmlServer: \"https://www.plantuml.com/plantuml\",\n    codeCopy: true,\n    author: \"\",\n    record: \"dev\",\n    css: \"unocss\",\n    presenter: true,\n    browserExporter: \"dev\",\n    htmlAttrs: {},\n    transition: null,\n    editor: true,\n    contextMenu: null,\n    wakeLock: true,\n    remote: false,\n    mdc: false,\n    seoMeta: {}\n  };\n}\nfunction resolveConfig(headmatter, themeMeta = {}, filepath, verify = false) {\n  const themeHightlighter = [\"prism\", \"shiki\", \"shikiji\"].includes(themeMeta.highlighter || \"\") ? themeMeta.highlighter : void 0;\n  const themeColorSchema = [\"light\", \"dark\"].includes(themeMeta.colorSchema || \"\") ? themeMeta.colorSchema : void 0;\n  const defaultConfig = getDefaultConfig();\n  const config = {\n    ...defaultConfig,\n    highlighter: themeHightlighter || defaultConfig.highlighter,\n    colorSchema: themeColorSchema || defaultConfig.colorSchema,\n    ...themeMeta.defaults,\n    ...headmatter.config,\n    ...headmatter,\n    fonts: resolveFonts({\n      ...themeMeta.defaults?.fonts,\n      ...headmatter.config?.fonts,\n      ...headmatter?.fonts\n    }),\n    drawings: resolveDrawings(headmatter.drawings, filepath),\n    htmlAttrs: {\n      ...themeMeta.defaults?.htmlAttrs,\n      ...headmatter.config?.htmlAttrs,\n      ...headmatter?.htmlAttrs\n    }\n  };\n  if (config.highlighter === \"shikiji\") {\n    console.warn(`[slidev] \"shikiji\" is merged back to \"shiki\", you can safely change it \"highlighter: shiki\"`);\n    config.highlighter = \"shiki\";\n  }\n  if (config.highlighter === \"prism\")\n    throw new Error(`[slidev] \"prism\" support has been dropped. Please use \"highlighter: shiki\" instead`);\n  if (config.colorSchema !== \"dark\" && config.colorSchema !== \"light\")\n    config.colorSchema = \"auto\";\n  if (themeColorSchema && config.colorSchema === \"auto\")\n    config.colorSchema = themeColorSchema;\n  config.aspectRatio = parseAspectRatio(config.aspectRatio);\n  if (verify)\n    verifyConfig(config, themeMeta);\n  return config;\n}\nfunction verifyConfig(config, themeMeta = {}, warn = (v) => console.warn(`[slidev] ${v}`)) {\n  const themeHightlighter = themeMeta.highlighter === \"shiki\" ? themeMeta.highlighter : void 0;\n  const themeColorSchema = [\"light\", \"dark\"].includes(themeMeta.colorSchema || \"\") ? themeMeta.colorSchema : void 0;\n  if (themeColorSchema && config.colorSchema !== themeColorSchema)\n    warn(`Color schema \"${config.colorSchema}\" does not supported by the theme`);\n  if (themeHightlighter && config.highlighter !== themeHightlighter)\n    warn(`Syntax highlighter \"${config.highlighter}\" does not supported by the theme`);\n  if (config.css !== \"unocss\") {\n    warn(`Unsupported Atomic CSS engine \"${config.css}\", fallback to UnoCSS`);\n    config.css = \"unocss\";\n  }\n}\nfunction resolveFonts(fonts = {}) {\n  const {\n    fallbacks = true,\n    italic = false,\n    provider = \"google\"\n  } = fonts;\n  let sans = toArray(fonts.sans).flatMap((i) => i.split(/,\\s*/g)).map((i) => i.trim());\n  let serif = toArray(fonts.serif).flatMap((i) => i.split(/,\\s*/g)).map((i) => i.trim());\n  let mono = toArray(fonts.mono).flatMap((i) => i.split(/,\\s*/g)).map((i) => i.trim());\n  const weights = toArray(fonts.weights || \"200,400,600\").flatMap((i) => i.toString().split(/,\\s*/g)).map((i) => i.trim());\n  const custom = toArray(fonts.custom).flatMap((i) => i.split(/,\\s*/g)).map((i) => i.trim());\n  const local = toArray(fonts.local).flatMap((i) => i.split(/,\\s*/g)).map((i) => i.trim());\n  const webfonts = fonts.webfonts ? fonts.webfonts : fallbacks ? uniq([...sans, ...serif, ...mono, ...custom]) : [];\n  webfonts.filter((i) => local.includes(i));\n  function toQuoted(font) {\n    if (/^(['\"]).*\\1$/.test(font))\n      return font;\n    return `\"${font}\"`;\n  }\n  if (fallbacks) {\n    sans = uniq([\n      ...sans.map(toQuoted),\n      \"ui-sans-serif\",\n      \"system-ui\",\n      \"-apple-system\",\n      \"BlinkMacSystemFont\",\n      '\"Segoe UI\"',\n      \"Roboto\",\n      '\"Helvetica Neue\"',\n      \"Arial\",\n      '\"Noto Sans\"',\n      \"sans-serif\",\n      '\"Apple Color Emoji\"',\n      '\"Segoe UI Emoji\"',\n      '\"Segoe UI Symbol\"',\n      '\"Noto Color Emoji\"'\n    ]);\n    serif = uniq([\n      ...serif.map(toQuoted),\n      \"ui-serif\",\n      \"Georgia\",\n      \"Cambria\",\n      '\"Times New Roman\"',\n      \"Times\",\n      \"serif\"\n    ]);\n    mono = uniq([\n      ...mono.map(toQuoted),\n      \"ui-monospace\",\n      \"SFMono-Regular\",\n      \"Menlo\",\n      \"Monaco\",\n      \"Consolas\",\n      '\"Liberation Mono\"',\n      '\"Courier New\"',\n      \"monospace\"\n    ]);\n  }\n  return {\n    sans,\n    serif,\n    mono,\n    webfonts,\n    provider,\n    local,\n    italic,\n    weights\n  };\n}\nfunction resolveDrawings(options = {}, filepath) {\n  const {\n    enabled = true,\n    persist = false,\n    presenterOnly = false,\n    syncAll = true\n  } = options;\n  const persistPath = typeof persist === \"string\" ? persist : persist ? `.slidev/drawings${filepath ? `/${filepath.match(/([^\\\\/]+?)(\\.\\w+)?$/)?.[1]}` : \"\"}` : false;\n  return {\n    enabled,\n    persist: persistPath,\n    presenterOnly,\n    syncAll\n  };\n}\n\n// src/core.ts\nfunction stringify(data) {\n  return `${data.slides.map(stringifySlide).join(\"\\n\").trim()}\n`;\n}\nfunction stringifySlide(data, idx = 0) {\n  return data.raw.startsWith(\"---\") || idx === 0 ? data.raw : `---\n${ensurePrefix(\"\\n\", data.raw)}`;\n}\nfunction prettifySlide(data) {\n  const trimed = data.content.trim();\n  data.content = trimed ? `\n${data.content.trim()}\n` : \"\";\n  data.raw = data.frontmatterDoc?.contents ? data.frontmatterStyle === \"yaml\" ? `\\`\\`\\`yaml\n${data.frontmatterDoc.toString().trim()}\n\\`\\`\\`\n${data.content}` : `---\n${data.frontmatterDoc.toString().trim()}\n---\n${data.content}` : data.content;\n  if (data.note)\n    data.raw += `\n<!--\n${data.note.trim()}\n-->\n`;\n  return data;\n}\nfunction prettify(data) {\n  data.slides.forEach(prettifySlide);\n  return data;\n}\nfunction matter(code, options) {\n  let type;\n  let raw;\n  let content = code.replace(/^---.*\\r?\\n([\\s\\S]*?)---/, (_, f) => {\n    type = \"frontmatter\";\n    raw = f;\n    return \"\";\n  });\n  if (type !== \"frontmatter\") {\n    content = content.replace(/^\\s*```ya?ml([\\s\\S]*?)```/, (_, f) => {\n      type = \"yaml\";\n      raw = f;\n      return \"\";\n    });\n  }\n  const doc = raw && !options.noParseYAML ? YAML.parseDocument(raw) : void 0;\n  return {\n    type,\n    raw,\n    doc,\n    data: doc?.toJSON(),\n    content\n  };\n}\nfunction detectFeatures(code) {\n  return {\n    katex: !!code.match(/\\$.*?\\$/) || !!code.match(/\\$\\$/),\n    monaco: code.match(/\\{monaco.*\\}/) ? scanMonacoReferencedMods(code) : false,\n    tweet: !!code.match(/<Tweet\\b/),\n    mermaid: !!code.match(/^```mermaid/m)\n  };\n}\nfunction parseSlide(raw, options = {}) {\n  const matterResult = matter(raw, options);\n  let note;\n  const frontmatter = matterResult.data || {};\n  let content = matterResult.content.trim();\n  const revision = hash(raw.trim());\n  const comments = Array.from(content.matchAll(/<!--([\\s\\S]*?)-->/g));\n  if (comments.length) {\n    const last = comments[comments.length - 1];\n    if (last.index !== void 0 && last.index + last[0].length >= content.length) {\n      note = last[1].trim();\n      content = content.slice(0, last.index).trim();\n    }\n  }\n  let title;\n  let level;\n  if (frontmatter.title || frontmatter.name) {\n    title = frontmatter.title || frontmatter.name;\n  } else {\n    const match = content.match(/^(#+) (.*)$/m);\n    title = match?.[2]?.trim();\n    level = match?.[1]?.length;\n  }\n  if (frontmatter.level)\n    level = frontmatter.level || 1;\n  return {\n    raw,\n    title,\n    level,\n    revision,\n    content,\n    contentRaw: content,\n    frontmatter,\n    frontmatterStyle: matterResult.type,\n    frontmatterDoc: matterResult.doc,\n    frontmatterRaw: matterResult.raw,\n    note\n  };\n}\nasync function parse(markdown, filepath, extensions, options = {}) {\n  const lines = markdown.split(options.preserveCR ? \"\\n\" : /\\r?\\n/g);\n  const slides = [];\n  let start = 0;\n  let contentStart = 0;\n  async function slice(end) {\n    if (start === end)\n      return;\n    const raw = lines.slice(start, end).join(\"\\n\");\n    const slide = {\n      ...parseSlide(raw, options),\n      filepath,\n      index: slides.length,\n      start,\n      contentStart,\n      end\n    };\n    if (extensions) {\n      for (const e of extensions) {\n        if (e.transformSlide) {\n          const newContent = await e.transformSlide(slide.content, slide.frontmatter);\n          if (newContent !== void 0)\n            slide.content = newContent;\n          if (typeof slide.frontmatter.title === \"string\") {\n            slide.title = slide.frontmatter.title;\n          }\n          if (typeof slide.frontmatter.level === \"number\") {\n            slide.level = slide.frontmatter.level;\n          }\n        }\n        if (e.transformNote) {\n          const newNote = await e.transformNote(slide.note, slide.frontmatter);\n          if (newNote !== void 0)\n            slide.note = newNote;\n        }\n      }\n    }\n    slides.push(slide);\n    start = end + 1;\n    contentStart = end + 1;\n  }\n  if (extensions) {\n    for (const e of extensions) {\n      if (e.transformRawLines)\n        await e.transformRawLines(lines);\n    }\n  }\n  for (let i = 0; i < lines.length; i++) {\n    const line = lines[i].trimEnd();\n    if (line.startsWith(\"---\")) {\n      await slice(i);\n      const next = lines[i + 1];\n      if (line[3] !== \"-\" && next?.trim()) {\n        start = i;\n        for (i += 1; i < lines.length; i++) {\n          if (lines[i].trimEnd() === \"---\")\n            break;\n        }\n        contentStart = i + 1;\n      }\n    } else if (line.trimStart().startsWith(\"```\")) {\n      const codeBlockLevel = line.match(/^\\s*`+/)[0];\n      let j = i + 1;\n      for (; j < lines.length; j++) {\n        if (lines[j].startsWith(codeBlockLevel))\n          break;\n      }\n      if (j !== lines.length)\n        i = j;\n    }\n  }\n  if (start <= lines.length - 1)\n    await slice(lines.length);\n  return {\n    filepath,\n    raw: markdown,\n    slides\n  };\n}\nfunction parseSync(markdown, filepath, options = {}) {\n  const lines = markdown.split(options.preserveCR ? \"\\n\" : /\\r?\\n/g);\n  const slides = [];\n  let start = 0;\n  let contentStart = 0;\n  function slice(end) {\n    if (start === end)\n      return;\n    const raw = lines.slice(start, end).join(\"\\n\");\n    const slide = {\n      ...parseSlide(raw, options),\n      filepath,\n      index: slides.length,\n      start,\n      contentStart,\n      end\n    };\n    slides.push(slide);\n    start = end + 1;\n    contentStart = end + 1;\n  }\n  for (let i = 0; i < lines.length; i++) {\n    const line = lines[i].trimEnd();\n    if (line.startsWith(\"---\")) {\n      slice(i);\n      const next = lines[i + 1];\n      if (line[3] !== \"-\" && next?.trim()) {\n        start = i;\n        for (i += 1; i < lines.length; i++) {\n          if (lines[i].trimEnd() === \"---\")\n            break;\n        }\n        contentStart = i + 1;\n      }\n    } else if (line.trimStart().startsWith(\"```\")) {\n      const codeBlockLevel = line.match(/^\\s*`+/)[0];\n      let j = i + 1;\n      for (; j < lines.length; j++) {\n        if (lines[j].startsWith(codeBlockLevel))\n          break;\n      }\n      if (j !== lines.length)\n        i = j;\n    }\n  }\n  if (start <= lines.length - 1)\n    slice(lines.length);\n  return {\n    filepath,\n    raw: markdown,\n    slides\n  };\n}\nfunction scanMonacoReferencedMods(md) {\n  const types = /* @__PURE__ */ new Set();\n  const deps = /* @__PURE__ */ new Set();\n  md.replace(\n    /^```(\\w+)\\s*\\{monaco([^}]*)\\}\\s*(\\S[\\s\\S]*?)^```/gm,\n    (full, lang = \"ts\", kind, code) => {\n      lang = lang.trim();\n      const isDep = kind === \"-run\";\n      if ([\"js\", \"javascript\", \"ts\", \"typescript\"].includes(lang)) {\n        for (const [, , specifier] of code.matchAll(/\\s+from\\s+([\"'])([/.\\w@-]+)\\1/g)) {\n          if (specifier) {\n            if (!\"./\".includes(specifier))\n              types.add(specifier);\n            if (isDep)\n              deps.add(specifier);\n          }\n        }\n      }\n      return \"\";\n    }\n  );\n  return {\n    types: Array.from(types),\n    deps: Array.from(deps)\n  };\n}\nfunction hash(str) {\n  let hash2 = 0;\n  for (let i = 0; i < str.length; i++) {\n    hash2 = (hash2 << 5) - hash2 + str.charCodeAt(i);\n    hash2 |= 0;\n  }\n  return hash2.toString(36).slice(0, 12);\n}\n\nexport {\n  getDefaultConfig,\n  resolveConfig,\n  verifyConfig,\n  resolveFonts,\n  stringify,\n  stringifySlide,\n  prettifySlide,\n  prettify,\n  detectFeatures,\n  parseSlide,\n  parse,\n  parseSync\n};\n",
+      "start": 1743409708583,
+      "end": 1743409708591,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708591,
+      "end": 1743409708591,
+      "order": "normal"
+    }
+  ]
+}

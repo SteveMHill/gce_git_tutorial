@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingPreview.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = [\"innerHTML\"]\n\nimport { useDrawings } from '../composables/useDrawings'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'DrawingPreview',\n  props: {\n    page: {}\n  },\n  setup(__props: any) {\n\n\n\nconst { drawingState } = useDrawings()\n\nreturn (_ctx: any,_cache: any) => {\n  return (_unref(drawingState)[_ctx.page])\n    ? (_openBlock(), _createElementBlock(\"svg\", {\n        key: 0,\n        class: \"w-full h-full absolute top-0 pointer-events-none\",\n        innerHTML: _unref(drawingState)[_ctx.page]\n      }, null, 8 /* PROPS */, _hoisted_1))\n    : _createCommentVNode(\"v-if\", true)\n}\n}\n\n})",
+      "start": 1743409708948,
+      "end": 1743409708948
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = [\"innerHTML\"];\nimport { useDrawings } from \"../composables/useDrawings\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"DrawingPreview\",\n  props: {\n    page: {}\n  },\n  setup(__props) {\n    const { drawingState } = useDrawings();\n    return (_ctx, _cache) => {\n      return _unref(drawingState)[_ctx.page] ? (_openBlock(), _createElementBlock(\"svg\", {\n        key: 0,\n        class: \"w-full h-full absolute top-0 pointer-events-none\",\n        innerHTML: _unref(drawingState)[_ctx.page]\n      }, null, 8, _hoisted_1)) : _createCommentVNode(\"v-if\", true);\n    };\n  }\n});\n",
+      "start": 1743409708948,
+      "end": 1743409708988,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingPreview.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = [\"innerHTML\"]\n\nimport { useDrawings } from '../composables/useDrawings'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'DrawingPreview',\n  props: {\n    page: {}\n  },\n  setup(__props: any) {\n\n\n\nconst { drawingState } = useDrawings()\n\nreturn (_ctx: any,_cache: any) => {\n  return (_unref(drawingState)[_ctx.page])\n    ? (_openBlock(), _createElementBlock(\"svg\", {\n        key: 0,\n        class: \"w-full h-full absolute top-0 pointer-events-none\",\n        innerHTML: _unref(drawingState)[_ctx.page]\n      }, null, 8 /* PROPS */, _hoisted_1))\n    : _createCommentVNode(\"v-if\", true)\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,aAAa,YAAY,sBAAsB,qBAAqB,sBAAsB,2BAA2B;AAE/I,MAAM,aAAa,CAAC,WAAW;AAE/B,SAAS,mBAAmB;AAG5B,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACL,MAAM,CAAC;AAAA,EACT;AAAA,EACA,MAAM,SAAc;AAItB,UAAM,EAAE,aAAa,IAAI,YAAY;AAErC,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,OAAO,YAAY,EAAE,KAAK,IAAI,KACjC,WAAW,GAAG,oBAAoB,OAAO;AAAA,QACxC,KAAK;AAAA,QACL,OAAO;AAAA,QACP,WAAW,OAAO,YAAY,EAAE,KAAK,IAAI;AAAA,MAC3C,GAAG,MAAM,GAAe,UAAU,KAClC,oBAAoB,QAAQ,IAAI;AAAA,IACtC;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = [\"innerHTML\"];\nimport { useDrawings } from \"../composables/useDrawings\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"DrawingPreview\",\n  props: {\n    page: {}\n  },\n  setup(__props) {\n    const { drawingState } = useDrawings();\n    return (_ctx, _cache) => {\n      return _unref(drawingState)[_ctx.page] ? (_openBlock(), _createElementBlock(\"svg\", {\n        key: 0,\n        class: \"w-full h-full absolute top-0 pointer-events-none\",\n        innerHTML: _unref(drawingState)[_ctx.page]\n      }, null, 8, _hoisted_1)) : _createCommentVNode(\"v-if\", true);\n    };\n  }\n});\n",
+      "start": 1743409708988,
+      "end": 1743409708989,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingPreview.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = [\"innerHTML\"];\nimport { useDrawings } from \"../composables/useDrawings\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"DrawingPreview\",\n  props: {\n    page: {}\n  },\n  setup(__props) {\n    const { drawingState } = useDrawings();\n    return (_ctx, _cache) => {\n      return _unref(drawingState)[_ctx.page] ? (_openBlock(), _createElementBlock(\"svg\", {\n        key: 0,\n        class: \"w-full h-full absolute top-0 pointer-events-none\",\n        innerHTML: _unref(drawingState)[_ctx.page]\n      }, null, 8, _hoisted_1)) : _createCommentVNode(\"v-if\", true);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACzD,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACpJ,KAAK,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC;AAChC,MAAM,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,WAAW,CAAC;AACxD,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AAChD,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,cAAc,CAAC;AAC1B,CAAC,CAAC,KAAK,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,YAAY,CAAC,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,YAAY,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC;AACzF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,IAAI,CAAC,QAAQ,CAAC,GAAG,CAAC,CAAC,CAAC,OAAO,CAAC,MAAM,CAAC,IAAI,CAAC;AACjE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,MAAM,CAAC,YAAY,CAAC,CAAC,IAAI,CAAC,IAAI;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC;AAClE,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708989,
+      "end": 1743409708989,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708989,
+      "end": 1743409708989,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708989,
+      "end": 1743409708989,
+      "order": "normal"
+    }
+  ]
+}

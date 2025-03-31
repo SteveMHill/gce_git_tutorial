@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { renderSlot as _renderSlot, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = [\"textContent\"]\n\nimport { computed } from 'vue'\nimport {\n  getHashColorFromString,\n  getHsla,\n} from '../logic/color'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'Badge',\n  props: {\n    text: {},\n    color: { type: [Boolean, Number], default: true },\n    as: {},\n    size: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst style = computed(() => {\n  if (!props.text || props.color === false)\n    return {}\n  return {\n    color: typeof props.color === 'number'\n      ? getHsla(props.color)\n      : getHashColorFromString(props.text),\n    background: typeof props.color === 'number'\n      ? getHsla(props.color, 0.1)\n      : getHashColorFromString(props.text, 0.1),\n  }\n})\n\nconst sizeClasses = computed(() => {\n  switch (props.size || 'sm') {\n    case 'sm':\n      return 'px-1.5 text-11px leading-1.6em'\n  }\n  return ''\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(_resolveDynamicComponent(_ctx.as || 'span'), {\n    \"ws-nowrap\": \"\",\n    rounded: \"\",\n    class: _normalizeClass(sizeClasses.value),\n    style: _normalizeStyle(style.value)\n  }, {\n    default: _withCtx(() => [\n      _renderSlot(_ctx.$slots, \"default\", {}, () => [\n        _createElementVNode(\"span\", {\n          textContent: _toDisplayString(props.text)\n        }, null, 8 /* PROPS */, _hoisted_1)\n      ])\n    ]),\n    _: 3 /* FORWARDED */\n  }, 8 /* PROPS */, [\"class\", \"style\"]))\n}\n}\n\n})",
+      "start": 1743409709038,
+      "end": 1743409709038
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderSlot as _renderSlot, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = [\"textContent\"];\nimport { computed } from \"vue\";\nimport {\n  getHashColorFromString,\n  getHsla\n} from \"../logic/color\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Badge\",\n  props: {\n    text: {},\n    color: { type: [Boolean, Number], default: true },\n    as: {},\n    size: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const style = computed(() => {\n      if (!props.text || props.color === false)\n        return {};\n      return {\n        color: typeof props.color === \"number\" ? getHsla(props.color) : getHashColorFromString(props.text),\n        background: typeof props.color === \"number\" ? getHsla(props.color, 0.1) : getHashColorFromString(props.text, 0.1)\n      };\n    });\n    const sizeClasses = computed(() => {\n      switch (props.size || \"sm\") {\n        case \"sm\":\n          return \"px-1.5 text-11px leading-1.6em\";\n      }\n      return \"\";\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(_resolveDynamicComponent(_ctx.as || \"span\"), {\n        \"ws-nowrap\": \"\",\n        rounded: \"\",\n        class: _normalizeClass(sizeClasses.value),\n        style: _normalizeStyle(style.value)\n      }, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createElementVNode(\"span\", {\n              textContent: _toDisplayString(props.text)\n            }, null, 8, _hoisted_1)\n          ])\n        ]),\n        _: 3\n        /* FORWARDED */\n      }, 8, [\"class\", \"style\"]);\n    };\n  }\n});\n",
+      "start": 1743409709038,
+      "end": 1743409709045,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { renderSlot as _renderSlot, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = [\"textContent\"]\n\nimport { computed } from 'vue'\nimport {\n  getHashColorFromString,\n  getHsla,\n} from '../logic/color'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'Badge',\n  props: {\n    text: {},\n    color: { type: [Boolean, Number], default: true },\n    as: {},\n    size: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst style = computed(() => {\n  if (!props.text || props.color === false)\n    return {}\n  return {\n    color: typeof props.color === 'number'\n      ? getHsla(props.color)\n      : getHashColorFromString(props.text),\n    background: typeof props.color === 'number'\n      ? getHsla(props.color, 0.1)\n      : getHashColorFromString(props.text, 0.1),\n  }\n})\n\nconst sizeClasses = computed(() => {\n  switch (props.size || 'sm') {\n    case 'sm':\n      return 'px-1.5 text-11px leading-1.6em'\n  }\n  return ''\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(_resolveDynamicComponent(_ctx.as || 'span'), {\n    \"ws-nowrap\": \"\",\n    rounded: \"\",\n    class: _normalizeClass(sizeClasses.value),\n    style: _normalizeStyle(style.value)\n  }, {\n    default: _withCtx(() => [\n      _renderSlot(_ctx.$slots, \"default\", {}, () => [\n        _createElementVNode(\"span\", {\n          textContent: _toDisplayString(props.text)\n        }, null, 8 /* PROPS */, _hoisted_1)\n      ])\n    ]),\n    _: 3 /* FORWARDED */\n  }, 8 /* PROPS */, [\"class\", \"style\"]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,cAAc,aAAa,mBAAmB,kBAAkB,sBAAsB,qBAAqB,2BAA2B,0BAA0B,kBAAkB,iBAAiB,kBAAkB,iBAAiB,WAAW,UAAU,aAAa,YAAY,eAAe,oBAAoB;AAEhU,MAAM,aAAa,CAAC,aAAa;AAEjC,SAAS,gBAAgB;AACzB;AAAA,EACE;AAAA,EACA;AAAA,OACK;AAGP,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACL,MAAM,CAAC;AAAA,IACP,OAAO,EAAE,MAAM,CAAC,SAAS,MAAM,GAAG,SAAS,KAAK;AAAA,IAChD,IAAI,CAAC;AAAA,IACL,MAAM,CAAC;AAAA,EACT;AAAA,EACA,MAAM,SAAc;AAEtB,UAAM,QAAQ;AAEd,UAAM,QAAQ,SAAS,MAAM;AAC3B,UAAI,CAAC,MAAM,QAAQ,MAAM,UAAU;AACjC,eAAO,CAAC;AACV,aAAO;AAAA,QACL,OAAO,OAAO,MAAM,UAAU,WAC1B,QAAQ,MAAM,KAAK,IACnB,uBAAuB,MAAM,IAAI;AAAA,QACrC,YAAY,OAAO,MAAM,UAAU,WAC/B,QAAQ,MAAM,OAAO,GAAG,IACxB,uBAAuB,MAAM,MAAM,GAAG;AAAA,MAC5C;AAAA,IACF,CAAC;AAED,UAAM,cAAc,SAAS,MAAM;AACjC,cAAQ,MAAM,QAAQ,MAAM;AAAA,QAC1B,KAAK;AACH,iBAAO;AAAA,MACX;AACA,aAAO;AAAA,IACT,CAAC;AAED,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,aAAa,yBAAyB,KAAK,MAAM,MAAM,GAAG;AAAA,QAC9E,aAAa;AAAA,QACb,SAAS;AAAA,QACT,OAAO,gBAAgB,YAAY,KAAK;AAAA,QACxC,OAAO,gBAAgB,MAAM,KAAK;AAAA,MACpC,GAAG;AAAA,QACD,SAAS,SAAS,MAAM;AAAA,UACtB,YAAY,KAAK,QAAQ,WAAW,CAAC,GAAG,MAAM;AAAA,YAC5C,oBAAoB,QAAQ;AAAA,cAC1B,aAAa,iBAAiB,MAAM,IAAI;AAAA,YAC1C,GAAG,MAAM,GAAe,UAAU;AAAA,UACpC,CAAC;AAAA,QACH,CAAC;AAAA,QACD,GAAG;AAAA;AAAA,MACL,GAAG,GAAe,CAAC,SAAS,OAAO,CAAC;AAAA,IACtC;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { renderSlot as _renderSlot, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = [\"textContent\"];\nimport { computed } from \"vue\";\nimport {\n  getHashColorFromString,\n  getHsla\n} from \"../logic/color\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Badge\",\n  props: {\n    text: {},\n    color: { type: [Boolean, Number], default: true },\n    as: {},\n    size: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const style = computed(() => {\n      if (!props.text || props.color === false)\n        return {};\n      return {\n        color: typeof props.color === \"number\" ? getHsla(props.color) : getHashColorFromString(props.text),\n        background: typeof props.color === \"number\" ? getHsla(props.color, 0.1) : getHashColorFromString(props.text, 0.1)\n      };\n    });\n    const sizeClasses = computed(() => {\n      switch (props.size || \"sm\") {\n        case \"sm\":\n          return \"px-1.5 text-11px leading-1.6em\";\n      }\n      return \"\";\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(_resolveDynamicComponent(_ctx.as || \"span\"), {\n        \"ws-nowrap\": \"\",\n        rounded: \"\",\n        class: _normalizeClass(sizeClasses.value),\n        style: _normalizeStyle(style.value)\n      }, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createElementVNode(\"span\", {\n              textContent: _toDisplayString(props.text)\n            }, null, 8, _hoisted_1)\n          ])\n        ]),\n        _: 3\n        /* FORWARDED */\n      }, 8, [\"class\", \"style\"]);\n    };\n  }\n});\n",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderSlot as _renderSlot, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = [\"textContent\"];\nimport { computed } from \"vue\";\nimport {\n  getHashColorFromString,\n  getHsla\n} from \"../logic/color\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Badge\",\n  props: {\n    text: {},\n    color: { type: [Boolean, Number], default: true },\n    as: {},\n    size: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const style = computed(() => {\n      if (!props.text || props.color === false)\n        return {};\n      return {\n        color: typeof props.color === \"number\" ? getHsla(props.color) : getHashColorFromString(props.text),\n        background: typeof props.color === \"number\" ? getHsla(props.color, 0.1) : getHashColorFromString(props.text, 0.1)\n      };\n    });\n    const sizeClasses = computed(() => {\n      switch (props.size || \"sm\") {\n        case \"sm\":\n          return \"px-1.5 text-11px leading-1.6em\";\n      }\n      return \"\";\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(_resolveDynamicComponent(_ctx.as || \"span\"), {\n        \"ws-nowrap\": \"\",\n        rounded: \"\",\n        class: _normalizeClass(sizeClasses.value),\n        style: _normalizeStyle(style.value)\n      }, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createElementVNode(\"span\", {\n              textContent: _toDisplayString(props.text)\n            }, null, 8, _hoisted_1)\n          ])\n        ]),\n        _: 3\n        /* FORWARDED */\n      }, 8, [\"class\", \"style\"]);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACzD,MAAM,CAAC,CAAC,CAAC,UAAU,CAAC,EAAE,CAAC,WAAW,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,uBAAuB,CAAC,EAAE,CAAC,wBAAwB,CAAC,CAAC,cAAc,CAAC,EAAE,CAAC,eAAe,CAAC,CAAC,cAAc,CAAC,EAAE,CAAC,eAAe,CAAC,CAAC,OAAO,CAAC,EAAE,CAAC,QAAQ,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,WAAW,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACrU,KAAK,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC;AAClC,MAAM,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AAC9B,MAAM,CAAC;AACP,CAAC,CAAC,sBAAsB;AACxB,CAAC,CAAC;AACF,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC;AACvB,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AAChD,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC;AACjB,CAAC,CAAC,KAAK,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,IAAI,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,OAAO;AACzB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,MAAM,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,sBAAsB,CAAC,KAAK,CAAC,IAAI,CAAC;AAC1G,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC,MAAM,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,sBAAsB,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC;AACxH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,WAAW,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,EAAE,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,OAAO,CAAC,CAAC,CAAC,GAAG,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,wBAAwB,CAAC,IAAI,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC;AACrF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,eAAe,CAAC,WAAW,CAAC,KAAK,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,eAAe,CAAC,KAAK,CAAC,KAAK;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,gBAAgB,CAAC,KAAK,CAAC,IAAI;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,UAAU;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    }
+  ]
+}

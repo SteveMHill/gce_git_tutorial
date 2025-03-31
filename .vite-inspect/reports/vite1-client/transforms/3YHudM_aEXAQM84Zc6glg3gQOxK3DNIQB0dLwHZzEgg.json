@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClickGap.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport { Fragment, onMounted, onUnmounted } from 'vue'\nimport { useSlideContext } from '../context'\nimport { makeId } from '../logic/utils'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'VClickGap',\n  props: {\n  size: {\n    type: [String, Number],\n    default: 1,\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\nconst { $clicksContext: clicks } = useSlideContext()\nconst id = makeId()\n\nlet delta = +props.size\nif (Number.isNaN(delta)) {\n  console.warn(`[slidev] Invalid size for VClickGap: ${props.size}`)\n  delta = 1\n}\n\nonMounted(() => {\n  const max = clicks.currentOffset + delta - 1\n  clicks.register(id, { max, delta })\n})\n\nonUnmounted(() => {\n  clicks.unregister(id)\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(Fragment))\n}\n}\n\n})",
+      "start": 1743409709298,
+      "end": 1743409709298
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709298,
+      "end": 1743409709298,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709298,
+      "end": 1743409709298,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709298,
+      "end": 1743409709298,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709298,
+      "end": 1743409709298,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709299,
+      "end": 1743409709299,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { Fragment, onMounted, onUnmounted } from \"vue\";\nimport { useSlideContext } from \"../context\";\nimport { makeId } from \"../logic/utils\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"VClickGap\",\n  props: {\n    size: {\n      type: [String, Number],\n      default: 1\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const { $clicksContext: clicks } = useSlideContext();\n    const id = makeId();\n    let delta = +props.size;\n    if (Number.isNaN(delta)) {\n      console.warn(`[slidev] Invalid size for VClickGap: ${props.size}`);\n      delta = 1;\n    }\n    onMounted(() => {\n      const max = clicks.currentOffset + delta - 1;\n      clicks.register(id, { max, delta });\n    });\n    onUnmounted(() => {\n      clicks.unregister(id);\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(Fragment);\n    };\n  }\n});\n",
+      "start": 1743409709299,
+      "end": 1743409709319,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClickGap.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport { Fragment, onMounted, onUnmounted } from 'vue'\nimport { useSlideContext } from '../context'\nimport { makeId } from '../logic/utils'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'VClickGap',\n  props: {\n  size: {\n    type: [String, Number],\n    default: 1,\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\nconst { $clicksContext: clicks } = useSlideContext()\nconst id = makeId()\n\nlet delta = +props.size\nif (Number.isNaN(delta)) {\n  console.warn(`[slidev] Invalid size for VClickGap: ${props.size}`)\n  delta = 1\n}\n\nonMounted(() => {\n  const max = clicks.currentOffset + delta - 1\n  clicks.register(id, { max, delta })\n})\n\nonUnmounted(() => {\n  clicks.unregister(id)\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(Fragment))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,aAAa,YAAY,eAAe,oBAAoB;AAErE,SAAS,UAAU,WAAW,mBAAmB;AACjD,SAAS,uBAAuB;AAChC,SAAS,cAAc;AAGvB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACP,MAAM;AAAA,MACJ,MAAM,CAAC,QAAQ,MAAM;AAAA,MACrB,SAAS;AAAA,IACX;AAAA,EACF;AAAA,EACE,MAAM,SAAS;AAEjB,UAAM,QAAQ;AAEd,UAAM,EAAE,gBAAgB,OAAO,IAAI,gBAAgB;AACnD,UAAM,KAAK,OAAO;AAElB,QAAI,QAAQ,CAAC,MAAM;AACnB,QAAI,OAAO,MAAM,KAAK,GAAG;AACvB,cAAQ,KAAK,wCAAwC,MAAM,IAAI,EAAE;AACjE,cAAQ;AAAA,IACV;AAEA,cAAU,MAAM;AACd,YAAM,MAAM,OAAO,gBAAgB,QAAQ;AAC3C,aAAO,SAAS,IAAI,EAAE,KAAK,MAAM,CAAC;AAAA,IACpC,CAAC;AAED,gBAAY,MAAM;AAChB,aAAO,WAAW,EAAE;AAAA,IACtB,CAAC;AAED,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,aAAa,QAAQ;AAAA,IAC7C;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { Fragment, onMounted, onUnmounted } from \"vue\";\nimport { useSlideContext } from \"../context\";\nimport { makeId } from \"../logic/utils\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"VClickGap\",\n  props: {\n    size: {\n      type: [String, Number],\n      default: 1\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const { $clicksContext: clicks } = useSlideContext();\n    const id = makeId();\n    let delta = +props.size;\n    if (Number.isNaN(delta)) {\n      console.warn(`[slidev] Invalid size for VClickGap: ${props.size}`);\n      delta = 1;\n    }\n    onMounted(() => {\n      const max = clicks.currentOffset + delta - 1;\n      clicks.register(id, { max, delta });\n    });\n    onUnmounted(() => {\n      clicks.unregister(id);\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(Fragment);\n    };\n  }\n});\n",
+      "start": 1743409709319,
+      "end": 1743409709320,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClickGap.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { Fragment, onMounted, onUnmounted } from \"vue\";\nimport { useSlideContext } from \"../context\";\nimport { makeId } from \"../logic/utils\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"VClickGap\",\n  props: {\n    size: {\n      type: [String, Number],\n      default: 1\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const { $clicksContext: clicks } = useSlideContext();\n    const id = makeId();\n    let delta = +props.size;\n    if (Number.isNaN(delta)) {\n      console.warn(`[slidev] Invalid size for VClickGap: ${props.size}`);\n      delta = 1;\n    }\n    onMounted(() => {\n      const max = clicks.currentOffset + delta - 1;\n      clicks.register(id, { max, delta });\n    });\n    onUnmounted(() => {\n      clicks.unregister(id);\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(Fragment);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    }
+  ]
+}

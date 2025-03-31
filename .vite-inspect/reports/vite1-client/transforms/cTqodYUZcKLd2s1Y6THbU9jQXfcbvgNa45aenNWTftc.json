@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport type { ClicksContext } from '@slidev/types'\nimport type { PropType } from 'vue'\nimport { ignorableWatch, onClickOutside, useVModel } from '@vueuse/core'\nimport { nextTick, ref, toRef, watch, watchEffect } from 'vue'\nimport { useDynamicSlideInfo } from '../composables/useSlideInfo'\nimport NoteDisplay from './NoteDisplay.vue'\n\nconst props = defineProps({\n  no: {\n    type: Number,\n    required: true,\n  },\n  class: {\n    default: '',\n  },\n  editing: {\n    default: false,\n  },\n  style: {\n    default: () => ({}),\n  },\n  placeholder: {\n    default: 'No notes for this slide',\n  },\n  clicksContext: {\n    type: Object as PropType<ClicksContext>,\n  },\n  highlight: {\n    default: true,\n  },\n  autoHeight: {\n    default: false,\n  },\n})\n\nconst emit = defineEmits<{\n  (type: 'update:editing', value: boolean): void\n  (type: 'markerDblclick', e: MouseEvent, clicks: number): void\n  (type: 'markerClick', e: MouseEvent, clicks: number): void\n}>()\n\nconst editing = useVModel(props, 'editing', emit, { passive: true })\n\nconst { info, update } = useDynamicSlideInfo(toRef(props, 'no'))\n\nconst note = ref('')\nlet timer: any\n\n// Send back the note on changes\nconst { ignoreUpdates } = ignorableWatch(\n  note,\n  (v) => {\n    if (!editing.value)\n      return\n    const id = props.no\n    clearTimeout(timer)\n    timer = setTimeout(() => {\n      update({ note: v }, id)\n    }, 500)\n  },\n)\n\n// Update note value when info changes\nwatch(\n  () => info.value?.note,\n  (value = '') => {\n    if (editing.value)\n      return\n    clearTimeout(timer)\n    ignoreUpdates(() => {\n      note.value = value\n    })\n  },\n  { immediate: true, flush: 'sync' },\n)\n\nconst inputEl = ref<HTMLTextAreaElement>()\nconst inputHeight = ref<number | null>()\n\nwatchEffect(() => {\n  if (editing.value)\n    inputEl.value?.focus()\n})\n\nonClickOutside(inputEl, () => {\n  editing.value = false\n})\n\nfunction calculateEditorHeight() {\n  if (!props.autoHeight || !inputEl.value || !editing.value)\n    return\n  if (inputEl.value.scrollHeight > inputEl.value.clientHeight)\n    inputEl.value.style.height = `${inputEl.value.scrollHeight}px`\n}\n\nfunction onKeyDown(e: KeyboardEvent) {\n  // Override save shortcut on editing mode\n  if (editing.value && e.metaKey && e.key === 's') {\n    e.preventDefault()\n    update({ note: note.value }, props.no)\n  }\n}\n\nwatch(\n  [note, editing],\n  () => {\n    nextTick(() => {\n      calculateEditorHeight()\n    })\n  },\n  { flush: 'post', immediate: true },\n)\n</script>\n\n<template>\n  <NoteDisplay\n    v-if=\"!editing\"\n    class=\"border-transparent border-2\"\n    :class=\"[props.class, note ? '' : 'opacity-25 italic select-none']\"\n    :style=\"props.style\"\n    :note=\"note || placeholder\"\n    :note-html=\"info?.noteHTML\"\n    :clicks-context=\"clicksContext\"\n    :auto-scroll=\"!autoHeight\"\n    :highlight=\"props.highlight\"\n    @marker-click=\"(e, clicks) => emit('markerClick', e, clicks)\"\n    @marker-dblclick=\"(e, clicks) => emit('markerDblclick', e, clicks)\"\n  />\n  <textarea\n    v-else\n    ref=\"inputEl\"\n    v-model=\"note\"\n    class=\"prose resize-none overflow-auto outline-none bg-transparent block border-primary border-2\"\n    style=\"line-height: 1.75;\"\n    :style=\"[props.style, inputHeight != null ? { height: `${inputHeight}px` } : {}]\"\n    :class=\"props.class\"\n    :placeholder=\"placeholder\"\n    @keydown.esc=\"editing = false\"\n    @keydown=\"onKeyDown\"\n  />\n</template>\n",
+      "start": 1743409708751,
+      "end": 1743409708790,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708791,
+      "end": 1743409708791,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708791,
+      "end": 1743409708791,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708791,
+      "end": 1743409708791,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708791,
+      "end": 1743409708791,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708791,
+      "end": 1743409708791,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708791,
+      "end": 1743409708791,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708791,
+      "end": 1743409708791,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708791,
+      "end": 1743409708909,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteEditable.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACpJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC5I,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

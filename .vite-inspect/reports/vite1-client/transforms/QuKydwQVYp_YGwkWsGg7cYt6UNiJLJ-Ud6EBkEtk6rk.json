@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/nodes/YAMLMap.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { stringifyCollection } from '../stringify/stringifyCollection.js';\nimport { addPairToJSMap } from './addPairToJSMap.js';\nimport { Collection } from './Collection.js';\nimport { isPair, isScalar, MAP } from './identity.js';\nimport { Pair, createPair } from './Pair.js';\nimport { isScalarValue } from './Scalar.js';\n\nfunction findPair(items, key) {\n    const k = isScalar(key) ? key.value : key;\n    for (const it of items) {\n        if (isPair(it)) {\n            if (it.key === key || it.key === k)\n                return it;\n            if (isScalar(it.key) && it.key.value === k)\n                return it;\n        }\n    }\n    return undefined;\n}\nclass YAMLMap extends Collection {\n    static get tagName() {\n        return 'tag:yaml.org,2002:map';\n    }\n    constructor(schema) {\n        super(MAP, schema);\n        this.items = [];\n    }\n    /**\n     * A generic collection parsing method that can be extended\n     * to other node classes that inherit from YAMLMap\n     */\n    static from(schema, obj, ctx) {\n        const { keepUndefined, replacer } = ctx;\n        const map = new this(schema);\n        const add = (key, value) => {\n            if (typeof replacer === 'function')\n                value = replacer.call(obj, key, value);\n            else if (Array.isArray(replacer) && !replacer.includes(key))\n                return;\n            if (value !== undefined || keepUndefined)\n                map.items.push(createPair(key, value, ctx));\n        };\n        if (obj instanceof Map) {\n            for (const [key, value] of obj)\n                add(key, value);\n        }\n        else if (obj && typeof obj === 'object') {\n            for (const key of Object.keys(obj))\n                add(key, obj[key]);\n        }\n        if (typeof schema.sortMapEntries === 'function') {\n            map.items.sort(schema.sortMapEntries);\n        }\n        return map;\n    }\n    /**\n     * Adds a value to the collection.\n     *\n     * @param overwrite - If not set `true`, using a key that is already in the\n     *   collection will throw. Otherwise, overwrites the previous value.\n     */\n    add(pair, overwrite) {\n        let _pair;\n        if (isPair(pair))\n            _pair = pair;\n        else if (!pair || typeof pair !== 'object' || !('key' in pair)) {\n            // In TypeScript, this never happens.\n            _pair = new Pair(pair, pair?.value);\n        }\n        else\n            _pair = new Pair(pair.key, pair.value);\n        const prev = findPair(this.items, _pair.key);\n        const sortEntries = this.schema?.sortMapEntries;\n        if (prev) {\n            if (!overwrite)\n                throw new Error(`Key ${_pair.key} already set`);\n            // For scalars, keep the old node & its comments and anchors\n            if (isScalar(prev.value) && isScalarValue(_pair.value))\n                prev.value.value = _pair.value;\n            else\n                prev.value = _pair.value;\n        }\n        else if (sortEntries) {\n            const i = this.items.findIndex(item => sortEntries(_pair, item) < 0);\n            if (i === -1)\n                this.items.push(_pair);\n            else\n                this.items.splice(i, 0, _pair);\n        }\n        else {\n            this.items.push(_pair);\n        }\n    }\n    delete(key) {\n        const it = findPair(this.items, key);\n        if (!it)\n            return false;\n        const del = this.items.splice(this.items.indexOf(it), 1);\n        return del.length > 0;\n    }\n    get(key, keepScalar) {\n        const it = findPair(this.items, key);\n        const node = it?.value;\n        return (!keepScalar && isScalar(node) ? node.value : node) ?? undefined;\n    }\n    has(key) {\n        return !!findPair(this.items, key);\n    }\n    set(key, value) {\n        this.add(new Pair(key, value), true);\n    }\n    /**\n     * @param ctx - Conversion context, originally set in Document#toJS()\n     * @param {Class} Type - If set, forces the returned collection type\n     * @returns Instance of Type, Map, or Object\n     */\n    toJSON(_, ctx, Type) {\n        const map = Type ? new Type() : ctx?.mapAsMap ? new Map() : {};\n        if (ctx?.onCreate)\n            ctx.onCreate(map);\n        for (const item of this.items)\n            addPairToJSMap(ctx, map, item);\n        return map;\n    }\n    toString(ctx, onComment, onChompKeep) {\n        if (!ctx)\n            return JSON.stringify(this);\n        for (const item of this.items) {\n            if (!isPair(item))\n                throw new Error(`Map items must all be pairs; found ${JSON.stringify(item)} instead`);\n        }\n        if (!ctx.allNullValues && this.hasAllNullValues(false))\n            ctx = Object.assign({}, ctx, { allNullValues: true });\n        return stringifyCollection(this, ctx, {\n            blockItemPrefix: '',\n            flowChars: { start: '{', end: '}' },\n            itemIndent: ctx.indent || '',\n            onChompKeep,\n            onComment\n        });\n    }\n}\n\nexport { YAMLMap, findPair };\n",
+      "start": 1743409708622,
+      "end": 1743409708634,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/doc/directives.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isNode } from '../nodes/identity.js';\nimport { visit } from '../visit.js';\n\nconst escapeChars = {\n    '!': '%21',\n    ',': '%2C',\n    '[': '%5B',\n    ']': '%5D',\n    '{': '%7B',\n    '}': '%7D'\n};\nconst escapeTagName = (tn) => tn.replace(/[!,[\\]{}]/g, ch => escapeChars[ch]);\nclass Directives {\n    constructor(yaml, tags) {\n        /**\n         * The directives-end/doc-start marker `---`. If `null`, a marker may still be\n         * included in the document's stringified representation.\n         */\n        this.docStart = null;\n        /** The doc-end marker `...`.  */\n        this.docEnd = false;\n        this.yaml = Object.assign({}, Directives.defaultYaml, yaml);\n        this.tags = Object.assign({}, Directives.defaultTags, tags);\n    }\n    clone() {\n        const copy = new Directives(this.yaml, this.tags);\n        copy.docStart = this.docStart;\n        return copy;\n    }\n    /**\n     * During parsing, get a Directives instance for the current document and\n     * update the stream state according to the current version's spec.\n     */\n    atDocument() {\n        const res = new Directives(this.yaml, this.tags);\n        switch (this.yaml.version) {\n            case '1.1':\n                this.atNextDocument = true;\n                break;\n            case '1.2':\n                this.atNextDocument = false;\n                this.yaml = {\n                    explicit: Directives.defaultYaml.explicit,\n                    version: '1.2'\n                };\n                this.tags = Object.assign({}, Directives.defaultTags);\n                break;\n        }\n        return res;\n    }\n    /**\n     * @param onError - May be called even if the action was successful\n     * @returns `true` on success\n     */\n    add(line, onError) {\n        if (this.atNextDocument) {\n            this.yaml = { explicit: Directives.defaultYaml.explicit, version: '1.1' };\n            this.tags = Object.assign({}, Directives.defaultTags);\n            this.atNextDocument = false;\n        }\n        const parts = line.trim().split(/[ \\t]+/);\n        const name = parts.shift();\n        switch (name) {\n            case '%TAG': {\n                if (parts.length !== 2) {\n                    onError(0, '%TAG directive should contain exactly two parts');\n                    if (parts.length < 2)\n                        return false;\n                }\n                const [handle, prefix] = parts;\n                this.tags[handle] = prefix;\n                return true;\n            }\n            case '%YAML': {\n                this.yaml.explicit = true;\n                if (parts.length !== 1) {\n                    onError(0, '%YAML directive should contain exactly one part');\n                    return false;\n                }\n                const [version] = parts;\n                if (version === '1.1' || version === '1.2') {\n                    this.yaml.version = version;\n                    return true;\n                }\n                else {\n                    const isValid = /^\\d+\\.\\d+$/.test(version);\n                    onError(6, `Unsupported YAML version ${version}`, isValid);\n                    return false;\n                }\n            }\n            default:\n                onError(0, `Unknown directive ${name}`, true);\n                return false;\n        }\n    }\n    /**\n     * Resolves a tag, matching handles to those defined in %TAG directives.\n     *\n     * @returns Resolved tag, which may also be the non-specific tag `'!'` or a\n     *   `'!local'` tag, or `null` if unresolvable.\n     */\n    tagName(source, onError) {\n        if (source === '!')\n            return '!'; // non-specific tag\n        if (source[0] !== '!') {\n            onError(`Not a valid tag: ${source}`);\n            return null;\n        }\n        if (source[1] === '<') {\n            const verbatim = source.slice(2, -1);\n            if (verbatim === '!' || verbatim === '!!') {\n                onError(`Verbatim tags aren't resolved, so ${source} is invalid.`);\n                return null;\n            }\n            if (source[source.length - 1] !== '>')\n                onError('Verbatim tags must end with a >');\n            return verbatim;\n        }\n        const [, handle, suffix] = source.match(/^(.*!)([^!]*)$/s);\n        if (!suffix)\n            onError(`The ${source} tag has no suffix`);\n        const prefix = this.tags[handle];\n        if (prefix) {\n            try {\n                return prefix + decodeURIComponent(suffix);\n            }\n            catch (error) {\n                onError(String(error));\n                return null;\n            }\n        }\n        if (handle === '!')\n            return source; // local tag\n        onError(`Could not resolve tag: ${source}`);\n        return null;\n    }\n    /**\n     * Given a fully resolved tag, returns its printable string form,\n     * taking into account current tag prefixes and defaults.\n     */\n    tagString(tag) {\n        for (const [handle, prefix] of Object.entries(this.tags)) {\n            if (tag.startsWith(prefix))\n                return handle + escapeTagName(tag.substring(prefix.length));\n        }\n        return tag[0] === '!' ? tag : `!<${tag}>`;\n    }\n    toString(doc) {\n        const lines = this.yaml.explicit\n            ? [`%YAML ${this.yaml.version || '1.2'}`]\n            : [];\n        const tagEntries = Object.entries(this.tags);\n        let tagNames;\n        if (doc && tagEntries.length > 0 && isNode(doc.contents)) {\n            const tags = {};\n            visit(doc.contents, (_key, node) => {\n                if (isNode(node) && node.tag)\n                    tags[node.tag] = true;\n            });\n            tagNames = Object.keys(tags);\n        }\n        else\n            tagNames = [];\n        for (const [handle, prefix] of tagEntries) {\n            if (handle === '!!' && prefix === 'tag:yaml.org,2002:')\n                continue;\n            if (!doc || tagNames.some(tn => tn.startsWith(prefix)))\n                lines.push(`%TAG ${handle} ${prefix}`);\n        }\n        return lines.join('\\n');\n    }\n}\nDirectives.defaultYaml = { explicit: false, version: '1.2' };\nDirectives.defaultTags = { '!!': 'tag:yaml.org,2002:' };\n\nexport { Directives };\n",
+      "start": 1743409708641,
+      "end": 1743409708651,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    }
+  ]
+}

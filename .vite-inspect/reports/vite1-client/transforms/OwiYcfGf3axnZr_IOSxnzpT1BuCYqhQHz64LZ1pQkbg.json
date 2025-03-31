@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/utils.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { parseRangeString } from '@slidev/parser/core'\n\nexport function makeId(length = 5) {\n  const result = []\n  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'\n  const charactersLength = characters.length\n  for (let i = 0; i < length; i++)\n    result.push(characters.charAt(Math.floor(Math.random() * charactersLength)))\n  return result.join('')\n}\n\nexport function updateCodeHighlightRange(\n  rangeStr: string,\n  linesCount: number,\n  startLine: number,\n  getTokenOfLine: (line: number) => Element[],\n) {\n  const highlights: number[] = parseRangeString(linesCount + startLine - 1, rangeStr)\n  for (let line = 0; line < linesCount; line++) {\n    const tokens = getTokenOfLine(line)\n    const isHighlighted = highlights.includes(line + startLine)\n    for (const token of tokens) {\n      // token.classList.toggle(CLASS_VCLICK_TARGET, true)\n      token.classList.toggle('slidev-code-highlighted', isHighlighted)\n      token.classList.toggle('slidev-code-dishonored', !isHighlighted)\n\n      // for backward compatibility\n      token.classList.toggle('highlighted', isHighlighted)\n      token.classList.toggle('dishonored', !isHighlighted)\n    }\n  }\n}\n",
+      "start": 1743409708470,
+      "end": 1743409708478,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708478,
+      "end": 1743409708478,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708478,
+      "end": 1743409708478,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708478,
+      "end": 1743409708478,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708478,
+      "end": 1743409708478,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708478,
+      "end": 1743409708478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { parseRangeString } from \"@slidev/parser/core\";\nexport function makeId(length = 5) {\n  const result = [];\n  const characters = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";\n  const charactersLength = characters.length;\n  for (let i = 0; i < length; i++)\n    result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));\n  return result.join(\"\");\n}\nexport function updateCodeHighlightRange(rangeStr, linesCount, startLine, getTokenOfLine) {\n  const highlights = parseRangeString(linesCount + startLine - 1, rangeStr);\n  for (let line = 0; line < linesCount; line++) {\n    const tokens = getTokenOfLine(line);\n    const isHighlighted = highlights.includes(line + startLine);\n    for (const token of tokens) {\n      token.classList.toggle(\"slidev-code-highlighted\", isHighlighted);\n      token.classList.toggle(\"slidev-code-dishonored\", !isHighlighted);\n      token.classList.toggle(\"highlighted\", isHighlighted);\n      token.classList.toggle(\"dishonored\", !isHighlighted);\n    }\n  }\n}\n",
+      "start": 1743409708478,
+      "end": 1743409708571,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/utils.ts"
+        ],
+        "sourcesContent": [
+          "import { parseRangeString } from '@slidev/parser/core'\n\nexport function makeId(length = 5) {\n  const result = []\n  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'\n  const charactersLength = characters.length\n  for (let i = 0; i < length; i++)\n    result.push(characters.charAt(Math.floor(Math.random() * charactersLength)))\n  return result.join('')\n}\n\nexport function updateCodeHighlightRange(\n  rangeStr: string,\n  linesCount: number,\n  startLine: number,\n  getTokenOfLine: (line: number) => Element[],\n) {\n  const highlights: number[] = parseRangeString(linesCount + startLine - 1, rangeStr)\n  for (let line = 0; line < linesCount; line++) {\n    const tokens = getTokenOfLine(line)\n    const isHighlighted = highlights.includes(line + startLine)\n    for (const token of tokens) {\n      // token.classList.toggle(CLASS_VCLICK_TARGET, true)\n      token.classList.toggle('slidev-code-highlighted', isHighlighted)\n      token.classList.toggle('slidev-code-dishonored', !isHighlighted)\n\n      // for backward compatibility\n      token.classList.toggle('highlighted', isHighlighted)\n      token.classList.toggle('dishonored', !isHighlighted)\n    }\n  }\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,wBAAwB;AAE1B,gBAAS,OAAO,SAAS,GAAG;AACjC,QAAM,SAAS,CAAC;AAChB,QAAM,aAAa;AACnB,QAAM,mBAAmB,WAAW;AACpC,WAAS,IAAI,GAAG,IAAI,QAAQ;AAC1B,WAAO,KAAK,WAAW,OAAO,KAAK,MAAM,KAAK,OAAO,IAAI,gBAAgB,CAAC,CAAC;AAC7E,SAAO,OAAO,KAAK,EAAE;AACvB;AAEO,gBAAS,yBACd,UACA,YACA,WACA,gBACA;AACA,QAAM,aAAuB,iBAAiB,aAAa,YAAY,GAAG,QAAQ;AAClF,WAAS,OAAO,GAAG,OAAO,YAAY,QAAQ;AAC5C,UAAM,SAAS,eAAe,IAAI;AAClC,UAAM,gBAAgB,WAAW,SAAS,OAAO,SAAS;AAC1D,eAAW,SAAS,QAAQ;AAE1B,YAAM,UAAU,OAAO,2BAA2B,aAAa;AAC/D,YAAM,UAAU,OAAO,0BAA0B,CAAC,aAAa;AAG/D,YAAM,UAAU,OAAO,eAAe,aAAa;AACnD,YAAM,UAAU,OAAO,cAAc,CAAC,aAAa;AAAA,IACrD;AAAA,EACF;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    }
+  ]
+}

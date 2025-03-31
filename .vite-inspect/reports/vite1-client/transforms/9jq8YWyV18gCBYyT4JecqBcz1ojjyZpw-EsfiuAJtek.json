@@ -1,0 +1,183 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/theme/styles/layouts.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": ".slidev-layout {\n  h1 + p {\n    @apply -mt-2 opacity-50 mb-4;\n  }\n\n  p + h2, ul + h2, table + h2 {\n    @apply mt-10;\n  }\n\n  h1 {\n    @apply text-4xl mb-4 -ml-[0.05em];\n  }\n\n  h2 {\n    @apply text-3xl;\n  }\n\n  h3 {\n    @apply text-2xl;\n  }\n\n  h4 {\n    @apply text-xl;\n  }\n\n  h5 {\n    @apply text-base;\n  }\n\n  h6 {\n    @apply text-sm pt-1 uppercase tracking-widest font-500 -ml-[0.05em];\n  }\n\n  h6:not(.opacity-100) {\n    @apply opacity-40;\n  }\n}\n\n.slidev-layout.cover,\n.slidev-layout.intro {\n  @apply h-full grid;\n\n  h1 {\n    @apply text-4xl leading-10;\n  }\n}\n\n\n.slidev-layout.fact {\n  @apply text-center grid h-full;\n  h1 {\n    @apply text-8xl font-700;\n  }\n  h1 + p {\n    @apply font-700 text-2xl;\n  }\n}\n.slidev-layout.statement {\n  @apply text-center grid h-full;\n\n  h1 {\n    @apply text-6xl font-700;\n  }\n}\n.slidev-layout.quote {\n  @apply grid h-full;\n\n  h1 + p {\n    @apply mt-2;\n  }\n}\n.slidev-layout.section {\n  h1 {\n    @apply text-6xl font-500 leading-20;\n  }\n}\n.center_image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%;\n}\n\n.center-table {\n  display: flex;\n  justify-content: center;\n}\n.center-table table {\n  margin: auto;\n}",
+      "start": 1743409708488,
+      "end": 1743409708500,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708500,
+      "end": 1743409708500,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708500,
+      "end": 1743409708500,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": ".slidev-layout {\n  h1 + p {\n    margin-top:-0.5rem;margin-bottom:1rem;opacity:0.5;\n  }\n\n  p + h2, ul + h2, table + h2 {\n    margin-top:2.5rem;\n  }\n\n  h1 {\n    margin-bottom:1rem;margin-left:-0.05em;font-size:2.25rem;line-height:2.5rem;\n  }\n\n  h2 {\n    font-size:1.875rem;line-height:2.25rem;\n  }\n\n  h3 {\n    font-size:1.5rem;line-height:2rem;\n  }\n\n  h4 {\n    font-size:1.25rem;line-height:1.75rem;\n  }\n\n  h5 {\n    font-size:1rem;line-height:1.5rem;\n  }\n\n  h6 {\n    margin-left:-0.05em;padding-top:0.25rem;font-size:0.875rem;line-height:1.25rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;\n  }\n\n  h6:not(.opacity-100) {\n    opacity:0.4;\n  }\n}\n\n.slidev-layout.cover,\n.slidev-layout.intro {\n  display:grid;height:100%;\n\n  h1 {\n    font-size:2.25rem;line-height:2.5rem;line-height:2.5rem;\n  }\n}\n\n\n.slidev-layout.fact {\n  display:grid;height:100%;text-align:center;\n  h1 {\n    font-size:6rem;line-height:1;font-weight:700;\n  }\n  h1 + p {\n    font-size:1.5rem;line-height:2rem;font-weight:700;\n  }\n}\n.slidev-layout.statement {\n  display:grid;height:100%;text-align:center;\n\n  h1 {\n    font-size:3.75rem;line-height:1;font-weight:700;\n  }\n}\n.slidev-layout.quote {\n  display:grid;height:100%;\n\n  h1 + p {\n    margin-top:0.5rem;\n  }\n}\n.slidev-layout.section {\n  h1 {\n    font-size:3.75rem;line-height:1;font-weight:500;line-height:5rem;\n  }\n}\n.center_image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%;\n}\n\n.center-table {\n  display: flex;\n  justify-content: center;\n}\n.center-table table {\n  margin: auto;\n}",
+      "start": 1743409708500,
+      "end": 1743409708504,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": "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AAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/theme/styles/layouts.css"
+        ],
+        "sourcesContent": [
+          ".slidev-layout {\n  h1 + p {\n    margin-top:-0.5rem;margin-bottom:1rem;opacity:0.5;\n  }\n\n  p + h2, ul + h2, table + h2 {\n    margin-top:2.5rem;\n  }\n\n  h1 {\n    margin-bottom:1rem;margin-left:-0.05em;font-size:2.25rem;line-height:2.5rem;\n  }\n\n  h2 {\n    font-size:1.875rem;line-height:2.25rem;\n  }\n\n  h3 {\n    font-size:1.5rem;line-height:2rem;\n  }\n\n  h4 {\n    font-size:1.25rem;line-height:1.75rem;\n  }\n\n  h5 {\n    font-size:1rem;line-height:1.5rem;\n  }\n\n  h6 {\n    margin-left:-0.05em;padding-top:0.25rem;font-size:0.875rem;line-height:1.25rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;\n  }\n\n  h6:not(.opacity-100) {\n    opacity:0.4;\n  }\n}\n\n.slidev-layout.cover,\n.slidev-layout.intro {\n  display:grid;height:100%;\n\n  h1 {\n    font-size:2.25rem;line-height:2.5rem;line-height:2.5rem;\n  }\n}\n\n\n.slidev-layout.fact {\n  display:grid;height:100%;text-align:center;\n  h1 {\n    font-size:6rem;line-height:1;font-weight:700;\n  }\n  h1 + p {\n    font-size:1.5rem;line-height:2rem;font-weight:700;\n  }\n}\n.slidev-layout.statement {\n  display:grid;height:100%;text-align:center;\n\n  h1 {\n    font-size:3.75rem;line-height:1;font-weight:700;\n  }\n}\n.slidev-layout.quote {\n  display:grid;height:100%;\n\n  h1 + p {\n    margin-top:0.5rem;\n  }\n}\n.slidev-layout.section {\n  h1 {\n    font-size:3.75rem;line-height:1;font-weight:500;line-height:5rem;\n  }\n}\n.center_image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%;\n}\n\n.center-table {\n  display: flex;\n  justify-content: center;\n}\n.center-table table {\n  margin: auto;\n}"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708504,
+      "end": 1743409708504,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".slidev-layout h1 + p {\n    margin-top:-0.5rem;margin-bottom:1rem;opacity:0.5;\n  }\n  .slidev-layout p + h2, .slidev-layout ul + h2, .slidev-layout table + h2 {\n    margin-top:2.5rem;\n  }\n  .slidev-layout h1 {\n    margin-bottom:1rem;margin-left:-0.05em;font-size:2.25rem;line-height:2.5rem;\n  }\n  .slidev-layout h2 {\n    font-size:1.875rem;line-height:2.25rem;\n  }\n  .slidev-layout h3 {\n    font-size:1.5rem;line-height:2rem;\n  }\n  .slidev-layout h4 {\n    font-size:1.25rem;line-height:1.75rem;\n  }\n  .slidev-layout h5 {\n    font-size:1rem;line-height:1.5rem;\n  }\n  .slidev-layout h6 {\n    margin-left:-0.05em;padding-top:0.25rem;font-size:0.875rem;line-height:1.25rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;\n  }\n  .slidev-layout h6:not(.opacity-100) {\n    opacity:0.4;\n  }\n\n.slidev-layout.cover,\n.slidev-layout.intro {\n  display:grid;height:100%;\n}\n\n.slidev-layout.cover h1, .slidev-layout.intro h1 {\n    font-size:2.25rem;line-height:2.5rem;line-height:2.5rem;\n  }\n\n\n.slidev-layout.fact {\n  display:grid;height:100%;text-align:center;\n}\n\n\n.slidev-layout.fact h1 {\n    font-size:6rem;line-height:1;font-weight:700;\n  }\n\n\n.slidev-layout.fact h1 + p {\n    font-size:1.5rem;line-height:2rem;font-weight:700;\n  }\n.slidev-layout.statement {\n  display:grid;height:100%;text-align:center;\n}\n.slidev-layout.statement h1 {\n    font-size:3.75rem;line-height:1;font-weight:700;\n  }\n.slidev-layout.quote {\n  display:grid;height:100%;\n}\n.slidev-layout.quote h1 + p {\n    margin-top:0.5rem;\n  }\n.slidev-layout.section h1 {\n    font-size:3.75rem;line-height:1;font-weight:500;line-height:5rem;\n  }\n.center_image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%;\n}\n\n.center-table {\n  display: flex;\n  justify-content: center;\n}\n.center-table table {\n  margin: auto;\n}",
+      "start": 1743409708504,
+      "end": 1743409708506,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708506,
+      "end": 1743409708506,
+      "order": "normal"
+    }
+  ]
+}

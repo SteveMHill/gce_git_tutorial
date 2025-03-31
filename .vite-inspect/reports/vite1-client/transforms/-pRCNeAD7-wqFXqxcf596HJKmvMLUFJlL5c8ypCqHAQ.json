@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/doc/createNode.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Alias } from '../nodes/Alias.js';\nimport { isNode, isPair, MAP, SEQ, isDocument } from '../nodes/identity.js';\nimport { Scalar } from '../nodes/Scalar.js';\n\nconst defaultTagPrefix = 'tag:yaml.org,2002:';\nfunction findTagObject(value, tagName, tags) {\n    if (tagName) {\n        const match = tags.filter(t => t.tag === tagName);\n        const tagObj = match.find(t => !t.format) ?? match[0];\n        if (!tagObj)\n            throw new Error(`Tag ${tagName} not found`);\n        return tagObj;\n    }\n    return tags.find(t => t.identify?.(value) && !t.format);\n}\nfunction createNode(value, tagName, ctx) {\n    if (isDocument(value))\n        value = value.contents;\n    if (isNode(value))\n        return value;\n    if (isPair(value)) {\n        const map = ctx.schema[MAP].createNode?.(ctx.schema, null, ctx);\n        map.items.push(value);\n        return map;\n    }\n    if (value instanceof String ||\n        value instanceof Number ||\n        value instanceof Boolean ||\n        (typeof BigInt !== 'undefined' && value instanceof BigInt) // not supported everywhere\n    ) {\n        // https://tc39.es/ecma262/#sec-serializejsonproperty\n        value = value.valueOf();\n    }\n    const { aliasDuplicateObjects, onAnchor, onTagObj, schema, sourceObjects } = ctx;\n    // Detect duplicate references to the same object & use Alias nodes for all\n    // after first. The `ref` wrapper allows for circular references to resolve.\n    let ref = undefined;\n    if (aliasDuplicateObjects && value && typeof value === 'object') {\n        ref = sourceObjects.get(value);\n        if (ref) {\n            if (!ref.anchor)\n                ref.anchor = onAnchor(value);\n            return new Alias(ref.anchor);\n        }\n        else {\n            ref = { anchor: null, node: null };\n            sourceObjects.set(value, ref);\n        }\n    }\n    if (tagName?.startsWith('!!'))\n        tagName = defaultTagPrefix + tagName.slice(2);\n    let tagObj = findTagObject(value, tagName, schema.tags);\n    if (!tagObj) {\n        if (value && typeof value.toJSON === 'function') {\n            // eslint-disable-next-line @typescript-eslint/no-unsafe-call\n            value = value.toJSON();\n        }\n        if (!value || typeof value !== 'object') {\n            const node = new Scalar(value);\n            if (ref)\n                ref.node = node;\n            return node;\n        }\n        tagObj =\n            value instanceof Map\n                ? schema[MAP]\n                : Symbol.iterator in Object(value)\n                    ? schema[SEQ]\n                    : schema[MAP];\n    }\n    if (onTagObj) {\n        onTagObj(tagObj);\n        delete ctx.onTagObj;\n    }\n    const node = tagObj?.createNode\n        ? tagObj.createNode(ctx.schema, value, ctx)\n        : typeof tagObj?.nodeClass?.from === 'function'\n            ? tagObj.nodeClass.from(ctx.schema, value, ctx)\n            : new Scalar(value);\n    if (tagName)\n        node.tag = tagName;\n    else if (!tagObj.default)\n        node.tag = tagObj.tag;\n    if (ref)\n        ref.node = node;\n    return node;\n}\n\nexport { createNode };\n",
+      "start": 1743409708641,
+      "end": 1743409708651,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    }
+  ]
+}

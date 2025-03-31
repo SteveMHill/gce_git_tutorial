@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/SlideCurrentNo.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { useSlideContext } from '../context'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SlideCurrentNo',\n  setup(__props) {\n\nconst { $page } = useSlideContext()\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"span\", null, _toDisplayString(_unref($page)), 1 /* TEXT */))\n}\n}\n\n})",
+      "start": 1743409709044,
+      "end": 1743409709044
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { useSlideContext } from \"../context\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideCurrentNo\",\n  setup(__props) {\n    const { $page } = useSlideContext();\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"span\",\n        null,\n        _toDisplayString(_unref($page)),\n        1\n        /* TEXT */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709044,
+      "end": 1743409709064,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/SlideCurrentNo.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { useSlideContext } from '../context'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SlideCurrentNo',\n  setup(__props) {\n\nconst { $page } = useSlideContext()\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"span\", null, _toDisplayString(_unref($page)), 1 /* TEXT */))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,mBAAmB,kBAAkB,aAAa,YAAY,sBAAsB,2BAA2B;AAEzI,SAAS,uBAAuB;AAGhC,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAEjB,UAAM,EAAE,MAAM,IAAI,gBAAgB;AAElC,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG;AAAA,QAAoB;AAAA,QAAQ;AAAA,QAAM,iBAAiB,OAAO,KAAK,CAAC;AAAA,QAAG;AAAA;AAAA,MAAY;AAAA,IACvG;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { useSlideContext } from \"../context\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideCurrentNo\",\n  setup(__props) {\n    const { $page } = useSlideContext();\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"span\",\n        null,\n        _toDisplayString(_unref($page)),\n        1\n        /* TEXT */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/SlideCurrentNo.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { useSlideContext } from \"../context\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideCurrentNo\",\n  setup(__props) {\n    const { $page } = useSlideContext();\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"span\",\n        null,\n        _toDisplayString(_unref($page)),\n        1\n        /* TEXT */\n      );\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACzD,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AAC9I,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC;AAC5C,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AAChD,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,cAAc,CAAC;AAC1B,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,eAAe,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,mBAAmB;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    }
+  ]
+}

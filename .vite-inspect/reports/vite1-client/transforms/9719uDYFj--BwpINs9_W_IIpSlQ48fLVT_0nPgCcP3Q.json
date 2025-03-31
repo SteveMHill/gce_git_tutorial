@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/shared.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// @ts-expect-error - virtual module\nimport serverState from 'server-reactive:nav'\nimport { createSyncState } from './syncState'\n\nexport interface SharedState {\n  page: number\n  clicks: number\n  clicksTotal: number\n\n  cursor?: {\n    x: number\n    y: number\n  }\n\n  lastUpdate?: {\n    id: string\n    type: 'presenter' | 'viewer'\n    time: number\n  }\n}\n\nconst { init, onPatch, onUpdate, patch, state } = createSyncState<SharedState>(serverState, {\n  page: 1,\n  clicks: 0,\n  clicksTotal: 0,\n})\n\nexport {\n  init as initSharedState,\n  onPatch,\n  onUpdate as onSharedUpdate,\n  patch,\n  state as sharedState,\n}\n",
+      "start": 1743409708583,
+      "end": 1743409708586,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import serverState from \"server-reactive:nav\";\nimport { createSyncState } from \"./syncState\";\nconst { init, onPatch, onUpdate, patch, state } = createSyncState(serverState, {\n  page: 1,\n  clicks: 0,\n  clicksTotal: 0\n});\nexport {\n  init as initSharedState,\n  onPatch,\n  onUpdate as onSharedUpdate,\n  patch,\n  state as sharedState\n};\n",
+      "start": 1743409708586,
+      "end": 1743409708705,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/shared.ts"
+        ],
+        "sourcesContent": [
+          "// @ts-expect-error - virtual module\nimport serverState from 'server-reactive:nav'\nimport { createSyncState } from './syncState'\n\nexport interface SharedState {\n  page: number\n  clicks: number\n  clicksTotal: number\n\n  cursor?: {\n    x: number\n    y: number\n  }\n\n  lastUpdate?: {\n    id: string\n    type: 'presenter' | 'viewer'\n    time: number\n  }\n}\n\nconst { init, onPatch, onUpdate, patch, state } = createSyncState<SharedState>(serverState, {\n  page: 1,\n  clicks: 0,\n  clicksTotal: 0,\n})\n\nexport {\n  init as initSharedState,\n  onPatch,\n  onUpdate as onSharedUpdate,\n  patch,\n  state as sharedState,\n}\n"
+        ],
+        "mappings": "AACA,OAAO,iBAAiB;AACxB,SAAS,uBAAuB;AAmBhC,MAAM,EAAE,MAAM,SAAS,UAAU,OAAO,MAAM,IAAI,gBAA6B,aAAa;AAAA,EAC1F,MAAM;AAAA,EACN,QAAQ;AAAA,EACR,aAAa;AACf,CAAC;AAED;AAAA,EACE,QAAQ;AAAA,EACR;AAAA,EACA,YAAY;AAAA,EACZ;AAAA,EACA,SAAS;AAAA;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    }
+  ]
+}

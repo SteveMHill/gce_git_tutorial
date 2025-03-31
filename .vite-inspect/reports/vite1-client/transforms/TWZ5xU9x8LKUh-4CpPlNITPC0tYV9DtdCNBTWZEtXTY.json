@@ -1,0 +1,168 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_2.frontmatter",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "// @unocss-include\nimport { computed, reactive, shallowReactive } from \"vue\"\nexport const frontmatterData = {\"transition\":\"fade-out\"}\nif (import.meta.hot) {\n  const firstLoad = !import.meta.hot.data.frontmatter\n  import.meta.hot.data.frontmatter ??= reactive(frontmatterData)\n  import.meta.hot.accept(({ frontmatterData: update }) => {\n    if (firstLoad) return\n    const frontmatter = import.meta.hot.data.frontmatter\n    Object.keys(frontmatter).forEach(key => {\n      if (!(key in update)) delete frontmatter[key]\n    })\n    Object.assign(frontmatter, update)\n  })\n}\nexport const frontmatter = import.meta.hot ? import.meta.hot.data.frontmatter : reactive(frontmatterData)\nexport default frontmatter\nexport const meta = shallowReactive({\n  get layout(){ return frontmatter.layout },\n  get transition(){ return frontmatter.transition },\n  get class(){ return frontmatter.class },\n  get clicks(){ return frontmatter.clicks },\n  get name(){ return frontmatter.name },\n  get preload(){ return frontmatter.preload },\n  slide: {\n    ...({\"content\":\"\",\"revision\":\"xtvr19\",\"frontmatterRaw\":\"transition: fade-out\\n\",\"note\":\"\",\"title\":\"About This Series\",\"level\":1,\"index\":1,\"noteHTML\":\"\",\"raw\":\"\"}),\n    frontmatter,\n    filepath: \"\",\n    start: 19,\n    id: 1,\n    no: 2,\n  },\n  __clicksContext: null,\n  __preloaded: false,\n})",
+      "start": 1743409708807,
+      "end": 1743409708807,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708807,
+      "end": 1743409708807,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708807,
+      "end": 1743409708807,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708807,
+      "end": 1743409708808,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "result": "// @unocss-include\nimport { computed, reactive, shallowReactive } from \"vue\"\nexport const frontmatterData = {\"transition\":\"fade-out\"}\nif (import.meta.hot) {\n  const firstLoad = !import.meta.hot.data.frontmatter\n  import.meta.hot.data.frontmatter ??= reactive(frontmatterData)\n  import.meta.hot.accept(({ frontmatterData: update }) => {\n    if (firstLoad) return\n    const frontmatter = import.meta.hot.data.frontmatter\n    Object.keys(frontmatter).forEach(key => {\n      if (!(key in update)) delete frontmatter[key]\n    })\n    Object.assign(frontmatter, update)\n  })\n}\nexport const frontmatter = import.meta.hot ? import.meta.hot.data.frontmatter : reactive(frontmatterData)\nexport default frontmatter\nexport const meta = shallowReactive({\n  get layout(){ return frontmatter.layout },\n  get transition(){ return frontmatter.transition },\n  get class(){ return frontmatter.class },\n  get clicks(){ return frontmatter.clicks },\n  get name(){ return frontmatter.name },\n  get preload(){ return frontmatter.preload },\n  slide: {\n    ...({\"content\":\"\",\"revision\":\"xtvr19\",\"frontmatterRaw\":\"transition: fade-out\\n\",\"note\":\"\",\"title\":\"About This Series\",\"level\":1,\"index\":1,\"noteHTML\":\"\",\"raw\":\"\"}),\n    frontmatter,\n    filepath: \"\",\n    start: 19,\n    id: 1,\n    no: 2,\n  },\n  __clicksContext: null,\n  __preloaded: false,\n})",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708808,
+      "end": 1743409708808,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { computed, reactive, shallowReactive } from \"vue\";\nexport const frontmatterData = { \"transition\": \"fade-out\" };\nif (void 0) {\n  const firstLoad = !(void 0).data.frontmatter;\n  (void 0).data.frontmatter ??= reactive(frontmatterData);\n  (void 0).accept(({ frontmatterData: update }) => {\n    if (firstLoad) return;\n    const frontmatter2 = (void 0).data.frontmatter;\n    Object.keys(frontmatter2).forEach((key) => {\n      if (!(key in update)) delete frontmatter2[key];\n    });\n    Object.assign(frontmatter2, update);\n  });\n}\nexport const frontmatter = void 0 ? (void 0).data.frontmatter : reactive(frontmatterData);\nexport default frontmatter;\nexport const meta = shallowReactive({\n  get layout() {\n    return frontmatter.layout;\n  },\n  get transition() {\n    return frontmatter.transition;\n  },\n  get class() {\n    return frontmatter.class;\n  },\n  get clicks() {\n    return frontmatter.clicks;\n  },\n  get name() {\n    return frontmatter.name;\n  },\n  get preload() {\n    return frontmatter.preload;\n  },\n  slide: {\n    ...{ \"content\": \"\", \"revision\": \"xtvr19\", \"frontmatterRaw\": \"transition: fade-out\\n\", \"note\": \"\", \"title\": \"About This Series\", \"level\": 1, \"index\": 1, \"noteHTML\": \"\", \"raw\": \"\" },\n    frontmatter,\n    filepath: \"\",\n    start: 19,\n    id: 1,\n    no: 2\n  },\n  __clicksContext: null,\n  __preloaded: false\n});\n",
+      "start": 1743409708808,
+      "end": 1743409708935,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    }
+  ]
+}

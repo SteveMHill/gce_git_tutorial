@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/compose/resolve-end.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function resolveEnd(end, offset, reqSpace, onError) {\n    let comment = '';\n    if (end) {\n        let hasSpace = false;\n        let sep = '';\n        for (const token of end) {\n            const { source, type } = token;\n            switch (type) {\n                case 'space':\n                    hasSpace = true;\n                    break;\n                case 'comment': {\n                    if (reqSpace && !hasSpace)\n                        onError(token, 'MISSING_CHAR', 'Comments must be separated from other tokens by white space characters');\n                    const cb = source.substring(1) || ' ';\n                    if (!comment)\n                        comment = cb;\n                    else\n                        comment += sep + cb;\n                    sep = '';\n                    break;\n                }\n                case 'newline':\n                    if (comment)\n                        sep += source;\n                    hasSpace = true;\n                    break;\n                default:\n                    onError(token, 'UNEXPECTED_TOKEN', `Unexpected ${type} at node end`);\n            }\n            offset += source.length;\n        }\n    }\n    return { comment, offset };\n}\n\nexport { resolveEnd };\n",
+      "start": 1743409708642,
+      "end": 1743409708651,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    }
+  ]
+}

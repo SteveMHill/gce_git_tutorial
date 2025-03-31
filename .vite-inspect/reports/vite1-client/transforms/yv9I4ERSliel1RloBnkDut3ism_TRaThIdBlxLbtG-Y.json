@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/roughjs/bin/fillers/zigzag-filler.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { HachureFiller } from './hachure-filler';\nimport { polygonHachureLines } from './scan-line-hachure';\nimport { lineLength } from '../geometry';\nexport class ZigZagFiller extends HachureFiller {\n    fillPolygons(polygonList, o) {\n        let gap = o.hachureGap;\n        if (gap < 0) {\n            gap = o.strokeWidth * 4;\n        }\n        gap = Math.max(gap, 0.1);\n        const o2 = Object.assign({}, o, { hachureGap: gap });\n        const lines = polygonHachureLines(polygonList, o2);\n        const zigZagAngle = (Math.PI / 180) * o.hachureAngle;\n        const zigzagLines = [];\n        const dgx = gap * 0.5 * Math.cos(zigZagAngle);\n        const dgy = gap * 0.5 * Math.sin(zigZagAngle);\n        for (const [p1, p2] of lines) {\n            if (lineLength([p1, p2])) {\n                zigzagLines.push([\n                    [p1[0] - dgx, p1[1] + dgy],\n                    [...p2],\n                ], [\n                    [p1[0] + dgx, p1[1] - dgy],\n                    [...p2],\n                ]);\n            }\n        }\n        const ops = this.renderLines(zigzagLines, o);\n        return { type: 'fillSketch', ops };\n    }\n}\n",
+      "start": 1743409708490,
+      "end": 1743409708519,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708519,
+      "end": 1743409708519,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    }
+  ]
+}

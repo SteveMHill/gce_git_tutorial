@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/points-on-curve/lib/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// distance between 2 points\nfunction distance(p1, p2) {\n    return Math.sqrt(distanceSq(p1, p2));\n}\n// distance between 2 points squared\nfunction distanceSq(p1, p2) {\n    return Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2);\n}\n// Sistance squared from a point p to the line segment vw\nfunction distanceToSegmentSq(p, v, w) {\n    const l2 = distanceSq(v, w);\n    if (l2 === 0) {\n        return distanceSq(p, v);\n    }\n    let t = ((p[0] - v[0]) * (w[0] - v[0]) + (p[1] - v[1]) * (w[1] - v[1])) / l2;\n    t = Math.max(0, Math.min(1, t));\n    return distanceSq(p, lerp(v, w, t));\n}\nfunction lerp(a, b, t) {\n    return [\n        a[0] + (b[0] - a[0]) * t,\n        a[1] + (b[1] - a[1]) * t,\n    ];\n}\n// Adapted from https://seant23.wordpress.com/2010/11/12/offset-bezier-curves/\nfunction flatness(points, offset) {\n    const p1 = points[offset + 0];\n    const p2 = points[offset + 1];\n    const p3 = points[offset + 2];\n    const p4 = points[offset + 3];\n    let ux = 3 * p2[0] - 2 * p1[0] - p4[0];\n    ux *= ux;\n    let uy = 3 * p2[1] - 2 * p1[1] - p4[1];\n    uy *= uy;\n    let vx = 3 * p3[0] - 2 * p4[0] - p1[0];\n    vx *= vx;\n    let vy = 3 * p3[1] - 2 * p4[1] - p1[1];\n    vy *= vy;\n    if (ux < vx) {\n        ux = vx;\n    }\n    if (uy < vy) {\n        uy = vy;\n    }\n    return ux + uy;\n}\nfunction getPointsOnBezierCurveWithSplitting(points, offset, tolerance, newPoints) {\n    const outPoints = newPoints || [];\n    if (flatness(points, offset) < tolerance) {\n        const p0 = points[offset + 0];\n        if (outPoints.length) {\n            const d = distance(outPoints[outPoints.length - 1], p0);\n            if (d > 1) {\n                outPoints.push(p0);\n            }\n        }\n        else {\n            outPoints.push(p0);\n        }\n        outPoints.push(points[offset + 3]);\n    }\n    else {\n        // subdivide\n        const t = .5;\n        const p1 = points[offset + 0];\n        const p2 = points[offset + 1];\n        const p3 = points[offset + 2];\n        const p4 = points[offset + 3];\n        const q1 = lerp(p1, p2, t);\n        const q2 = lerp(p2, p3, t);\n        const q3 = lerp(p3, p4, t);\n        const r1 = lerp(q1, q2, t);\n        const r2 = lerp(q2, q3, t);\n        const red = lerp(r1, r2, t);\n        getPointsOnBezierCurveWithSplitting([p1, q1, r1, red], 0, tolerance, outPoints);\n        getPointsOnBezierCurveWithSplitting([red, r2, q3, p4], 0, tolerance, outPoints);\n    }\n    return outPoints;\n}\nexport function simplify(points, distance) {\n    return simplifyPoints(points, 0, points.length, distance);\n}\n// Ramer–Douglas–Peucker algorithm\n// https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm\nfunction simplifyPoints(points, start, end, epsilon, newPoints) {\n    const outPoints = newPoints || [];\n    // find the most distance point from the endpoints\n    const s = points[start];\n    const e = points[end - 1];\n    let maxDistSq = 0;\n    let maxNdx = 1;\n    for (let i = start + 1; i < end - 1; ++i) {\n        const distSq = distanceToSegmentSq(points[i], s, e);\n        if (distSq > maxDistSq) {\n            maxDistSq = distSq;\n            maxNdx = i;\n        }\n    }\n    // if that point is too far, split\n    if (Math.sqrt(maxDistSq) > epsilon) {\n        simplifyPoints(points, start, maxNdx + 1, epsilon, outPoints);\n        simplifyPoints(points, maxNdx, end, epsilon, outPoints);\n    }\n    else {\n        if (!outPoints.length) {\n            outPoints.push(s);\n        }\n        outPoints.push(e);\n    }\n    return outPoints;\n}\nexport function pointsOnBezierCurves(points, tolerance = 0.15, distance) {\n    const newPoints = [];\n    const numSegments = (points.length - 1) / 3;\n    for (let i = 0; i < numSegments; i++) {\n        const offset = i * 3;\n        getPointsOnBezierCurveWithSplitting(points, offset, tolerance, newPoints);\n    }\n    if (distance && distance > 0) {\n        return simplifyPoints(newPoints, 0, newPoints.length, distance);\n    }\n    return newPoints;\n}\n",
+      "start": 1743409708485,
+      "end": 1743409708490,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    }
+  ]
+}

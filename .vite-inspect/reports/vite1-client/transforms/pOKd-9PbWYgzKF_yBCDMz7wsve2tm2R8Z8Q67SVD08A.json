@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/context-menu.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/// <reference types=\"unplugin-icons/types/vue3\" />\n\nimport type { ContextMenuItem } from '@slidev/types'\nimport type { ComputedRef } from 'vue'\nimport setups from '#slidev/setups/context-menu'\nimport { computed } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useNav } from '../composables/useNav'\nimport { fullscreen, showEditor, toggleOverview } from '../state'\n\n// @unocss-include\n\nlet items: ComputedRef<ContextMenuItem[]> | undefined\n\nexport default () => {\n  if (items)\n    return items\n\n  const {\n    next,\n    nextSlide,\n    prev,\n    prevSlide,\n    hasNext,\n    hasPrev,\n    currentPage,\n    total,\n    isPresenter,\n    enterPresenter,\n    exitPresenter,\n    isEmbedded,\n    isPresenterAvailable,\n  } = useNav()\n  const { drawingEnabled } = useDrawings()\n  const {\n    isFullscreen,\n    toggle: toggleFullscreen,\n  } = fullscreen\n\n  return items = setups.reduce(\n    (items, fn) => fn(items),\n    computed(() => [\n      {\n        small: true,\n        icon: 'i-carbon:arrow-left',\n        label: 'Previous Click',\n        action: prev,\n        disabled: !hasPrev.value,\n      },\n      {\n        small: true,\n        icon: 'i-carbon:arrow-right',\n        label: 'Next Click',\n        action: next,\n        disabled: !hasNext.value,\n      },\n      {\n        small: true,\n        icon: 'i-carbon:arrow-up',\n        label: 'Previous Slide',\n        action: prevSlide,\n        disabled: currentPage.value <= 1,\n      },\n      {\n        small: true,\n        icon: 'i-carbon:arrow-down',\n        label: 'Next Slide',\n        action: nextSlide,\n        disabled: currentPage.value >= total.value,\n      },\n      'separator',\n      {\n        icon: 'i-carbon:text-annotation-toggle', // IconTextNotationToggle,\n        label: showEditor.value ? 'Hide editor' : 'Show editor',\n        action: () => (showEditor.value = !showEditor.value),\n      },\n      {\n        icon: 'i-carbon:pen',\n        label: drawingEnabled.value ? 'Hide drawing toolbar' : 'Show drawing toolbar',\n        action: () => (drawingEnabled.value = !drawingEnabled.value),\n      },\n      {\n        icon: 'i-carbon:apps',\n        label: 'Show slide overview',\n        action: toggleOverview,\n      },\n      isPresenter.value && {\n        icon: 'i-carbon:presentation-file',\n        label: 'Exit Presenter Mode',\n        action: exitPresenter,\n      },\n      __SLIDEV_FEATURE_PRESENTER__ && isPresenterAvailable.value && {\n        icon: 'i-carbon:user-speaker',\n        label: 'Enter Presenter Mode',\n        action: enterPresenter,\n      },\n      !isEmbedded.value && {\n        icon: isFullscreen.value ? 'i-carbon:minimize' : 'i-carbon:maximize',\n        label: isFullscreen.value ? 'Close fullscreen' : 'Enter fullscreen',\n        action: toggleFullscreen,\n      },\n    ].filter(Boolean) as ContextMenuItem[]),\n  )\n}\n",
+      "start": 1743409708946,
+      "end": 1743409708960,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import setups from \"#slidev/setups/context-menu\";\nimport { computed } from \"vue\";\nimport { useDrawings } from \"../composables/useDrawings\";\nimport { useNav } from \"../composables/useNav\";\nimport { fullscreen, showEditor, toggleOverview } from \"../state\";\nlet items;\nexport default () => {\n  if (items)\n    return items;\n  const {\n    next,\n    nextSlide,\n    prev,\n    prevSlide,\n    hasNext,\n    hasPrev,\n    currentPage,\n    total,\n    isPresenter,\n    enterPresenter,\n    exitPresenter,\n    isEmbedded,\n    isPresenterAvailable\n  } = useNav();\n  const { drawingEnabled } = useDrawings();\n  const {\n    isFullscreen,\n    toggle: toggleFullscreen\n  } = fullscreen;\n  return items = setups.reduce(\n    (items2, fn) => fn(items2),\n    computed(() => [\n      {\n        small: true,\n        icon: \"i-carbon:arrow-left\",\n        label: \"Previous Click\",\n        action: prev,\n        disabled: !hasPrev.value\n      },\n      {\n        small: true,\n        icon: \"i-carbon:arrow-right\",\n        label: \"Next Click\",\n        action: next,\n        disabled: !hasNext.value\n      },\n      {\n        small: true,\n        icon: \"i-carbon:arrow-up\",\n        label: \"Previous Slide\",\n        action: prevSlide,\n        disabled: currentPage.value <= 1\n      },\n      {\n        small: true,\n        icon: \"i-carbon:arrow-down\",\n        label: \"Next Slide\",\n        action: nextSlide,\n        disabled: currentPage.value >= total.value\n      },\n      \"separator\",\n      {\n        icon: \"i-carbon:text-annotation-toggle\",\n        // IconTextNotationToggle,\n        label: showEditor.value ? \"Hide editor\" : \"Show editor\",\n        action: () => showEditor.value = !showEditor.value\n      },\n      {\n        icon: \"i-carbon:pen\",\n        label: drawingEnabled.value ? \"Hide drawing toolbar\" : \"Show drawing toolbar\",\n        action: () => drawingEnabled.value = !drawingEnabled.value\n      },\n      {\n        icon: \"i-carbon:apps\",\n        label: \"Show slide overview\",\n        action: toggleOverview\n      },\n      isPresenter.value && {\n        icon: \"i-carbon:presentation-file\",\n        label: \"Exit Presenter Mode\",\n        action: exitPresenter\n      },\n      __SLIDEV_FEATURE_PRESENTER__ && isPresenterAvailable.value && {\n        icon: \"i-carbon:user-speaker\",\n        label: \"Enter Presenter Mode\",\n        action: enterPresenter\n      },\n      !isEmbedded.value && {\n        icon: isFullscreen.value ? \"i-carbon:minimize\" : \"i-carbon:maximize\",\n        label: isFullscreen.value ? \"Close fullscreen\" : \"Enter fullscreen\",\n        action: toggleFullscreen\n      }\n    ].filter(Boolean))\n  );\n};\n",
+      "start": 1743409708960,
+      "end": 1743409709036,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/context-menu.ts"
+        ],
+        "sourcesContent": [
+          "/// <reference types=\"unplugin-icons/types/vue3\" />\n\nimport type { ContextMenuItem } from '@slidev/types'\nimport type { ComputedRef } from 'vue'\nimport setups from '#slidev/setups/context-menu'\nimport { computed } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useNav } from '../composables/useNav'\nimport { fullscreen, showEditor, toggleOverview } from '../state'\n\n// @unocss-include\n\nlet items: ComputedRef<ContextMenuItem[]> | undefined\n\nexport default () => {\n  if (items)\n    return items\n\n  const {\n    next,\n    nextSlide,\n    prev,\n    prevSlide,\n    hasNext,\n    hasPrev,\n    currentPage,\n    total,\n    isPresenter,\n    enterPresenter,\n    exitPresenter,\n    isEmbedded,\n    isPresenterAvailable,\n  } = useNav()\n  const { drawingEnabled } = useDrawings()\n  const {\n    isFullscreen,\n    toggle: toggleFullscreen,\n  } = fullscreen\n\n  return items = setups.reduce(\n    (items, fn) => fn(items),\n    computed(() => [\n      {\n        small: true,\n        icon: 'i-carbon:arrow-left',\n        label: 'Previous Click',\n        action: prev,\n        disabled: !hasPrev.value,\n      },\n      {\n        small: true,\n        icon: 'i-carbon:arrow-right',\n        label: 'Next Click',\n        action: next,\n        disabled: !hasNext.value,\n      },\n      {\n        small: true,\n        icon: 'i-carbon:arrow-up',\n        label: 'Previous Slide',\n        action: prevSlide,\n        disabled: currentPage.value <= 1,\n      },\n      {\n        small: true,\n        icon: 'i-carbon:arrow-down',\n        label: 'Next Slide',\n        action: nextSlide,\n        disabled: currentPage.value >= total.value,\n      },\n      'separator',\n      {\n        icon: 'i-carbon:text-annotation-toggle', // IconTextNotationToggle,\n        label: showEditor.value ? 'Hide editor' : 'Show editor',\n        action: () => (showEditor.value = !showEditor.value),\n      },\n      {\n        icon: 'i-carbon:pen',\n        label: drawingEnabled.value ? 'Hide drawing toolbar' : 'Show drawing toolbar',\n        action: () => (drawingEnabled.value = !drawingEnabled.value),\n      },\n      {\n        icon: 'i-carbon:apps',\n        label: 'Show slide overview',\n        action: toggleOverview,\n      },\n      isPresenter.value && {\n        icon: 'i-carbon:presentation-file',\n        label: 'Exit Presenter Mode',\n        action: exitPresenter,\n      },\n      __SLIDEV_FEATURE_PRESENTER__ && isPresenterAvailable.value && {\n        icon: 'i-carbon:user-speaker',\n        label: 'Enter Presenter Mode',\n        action: enterPresenter,\n      },\n      !isEmbedded.value && {\n        icon: isFullscreen.value ? 'i-carbon:minimize' : 'i-carbon:maximize',\n        label: isFullscreen.value ? 'Close fullscreen' : 'Enter fullscreen',\n        action: toggleFullscreen,\n      },\n    ].filter(Boolean) as ContextMenuItem[]),\n  )\n}\n"
+        ],
+        "mappings": "AAIA,OAAO,YAAY;AACnB,SAAS,gBAAgB;AACzB,SAAS,mBAAmB;AAC5B,SAAS,cAAc;AACvB,SAAS,YAAY,YAAY,sBAAsB;AAIvD,IAAI;AAEJ,eAAe,MAAM;AACnB,MAAI;AACF,WAAO;AAET,QAAM;AAAA,IACJ;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,EACF,IAAI,OAAO;AACX,QAAM,EAAE,eAAe,IAAI,YAAY;AACvC,QAAM;AAAA,IACJ;AAAA,IACA,QAAQ;AAAA,EACV,IAAI;AAEJ,SAAO,QAAQ,OAAO;AAAA,IACpB,CAACA,QAAO,OAAO,GAAGA,MAAK;AAAA,IACvB,SAAS,MAAM;AAAA,MACb;AAAA,QACE,OAAO;AAAA,QACP,MAAM;AAAA,QACN,OAAO;AAAA,QACP,QAAQ;AAAA,QACR,UAAU,CAAC,QAAQ;AAAA,MACrB;AAAA,MACA;AAAA,QACE,OAAO;AAAA,QACP,MAAM;AAAA,QACN,OAAO;AAAA,QACP,QAAQ;AAAA,QACR,UAAU,CAAC,QAAQ;AAAA,MACrB;AAAA,MACA;AAAA,QACE,OAAO;AAAA,QACP,MAAM;AAAA,QACN,OAAO;AAAA,QACP,QAAQ;AAAA,QACR,UAAU,YAAY,SAAS;AAAA,MACjC;AAAA,MACA;AAAA,QACE,OAAO;AAAA,QACP,MAAM;AAAA,QACN,OAAO;AAAA,QACP,QAAQ;AAAA,QACR,UAAU,YAAY,SAAS,MAAM;AAAA,MACvC;AAAA,MACA;AAAA,MACA;AAAA,QACE,MAAM;AAAA;AAAA,QACN,OAAO,WAAW,QAAQ,gBAAgB;AAAA,QAC1C,QAAQ,MAAO,WAAW,QAAQ,CAAC,WAAW;AAAA,MAChD;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,OAAO,eAAe,QAAQ,yBAAyB;AAAA,QACvD,QAAQ,MAAO,eAAe,QAAQ,CAAC,eAAe;AAAA,MACxD;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,OAAO;AAAA,QACP,QAAQ;AAAA,MACV;AAAA,MACA,YAAY,SAAS;AAAA,QACnB,MAAM;AAAA,QACN,OAAO;AAAA,QACP,QAAQ;AAAA,MACV;AAAA,MACA,gCAAgC,qBAAqB,SAAS;AAAA,QAC5D,MAAM;AAAA,QACN,OAAO;AAAA,QACP,QAAQ;AAAA,MACV;AAAA,MACA,CAAC,WAAW,SAAS;AAAA,QACnB,MAAM,aAAa,QAAQ,sBAAsB;AAAA,QACjD,OAAO,aAAa,QAAQ,qBAAqB;AAAA,QACjD,QAAQ;AAAA,MACV;AAAA,IACF,EAAE,OAAO,OAAO,CAAsB;AAAA,EACxC;AACF;",
+        "names": [
+          "items"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import setups from \"#slidev/setups/context-menu\";\nimport { computed } from \"vue\";\nimport { useDrawings } from \"../composables/useDrawings\";\nimport { useNav } from \"../composables/useNav\";\nimport { fullscreen, showEditor, toggleOverview } from \"../state\";\nlet items;\nexport default () => {\n  if (items)\n    return items;\n  const {\n    next,\n    nextSlide,\n    prev,\n    prevSlide,\n    hasNext,\n    hasPrev,\n    currentPage,\n    total,\n    isPresenter,\n    enterPresenter,\n    exitPresenter,\n    isEmbedded,\n    isPresenterAvailable\n  } = useNav();\n  const { drawingEnabled } = useDrawings();\n  const {\n    isFullscreen,\n    toggle: toggleFullscreen\n  } = fullscreen;\n  return items = setups.reduce(\n    (items2, fn) => fn(items2),\n    computed(() => [\n      {\n        small: true,\n        icon: \"i-carbon:arrow-left\",\n        label: \"Previous Click\",\n        action: prev,\n        disabled: !hasPrev.value\n      },\n      {\n        small: true,\n        icon: \"i-carbon:arrow-right\",\n        label: \"Next Click\",\n        action: next,\n        disabled: !hasNext.value\n      },\n      {\n        small: true,\n        icon: \"i-carbon:arrow-up\",\n        label: \"Previous Slide\",\n        action: prevSlide,\n        disabled: currentPage.value <= 1\n      },\n      {\n        small: true,\n        icon: \"i-carbon:arrow-down\",\n        label: \"Next Slide\",\n        action: nextSlide,\n        disabled: currentPage.value >= total.value\n      },\n      \"separator\",\n      {\n        icon: \"i-carbon:text-annotation-toggle\",\n        // IconTextNotationToggle,\n        label: showEditor.value ? \"Hide editor\" : \"Show editor\",\n        action: () => showEditor.value = !showEditor.value\n      },\n      {\n        icon: \"i-carbon:pen\",\n        label: drawingEnabled.value ? \"Hide drawing toolbar\" : \"Show drawing toolbar\",\n        action: () => drawingEnabled.value = !drawingEnabled.value\n      },\n      {\n        icon: \"i-carbon:apps\",\n        label: \"Show slide overview\",\n        action: toggleOverview\n      },\n      isPresenter.value && {\n        icon: \"i-carbon:presentation-file\",\n        label: \"Exit Presenter Mode\",\n        action: exitPresenter\n      },\n      isPresenterAvailable.value && {\n        icon: \"i-carbon:user-speaker\",\n        label: \"Enter Presenter Mode\",\n        action: enterPresenter\n      },\n      !isEmbedded.value && {\n        icon: isFullscreen.value ? \"i-carbon:minimize\" : \"i-carbon:maximize\",\n        label: isFullscreen.value ? \"Close fullscreen\" : \"Enter fullscreen\",\n        action: toggleFullscreen\n      }\n    ].filter(Boolean))\n  );\n};\n",
+      "start": 1743409709036,
+      "end": 1743409709044,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    }
+  ]
+}

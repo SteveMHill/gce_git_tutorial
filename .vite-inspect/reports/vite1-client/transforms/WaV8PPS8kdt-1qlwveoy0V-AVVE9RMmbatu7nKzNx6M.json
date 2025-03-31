@@ -1,0 +1,198 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=style&index=0&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\r\n.v-popper--theme-menu .v-popper__arrow-inner {\r\n  --uno: border-main;\r\n}\r\n",
+      "start": 1743409708931,
+      "end": 1743409708931
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708931,
+      "end": 1743409708931,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708931,
+      "end": 1743409708931,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": "\r\n.v-popper--theme-menu .v-popper__arrow-inner {\r\n  border-color:rgb(156 163 175 / 0.2);\r\n}\r\n",
+      "start": 1743409708931,
+      "end": 1743409708932,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": "AAAA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,qCAAoB;AACrB,CAAC",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=style&index=0&lang.css"
+        ],
+        "sourcesContent": [
+          "\r\n.v-popper--theme-menu .v-popper__arrow-inner {\r\n  border-color:rgb(156 163 175 / 0.2);\r\n}\r\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "\r\n.v-popper--theme-menu .v-popper__arrow-inner {\r\n  border-color:rgb(156 163 175 / 0.2);\r\n}\r\n",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\n.v-popper--theme-menu .v-popper__arrow-inner {\r\n  border-color:rgb(156 163 175 / 0.2);\n}\r\n",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=style&index=0&lang.css"
+        ],
+        "sourcesContent": [
+          ""
+        ],
+        "names": [],
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708932,
+      "end": 1743409708932,
+      "order": "normal"
+    }
+  ]
+}

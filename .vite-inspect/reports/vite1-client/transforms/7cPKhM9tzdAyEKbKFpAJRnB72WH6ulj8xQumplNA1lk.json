@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=style&index=0&scoped=a155920e&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.disable-view-transition:deep(*) {\n  view-transition-name: none !important;\n}\n\n.slidev-page {\n  position: absolute;\n  inset: 0;\n}\n",
+      "start": 1743409708947,
+      "end": 1743409708947
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "\n.disable-view-transition:deep(*) {\n  view-transition-name: none !important;\n}\n\n.slidev-page {\n  position: absolute;\n  inset: 0;\n}\n",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\n.disable-view-transition[data-v-a155920e] * {\n  view-transition-name: none !important;\n}\n.slidev-page[data-v-a155920e] {\n  position: absolute;\n  inset: 0;\n}\n",
+      "start": 1743409708947,
+      "end": 1743409708948,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=style&index=0&scoped=a155920e&lang.css"
+        ],
+        "sourcesContent": [
+          ""
+        ],
+        "names": [],
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "normal"
+    }
+  ]
+}

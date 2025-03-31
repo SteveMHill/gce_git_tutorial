@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/roughjs/bin/fillers/dashed-filler.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { lineLength } from '../geometry';\nimport { polygonHachureLines } from './scan-line-hachure';\nexport class DashedFiller {\n    constructor(helper) {\n        this.helper = helper;\n    }\n    fillPolygons(polygonList, o) {\n        const lines = polygonHachureLines(polygonList, o);\n        return { type: 'fillSketch', ops: this.dashedLine(lines, o) };\n    }\n    dashedLine(lines, o) {\n        const offset = o.dashOffset < 0 ? (o.hachureGap < 0 ? (o.strokeWidth * 4) : o.hachureGap) : o.dashOffset;\n        const gap = o.dashGap < 0 ? (o.hachureGap < 0 ? (o.strokeWidth * 4) : o.hachureGap) : o.dashGap;\n        const ops = [];\n        lines.forEach((line) => {\n            const length = lineLength(line);\n            const count = Math.floor(length / (offset + gap));\n            const startOffset = (length + gap - (count * (offset + gap))) / 2;\n            let p1 = line[0];\n            let p2 = line[1];\n            if (p1[0] > p2[0]) {\n                p1 = line[1];\n                p2 = line[0];\n            }\n            const alpha = Math.atan((p2[1] - p1[1]) / (p2[0] - p1[0]));\n            for (let i = 0; i < count; i++) {\n                const lstart = i * (offset + gap);\n                const lend = lstart + offset;\n                const start = [p1[0] + (lstart * Math.cos(alpha)) + (startOffset * Math.cos(alpha)), p1[1] + lstart * Math.sin(alpha) + (startOffset * Math.sin(alpha))];\n                const end = [p1[0] + (lend * Math.cos(alpha)) + (startOffset * Math.cos(alpha)), p1[1] + (lend * Math.sin(alpha)) + (startOffset * Math.sin(alpha))];\n                ops.push(...this.helper.doubleLineOps(start[0], start[1], end[0], end[1], o));\n            }\n        });\n        return ops;\n    }\n}\n",
+      "start": 1743409708490,
+      "end": 1743409708520,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708520,
+      "end": 1743409708520,
+      "order": "normal"
+    }
+  ]
+}

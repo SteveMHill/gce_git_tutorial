@@ -1,0 +1,176 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/main.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { AppContext } from '@slidev/types'\nimport type { App } from 'vue'\nimport setups from '#slidev/setups/main'\nimport TwoSlashFloatingVue from '@shikijs/vitepress-twoslash/client'\nimport { createHead } from '@unhead/vue/client'\nimport { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'\nimport { createVClickDirectives } from '../modules/v-click'\nimport { createVDragDirective } from '../modules/v-drag'\nimport { createVMarkDirective } from '../modules/v-mark'\nimport { createVMotionDirectives } from '../modules/v-motion'\nimport setupRoutes from '../setup/routes'\n\nimport '#slidev/styles'\n\nexport default async function setupMain(app: App) {\n  function setMaxHeight() {\n    // disable the mobile navbar scroll\n    // see https://css-tricks.com/the-trick-to-viewport-units-on-mobile/\n    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)\n  }\n  setMaxHeight()\n  window.addEventListener('resize', setMaxHeight)\n\n  const router = createRouter({\n    history: __SLIDEV_HASH_ROUTE__\n      ? createWebHashHistory(import.meta.env.BASE_URL)\n      : createWebHistory(import.meta.env.BASE_URL),\n    routes: setupRoutes(),\n  })\n\n  app.use(router)\n  app.use(createHead())\n  app.use(createVClickDirectives())\n  app.use(createVMarkDirective())\n  app.use(createVDragDirective())\n  app.use(createVMotionDirectives())\n  app.use(TwoSlashFloatingVue as any, { container: '#twoslash-container' })\n\n  const context: AppContext = {\n    app,\n    router,\n  }\n\n  for (const setup of setups)\n    await setup(context)\n}\n",
+      "start": 1743409708351,
+      "end": 1743409708352,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708352,
+      "end": 1743409708352,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708352,
+      "end": 1743409708352,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708352,
+      "end": 1743409708352,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708352,
+      "end": 1743409708352,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708352,
+      "end": 1743409708352,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import setups from \"#slidev/setups/main\";\nimport TwoSlashFloatingVue from \"@shikijs/vitepress-twoslash/client\";\nimport { createHead } from \"@unhead/vue/client\";\nimport { createRouter, createWebHashHistory, createWebHistory } from \"vue-router\";\nimport { createVClickDirectives } from \"../modules/v-click\";\nimport { createVDragDirective } from \"../modules/v-drag\";\nimport { createVMarkDirective } from \"../modules/v-mark\";\nimport { createVMotionDirectives } from \"../modules/v-motion\";\nimport setupRoutes from \"../setup/routes\";\nimport \"#slidev/styles\";\nexport default async function setupMain(app) {\n  function setMaxHeight() {\n    document.documentElement.style.setProperty(\"--vh\", `${window.innerHeight * 0.01}px`);\n  }\n  setMaxHeight();\n  window.addEventListener(\"resize\", setMaxHeight);\n  const router = createRouter({\n    history: __SLIDEV_HASH_ROUTE__ ? createWebHashHistory(import.meta.env.BASE_URL) : createWebHistory(import.meta.env.BASE_URL),\n    routes: setupRoutes()\n  });\n  app.use(router);\n  app.use(createHead());\n  app.use(createVClickDirectives());\n  app.use(createVMarkDirective());\n  app.use(createVDragDirective());\n  app.use(createVMotionDirectives());\n  app.use(TwoSlashFloatingVue, { container: \"#twoslash-container\" });\n  const context = {\n    app,\n    router\n  };\n  for (const setup of setups)\n    await setup(context);\n}\n",
+      "start": 1743409708352,
+      "end": 1743409708363,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/main.ts"
+        ],
+        "sourcesContent": [
+          "import type { AppContext } from '@slidev/types'\nimport type { App } from 'vue'\nimport setups from '#slidev/setups/main'\nimport TwoSlashFloatingVue from '@shikijs/vitepress-twoslash/client'\nimport { createHead } from '@unhead/vue/client'\nimport { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'\nimport { createVClickDirectives } from '../modules/v-click'\nimport { createVDragDirective } from '../modules/v-drag'\nimport { createVMarkDirective } from '../modules/v-mark'\nimport { createVMotionDirectives } from '../modules/v-motion'\nimport setupRoutes from '../setup/routes'\n\nimport '#slidev/styles'\n\nexport default async function setupMain(app: App) {\n  function setMaxHeight() {\n    // disable the mobile navbar scroll\n    // see https://css-tricks.com/the-trick-to-viewport-units-on-mobile/\n    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)\n  }\n  setMaxHeight()\n  window.addEventListener('resize', setMaxHeight)\n\n  const router = createRouter({\n    history: __SLIDEV_HASH_ROUTE__\n      ? createWebHashHistory(import.meta.env.BASE_URL)\n      : createWebHistory(import.meta.env.BASE_URL),\n    routes: setupRoutes(),\n  })\n\n  app.use(router)\n  app.use(createHead())\n  app.use(createVClickDirectives())\n  app.use(createVMarkDirective())\n  app.use(createVDragDirective())\n  app.use(createVMotionDirectives())\n  app.use(TwoSlashFloatingVue as any, { container: '#twoslash-container' })\n\n  const context: AppContext = {\n    app,\n    router,\n  }\n\n  for (const setup of setups)\n    await setup(context)\n}\n"
+        ],
+        "mappings": "AAEA,OAAO,YAAY;AACnB,OAAO,yBAAyB;AAChC,SAAS,kBAAkB;AAC3B,SAAS,cAAc,sBAAsB,wBAAwB;AACrE,SAAS,8BAA8B;AACvC,SAAS,4BAA4B;AACrC,SAAS,4BAA4B;AACrC,SAAS,+BAA+B;AACxC,OAAO,iBAAiB;AAExB,OAAO;AAEP,8BAA8B,UAAU,KAAU;AAChD,WAAS,eAAe;AAGtB,aAAS,gBAAgB,MAAM,YAAY,QAAQ,GAAG,OAAO,cAAc,IAAI,IAAI;AAAA,EACrF;AACA,eAAa;AACb,SAAO,iBAAiB,UAAU,YAAY;AAE9C,QAAM,SAAS,aAAa;AAAA,IAC1B,SAAS,wBACL,qBAAqB,YAAY,IAAI,QAAQ,IAC7C,iBAAiB,YAAY,IAAI,QAAQ;AAAA,IAC7C,QAAQ,YAAY;AAAA,EACtB,CAAC;AAED,MAAI,IAAI,MAAM;AACd,MAAI,IAAI,WAAW,CAAC;AACpB,MAAI,IAAI,uBAAuB,CAAC;AAChC,MAAI,IAAI,qBAAqB,CAAC;AAC9B,MAAI,IAAI,qBAAqB,CAAC;AAC9B,MAAI,IAAI,wBAAwB,CAAC;AACjC,MAAI,IAAI,qBAA4B,EAAE,WAAW,sBAAsB,CAAC;AAExE,QAAM,UAAsB;AAAA,IAC1B;AAAA,IACA;AAAA,EACF;AAEA,aAAW,SAAS;AAClB,UAAM,MAAM,OAAO;AACvB;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708363,
+      "end": 1743409708363,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708363,
+      "end": 1743409708364,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708364,
+      "end": 1743409708364,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708364,
+      "end": 1743409708364,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708364,
+      "end": 1743409708364,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import setups from \"#slidev/setups/main\";\nimport TwoSlashFloatingVue from \"@shikijs/vitepress-twoslash/client\";\nimport { createHead } from \"@unhead/vue/client\";\nimport { createRouter, createWebHashHistory, createWebHistory } from \"vue-router\";\nimport { createVClickDirectives } from \"../modules/v-click\";\nimport { createVDragDirective } from \"../modules/v-drag\";\nimport { createVMarkDirective } from \"../modules/v-mark\";\nimport { createVMotionDirectives } from \"../modules/v-motion\";\nimport setupRoutes from \"../setup/routes\";\nimport \"#slidev/styles\";\nexport default async function setupMain(app) {\n  function setMaxHeight() {\n    document.documentElement.style.setProperty(\"--vh\", `${window.innerHeight * 0.01}px`);\n  }\n  setMaxHeight();\n  window.addEventListener(\"resize\", setMaxHeight);\n  const router = createRouter({\n    history: false ? createWebHashHistory(\"/\") : createWebHistory(\"/\"),\n    routes: setupRoutes()\n  });\n  app.use(router);\n  app.use(createHead());\n  app.use(createVClickDirectives());\n  app.use(createVMarkDirective());\n  app.use(createVDragDirective());\n  app.use(createVMotionDirectives());\n  app.use(TwoSlashFloatingVue, { container: \"#twoslash-container\" });\n  const context = {\n    app,\n    router\n  };\n  for (const setup of setups)\n    await setup(context);\n}\n",
+      "start": 1743409708364,
+      "end": 1743409708370,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708370,
+      "end": 1743409708370,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-click.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { ClicksElement, RawAtValue } from '@slidev/types'\nimport type { App, DirectiveBinding } from 'vue'\nimport { computed, watchEffect } from 'vue'\nimport {\n  CLASS_VCLICK_CURRENT,\n  CLASS_VCLICK_FADE,\n  CLASS_VCLICK_HIDDEN,\n  CLASS_VCLICK_HIDDEN_EXP,\n  CLASS_VCLICK_PRIOR,\n  CLASS_VCLICK_TARGET,\n  injectionClicksContext,\n} from '../constants'\nimport { directiveInject } from '../utils'\n\nexport function createVClickDirectives() {\n  return {\n    install(app: App) {\n      app.directive<HTMLElement, RawAtValue>('click', {\n        // @ts-expect-error extra prop\n        name: 'v-click',\n\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, dir.value)\n          if (resolved == null)\n            return\n\n          el.classList.toggle(CLASS_VCLICK_TARGET, true)\n\n          // Expose the resolved clicks info to the element to make it easier to understand and debug\n          el.dataset.slidevClicksStart = String(resolved.start)\n          if (Number.isFinite(resolved.end))\n            el.dataset.slidevClicksEnd = String(resolved.end)\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value\n            const current = resolved.isCurrent.value\n            const prior = active && !current\n\n            if (resolved.flagHide) {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active)\n              el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active)\n            }\n            else {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, !active)\n            }\n\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current)\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior)\n          })\n        },\n        unmounted,\n      })\n\n      app.directive<HTMLElement, RawAtValue>('after', {\n        // @ts-expect-error extra prop\n        name: 'v-after',\n\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, '+0')\n          if (resolved == null)\n            return\n\n          el.classList.toggle(CLASS_VCLICK_TARGET, true)\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value\n            const current = resolved.isCurrent.value\n            const prior = active && !current\n\n            if (resolved.flagHide) {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active)\n              el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active)\n            }\n            else {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, !active)\n            }\n\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current)\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior)\n          })\n        },\n        unmounted,\n      })\n\n      app.directive<HTMLElement, RawAtValue>('click-hide', {\n        // @ts-expect-error extra prop\n        name: 'v-click-hide',\n\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, dir.value, true)\n          if (resolved == null)\n            return\n\n          el.classList.toggle(CLASS_VCLICK_TARGET, true)\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value\n            const current = resolved.isCurrent.value\n            const prior = active && !current\n\n            el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active)\n            el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active)\n\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current)\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior)\n          })\n        },\n        unmounted,\n      })\n    },\n  }\n}\n\nexport const resolvedClickMap = new Map<ClicksElement, ReturnType<typeof resolveClick>>()\n\nexport function resolveClick(el: Element | string, dir: DirectiveBinding<any>, value: RawAtValue, explicitHide = false) {\n  const ctx = directiveInject(dir, injectionClicksContext)?.value\n\n  if (!el || !ctx)\n    return null\n\n  const flagHide = explicitHide || (dir.modifiers.hide !== false && dir.modifiers.hide != null)\n  const flagFade = dir.modifiers.fade !== false && dir.modifiers.fade != null\n\n  const info = ctx.calculate(value)\n  if (!info)\n    return null\n\n  ctx.register(el, info)\n\n  const isShown = computed(() => flagHide ? !info.isActive.value : info.isActive.value)\n  const visibilityState = computed(() => {\n    if (isShown.value)\n      return 'shown'\n    if (Number.isFinite(info.end))\n      return ctx.current < info.start ? 'before' : 'after'\n    else\n      return flagHide ? 'after' : 'before'\n  })\n\n  const resolved = {\n    ...info,\n    isShown,\n    visibilityState,\n    flagFade,\n    flagHide,\n  }\n  resolvedClickMap.set(el, resolved)\n  return resolved\n}\n\nfunction unmounted(el: HTMLElement, dir: DirectiveBinding<any>) {\n  el.classList.toggle(CLASS_VCLICK_TARGET, false)\n  const ctx = directiveInject(dir, injectionClicksContext)?.value\n  ctx?.unregister(el)\n  // @ts-expect-error extra prop\n  el.watchStopHandle?.()\n}\n",
+      "start": 1743409708376,
+      "end": 1743409708383,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { computed, watchEffect } from \"vue\";\nimport {\n  CLASS_VCLICK_CURRENT,\n  CLASS_VCLICK_FADE,\n  CLASS_VCLICK_HIDDEN,\n  CLASS_VCLICK_HIDDEN_EXP,\n  CLASS_VCLICK_PRIOR,\n  CLASS_VCLICK_TARGET,\n  injectionClicksContext\n} from \"../constants\";\nimport { directiveInject } from \"../utils\";\nexport function createVClickDirectives() {\n  return {\n    install(app) {\n      app.directive(\"click\", {\n        // @ts-expect-error extra prop\n        name: \"v-click\",\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, dir.value);\n          if (resolved == null)\n            return;\n          el.classList.toggle(CLASS_VCLICK_TARGET, true);\n          el.dataset.slidevClicksStart = String(resolved.start);\n          if (Number.isFinite(resolved.end))\n            el.dataset.slidevClicksEnd = String(resolved.end);\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value;\n            const current = resolved.isCurrent.value;\n            const prior = active && !current;\n            if (resolved.flagHide) {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active);\n              el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active);\n            } else {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, !active);\n            }\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current);\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior);\n          });\n        },\n        unmounted\n      });\n      app.directive(\"after\", {\n        // @ts-expect-error extra prop\n        name: \"v-after\",\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, \"+0\");\n          if (resolved == null)\n            return;\n          el.classList.toggle(CLASS_VCLICK_TARGET, true);\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value;\n            const current = resolved.isCurrent.value;\n            const prior = active && !current;\n            if (resolved.flagHide) {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active);\n              el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active);\n            } else {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, !active);\n            }\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current);\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior);\n          });\n        },\n        unmounted\n      });\n      app.directive(\"click-hide\", {\n        // @ts-expect-error extra prop\n        name: \"v-click-hide\",\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, dir.value, true);\n          if (resolved == null)\n            return;\n          el.classList.toggle(CLASS_VCLICK_TARGET, true);\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value;\n            const current = resolved.isCurrent.value;\n            const prior = active && !current;\n            el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active);\n            el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active);\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current);\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior);\n          });\n        },\n        unmounted\n      });\n    }\n  };\n}\nexport const resolvedClickMap = /* @__PURE__ */ new Map();\nexport function resolveClick(el, dir, value, explicitHide = false) {\n  const ctx = directiveInject(dir, injectionClicksContext)?.value;\n  if (!el || !ctx)\n    return null;\n  const flagHide = explicitHide || dir.modifiers.hide !== false && dir.modifiers.hide != null;\n  const flagFade = dir.modifiers.fade !== false && dir.modifiers.fade != null;\n  const info = ctx.calculate(value);\n  if (!info)\n    return null;\n  ctx.register(el, info);\n  const isShown = computed(() => flagHide ? !info.isActive.value : info.isActive.value);\n  const visibilityState = computed(() => {\n    if (isShown.value)\n      return \"shown\";\n    if (Number.isFinite(info.end))\n      return ctx.current < info.start ? \"before\" : \"after\";\n    else\n      return flagHide ? \"after\" : \"before\";\n  });\n  const resolved = {\n    ...info,\n    isShown,\n    visibilityState,\n    flagFade,\n    flagHide\n  };\n  resolvedClickMap.set(el, resolved);\n  return resolved;\n}\nfunction unmounted(el, dir) {\n  el.classList.toggle(CLASS_VCLICK_TARGET, false);\n  const ctx = directiveInject(dir, injectionClicksContext)?.value;\n  ctx?.unregister(el);\n  el.watchStopHandle?.();\n}\n",
+      "start": 1743409708383,
+      "end": 1743409708465,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-click.ts"
+        ],
+        "sourcesContent": [
+          "import type { ClicksElement, RawAtValue } from '@slidev/types'\nimport type { App, DirectiveBinding } from 'vue'\nimport { computed, watchEffect } from 'vue'\nimport {\n  CLASS_VCLICK_CURRENT,\n  CLASS_VCLICK_FADE,\n  CLASS_VCLICK_HIDDEN,\n  CLASS_VCLICK_HIDDEN_EXP,\n  CLASS_VCLICK_PRIOR,\n  CLASS_VCLICK_TARGET,\n  injectionClicksContext,\n} from '../constants'\nimport { directiveInject } from '../utils'\n\nexport function createVClickDirectives() {\n  return {\n    install(app: App) {\n      app.directive<HTMLElement, RawAtValue>('click', {\n        // @ts-expect-error extra prop\n        name: 'v-click',\n\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, dir.value)\n          if (resolved == null)\n            return\n\n          el.classList.toggle(CLASS_VCLICK_TARGET, true)\n\n          // Expose the resolved clicks info to the element to make it easier to understand and debug\n          el.dataset.slidevClicksStart = String(resolved.start)\n          if (Number.isFinite(resolved.end))\n            el.dataset.slidevClicksEnd = String(resolved.end)\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value\n            const current = resolved.isCurrent.value\n            const prior = active && !current\n\n            if (resolved.flagHide) {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active)\n              el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active)\n            }\n            else {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, !active)\n            }\n\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current)\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior)\n          })\n        },\n        unmounted,\n      })\n\n      app.directive<HTMLElement, RawAtValue>('after', {\n        // @ts-expect-error extra prop\n        name: 'v-after',\n\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, '+0')\n          if (resolved == null)\n            return\n\n          el.classList.toggle(CLASS_VCLICK_TARGET, true)\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value\n            const current = resolved.isCurrent.value\n            const prior = active && !current\n\n            if (resolved.flagHide) {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active)\n              el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active)\n            }\n            else {\n              el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, !active)\n            }\n\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current)\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior)\n          })\n        },\n        unmounted,\n      })\n\n      app.directive<HTMLElement, RawAtValue>('click-hide', {\n        // @ts-expect-error extra prop\n        name: 'v-click-hide',\n\n        mounted(el, dir) {\n          const resolved = resolveClick(el, dir, dir.value, true)\n          if (resolved == null)\n            return\n\n          el.classList.toggle(CLASS_VCLICK_TARGET, true)\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            const active = resolved.isActive.value\n            const current = resolved.isCurrent.value\n            const prior = active && !current\n\n            el.classList.toggle(resolved.flagFade ? CLASS_VCLICK_FADE : CLASS_VCLICK_HIDDEN, active)\n            el.classList.toggle(CLASS_VCLICK_HIDDEN_EXP, active)\n\n            el.classList.toggle(CLASS_VCLICK_CURRENT, current)\n            el.classList.toggle(CLASS_VCLICK_PRIOR, prior)\n          })\n        },\n        unmounted,\n      })\n    },\n  }\n}\n\nexport const resolvedClickMap = new Map<ClicksElement, ReturnType<typeof resolveClick>>()\n\nexport function resolveClick(el: Element | string, dir: DirectiveBinding<any>, value: RawAtValue, explicitHide = false) {\n  const ctx = directiveInject(dir, injectionClicksContext)?.value\n\n  if (!el || !ctx)\n    return null\n\n  const flagHide = explicitHide || (dir.modifiers.hide !== false && dir.modifiers.hide != null)\n  const flagFade = dir.modifiers.fade !== false && dir.modifiers.fade != null\n\n  const info = ctx.calculate(value)\n  if (!info)\n    return null\n\n  ctx.register(el, info)\n\n  const isShown = computed(() => flagHide ? !info.isActive.value : info.isActive.value)\n  const visibilityState = computed(() => {\n    if (isShown.value)\n      return 'shown'\n    if (Number.isFinite(info.end))\n      return ctx.current < info.start ? 'before' : 'after'\n    else\n      return flagHide ? 'after' : 'before'\n  })\n\n  const resolved = {\n    ...info,\n    isShown,\n    visibilityState,\n    flagFade,\n    flagHide,\n  }\n  resolvedClickMap.set(el, resolved)\n  return resolved\n}\n\nfunction unmounted(el: HTMLElement, dir: DirectiveBinding<any>) {\n  el.classList.toggle(CLASS_VCLICK_TARGET, false)\n  const ctx = directiveInject(dir, injectionClicksContext)?.value\n  ctx?.unregister(el)\n  // @ts-expect-error extra prop\n  el.watchStopHandle?.()\n}\n"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    }
+  ]
+}

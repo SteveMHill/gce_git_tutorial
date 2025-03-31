@@ -1,0 +1,198 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=style&index=0&scoped=cba06e55&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.autocomplete-list {\n  --uno: bg-main mt-1;\n  overflow: auto;\n  max-height: calc(100vh - 100px);\n}\n\n.autocomplete {\n  cursor: pointer;\n}\n",
+      "start": 1743409708915,
+      "end": 1743409708915
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708915,
+      "end": 1743409708915,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708915,
+      "end": 1743409708915,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": "\n.autocomplete-list {\n  ;margin-top:0.25rem;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n  overflow: auto;\n  max-height: calc(100vh - 100px);\n}.dark .autocomplete-list{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n\n.autocomplete {\n  cursor: pointer;\n}\n",
+      "start": 1743409708915,
+      "end": 1743409708916,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": ";AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAoB;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=style&index=0&scoped=cba06e55&lang.css"
+        ],
+        "sourcesContent": [
+          "\n.autocomplete-list {\n  ;margin-top:0.25rem;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n  overflow: auto;\n  max-height: calc(100vh - 100px);\n}.dark .autocomplete-list{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n\n.autocomplete {\n  cursor: pointer;\n}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "\n.autocomplete-list {\n  ;margin-top:0.25rem;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n  overflow: auto;\n  max-height: calc(100vh - 100px);\n}.dark .autocomplete-list{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n\n.autocomplete {\n  cursor: pointer;\n}\n",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\n.autocomplete-list[data-v-cba06e55] {\n  ;margin-top:0.25rem;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n  overflow: auto;\n  max-height: calc(100vh - 100px);\n}.dark .autocomplete-list[data-v-cba06e55]{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n.autocomplete[data-v-cba06e55] {\n  cursor: pointer;\n}\n",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=style&index=0&scoped=cba06e55&lang.css"
+        ],
+        "sourcesContent": [
+          ""
+        ],
+        "names": [],
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    }
+  ]
+}

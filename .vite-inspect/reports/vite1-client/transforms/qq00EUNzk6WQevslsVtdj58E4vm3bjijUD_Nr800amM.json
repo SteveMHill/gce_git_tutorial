@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\r\nimport { Menu } from 'floating-vue'\r\nimport { useDrawings } from '../composables/useDrawings'\r\nimport Draggable from './Draggable.vue'\r\nimport IconButton from './IconButton.vue'\r\nimport VerticalDivider from './VerticalDivider.vue'\r\n\r\nconst {\r\n  brush,\r\n  canClear,\r\n  canRedo,\r\n  canUndo,\r\n  clear,\r\n  drauu,\r\n  drawingEnabled,\r\n  drawingMode,\r\n  drawingPinned,\r\n  brushColors,\r\n} = useDrawings()\r\n\r\nfunction undo() {\r\n  drauu.undo()\r\n}\r\nfunction redo() {\r\n  drauu.redo()\r\n}\r\n\r\nlet lastDrawingMode: typeof drawingMode.value = 'stylus'\r\nfunction setDrawingMode(mode: typeof drawingMode.value) {\r\n  drawingMode.value = mode\r\n  drawingEnabled.value = true\r\n  if (mode !== 'eraseLine')\r\n    lastDrawingMode = mode\r\n}\r\nfunction setBrushColor(color: typeof brush.color) {\r\n  brush.color = color\r\n  drawingEnabled.value = true\r\n  drawingMode.value = lastDrawingMode\r\n}\r\n</script>\r\n\r\n<template>\r\n  <Draggable\r\n    v-if=\"drawingEnabled || drawingPinned\"\r\n    class=\"flex flex-wrap text-xl p-2 gap-1 rounded-md bg-main shadow transition-opacity duration-200 z-nav  border border-main\"\r\n    :class=\"!drawingEnabled && drawingPinned ? 'opacity-40 hover:opacity-90' : ''\"\r\n    storage-key=\"slidev-drawing-pos\"\r\n    :initial-x=\"10\"\r\n    :initial-y=\"10\"\r\n  >\r\n    <IconButton title=\"Draw with stylus\" :class=\"{ shallow: drawingMode !== 'stylus' }\" @click=\"setDrawingMode('stylus')\">\r\n      <div class=\"i-carbon:pen\" />\r\n    </IconButton>\r\n    <IconButton title=\"Draw a line\" :class=\"{ shallow: drawingMode !== 'line' }\" @click=\"setDrawingMode('line')\">\r\n      <svg width=\"1em\" height=\"1em\" class=\"-mt-0.5\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M21.71 3.29a1 1 0 0 0-1.42 0l-18 18a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l18-18a1 1 0 0 0 0-1.42z\" fill=\"currentColor\" />\r\n      </svg>\r\n    </IconButton>\r\n    <IconButton title=\"Draw an arrow\" :class=\"{ shallow: drawingMode !== 'arrow' }\" @click=\"setDrawingMode('arrow')\">\r\n      <div class=\"i-carbon:arrow-up-right\" />\r\n    </IconButton>\r\n    <IconButton title=\"Draw an ellipse\" :class=\"{ shallow: drawingMode !== 'ellipse' }\" @click=\"setDrawingMode('ellipse')\">\r\n      <div class=\"i-carbon:radio-button\" />\r\n    </IconButton>\r\n    <IconButton title=\"Draw a rectangle\" :class=\"{ shallow: drawingMode !== 'rectangle' }\" @click=\"setDrawingMode('rectangle')\">\r\n      <div class=\"i-carbon:checkbox\" />\r\n    </IconButton>\r\n    <IconButton title=\"Erase\" :class=\"{ shallow: drawingMode !== 'eraseLine' }\" @click=\"setDrawingMode('eraseLine')\">\r\n      <div class=\"i-carbon:erase\" />\r\n    </IconButton>\r\n\r\n    <VerticalDivider />\r\n\r\n    <Menu>\r\n      <IconButton title=\"Adjust stroke width\" :class=\"{ shallow: drawingMode === 'eraseLine' }\">\r\n        <svg viewBox=\"0 0 32 32\" width=\"1.2em\" height=\"1.2em\">\r\n          <line x1=\"2\" y1=\"15\" x2=\"22\" y2=\"4\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" />\r\n          <line x1=\"2\" y1=\"24\" x2=\"28\" y2=\"10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" />\r\n          <line x1=\"7\" y1=\"31\" x2=\"29\" y2=\"19\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" />\r\n        </svg>\r\n      </IconButton>\r\n      <template #popper>\r\n        <div class=\"flex bg-main p-2\">\r\n          <div class=\"inline-block w-7 text-center\">\r\n            {{ brush.size }}\r\n          </div>\r\n          <div class=\"pt-.5\">\r\n            <input v-model=\"brush.size\" type=\"range\" min=\"1\" max=\"15\" @change=\"drawingMode = lastDrawingMode\">\r\n          </div>\r\n        </div>\r\n      </template>\r\n    </Menu>\r\n    <IconButton\r\n      v-for=\"color of brushColors\"\r\n      :key=\"color\"\r\n      title=\"Set brush color\"\r\n      :class=\"brush.color === color && drawingMode !== 'eraseLine' ? 'active' : 'shallow'\"\r\n      @click=\"setBrushColor(color)\"\r\n    >\r\n      <div\r\n        class=\"w-6 h-6 transition-all transform border\"\r\n        :class=\"brush.color !== color ? 'rounded-1/2 scale-85 border-white' : 'rounded-md border-gray-300/50'\"\r\n        :style=\"drawingEnabled ? { background: color } : { borderColor: color }\"\r\n      />\r\n    </IconButton>\r\n\r\n    <VerticalDivider />\r\n\r\n    <IconButton title=\"Undo\" :class=\"{ disabled: !canUndo }\" @click=\"undo()\">\r\n      <div class=\"i-carbon:undo\" />\r\n    </IconButton>\r\n    <IconButton title=\"Redo\" :class=\"{ disabled: !canRedo }\" @click=\"redo()\">\r\n      <div class=\"i-carbon:redo\" />\r\n    </IconButton>\r\n    <IconButton title=\"Delete\" :class=\"{ disabled: !canClear }\" @click=\"clear()\">\r\n      <div class=\"i-carbon:trash-can\" />\r\n    </IconButton>\r\n\r\n    <VerticalDivider />\r\n    <IconButton :title=\"drawingPinned ? 'Unpin drawing' : 'Pin drawing'\" :class=\"{ shallow: !drawingPinned }\" @click=\"drawingPinned = !drawingPinned\">\r\n      <div v-show=\"drawingPinned\" class=\"i-carbon:pin-filled transform -rotate-45\" />\r\n      <div v-show=\"!drawingPinned\" class=\"i-carbon:pin\" />\r\n    </IconButton>\r\n    <IconButton\r\n      v-if=\"drawingEnabled\"\r\n      :title=\"drawingPinned ? 'Drawing pinned' : 'Drawing unpinned'\"\r\n      :class=\"{ shallow: !drawingEnabled }\"\r\n      @click=\"drawingEnabled = !drawingEnabled\"\r\n    >\r\n      <div v-show=\"drawingPinned\" class=\"i-carbon:error\" />\r\n      <div v-show=\"!drawingPinned\" class=\"i-carbon:close-outline\" />\r\n    </IconButton>\r\n  </Draggable>\r\n</template>\r\n\r\n<style>\r\n.v-popper--theme-menu .v-popper__arrow-inner {\r\n  --uno: border-main;\r\n}\r\n</style>\r\n",
+      "start": 1743409708751,
+      "end": 1743409708781,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708781,
+      "end": 1743409708781,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708781,
+      "end": 1743409708781,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708781,
+      "end": 1743409708781,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708781,
+      "end": 1743409708782,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708782,
+      "end": 1743409708782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708782,
+      "end": 1743409708782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708782,
+      "end": 1743409708782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708782,
+      "end": 1743409708782,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708782,
+      "end": 1743409708782,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708782,
+      "end": 1743409708782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708782,
+      "end": 1743409708782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=style&index=0&lang.css\";\nexport default _sfc_main;\n",
+      "start": 1743409708782,
+      "end": 1743409708930,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=style&index=0&lang.css\";\nexport default _sfc_main;\n",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingControls.vue?vue&type=style&index=0&lang.css\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,eAAe,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACvJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,eAAe,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC/I,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,eAAe,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,GAAG,CAAC;AACrI,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    }
+  ]
+}

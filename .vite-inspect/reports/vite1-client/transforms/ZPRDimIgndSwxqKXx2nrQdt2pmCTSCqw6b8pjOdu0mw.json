@@ -1,0 +1,164 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/chunk-H62MP5RN.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  insertEdge,\n  insertEdgeLabel,\n  markers_default,\n  positionEdgeLabel\n} from \"./chunk-AGEMWPJR.mjs\";\nimport {\n  insertCluster,\n  insertNode,\n  labelHelper\n} from \"./chunk-ZVRJXRH7.mjs\";\nimport {\n  interpolateToCurve\n} from \"./chunk-YFKFDTKC.mjs\";\nimport {\n  common_default,\n  getConfig,\n  log\n} from \"./chunk-3L32CQKD.mjs\";\nimport {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// src/internals.ts\nvar internalHelpers = {\n  common: common_default,\n  getConfig,\n  insertCluster,\n  insertEdge,\n  insertEdgeLabel,\n  insertMarkers: markers_default,\n  insertNode,\n  interpolateToCurve,\n  labelHelper,\n  log,\n  positionEdgeLabel\n};\n\n// src/rendering-util/render.ts\nvar layoutAlgorithms = {};\nvar registerLayoutLoaders = /* @__PURE__ */ __name((loaders) => {\n  for (const loader of loaders) {\n    layoutAlgorithms[loader.name] = loader;\n  }\n}, \"registerLayoutLoaders\");\nvar registerDefaultLayoutLoaders = /* @__PURE__ */ __name(() => {\n  registerLayoutLoaders([\n    {\n      name: \"dagre\",\n      loader: /* @__PURE__ */ __name(async () => await import(\"./dagre-CMTPJJKG.mjs\"), \"loader\")\n    }\n  ]);\n}, \"registerDefaultLayoutLoaders\");\nregisterDefaultLayoutLoaders();\nvar render = /* @__PURE__ */ __name(async (data4Layout, svg) => {\n  if (!(data4Layout.layoutAlgorithm in layoutAlgorithms)) {\n    throw new Error(`Unknown layout algorithm: ${data4Layout.layoutAlgorithm}`);\n  }\n  const layoutDefinition = layoutAlgorithms[data4Layout.layoutAlgorithm];\n  const layoutRenderer = await layoutDefinition.loader();\n  return layoutRenderer.render(data4Layout, svg, internalHelpers, {\n    algorithm: layoutDefinition.algorithm\n  });\n}, \"render\");\nvar getRegisteredLayoutAlgorithm = /* @__PURE__ */ __name((algorithm = \"\", { fallback = \"dagre\" } = {}) => {\n  if (algorithm in layoutAlgorithms) {\n    return algorithm;\n  }\n  if (fallback in layoutAlgorithms) {\n    log.warn(`Layout algorithm ${algorithm} is not registered. Using ${fallback} as fallback.`);\n    return fallback;\n  }\n  throw new Error(`Both layout algorithms ${algorithm} and ${fallback} are not registered.`);\n}, \"getRegisteredLayoutAlgorithm\");\n\nexport {\n  registerLayoutLoaders,\n  render,\n  getRegisteredLayoutAlgorithm\n};\n",
+      "start": 1743409709063,
+      "end": 1743409709070,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import {\n  insertEdge,\n  insertEdgeLabel,\n  markers_default,\n  positionEdgeLabel\n} from \"./chunk-AGEMWPJR.mjs\";\nimport {\n  insertCluster,\n  insertNode,\n  labelHelper\n} from \"./chunk-ZVRJXRH7.mjs\";\nimport {\n  interpolateToCurve\n} from \"./chunk-YFKFDTKC.mjs\";\nimport {\n  common_default,\n  getConfig,\n  log\n} from \"./chunk-3L32CQKD.mjs\";\nimport {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// src/internals.ts\nvar internalHelpers = {\n  common: common_default,\n  getConfig,\n  insertCluster,\n  insertEdge,\n  insertEdgeLabel,\n  insertMarkers: markers_default,\n  insertNode,\n  interpolateToCurve,\n  labelHelper,\n  log,\n  positionEdgeLabel\n};\n\n// src/rendering-util/render.ts\nvar layoutAlgorithms = {};\nvar registerLayoutLoaders = /* @__PURE__ */ __name((loaders) => {\n  for (const loader of loaders) {\n    layoutAlgorithms[loader.name] = loader;\n  }\n}, \"registerLayoutLoaders\");\nvar registerDefaultLayoutLoaders = /* @__PURE__ */ __name(() => {\n  registerLayoutLoaders([\n    {\n      name: \"dagre\",\n      loader: /* @__PURE__ */ __name(async () => await __vitePreload(() => import(\"./dagre-CMTPJJKG.mjs\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0), \"loader\")\n    }\n  ]);\n}, \"registerDefaultLayoutLoaders\");\nregisterDefaultLayoutLoaders();\nvar render = /* @__PURE__ */ __name(async (data4Layout, svg) => {\n  if (!(data4Layout.layoutAlgorithm in layoutAlgorithms)) {\n    throw new Error(`Unknown layout algorithm: ${data4Layout.layoutAlgorithm}`);\n  }\n  const layoutDefinition = layoutAlgorithms[data4Layout.layoutAlgorithm];\n  const layoutRenderer = await layoutDefinition.loader();\n  return layoutRenderer.render(data4Layout, svg, internalHelpers, {\n    algorithm: layoutDefinition.algorithm\n  });\n}, \"render\");\nvar getRegisteredLayoutAlgorithm = /* @__PURE__ */ __name((algorithm = \"\", { fallback = \"dagre\" } = {}) => {\n  if (algorithm in layoutAlgorithms) {\n    return algorithm;\n  }\n  if (fallback in layoutAlgorithms) {\n    log.warn(`Layout algorithm ${algorithm} is not registered. Using ${fallback} as fallback.`);\n    return fallback;\n  }\n  throw new Error(`Both layout algorithms ${algorithm} and ${fallback} are not registered.`);\n}, \"getRegisteredLayoutAlgorithm\");\n\nexport {\n  registerLayoutLoaders,\n  render,\n  getRegisteredLayoutAlgorithm\n};\n",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709070,
+      "end": 1743409709070,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/usePrintStyles.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useStyleTag } from '@vueuse/core'\nimport { computed } from 'vue'\nimport { slideHeight, slideWidth } from '../env'\nimport { useNav } from './useNav'\n\nexport function usePrintStyles() {\n  const { isPrintMode } = useNav()\n\n  useStyleTag(computed(() => isPrintMode.value\n    ? `\n@page {\n  size: ${slideWidth.value}px ${slideHeight.value}px;\n  margin: 0px;\n}\n\n* {\n  transition: none !important;\n  transition-duration: 0s !important;\n}`\n    : ''))\n}\n\n// Monaco uses `<style media=\"screen\" class=\"monaco-colors\">` to apply colors, which will be ignored in print mode.\nexport function patchMonacoColors() {\n  document.querySelectorAll<HTMLStyleElement>('style.monaco-colors').forEach((el) => {\n    el.media = ''\n  })\n}\n",
+      "start": 1743409708583,
+      "end": 1743409708586,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { useStyleTag } from \"@vueuse/core\";\nimport { computed } from \"vue\";\nimport { slideHeight, slideWidth } from \"../env\";\nimport { useNav } from \"./useNav\";\nexport function usePrintStyles() {\n  const { isPrintMode } = useNav();\n  useStyleTag(computed(() => isPrintMode.value ? `\n@page {\n  size: ${slideWidth.value}px ${slideHeight.value}px;\n  margin: 0px;\n}\n\n* {\n  transition: none !important;\n  transition-duration: 0s !important;\n}` : \"\"));\n}\nexport function patchMonacoColors() {\n  document.querySelectorAll(\"style.monaco-colors\").forEach((el) => {\n    el.media = \"\";\n  });\n}\n",
+      "start": 1743409708586,
+      "end": 1743409708698,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/usePrintStyles.ts"
+        ],
+        "sourcesContent": [
+          "import { useStyleTag } from '@vueuse/core'\nimport { computed } from 'vue'\nimport { slideHeight, slideWidth } from '../env'\nimport { useNav } from './useNav'\n\nexport function usePrintStyles() {\n  const { isPrintMode } = useNav()\n\n  useStyleTag(computed(() => isPrintMode.value\n    ? `\n@page {\n  size: ${slideWidth.value}px ${slideHeight.value}px;\n  margin: 0px;\n}\n\n* {\n  transition: none !important;\n  transition-duration: 0s !important;\n}`\n    : ''))\n}\n\n// Monaco uses `<style media=\"screen\" class=\"monaco-colors\">` to apply colors, which will be ignored in print mode.\nexport function patchMonacoColors() {\n  document.querySelectorAll<HTMLStyleElement>('style.monaco-colors').forEach((el) => {\n    el.media = ''\n  })\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB;AAC5B,SAAS,gBAAgB;AACzB,SAAS,aAAa,kBAAkB;AACxC,SAAS,cAAc;AAEhB,gBAAS,iBAAiB;AAC/B,QAAM,EAAE,YAAY,IAAI,OAAO;AAE/B,cAAY,SAAS,MAAM,YAAY,QACnC;AAAA;AAAA,UAEI,WAAW,KAAK,MAAM,YAAY,KAAK;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KAQ3C,EAAE,CAAC;AACT;AAGO,gBAAS,oBAAoB;AAClC,WAAS,iBAAmC,qBAAqB,EAAE,QAAQ,CAAC,OAAO;AACjF,OAAG,QAAQ;AAAA,EACb,CAAC;AACH;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    }
+  ]
+}

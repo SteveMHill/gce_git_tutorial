@@ -1,0 +1,183 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/styles/shiki-twoslash.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": ":root {\n  --twoslash-popup-bg: var(--slidev-code-background);\n  --twoslash-popup-color: var(--slidev-code-foreground);\n  --twoslash-docs-color: inherit;\n  --twoslash-docs-font: inherit;\n  --twoslash-code-font: theme('fontFamily.mono');\n  --twoslash-underline-color: #8888;\n  --twoslash-border-color: #8888;\n  --twoslash-cursor-color: var(--slidev-theme-primary);\n  --twoslash-matched-color: var(--slidev-theme-primary);\n}\n\n.twoslash-popup-container {\n  font-size: 13px;\n}\n\n.twoslash-popup-container .twoslash-popup-code {\n  font-size: 0.85em;\n}\n\n.twoslash-floating .twoslash-popup-docs-tags .twoslash-popup-docs-tag-name {\n  color: inherit;\n  opacity: 0.5;\n}\n",
+      "start": 1743409708380,
+      "end": 1743409708413,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708413,
+      "end": 1743409708413,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708413,
+      "end": 1743409708413,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": ":root {\n  --twoslash-popup-bg: var(--slidev-code-background);\n  --twoslash-popup-color: var(--slidev-code-foreground);\n  --twoslash-docs-color: inherit;\n  --twoslash-docs-font: inherit;\n  --twoslash-code-font: \"Fira Code\",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace;\n  --twoslash-underline-color: #8888;\n  --twoslash-border-color: #8888;\n  --twoslash-cursor-color: var(--slidev-theme-primary);\n  --twoslash-matched-color: var(--slidev-theme-primary);\n}\n\n.twoslash-popup-container {\n  font-size: 13px;\n}\n\n.twoslash-popup-container .twoslash-popup-code {\n  font-size: 0.85em;\n}\n\n.twoslash-floating .twoslash-popup-docs-tags .twoslash-popup-docs-tag-name {\n  color: inherit;\n  opacity: 0.5;\n}\n",
+      "start": 1743409708413,
+      "end": 1743409708413,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": "AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,uGAAwB;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvD;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/styles/shiki-twoslash.css"
+        ],
+        "sourcesContent": [
+          ":root {\n  --twoslash-popup-bg: var(--slidev-code-background);\n  --twoslash-popup-color: var(--slidev-code-foreground);\n  --twoslash-docs-color: inherit;\n  --twoslash-docs-font: inherit;\n  --twoslash-code-font: \"Fira Code\",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace;\n  --twoslash-underline-color: #8888;\n  --twoslash-border-color: #8888;\n  --twoslash-cursor-color: var(--slidev-theme-primary);\n  --twoslash-matched-color: var(--slidev-theme-primary);\n}\n\n.twoslash-popup-container {\n  font-size: 13px;\n}\n\n.twoslash-popup-container .twoslash-popup-code {\n  font-size: 0.85em;\n}\n\n.twoslash-floating .twoslash-popup-docs-tags .twoslash-popup-docs-tag-name {\n  color: inherit;\n  opacity: 0.5;\n}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708413,
+      "end": 1743409708413,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ":root {\n  --twoslash-popup-bg: var(--slidev-code-background);\n  --twoslash-popup-color: var(--slidev-code-foreground);\n  --twoslash-docs-color: inherit;\n  --twoslash-docs-font: inherit;\n  --twoslash-code-font: \"Fira Code\",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace;\n  --twoslash-underline-color: #8888;\n  --twoslash-border-color: #8888;\n  --twoslash-cursor-color: var(--slidev-theme-primary);\n  --twoslash-matched-color: var(--slidev-theme-primary);\n}\n\n.twoslash-popup-container {\n  font-size: 13px;\n}\n\n.twoslash-popup-container .twoslash-popup-code {\n  font-size: 0.85em;\n}\n\n.twoslash-floating .twoslash-popup-docs-tags .twoslash-popup-docs-tag-name {\n  color: inherit;\n  opacity: 0.5;\n}\n",
+      "start": 1743409708413,
+      "end": 1743409708429,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708435,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    }
+  ]
+}

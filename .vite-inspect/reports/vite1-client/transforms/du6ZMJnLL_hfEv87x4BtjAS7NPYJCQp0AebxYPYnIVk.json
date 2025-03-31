@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/popmotion/dist/es/animations/utils/detect-animation-from-options.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { spring } from '../generators/spring.mjs';\nimport { keyframes } from '../generators/keyframes.mjs';\nimport { decay } from '../generators/decay.mjs';\n\nconst types = { keyframes, spring, decay };\nfunction detectAnimationFromOptions(config) {\n    if (Array.isArray(config.to)) {\n        return keyframes;\n    }\n    else if (types[config.type]) {\n        return types[config.type];\n    }\n    const keys = new Set(Object.keys(config));\n    if (keys.has(\"ease\") ||\n        (keys.has(\"duration\") && !keys.has(\"dampingRatio\"))) {\n        return keyframes;\n    }\n    else if (keys.has(\"dampingRatio\") ||\n        keys.has(\"stiffness\") ||\n        keys.has(\"mass\") ||\n        keys.has(\"damping\") ||\n        keys.has(\"restSpeed\") ||\n        keys.has(\"restDelta\")) {\n        return spring;\n    }\n    return keyframes;\n}\n\nexport { detectAnimationFromOptions };\n",
+      "start": 1743409708614,
+      "end": 1743409708621,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708621,
+      "end": 1743409708621,
+      "order": "normal"
+    }
+  ]
+}

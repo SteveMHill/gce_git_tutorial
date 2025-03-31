@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/nodes/addPairToJSMap.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { warn } from '../log.js';\nimport { isMergeKey, addMergeToJSMap } from '../schema/yaml-1.1/merge.js';\nimport { createStringifyContext } from '../stringify/stringify.js';\nimport { isNode } from './identity.js';\nimport { toJS } from './toJS.js';\n\nfunction addPairToJSMap(ctx, map, { key, value }) {\n    if (isNode(key) && key.addToJSMap)\n        key.addToJSMap(ctx, map, value);\n    // TODO: Should drop this special case for bare << handling\n    else if (isMergeKey(ctx, key))\n        addMergeToJSMap(ctx, map, value);\n    else {\n        const jsKey = toJS(key, '', ctx);\n        if (map instanceof Map) {\n            map.set(jsKey, toJS(value, jsKey, ctx));\n        }\n        else if (map instanceof Set) {\n            map.add(jsKey);\n        }\n        else {\n            const stringKey = stringifyKey(key, jsKey, ctx);\n            const jsValue = toJS(value, stringKey, ctx);\n            if (stringKey in map)\n                Object.defineProperty(map, stringKey, {\n                    value: jsValue,\n                    writable: true,\n                    enumerable: true,\n                    configurable: true\n                });\n            else\n                map[stringKey] = jsValue;\n        }\n    }\n    return map;\n}\nfunction stringifyKey(key, jsKey, ctx) {\n    if (jsKey === null)\n        return '';\n    if (typeof jsKey !== 'object')\n        return String(jsKey);\n    if (isNode(key) && ctx?.doc) {\n        const strCtx = createStringifyContext(ctx.doc, {});\n        strCtx.anchors = new Set();\n        for (const node of ctx.anchors.keys())\n            strCtx.anchors.add(node.anchor);\n        strCtx.inFlow = true;\n        strCtx.inStringifyKey = true;\n        const strKey = key.toString(strCtx);\n        if (!ctx.mapKeyWarned) {\n            let jsonStr = JSON.stringify(strKey);\n            if (jsonStr.length > 40)\n                jsonStr = jsonStr.substring(0, 36) + '...\"';\n            warn(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);\n            ctx.mapKeyWarned = true;\n        }\n        return strKey;\n    }\n    return JSON.stringify(jsKey);\n}\n\nexport { addPairToJSMap };\n",
+      "start": 1743409708642,
+      "end": 1743409708652,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    }
+  ]
+}

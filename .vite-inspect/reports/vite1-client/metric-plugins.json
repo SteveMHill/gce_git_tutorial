@@ -1,0 +1,640 @@
+[
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 184,
+      "totalTime": 58
+    },
+    "name": "alias"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "commonjs"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "resolve-config"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "slidev:config"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 5
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "slidev:context-injection"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 1
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "slidev:flags",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 2
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "slidev:hmr-patch"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 2
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "slidev:layout-wrapper"
+  },
+  {
+    "transform": {
+      "invokeCount": 76,
+      "totalTime": 9
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "slidev:loader",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "slidev:monaco-types-loader"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:api"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:config"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:devtools"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:global:build:bundle",
+    "enforce": "post"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:global:build:generate"
+  },
+  {
+    "transform": {
+      "invokeCount": 563,
+      "totalTime": 20
+    },
+    "resolveId": {
+      "invokeCount": 4,
+      "totalTime": 0
+    },
+    "name": "unocss:global:build:scan",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:global:content",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 3
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:transformers:post",
+    "enforce": "post"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 73
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:transformers:pre",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 3
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unocss:transformers:undefined"
+  },
+  {
+    "transform": {
+      "invokeCount": 7,
+      "totalTime": 340
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unplugin-icons",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 37
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unplugin-vue-components",
+    "enforce": "post"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 42
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "unplugin-vue-markdown",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite-plugin-inspect",
+    "enforce": "pre"
+  },
+  {
+    "transform": {
+      "invokeCount": 3,
+      "totalTime": 1
+    },
+    "resolveId": {
+      "invokeCount": 3,
+      "totalTime": 0
+    },
+    "name": "vite-plugin-vue-server-ref"
+  },
+  {
+    "transform": {
+      "invokeCount": 4,
+      "totalTime": 163
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:asset"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 7
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:asset-import-meta-url"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 197
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:build-html"
+  },
+  {
+    "transform": {
+      "invokeCount": 560,
+      "totalTime": 28
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:build-import-analysis"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:build-metadata"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 497
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:css"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:css-post"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:data-uri"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 5452
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:define"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 2
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:dynamic-import-vars"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 7199
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:esbuild"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:esbuild-transpile"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:force-systemjs-wrap-complete"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:html-inline-proxy"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 3
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:import-glob"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:json"
+  },
+  {
+    "transform": {
+      "invokeCount": 401,
+      "totalTime": 9772
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:load-fallback"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:manifest"
+  },
+  {
+    "transform": {
+      "invokeCount": 1,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 1,
+      "totalTime": 0
+    },
+    "name": "vite:modulepreload-polyfill"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 4
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:reporter"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 1334,
+      "totalTime": 174
+    },
+    "name": "vite:resolve"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 3,
+      "totalTime": 1
+    },
+    "name": "vite:resolve (+alias)"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:rollup-options-plugins"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:ssr-manifest"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:terser"
+  },
+  {
+    "transform": {
+      "invokeCount": 623,
+      "totalTime": 4146
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:vue"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 1
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:vue-jsx"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:wasm-fallback"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:wasm-helper"
+  },
+  {
+    "transform": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:watch-package-data"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 9
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:worker"
+  },
+  {
+    "transform": {
+      "invokeCount": 559,
+      "totalTime": 7
+    },
+    "resolveId": {
+      "invokeCount": 0,
+      "totalTime": 0
+    },
+    "name": "vite:worker-import-meta-url"
+  }
+]

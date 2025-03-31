@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/unhead/dist/shared/unhead.CApf5sj3.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { u as unpackMeta } from './unhead.DQc16pHI.mjs';\n\nfunction defineHeadPlugin(plugin) {\n  return plugin;\n}\n\nconst FlatMetaPlugin = /* @__PURE__ */ defineHeadPlugin({\n  key: \"flatMeta\",\n  hooks: {\n    \"entries:normalize\": (ctx) => {\n      const tagsToAdd = [];\n      ctx.tags = ctx.tags.map((t) => {\n        if (t.tag !== \"_flatMeta\") {\n          return t;\n        }\n        tagsToAdd.push(unpackMeta(t.props).map((p) => ({\n          ...t,\n          tag: \"meta\",\n          props: p\n        })));\n        return false;\n      }).filter(Boolean).concat(...tagsToAdd);\n    }\n  }\n});\n\nconst WhitelistAttributes = {\n  htmlAttrs: /* @__PURE__ */ new Set([\"class\", \"style\", \"lang\", \"dir\"]),\n  bodyAttrs: /* @__PURE__ */ new Set([\"class\", \"style\"]),\n  meta: /* @__PURE__ */ new Set([\"name\", \"property\", \"charset\", \"content\", \"media\"]),\n  noscript: /* @__PURE__ */ new Set([\"textContent\"]),\n  style: /* @__PURE__ */ new Set([\"media\", \"textContent\", \"nonce\", \"title\", \"blocking\"]),\n  script: /* @__PURE__ */ new Set([\"type\", \"textContent\", \"nonce\", \"blocking\"]),\n  link: /* @__PURE__ */ new Set([\"color\", \"crossorigin\", \"fetchpriority\", \"href\", \"hreflang\", \"imagesrcset\", \"imagesizes\", \"integrity\", \"media\", \"referrerpolicy\", \"rel\", \"sizes\", \"type\"])\n};\nfunction acceptDataAttrs(value) {\n  return Object.fromEntries(\n    Object.entries(value || {}).filter(([key]) => key === \"id\" || key.startsWith(\"data-\"))\n  );\n}\nfunction makeTagSafe(tag) {\n  let next = {};\n  const { tag: type, props: prev } = tag;\n  switch (type) {\n    // always safe\n    case \"title\":\n    case \"titleTemplate\":\n    case \"templateParams\":\n      next = prev;\n      break;\n    case \"htmlAttrs\":\n    case \"bodyAttrs\":\n      WhitelistAttributes[type].forEach((attr) => {\n        if (prev[attr]) {\n          next[attr] = prev[attr];\n        }\n      });\n      break;\n    case \"style\":\n      next = acceptDataAttrs(prev);\n      WhitelistAttributes.style.forEach((key) => {\n        if (prev[key]) {\n          next[key] = prev[key];\n        }\n      });\n      break;\n    // meta is safe, except for http-equiv\n    case \"meta\":\n      WhitelistAttributes.meta.forEach((key) => {\n        if (prev[key]) {\n          next[key] = prev[key];\n        }\n      });\n      break;\n    // link tags we don't allow stylesheets, scripts, preloading, prerendering, prefetching, etc\n    case \"link\":\n      WhitelistAttributes.link.forEach((key) => {\n        const val = prev[key];\n        if (!val) {\n          return;\n        }\n        if (key === \"rel\" && (val === \"canonical\" || val === \"modulepreload\" || val === \"prerender\" || val === \"preload\" || val === \"prefetch\")) {\n          return;\n        }\n        if (key === \"href\") {\n          if (val.includes(\"javascript:\") || val.includes(\"data:\")) {\n            return;\n          }\n          next[key] = val;\n        } else if (val) {\n          next[key] = val;\n        }\n      });\n      if (!next.href && !next.imagesrcset || !next.rel) {\n        return false;\n      }\n      break;\n    case \"noscript\":\n      WhitelistAttributes.noscript.forEach((key) => {\n        if (prev[key]) {\n          next[key] = prev[key];\n        }\n      });\n      break;\n    // we only allow JSON in scripts\n    case \"script\":\n      if (!tag.textContent || !prev.type?.endsWith(\"json\")) {\n        return false;\n      }\n      WhitelistAttributes.script.forEach((s) => {\n        if (prev[s] === \"textContent\") {\n          try {\n            const jsonVal = typeof prev[s] === \"string\" ? JSON.parse(prev[s]) : prev[s];\n            next[s] = JSON.stringify(jsonVal, null, 0);\n          } catch {\n          }\n        } else if (prev[s]) {\n          next[s] = prev[s];\n        }\n      });\n      break;\n  }\n  if (!Object.keys(next).length && !tag.tag.endsWith(\"Attrs\")) {\n    return false;\n  }\n  tag.props = { ...acceptDataAttrs(prev), ...next };\n  return tag;\n}\nconst SafeInputPlugin = (\n  /* @PURE */\n  defineHeadPlugin({\n    key: \"safe\",\n    hooks: {\n      \"entries:normalize\": (ctx) => {\n        if (ctx.entry.options?._safe) {\n          ctx.tags = ctx.tags.reduce((acc, tag) => {\n            const safeTag = makeTagSafe(tag);\n            if (safeTag)\n              acc.push(safeTag);\n            return acc;\n          }, []);\n        }\n      }\n    }\n  })\n);\n\nexport { FlatMetaPlugin as F, SafeInputPlugin as S, defineHeadPlugin as d };\n",
+      "start": 1743409708441,
+      "end": 1743409708453,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708453,
+      "end": 1743409708453,
+      "order": "normal"
+    }
+  ]
+}

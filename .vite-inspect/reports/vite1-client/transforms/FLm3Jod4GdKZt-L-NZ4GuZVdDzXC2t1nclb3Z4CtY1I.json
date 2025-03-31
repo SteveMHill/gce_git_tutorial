@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/storage.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { DragElementState } from '../composables/useDragElements'\nimport { breakpointsTailwind, isClient, useActiveElement, useBreakpoints, useFullscreen, useLocalStorage, useMagicKeys, useToggle, useWindowSize } from '@vueuse/core'\nimport { computed, ref, shallowRef } from 'vue'\nimport { slideAspect } from '../env'\n\nexport const showRecordingDialog = ref(false)\nexport const showInfoDialog = ref(false)\nexport const showGotoDialog = ref(false)\nexport const showOverview = ref(false)\n\n/**\n * Skip slides transition when triggered by HMR.\n * Will reset automatically after user navigations\n */\nexport const hmrSkipTransition = ref(false)\nexport const disableTransition = ref(false)\n\nexport const shortcutsEnabled = ref(true)\nexport const breakpoints = useBreakpoints({\n  xs: 460,\n  ...breakpointsTailwind,\n})\nexport const windowSize = useWindowSize()\nexport const magicKeys = useMagicKeys()\nexport const isScreenVertical = computed(() => windowSize.height.value - windowSize.width.value / slideAspect.value > 120)\nexport const fullscreen = useFullscreen(isClient ? document.body : null)\n\nexport const activeElement = useActiveElement()\nexport const isInputting = computed(() => ['INPUT', 'TEXTAREA'].includes(activeElement.value?.tagName || ''))\nexport const isOnFocus = computed(() => ['BUTTON', 'A'].includes(activeElement.value?.tagName || ''))\n\nexport const currentCamera = useLocalStorage<string>('slidev-camera', 'default', { listenToStorageChanges: false })\nexport const currentMic = useLocalStorage<string>('slidev-mic', 'default', { listenToStorageChanges: false })\nexport const slideScale = useLocalStorage<number>('slidev-scale', 0)\nexport const wakeLockEnabled = useLocalStorage('slidev-wake-lock', true)\nexport const hideCursorIdle = useLocalStorage('slidev-hide-cursor-idle', true)\nexport const skipExportPdfTip = useLocalStorage('slidev-skip-export-pdf-tip', false)\nexport const captureDelay = useLocalStorage('slidev-export-capture-delay', 400, { listenToStorageChanges: false })\n\nexport const showPresenterCursor = useLocalStorage('slidev-presenter-cursor', true, { listenToStorageChanges: false })\nexport const showEditor = useLocalStorage('slidev-show-editor', false, { listenToStorageChanges: false })\nexport const isEditorVertical = useLocalStorage('slidev-editor-vertical', false, { listenToStorageChanges: false })\nexport const editorWidth = useLocalStorage('slidev-editor-width', isClient ? window.innerWidth * 0.4 : 318, { listenToStorageChanges: false })\nexport const editorHeight = useLocalStorage('slidev-editor-height', isClient ? window.innerHeight * 0.4 : 300, { listenToStorageChanges: false })\n\nexport const activeDragElement = shallowRef<DragElementState | null>(null)\n\nexport const presenterNotesFontSize = useLocalStorage('slidev-presenter-font-size', 1, { listenToStorageChanges: false })\nexport const presenterLayout = useLocalStorage('slidev-presenter-layout', 1, { listenToStorageChanges: false })\n\nexport const viewerCssFilterDefaults = {\n  invert: false,\n  contrast: 1,\n  brightness: 1,\n  hueRotate: 0,\n  saturate: 1,\n  sepia: 0,\n}\nexport const viewerCssFilter = useLocalStorage(\n  'slidev-viewer-css-filter',\n  viewerCssFilterDefaults,\n  { listenToStorageChanges: false, mergeDefaults: true, deep: true },\n)\nexport const hasViewerCssFilter = computed(() => {\n  return (Object.keys(viewerCssFilterDefaults) as (keyof typeof viewerCssFilterDefaults)[])\n    .some(k => viewerCssFilter.value[k] !== viewerCssFilterDefaults[k])\n})\n\nexport function togglePresenterLayout() {\n  presenterLayout.value = presenterLayout.value + 1\n  if (presenterLayout.value > 3)\n    presenterLayout.value = 1\n}\n\nexport function increasePresenterFontSize() {\n  presenterNotesFontSize.value = Math.min(2, presenterNotesFontSize.value + 0.1)\n}\n\nexport function decreasePresenterFontSize() {\n  presenterNotesFontSize.value = Math.max(0.5, presenterNotesFontSize.value - 0.1)\n}\n\nexport const toggleOverview = useToggle(showOverview)\n\nexport const syncDirections = useLocalStorage(\n  'slidev-sync-directions',\n  {\n    viewerSend: true,\n    viewerReceive: true,\n    presenterSend: true,\n    presenterReceive: true,\n  },\n  {\n    listenToStorageChanges: false,\n    mergeDefaults: true,\n  },\n)\n",
+      "start": 1743409708707,
+      "end": 1743409708716,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { breakpointsTailwind, isClient, useActiveElement, useBreakpoints, useFullscreen, useLocalStorage, useMagicKeys, useToggle, useWindowSize } from \"@vueuse/core\";\nimport { computed, ref, shallowRef } from \"vue\";\nimport { slideAspect } from \"../env\";\nexport const showRecordingDialog = ref(false);\nexport const showInfoDialog = ref(false);\nexport const showGotoDialog = ref(false);\nexport const showOverview = ref(false);\nexport const hmrSkipTransition = ref(false);\nexport const disableTransition = ref(false);\nexport const shortcutsEnabled = ref(true);\nexport const breakpoints = useBreakpoints({\n  xs: 460,\n  ...breakpointsTailwind\n});\nexport const windowSize = useWindowSize();\nexport const magicKeys = useMagicKeys();\nexport const isScreenVertical = computed(() => windowSize.height.value - windowSize.width.value / slideAspect.value > 120);\nexport const fullscreen = useFullscreen(isClient ? document.body : null);\nexport const activeElement = useActiveElement();\nexport const isInputting = computed(() => [\"INPUT\", \"TEXTAREA\"].includes(activeElement.value?.tagName || \"\"));\nexport const isOnFocus = computed(() => [\"BUTTON\", \"A\"].includes(activeElement.value?.tagName || \"\"));\nexport const currentCamera = useLocalStorage(\"slidev-camera\", \"default\", { listenToStorageChanges: false });\nexport const currentMic = useLocalStorage(\"slidev-mic\", \"default\", { listenToStorageChanges: false });\nexport const slideScale = useLocalStorage(\"slidev-scale\", 0);\nexport const wakeLockEnabled = useLocalStorage(\"slidev-wake-lock\", true);\nexport const hideCursorIdle = useLocalStorage(\"slidev-hide-cursor-idle\", true);\nexport const skipExportPdfTip = useLocalStorage(\"slidev-skip-export-pdf-tip\", false);\nexport const captureDelay = useLocalStorage(\"slidev-export-capture-delay\", 400, { listenToStorageChanges: false });\nexport const showPresenterCursor = useLocalStorage(\"slidev-presenter-cursor\", true, { listenToStorageChanges: false });\nexport const showEditor = useLocalStorage(\"slidev-show-editor\", false, { listenToStorageChanges: false });\nexport const isEditorVertical = useLocalStorage(\"slidev-editor-vertical\", false, { listenToStorageChanges: false });\nexport const editorWidth = useLocalStorage(\"slidev-editor-width\", isClient ? window.innerWidth * 0.4 : 318, { listenToStorageChanges: false });\nexport const editorHeight = useLocalStorage(\"slidev-editor-height\", isClient ? window.innerHeight * 0.4 : 300, { listenToStorageChanges: false });\nexport const activeDragElement = shallowRef(null);\nexport const presenterNotesFontSize = useLocalStorage(\"slidev-presenter-font-size\", 1, { listenToStorageChanges: false });\nexport const presenterLayout = useLocalStorage(\"slidev-presenter-layout\", 1, { listenToStorageChanges: false });\nexport const viewerCssFilterDefaults = {\n  invert: false,\n  contrast: 1,\n  brightness: 1,\n  hueRotate: 0,\n  saturate: 1,\n  sepia: 0\n};\nexport const viewerCssFilter = useLocalStorage(\n  \"slidev-viewer-css-filter\",\n  viewerCssFilterDefaults,\n  { listenToStorageChanges: false, mergeDefaults: true, deep: true }\n);\nexport const hasViewerCssFilter = computed(() => {\n  return Object.keys(viewerCssFilterDefaults).some((k) => viewerCssFilter.value[k] !== viewerCssFilterDefaults[k]);\n});\nexport function togglePresenterLayout() {\n  presenterLayout.value = presenterLayout.value + 1;\n  if (presenterLayout.value > 3)\n    presenterLayout.value = 1;\n}\nexport function increasePresenterFontSize() {\n  presenterNotesFontSize.value = Math.min(2, presenterNotesFontSize.value + 0.1);\n}\nexport function decreasePresenterFontSize() {\n  presenterNotesFontSize.value = Math.max(0.5, presenterNotesFontSize.value - 0.1);\n}\nexport const toggleOverview = useToggle(showOverview);\nexport const syncDirections = useLocalStorage(\n  \"slidev-sync-directions\",\n  {\n    viewerSend: true,\n    viewerReceive: true,\n    presenterSend: true,\n    presenterReceive: true\n  },\n  {\n    listenToStorageChanges: false,\n    mergeDefaults: true\n  }\n);\n",
+      "start": 1743409708716,
+      "end": 1743409708879,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/storage.ts"
+        ],
+        "sourcesContent": [
+          "import type { DragElementState } from '../composables/useDragElements'\nimport { breakpointsTailwind, isClient, useActiveElement, useBreakpoints, useFullscreen, useLocalStorage, useMagicKeys, useToggle, useWindowSize } from '@vueuse/core'\nimport { computed, ref, shallowRef } from 'vue'\nimport { slideAspect } from '../env'\n\nexport const showRecordingDialog = ref(false)\nexport const showInfoDialog = ref(false)\nexport const showGotoDialog = ref(false)\nexport const showOverview = ref(false)\n\n/**\n * Skip slides transition when triggered by HMR.\n * Will reset automatically after user navigations\n */\nexport const hmrSkipTransition = ref(false)\nexport const disableTransition = ref(false)\n\nexport const shortcutsEnabled = ref(true)\nexport const breakpoints = useBreakpoints({\n  xs: 460,\n  ...breakpointsTailwind,\n})\nexport const windowSize = useWindowSize()\nexport const magicKeys = useMagicKeys()\nexport const isScreenVertical = computed(() => windowSize.height.value - windowSize.width.value / slideAspect.value > 120)\nexport const fullscreen = useFullscreen(isClient ? document.body : null)\n\nexport const activeElement = useActiveElement()\nexport const isInputting = computed(() => ['INPUT', 'TEXTAREA'].includes(activeElement.value?.tagName || ''))\nexport const isOnFocus = computed(() => ['BUTTON', 'A'].includes(activeElement.value?.tagName || ''))\n\nexport const currentCamera = useLocalStorage<string>('slidev-camera', 'default', { listenToStorageChanges: false })\nexport const currentMic = useLocalStorage<string>('slidev-mic', 'default', { listenToStorageChanges: false })\nexport const slideScale = useLocalStorage<number>('slidev-scale', 0)\nexport const wakeLockEnabled = useLocalStorage('slidev-wake-lock', true)\nexport const hideCursorIdle = useLocalStorage('slidev-hide-cursor-idle', true)\nexport const skipExportPdfTip = useLocalStorage('slidev-skip-export-pdf-tip', false)\nexport const captureDelay = useLocalStorage('slidev-export-capture-delay', 400, { listenToStorageChanges: false })\n\nexport const showPresenterCursor = useLocalStorage('slidev-presenter-cursor', true, { listenToStorageChanges: false })\nexport const showEditor = useLocalStorage('slidev-show-editor', false, { listenToStorageChanges: false })\nexport const isEditorVertical = useLocalStorage('slidev-editor-vertical', false, { listenToStorageChanges: false })\nexport const editorWidth = useLocalStorage('slidev-editor-width', isClient ? window.innerWidth * 0.4 : 318, { listenToStorageChanges: false })\nexport const editorHeight = useLocalStorage('slidev-editor-height', isClient ? window.innerHeight * 0.4 : 300, { listenToStorageChanges: false })\n\nexport const activeDragElement = shallowRef<DragElementState | null>(null)\n\nexport const presenterNotesFontSize = useLocalStorage('slidev-presenter-font-size', 1, { listenToStorageChanges: false })\nexport const presenterLayout = useLocalStorage('slidev-presenter-layout', 1, { listenToStorageChanges: false })\n\nexport const viewerCssFilterDefaults = {\n  invert: false,\n  contrast: 1,\n  brightness: 1,\n  hueRotate: 0,\n  saturate: 1,\n  sepia: 0,\n}\nexport const viewerCssFilter = useLocalStorage(\n  'slidev-viewer-css-filter',\n  viewerCssFilterDefaults,\n  { listenToStorageChanges: false, mergeDefaults: true, deep: true },\n)\nexport const hasViewerCssFilter = computed(() => {\n  return (Object.keys(viewerCssFilterDefaults) as (keyof typeof viewerCssFilterDefaults)[])\n    .some(k => viewerCssFilter.value[k] !== viewerCssFilterDefaults[k])\n})\n\nexport function togglePresenterLayout() {\n  presenterLayout.value = presenterLayout.value + 1\n  if (presenterLayout.value > 3)\n    presenterLayout.value = 1\n}\n\nexport function increasePresenterFontSize() {\n  presenterNotesFontSize.value = Math.min(2, presenterNotesFontSize.value + 0.1)\n}\n\nexport function decreasePresenterFontSize() {\n  presenterNotesFontSize.value = Math.max(0.5, presenterNotesFontSize.value - 0.1)\n}\n\nexport const toggleOverview = useToggle(showOverview)\n\nexport const syncDirections = useLocalStorage(\n  'slidev-sync-directions',\n  {\n    viewerSend: true,\n    viewerReceive: true,\n    presenterSend: true,\n    presenterReceive: true,\n  },\n  {\n    listenToStorageChanges: false,\n    mergeDefaults: true,\n  },\n)\n"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    }
+  ]
+}

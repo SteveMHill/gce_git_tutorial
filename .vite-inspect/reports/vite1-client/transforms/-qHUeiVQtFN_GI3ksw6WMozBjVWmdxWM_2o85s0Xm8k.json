@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { syncDirections } from '../state'\nimport IconButton from './IconButton.vue'\nimport MenuButton from './MenuButton.vue'\nimport SelectList from './SelectList.vue'\n\nconst { isPresenter } = useNav()\n\nconst shouldReceive = computed({\n  get: () => isPresenter.value\n    ? syncDirections.value.presenterReceive\n    : syncDirections.value.viewerReceive,\n  set(v) {\n    if (isPresenter.value) {\n      syncDirections.value.presenterReceive = v\n    }\n    else {\n      syncDirections.value.viewerReceive = v\n    }\n  },\n})\n\nconst shouldSend = computed({\n  get: () => isPresenter.value\n    ? syncDirections.value.presenterSend\n    : syncDirections.value.viewerSend,\n  set(v) {\n    if (isPresenter.value) {\n      syncDirections.value.presenterSend = v\n    }\n    else {\n      syncDirections.value.viewerSend = v\n    }\n  },\n})\n\nconst state = computed({\n  get: () => {\n    if (shouldReceive.value && shouldSend.value) {\n      return 'bidirectional'\n    }\n    if (shouldReceive.value && !shouldSend.value) {\n      return 'receive-only'\n    }\n    if (!shouldReceive.value && shouldSend.value) {\n      return 'send-only'\n    }\n    return 'off'\n  },\n  set(v) {\n    switch (v) {\n      case 'bidirectional':\n        shouldReceive.value = true\n        shouldSend.value = true\n        break\n      case 'receive-only':\n        shouldReceive.value = true\n        shouldSend.value = false\n        break\n      case 'send-only':\n        shouldReceive.value = false\n        shouldSend.value = true\n        break\n      case 'off':\n        shouldReceive.value = false\n        shouldSend.value = false\n        break\n    }\n  },\n})\n</script>\n\n<template>\n  <MenuButton>\n    <template #button>\n      <IconButton title=\"Change sync settings\">\n        <div class=\"i-ph:arrow-up-bold mx--1.2 scale-x-80\" :class=\"shouldSend ? 'text-green6 dark:text-green' : 'op30'\" />\n        <div class=\"i-ph:arrow-down-bold mx--1.2 scale-x-80\" :class=\"shouldReceive ? 'text-green6 dark:text-green' : 'op30'\" />\n      </IconButton>\n    </template>\n    <template #menu>\n      <div text-sm flex=\"~ col gap-2\">\n        <div px3 ws-nowrap>\n          <span op75>Slides navigation syncing for </span>\n          <span font-bold text-primary>{{ isPresenter ? 'presenter' : 'viewer' }}</span>\n        </div>\n        <div class=\"h-1px opacity-10 bg-current w-full\" />\n        <SelectList\n          v-model=\"state\"\n          title=\"Sync Mode\"\n          :items=\"[\n            { value: 'bidirectional', display: 'Bidirectional Sync' },\n            { value: 'receive-only', display: 'Receive Only' },\n            { value: 'send-only', display: 'Send Only' },\n            { value: 'off', display: 'Disable' },\n          ]\"\n        />\n      </div>\n    </template>\n  </MenuButton>\n</template>\n",
+      "start": 1743409708974,
+      "end": 1743409708983,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708983,
+      "end": 1743409708983,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708983,
+      "end": 1743409709038,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SyncControls.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACpJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC5I,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    }
+  ]
+}

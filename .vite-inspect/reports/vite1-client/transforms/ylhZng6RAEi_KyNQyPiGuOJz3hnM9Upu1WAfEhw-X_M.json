@@ -1,0 +1,184 @@
+{
+  "resolvedId": "/@slidev/title-renderer.md",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "<template v-if=\"no === 1\">\n\nBytes, Bugs and Biology\n\n</template>\n<template v-else-if=\"no === 2\">\n\nAbout This Series\n\n</template>\n<template v-else-if=\"no === 3\">\n\nYour Input is Key!\n\n</template>\n<template v-else-if=\"no === 4\">\n\nWhy Git and GitHub matter in modern research\n\n</template>\n<template v-else-if=\"no === 5\">\n\nThe Research Landscape is Evolving\n\n</template>\n<template v-else-if=\"no === 6\">\n\nCommon Problems\n\n</template>\n<template v-else-if=\"no === 7\">\n\nundefined\n\n</template>\n<template v-else-if=\"no === 8\">\n\nWhat is git?\n\n</template>\n<template v-else-if=\"no === 9\">\n\nGit vs GitHub – What’s the Difference?\n\n</template>\n<template v-else-if=\"no === 10\">\n\nOpen Science Foundations\n\n</template>\n<template v-else-if=\"no === 11\">\n\nApplication in Ecology\n\n</template>\n<template v-else-if=\"no === 12\">\n\nHow it works\n\n</template>\n<template v-else-if=\"no === 13\">\n\nMore Essential Git Commands\n\n</template>\n<template v-else-if=\"no === 14\">\n\nGithub Environment\n\n</template>\n<template v-else-if=\"no === 15\">\n\nWorkshop Preview\n\n</template>\n<template v-else-if=\"no === 16\">\n\nThank you for your attention!\n\n</template>\n<script setup lang=\"ts\">\nimport { useSlideContext } from '@slidev/client/context.ts'\nimport { computed } from 'vue'\nconst props = defineProps<{ no?: number | string }>()\nconst { $page } = useSlideContext()\nconst no = computed(() => +(props.no ?? $page.value))\n</script>",
+      "start": 1743409708978,
+      "end": 1743409708978,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "result": "<template><div><template v-if=\"no === 1\">\n<p>Bytes, Bugs and Biology</p>\n</template>\n<template v-else-if=\"no === 2\">\n<p>About This Series</p>\n</template>\n<template v-else-if=\"no === 3\">\n<p>Your Input is Key!</p>\n</template>\n<template v-else-if=\"no === 4\">\n<p>Why Git and GitHub matter in modern research</p>\n</template>\n<template v-else-if=\"no === 5\">\n<p>The Research Landscape is Evolving</p>\n</template>\n<template v-else-if=\"no === 6\">\n<p>Common Problems</p>\n</template>\n<template v-else-if=\"no === 7\">\n<p>undefined</p>\n</template>\n<template v-else-if=\"no === 8\">\n<p>What is git?</p>\n</template>\n<template v-else-if=\"no === 9\">\n<p>Git vs GitHub – What’s the Difference?</p>\n</template>\n<template v-else-if=\"no === 10\">\n<p>Open Science Foundations</p>\n</template>\n<template v-else-if=\"no === 11\">\n<p>Application in Ecology</p>\n</template>\n<template v-else-if=\"no === 12\">\n<p>How it works</p>\n</template>\n<template v-else-if=\"no === 13\">\n<p>More Essential Git Commands</p>\n</template>\n<template v-else-if=\"no === 14\">\n<p>Github Environment</p>\n</template>\n<template v-else-if=\"no === 15\">\n<p>Workshop Preview</p>\n</template>\n<template v-else-if=\"no === 16\">\n<p>Thank you for your attention!</p>\n</template>\n</div></template>\n<script setup lang=\"ts\">\nimport { useSlideContext } from '@slidev/client/context.ts'\nimport { computed } from 'vue'\nconst props = defineProps<{ no?: number | string }>()\nconst { $page } = useSlideContext()\nconst no = computed(() => +(props.no ?? $page.value))\n</script>",
+      "start": 1743409708978,
+      "end": 1743409708979,
+      "order": "pre",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708979,
+      "end": 1743409708979,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/@slidev/title-renderer.md?vue&type=script&setup=true&lang.ts\";\nexport * from \"/@slidev/title-renderer.md?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708979,
+      "end": 1743409709038,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/@slidev/title-renderer.md?vue&type=script&setup=true&lang.ts\";\nexport * from \"/@slidev/title-renderer.md?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/@slidev/title-renderer.md"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/@slidev/title-renderer.md?vue&type=script&setup=true&lang.ts\";\nexport * from \"/@slidev/title-renderer.md?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,KAAK,CAAC,QAAQ,CAAC,EAAE,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACrF,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,KAAK,CAAC,QAAQ,CAAC,EAAE,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC7E,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    }
+  ]
+}

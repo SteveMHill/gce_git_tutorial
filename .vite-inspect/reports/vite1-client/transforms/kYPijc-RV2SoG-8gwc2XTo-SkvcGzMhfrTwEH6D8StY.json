@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/PresenterMouse.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, resolveComponent as _resolveComponent, normalizeStyle as _normalizeStyle, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = {\n  key: 0,\n  class: \"absolute top-0 left-0 right-0 bottom-0 pointer-events-none text-xl\"\n}\n\nimport { sharedState } from '../state/shared'\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'PresenterMouse',\n  setup(__props) {\n\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_ph_cursor_fill = _resolveComponent(\"ph-cursor-fill\")!\n\n  return (_unref(sharedState).cursor)\n    ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_ph_cursor_fill, {\n          class: \"absolute stroke-white dark:stroke-black\",\n          style: _normalizeStyle({\n        left: `${_unref(sharedState).cursor.x}%`,\n        top: `${_unref(sharedState).cursor.y}%`,\n        strokeWidth: 16,\n      })\n        }, null, 8 /* PROPS */, [\"style\"])\n      ]))\n    : _createCommentVNode(\"v-if\", true)\n}\n}\n\n})",
+      "start": 1743409708948,
+      "end": 1743409708948
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708948,
+      "end": 1743409708948,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708948,
+      "end": 1743409708949,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708949,
+      "end": 1743409708949,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708949,
+      "end": 1743409708949,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708949,
+      "end": 1743409708949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, normalizeStyle as _normalizeStyle, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = {\n  key: 0,\n  class: \"absolute top-0 left-0 right-0 bottom-0 pointer-events-none text-xl\"\n};\nimport { sharedState } from \"../state/shared\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"PresenterMouse\",\n  setup(__props) {\n    return (_ctx, _cache) => {\n      const _component_ph_cursor_fill = _resolveComponent(\"ph-cursor-fill\");\n      return _unref(sharedState).cursor ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_ph_cursor_fill, {\n          class: \"absolute stroke-white dark:stroke-black\",\n          style: _normalizeStyle({\n            left: `${_unref(sharedState).cursor.x}%`,\n            top: `${_unref(sharedState).cursor.y}%`,\n            strokeWidth: 16\n          })\n        }, null, 8, [\"style\"])\n      ])) : _createCommentVNode(\"v-if\", true);\n    };\n  }\n});\n",
+      "start": 1743409708949,
+      "end": 1743409709005,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/PresenterMouse.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, resolveComponent as _resolveComponent, normalizeStyle as _normalizeStyle, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = {\n  key: 0,\n  class: \"absolute top-0 left-0 right-0 bottom-0 pointer-events-none text-xl\"\n}\n\nimport { sharedState } from '../state/shared'\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'PresenterMouse',\n  setup(__props) {\n\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_ph_cursor_fill = _resolveComponent(\"ph-cursor-fill\")!\n\n  return (_unref(sharedState).cursor)\n    ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_ph_cursor_fill, {\n          class: \"absolute stroke-white dark:stroke-black\",\n          style: _normalizeStyle({\n        left: `${_unref(sharedState).cursor.x}%`,\n        top: `${_unref(sharedState).cursor.y}%`,\n        strokeWidth: 16,\n      })\n        }, null, 8 /* PROPS */, [\"style\"])\n      ]))\n    : _createCommentVNode(\"v-if\", true)\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,oBAAoB,mBAAmB,kBAAkB,iBAAiB,eAAe,cAAc,aAAa,YAAY,sBAAsB,qBAAqB,sBAAsB,2BAA2B;AAEtP,MAAM,aAAa;AAAA,EACjB,KAAK;AAAA,EACL,OAAO;AACT;AAEA,SAAS,mBAAmB;AAE5B,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAGjB,WAAO,CAAC,MAAU,WAAgB;AAChC,YAAM,4BAA4B,kBAAkB,gBAAgB;AAEpE,aAAQ,OAAO,WAAW,EAAE,UACvB,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,QACpD,aAAa,2BAA2B;AAAA,UACtC,OAAO;AAAA,UACP,OAAO,gBAAgB;AAAA,YACzB,MAAM,GAAG,OAAO,WAAW,EAAE,OAAO,CAAC;AAAA,YACrC,KAAK,GAAG,OAAO,WAAW,EAAE,OAAO,CAAC;AAAA,YACpC,aAAa;AAAA,UACf,CAAC;AAAA,QACC,GAAG,MAAM,GAAe,CAAC,OAAO,CAAC;AAAA,MACnC,CAAC,KACD,oBAAoB,QAAQ,IAAI;AAAA,IACtC;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import __unplugin_components_0 from '~icons/ph/cursor-fill';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, normalizeStyle as _normalizeStyle, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = {\n  key: 0,\n  class: \"absolute top-0 left-0 right-0 bottom-0 pointer-events-none text-xl\"\n};\nimport { sharedState } from \"../state/shared\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"PresenterMouse\",\n  setup(__props) {\n    return (_ctx, _cache) => {\n      const _component_ph_cursor_fill = __unplugin_components_0;\n      return _unref(sharedState).cursor ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_ph_cursor_fill, {\n          class: \"absolute stroke-white dark:stroke-black\",\n          style: _normalizeStyle({\n            left: `${_unref(sharedState).cursor.x}%`,\n            top: `${_unref(sharedState).cursor.y}%`,\n            strokeWidth: 16\n          })\n        }, null, 8, [\"style\"])\n      ])) : _createCommentVNode(\"v-if\", true);\n    };\n  }\n});\n",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/PresenterMouse.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, normalizeStyle as _normalizeStyle, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = {\n  key: 0,\n  class: \"absolute top-0 left-0 right-0 bottom-0 pointer-events-none text-xl\"\n};\nimport { sharedState } from \"../state/shared\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"PresenterMouse\",\n  setup(__props) {\n    return (_ctx, _cache) => {\n      const _component_ph_cursor_fill = _resolveComponent(\"ph-cursor-fill\");\n      return _unref(sharedState).cursor ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_ph_cursor_fill, {\n          class: \"absolute stroke-white dark:stroke-black\",\n          style: _normalizeStyle({\n            left: `${_unref(sharedState).cursor.x}%`,\n            top: `${_unref(sharedState).cursor.y}%`,\n            strokeWidth: 16\n          })\n        }, null, 8, [\"style\"])\n      ])) : _createCommentVNode(\"v-if\", true);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709005,
+      "end": 1743409709005,
+      "order": "normal"
+    }
+  ]
+}

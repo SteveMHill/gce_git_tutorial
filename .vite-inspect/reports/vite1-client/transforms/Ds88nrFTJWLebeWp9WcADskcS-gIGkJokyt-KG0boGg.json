@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/schema/core/float.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Scalar } from '../../nodes/Scalar.js';\nimport { stringifyNumber } from '../../stringify/stringifyNumber.js';\n\nconst floatNaN = {\n    identify: value => typeof value === 'number',\n    default: true,\n    tag: 'tag:yaml.org,2002:float',\n    test: /^(?:[-+]?\\.(?:inf|Inf|INF)|\\.nan|\\.NaN|\\.NAN)$/,\n    resolve: str => str.slice(-3).toLowerCase() === 'nan'\n        ? NaN\n        : str[0] === '-'\n            ? Number.NEGATIVE_INFINITY\n            : Number.POSITIVE_INFINITY,\n    stringify: stringifyNumber\n};\nconst floatExp = {\n    identify: value => typeof value === 'number',\n    default: true,\n    tag: 'tag:yaml.org,2002:float',\n    format: 'EXP',\n    test: /^[-+]?(?:\\.[0-9]+|[0-9]+(?:\\.[0-9]*)?)[eE][-+]?[0-9]+$/,\n    resolve: str => parseFloat(str),\n    stringify(node) {\n        const num = Number(node.value);\n        return isFinite(num) ? num.toExponential() : stringifyNumber(node);\n    }\n};\nconst float = {\n    identify: value => typeof value === 'number',\n    default: true,\n    tag: 'tag:yaml.org,2002:float',\n    test: /^[-+]?(?:\\.[0-9]+|[0-9]+\\.[0-9]*)$/,\n    resolve(str) {\n        const node = new Scalar(parseFloat(str));\n        const dot = str.indexOf('.');\n        if (dot !== -1 && str[str.length - 1] === '0')\n            node.minFractionDigits = str.length - dot - 1;\n        return node;\n    },\n    stringify: stringifyNumber\n};\n\nexport { float, floatExp, floatNaN };\n",
+      "start": 1743409708653,
+      "end": 1743409708660,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    }
+  ]
+}

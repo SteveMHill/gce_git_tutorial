@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { handleBackground } from '../layoutHelper'\n\nconst props = defineProps({\n  background: {\n    default: '',\n  },\n})\n\nconst style = computed(() => handleBackground(props.background, true))\n</script>\n\n<template>\n  <div class=\"slidev-layout cover\" :style=\"style\">\n    <div class=\"my-auto w-full\">\n      <slot />\n    </div>\n  </div>\n</template>\n",
+      "start": 1743409708876,
+      "end": 1743409708886,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "result": "<script setup lang=\"ts\">\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n\nimport { computed } from 'vue'\nimport { handleBackground } from '../layoutHelper'\n\nconst props = defineProps({\n  background: {\n    default: '',\n  },\n})\n\nconst style = computed(() => handleBackground(props.background, true))\n</script>\n\n<template>\n  <div class=\"slidev-layout cover\" :style=\"style\">\n    <div class=\"my-auto w-full\">\n      <slot />\n    </div>\n  </div>\n</template>\n",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708886,
+      "end": 1743409708946,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,KAAK,CAAC,OAAO,CAAC,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACrH,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,KAAK,CAAC,OAAO,CAAC,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC7G,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    }
+  ]
+}

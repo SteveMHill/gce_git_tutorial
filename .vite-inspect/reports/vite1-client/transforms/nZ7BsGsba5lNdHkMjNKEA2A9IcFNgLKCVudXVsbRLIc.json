@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/stringify/foldFlowLines.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "const FOLD_FLOW = 'flow';\nconst FOLD_BLOCK = 'block';\nconst FOLD_QUOTED = 'quoted';\n/**\n * Tries to keep input at up to `lineWidth` characters, splitting only on spaces\n * not followed by newlines or spaces unless `mode` is `'quoted'`. Lines are\n * terminated with `\\n` and started with `indent`.\n */\nfunction foldFlowLines(text, indent, mode = 'flow', { indentAtStart, lineWidth = 80, minContentWidth = 20, onFold, onOverflow } = {}) {\n    if (!lineWidth || lineWidth < 0)\n        return text;\n    if (lineWidth < minContentWidth)\n        minContentWidth = 0;\n    const endStep = Math.max(1 + minContentWidth, 1 + lineWidth - indent.length);\n    if (text.length <= endStep)\n        return text;\n    const folds = [];\n    const escapedFolds = {};\n    let end = lineWidth - indent.length;\n    if (typeof indentAtStart === 'number') {\n        if (indentAtStart > lineWidth - Math.max(2, minContentWidth))\n            folds.push(0);\n        else\n            end = lineWidth - indentAtStart;\n    }\n    let split = undefined;\n    let prev = undefined;\n    let overflow = false;\n    let i = -1;\n    let escStart = -1;\n    let escEnd = -1;\n    if (mode === FOLD_BLOCK) {\n        i = consumeMoreIndentedLines(text, i, indent.length);\n        if (i !== -1)\n            end = i + endStep;\n    }\n    for (let ch; (ch = text[(i += 1)]);) {\n        if (mode === FOLD_QUOTED && ch === '\\\\') {\n            escStart = i;\n            switch (text[i + 1]) {\n                case 'x':\n                    i += 3;\n                    break;\n                case 'u':\n                    i += 5;\n                    break;\n                case 'U':\n                    i += 9;\n                    break;\n                default:\n                    i += 1;\n            }\n            escEnd = i;\n        }\n        if (ch === '\\n') {\n            if (mode === FOLD_BLOCK)\n                i = consumeMoreIndentedLines(text, i, indent.length);\n            end = i + indent.length + endStep;\n            split = undefined;\n        }\n        else {\n            if (ch === ' ' &&\n                prev &&\n                prev !== ' ' &&\n                prev !== '\\n' &&\n                prev !== '\\t') {\n                // space surrounded by non-space can be replaced with newline + indent\n                const next = text[i + 1];\n                if (next && next !== ' ' && next !== '\\n' && next !== '\\t')\n                    split = i;\n            }\n            if (i >= end) {\n                if (split) {\n                    folds.push(split);\n                    end = split + endStep;\n                    split = undefined;\n                }\n                else if (mode === FOLD_QUOTED) {\n                    // white-space collected at end may stretch past lineWidth\n                    while (prev === ' ' || prev === '\\t') {\n                        prev = ch;\n                        ch = text[(i += 1)];\n                        overflow = true;\n                    }\n                    // Account for newline escape, but don't break preceding escape\n                    const j = i > escEnd + 1 ? i - 2 : escStart - 1;\n                    // Bail out if lineWidth & minContentWidth are shorter than an escape string\n                    if (escapedFolds[j])\n                        return text;\n                    folds.push(j);\n                    escapedFolds[j] = true;\n                    end = j + endStep;\n                    split = undefined;\n                }\n                else {\n                    overflow = true;\n                }\n            }\n        }\n        prev = ch;\n    }\n    if (overflow && onOverflow)\n        onOverflow();\n    if (folds.length === 0)\n        return text;\n    if (onFold)\n        onFold();\n    let res = text.slice(0, folds[0]);\n    for (let i = 0; i < folds.length; ++i) {\n        const fold = folds[i];\n        const end = folds[i + 1] || text.length;\n        if (fold === 0)\n            res = `\\n${indent}${text.slice(0, end)}`;\n        else {\n            if (mode === FOLD_QUOTED && escapedFolds[fold])\n                res += `${text[fold]}\\\\`;\n            res += `\\n${indent}${text.slice(fold + 1, end)}`;\n        }\n    }\n    return res;\n}\n/**\n * Presumes `i + 1` is at the start of a line\n * @returns index of last newline in more-indented block\n */\nfunction consumeMoreIndentedLines(text, i, indent) {\n    let end = i;\n    let start = i + 1;\n    let ch = text[start];\n    while (ch === ' ' || ch === '\\t') {\n        if (i < start + indent) {\n            ch = text[++i];\n        }\n        else {\n            do {\n                ch = text[++i];\n            } while (ch && ch !== '\\n');\n            end = i;\n            start = i + 1;\n            ch = text[start];\n        }\n    }\n    return end;\n}\n\nexport { FOLD_BLOCK, FOLD_FLOW, FOLD_QUOTED, foldFlowLines };\n",
+      "start": 1743409708666,
+      "end": 1743409708669,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708669,
+      "end": 1743409708669,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/snapshot.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { SlidevContextNavFull } from '../composables/useNav'\nimport type { ScreenshotSession } from './screenshot'\nimport { sleep } from '@antfu/utils'\nimport { slideHeight, slideWidth } from '../env'\nimport { captureDelay, disableTransition } from '../state'\nimport { snapshotState } from '../state/snapshot'\nimport { isDark } from './dark'\nimport { startScreenshotSession } from './screenshot'\nimport { getSlide } from './slides'\n\nconst chromeVersion = window.navigator.userAgent.match(/Chrome\\/(\\d+)/)?.[1]\nexport const isScreenshotSupported = chromeVersion ? Number(chromeVersion) >= 94 : false\n\nconst initialWait = 100\n\nexport class SlideSnapshotManager {\n  private _screenshotSession: ScreenshotSession | null = null\n\n  getSnapshot(slideNo: number, isDark: boolean) {\n    const id = slideNo + (isDark ? '-dark' : '-light')\n    const data = snapshotState.state[id]\n    if (!data) {\n      return\n    }\n    const slide = getSlide(slideNo)\n    if (!slide) {\n      return\n    }\n    if (data?.revision === slide?.meta.slide.revision) {\n      return data.image\n    }\n  }\n\n  private async saveSnapshot(slideNo: number, dataUrl: string, isDark: boolean) {\n    if (!__DEV__)\n      return false\n    const slide = getSlide(slideNo)\n    if (!slide)\n      return false\n\n    const id = slideNo + (isDark ? '-dark' : '-light')\n    const revision = slide.meta.slide.revision\n    snapshotState.patch(id, {\n      revision,\n      image: dataUrl,\n    })\n  }\n\n  async startCapturing(nav: SlidevContextNavFull) {\n    if (!__DEV__)\n      return false\n\n    // TODO: show a dialog to confirm\n\n    if (this._screenshotSession) {\n      this._screenshotSession.dispose()\n      this._screenshotSession = null\n    }\n\n    try {\n      this._screenshotSession = await startScreenshotSession(\n        slideWidth.value,\n        slideHeight.value,\n      )\n\n      disableTransition.value = true\n      nav.go(1, 0, true)\n\n      await sleep(initialWait + captureDelay.value)\n      while (true) {\n        if (!this._screenshotSession) {\n          break\n        }\n        this.saveSnapshot(\n          nav.currentSlideNo.value,\n          this._screenshotSession.screenshot(document.getElementById('slide-content')!),\n          isDark.value,\n        )\n        if (nav.hasNext.value) {\n          await sleep(captureDelay.value)\n          nav.nextSlide(true)\n          await sleep(captureDelay.value)\n        }\n        else {\n          break\n        }\n      }\n\n      // TODO: show a message when done\n\n      return true\n    }\n    catch (e) {\n      console.error(e)\n      return false\n    }\n    finally {\n      disableTransition.value = false\n      if (this._screenshotSession) {\n        this._screenshotSession.dispose()\n        this._screenshotSession = null\n      }\n    }\n  }\n}\n\nexport const snapshotManager = new SlideSnapshotManager()\n",
+      "start": 1743409708978,
+      "end": 1743409708988,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708988,
+      "end": 1743409708988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { sleep } from \"@antfu/utils\";\nimport { slideHeight, slideWidth } from \"../env\";\nimport { captureDelay, disableTransition } from \"../state\";\nimport { snapshotState } from \"../state/snapshot\";\nimport { isDark } from \"./dark\";\nimport { startScreenshotSession } from \"./screenshot\";\nimport { getSlide } from \"./slides\";\nconst chromeVersion = window.navigator.userAgent.match(/Chrome\\/(\\d+)/)?.[1];\nexport const isScreenshotSupported = chromeVersion ? Number(chromeVersion) >= 94 : false;\nconst initialWait = 100;\nexport class SlideSnapshotManager {\n  constructor() {\n    this._screenshotSession = null;\n  }\n  getSnapshot(slideNo, isDark2) {\n    const id = slideNo + (isDark2 ? \"-dark\" : \"-light\");\n    const data = snapshotState.state[id];\n    if (!data) {\n      return;\n    }\n    const slide = getSlide(slideNo);\n    if (!slide) {\n      return;\n    }\n    if (data?.revision === slide?.meta.slide.revision) {\n      return data.image;\n    }\n  }\n  async saveSnapshot(slideNo, dataUrl, isDark2) {\n    if (!__DEV__)\n      return false;\n    const slide = getSlide(slideNo);\n    if (!slide)\n      return false;\n    const id = slideNo + (isDark2 ? \"-dark\" : \"-light\");\n    const revision = slide.meta.slide.revision;\n    snapshotState.patch(id, {\n      revision,\n      image: dataUrl\n    });\n  }\n  async startCapturing(nav) {\n    if (!__DEV__)\n      return false;\n    if (this._screenshotSession) {\n      this._screenshotSession.dispose();\n      this._screenshotSession = null;\n    }\n    try {\n      this._screenshotSession = await startScreenshotSession(\n        slideWidth.value,\n        slideHeight.value\n      );\n      disableTransition.value = true;\n      nav.go(1, 0, true);\n      await sleep(initialWait + captureDelay.value);\n      while (true) {\n        if (!this._screenshotSession) {\n          break;\n        }\n        this.saveSnapshot(\n          nav.currentSlideNo.value,\n          this._screenshotSession.screenshot(document.getElementById(\"slide-content\")),\n          isDark.value\n        );\n        if (nav.hasNext.value) {\n          await sleep(captureDelay.value);\n          nav.nextSlide(true);\n          await sleep(captureDelay.value);\n        } else {\n          break;\n        }\n      }\n      return true;\n    } catch (e) {\n      console.error(e);\n      return false;\n    } finally {\n      disableTransition.value = false;\n      if (this._screenshotSession) {\n        this._screenshotSession.dispose();\n        this._screenshotSession = null;\n      }\n    }\n  }\n}\nexport const snapshotManager = new SlideSnapshotManager();\n",
+      "start": 1743409708988,
+      "end": 1743409709041,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/snapshot.ts"
+        ],
+        "sourcesContent": [
+          "import type { SlidevContextNavFull } from '../composables/useNav'\nimport type { ScreenshotSession } from './screenshot'\nimport { sleep } from '@antfu/utils'\nimport { slideHeight, slideWidth } from '../env'\nimport { captureDelay, disableTransition } from '../state'\nimport { snapshotState } from '../state/snapshot'\nimport { isDark } from './dark'\nimport { startScreenshotSession } from './screenshot'\nimport { getSlide } from './slides'\n\nconst chromeVersion = window.navigator.userAgent.match(/Chrome\\/(\\d+)/)?.[1]\nexport const isScreenshotSupported = chromeVersion ? Number(chromeVersion) >= 94 : false\n\nconst initialWait = 100\n\nexport class SlideSnapshotManager {\n  private _screenshotSession: ScreenshotSession | null = null\n\n  getSnapshot(slideNo: number, isDark: boolean) {\n    const id = slideNo + (isDark ? '-dark' : '-light')\n    const data = snapshotState.state[id]\n    if (!data) {\n      return\n    }\n    const slide = getSlide(slideNo)\n    if (!slide) {\n      return\n    }\n    if (data?.revision === slide?.meta.slide.revision) {\n      return data.image\n    }\n  }\n\n  private async saveSnapshot(slideNo: number, dataUrl: string, isDark: boolean) {\n    if (!__DEV__)\n      return false\n    const slide = getSlide(slideNo)\n    if (!slide)\n      return false\n\n    const id = slideNo + (isDark ? '-dark' : '-light')\n    const revision = slide.meta.slide.revision\n    snapshotState.patch(id, {\n      revision,\n      image: dataUrl,\n    })\n  }\n\n  async startCapturing(nav: SlidevContextNavFull) {\n    if (!__DEV__)\n      return false\n\n    // TODO: show a dialog to confirm\n\n    if (this._screenshotSession) {\n      this._screenshotSession.dispose()\n      this._screenshotSession = null\n    }\n\n    try {\n      this._screenshotSession = await startScreenshotSession(\n        slideWidth.value,\n        slideHeight.value,\n      )\n\n      disableTransition.value = true\n      nav.go(1, 0, true)\n\n      await sleep(initialWait + captureDelay.value)\n      while (true) {\n        if (!this._screenshotSession) {\n          break\n        }\n        this.saveSnapshot(\n          nav.currentSlideNo.value,\n          this._screenshotSession.screenshot(document.getElementById('slide-content')!),\n          isDark.value,\n        )\n        if (nav.hasNext.value) {\n          await sleep(captureDelay.value)\n          nav.nextSlide(true)\n          await sleep(captureDelay.value)\n        }\n        else {\n          break\n        }\n      }\n\n      // TODO: show a message when done\n\n      return true\n    }\n    catch (e) {\n      console.error(e)\n      return false\n    }\n    finally {\n      disableTransition.value = false\n      if (this._screenshotSession) {\n        this._screenshotSession.dispose()\n        this._screenshotSession = null\n      }\n    }\n  }\n}\n\nexport const snapshotManager = new SlideSnapshotManager()\n"
+        ],
+        "mappings": "AAEA,SAAS,aAAa;AACtB,SAAS,aAAa,kBAAkB;AACxC,SAAS,cAAc,yBAAyB;AAChD,SAAS,qBAAqB;AAC9B,SAAS,cAAc;AACvB,SAAS,8BAA8B;AACvC,SAAS,gBAAgB;AAEzB,MAAM,gBAAgB,OAAO,UAAU,UAAU,MAAM,eAAe,IAAI,CAAC;AACpE,aAAM,wBAAwB,gBAAgB,OAAO,aAAa,KAAK,KAAK;AAEnF,MAAM,cAAc;AAEb,aAAM,qBAAqB;AAAA,EAA3B;AACL,SAAQ,qBAA+C;AAAA;AAAA,EAEvD,YAAY,SAAiBA,SAAiB;AAC5C,UAAM,KAAK,WAAWA,UAAS,UAAU;AACzC,UAAM,OAAO,cAAc,MAAM,EAAE;AACnC,QAAI,CAAC,MAAM;AACT;AAAA,IACF;AACA,UAAM,QAAQ,SAAS,OAAO;AAC9B,QAAI,CAAC,OAAO;AACV;AAAA,IACF;AACA,QAAI,MAAM,aAAa,OAAO,KAAK,MAAM,UAAU;AACjD,aAAO,KAAK;AAAA,IACd;AAAA,EACF;AAAA,EAEA,MAAc,aAAa,SAAiB,SAAiBA,SAAiB;AAC5E,QAAI,CAAC;AACH,aAAO;AACT,UAAM,QAAQ,SAAS,OAAO;AAC9B,QAAI,CAAC;AACH,aAAO;AAET,UAAM,KAAK,WAAWA,UAAS,UAAU;AACzC,UAAM,WAAW,MAAM,KAAK,MAAM;AAClC,kBAAc,MAAM,IAAI;AAAA,MACtB;AAAA,MACA,OAAO;AAAA,IACT,CAAC;AAAA,EACH;AAAA,EAEA,MAAM,eAAe,KAA2B;AAC9C,QAAI,CAAC;AACH,aAAO;AAIT,QAAI,KAAK,oBAAoB;AAC3B,WAAK,mBAAmB,QAAQ;AAChC,WAAK,qBAAqB;AAAA,IAC5B;AAEA,QAAI;AACF,WAAK,qBAAqB,MAAM;AAAA,QAC9B,WAAW;AAAA,QACX,YAAY;AAAA,MACd;AAEA,wBAAkB,QAAQ;AAC1B,UAAI,GAAG,GAAG,GAAG,IAAI;AAEjB,YAAM,MAAM,cAAc,aAAa,KAAK;AAC5C,aAAO,MAAM;AACX,YAAI,CAAC,KAAK,oBAAoB;AAC5B;AAAA,QACF;AACA,aAAK;AAAA,UACH,IAAI,eAAe;AAAA,UACnB,KAAK,mBAAmB,WAAW,SAAS,eAAe,eAAe,CAAE;AAAA,UAC5E,OAAO;AAAA,QACT;AACA,YAAI,IAAI,QAAQ,OAAO;AACrB,gBAAM,MAAM,aAAa,KAAK;AAC9B,cAAI,UAAU,IAAI;AAClB,gBAAM,MAAM,aAAa,KAAK;AAAA,QAChC,OACK;AACH;AAAA,QACF;AAAA,MACF;AAIA,aAAO;AAAA,IACT,SACO,GAAG;AACR,cAAQ,MAAM,CAAC;AACf,aAAO;AAAA,IACT,UACA;AACE,wBAAkB,QAAQ;AAC1B,UAAI,KAAK,oBAAoB;AAC3B,aAAK,mBAAmB,QAAQ;AAChC,aAAK,qBAAqB;AAAA,MAC5B;AAAA,IACF;AAAA,EACF;AACF;AAEO,aAAM,kBAAkB,IAAI,qBAAqB;",
+        "names": [
+          "isDark"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { sleep } from \"@antfu/utils\";\nimport { slideHeight, slideWidth } from \"../env\";\nimport { captureDelay, disableTransition } from \"../state\";\nimport { snapshotState } from \"../state/snapshot\";\nimport { isDark } from \"./dark\";\nimport { startScreenshotSession } from \"./screenshot\";\nimport { getSlide } from \"./slides\";\nconst chromeVersion = window.navigator.userAgent.match(/Chrome\\/(\\d+)/)?.[1];\nexport const isScreenshotSupported = chromeVersion ? Number(chromeVersion) >= 94 : false;\nconst initialWait = 100;\nexport class SlideSnapshotManager {\n  constructor() {\n    this._screenshotSession = null;\n  }\n  getSnapshot(slideNo, isDark2) {\n    const id = slideNo + (isDark2 ? \"-dark\" : \"-light\");\n    const data = snapshotState.state[id];\n    if (!data) {\n      return;\n    }\n    const slide = getSlide(slideNo);\n    if (!slide) {\n      return;\n    }\n    if (data?.revision === slide?.meta.slide.revision) {\n      return data.image;\n    }\n  }\n  async saveSnapshot(slideNo, dataUrl, isDark2) {\n    if (true)\n      return false;\n    const slide = getSlide(slideNo);\n    if (!slide)\n      return false;\n    const id = slideNo + (isDark2 ? \"-dark\" : \"-light\");\n    const revision = slide.meta.slide.revision;\n    snapshotState.patch(id, {\n      revision,\n      image: dataUrl\n    });\n  }\n  async startCapturing(nav) {\n    if (true)\n      return false;\n    if (this._screenshotSession) {\n      this._screenshotSession.dispose();\n      this._screenshotSession = null;\n    }\n    try {\n      this._screenshotSession = await startScreenshotSession(\n        slideWidth.value,\n        slideHeight.value\n      );\n      disableTransition.value = true;\n      nav.go(1, 0, true);\n      await sleep(initialWait + captureDelay.value);\n      while (true) {\n        if (!this._screenshotSession) {\n          break;\n        }\n        this.saveSnapshot(\n          nav.currentSlideNo.value,\n          this._screenshotSession.screenshot(document.getElementById(\"slide-content\")),\n          isDark.value\n        );\n        if (nav.hasNext.value) {\n          await sleep(captureDelay.value);\n          nav.nextSlide(true);\n          await sleep(captureDelay.value);\n        } else {\n          break;\n        }\n      }\n      return true;\n    } catch (e) {\n      console.error(e);\n      return false;\n    } finally {\n      disableTransition.value = false;\n      if (this._screenshotSession) {\n        this._screenshotSession.dispose();\n        this._screenshotSession = null;\n      }\n    }\n  }\n}\nexport const snapshotManager = new SlideSnapshotManager();\n",
+      "start": 1743409709041,
+      "end": 1743409709058,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709058,
+      "end": 1743409709058,
+      "order": "normal"
+    }
+  ]
+}

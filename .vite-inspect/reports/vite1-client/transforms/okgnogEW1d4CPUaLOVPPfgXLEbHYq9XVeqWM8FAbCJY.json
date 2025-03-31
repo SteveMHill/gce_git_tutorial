@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { useWakeLock } from '@vueuse/core'\nimport { useNav } from '../composables/useNav'\nimport { hideCursorIdle, slideScale, viewerCssFilter, viewerCssFilterDefaults, wakeLockEnabled } from '../state'\nimport FormCheckbox from './FormCheckbox.vue'\nimport FormItem from './FormItem.vue'\nimport FormSlider from './FormSlider.vue'\nimport SegmentControl from './SegmentControl.vue'\n\nconst { isPresenter } = useNav()\nconst { isSupported } = useWakeLock()\n</script>\n\n<template>\n  <div text-sm select-none flex=\"~ col gap-1\" min-w-30 px4>\n    <FormItem\n      title=\"Invert\"\n      :dot=\"viewerCssFilter.invert !== viewerCssFilterDefaults.invert\"\n      @reset=\"viewerCssFilter.invert = viewerCssFilterDefaults.invert\"\n    >\n      <FormCheckbox v-model=\"viewerCssFilter.invert\" />\n    </FormItem>\n    <FormItem\n      title=\"Brightness\"\n      :dot=\"viewerCssFilter.brightness !== viewerCssFilterDefaults.brightness\"\n      @reset=\"viewerCssFilter.brightness = viewerCssFilterDefaults.brightness\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.brightness\"\n        :max=\"1.5\"\n        :min=\"0.5\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.brightness\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Contrast\"\n      :dot=\"viewerCssFilter.contrast !== viewerCssFilterDefaults.contrast\"\n      @reset=\"viewerCssFilter.contrast = viewerCssFilterDefaults.contrast\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.contrast\"\n        :max=\"1.5\"\n        :min=\"0.5\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.contrast\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Saturation\"\n      :dot=\"viewerCssFilter.saturate !== viewerCssFilterDefaults.saturate\"\n      @reset=\"viewerCssFilter.saturate = viewerCssFilterDefaults.saturate\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.saturate\"\n        :max=\"1.5\"\n        :min=\"0.5\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.saturate\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Sepia\"\n      :dot=\"viewerCssFilter.sepia !== viewerCssFilterDefaults.sepia\"\n      @reset=\"viewerCssFilter.sepia = viewerCssFilterDefaults.sepia\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.sepia\"\n        :max=\"2\"\n        :min=\"-2\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.sepia\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Hue Rotate\"\n      :dot=\"viewerCssFilter.hueRotate !== viewerCssFilterDefaults.hueRotate\"\n      @reset=\"viewerCssFilter.hueRotate = viewerCssFilterDefaults.hueRotate\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.hueRotate\"\n        :max=\"180\"\n        :min=\"-180\"\n        :step=\"0.1\"\n        :default=\"viewerCssFilterDefaults.hueRotate\"\n      />\n    </FormItem>\n    <div class=\"h-1px opacity-5 bg-current w-full my2\" />\n    <FormItem\n      v-if=\"!isPresenter\"\n      title=\"Slide Scale\"\n    >\n      <SegmentControl\n        v-model=\"slideScale\"\n        :options=\"[\n          { label: 'Fit', value: 0 },\n          { label: '1:1', value: 1 },\n        ]\"\n      />\n    </FormItem>\n    <FormItem\n      v-if=\"__SLIDEV_FEATURE_WAKE_LOCK__ && isSupported\"\n      title=\"Wake Lock\"\n    >\n      <FormCheckbox v-model=\"wakeLockEnabled\" />\n    </FormItem>\n    <FormItem\n      v-if=\"!isPresenter\"\n      title=\"Hide Idle Cursor\"\n    >\n      <FormCheckbox v-model=\"hideCursorIdle\" />\n    </FormItem>\n  </div>\n</template>\n",
+      "start": 1743409708974,
+      "end": 1743409708984,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "result": "<script setup lang=\"ts\">\nimport { useWakeLock } from '@vueuse/core'\nimport { useNav } from '../composables/useNav'\nimport { hideCursorIdle, slideScale, viewerCssFilter, viewerCssFilterDefaults, wakeLockEnabled } from '../state'\nimport FormCheckbox from './FormCheckbox.vue'\nimport FormItem from './FormItem.vue'\nimport FormSlider from './FormSlider.vue'\nimport SegmentControl from './SegmentControl.vue'\n\nconst { isPresenter } = useNav()\nconst { isSupported } = useWakeLock()\n</script>\n\n<template>\n  <div text-sm select-none flex=\"~ col gap-1\" min-w-30 px4>\n    <FormItem\n      title=\"Invert\"\n      :dot=\"viewerCssFilter.invert !== viewerCssFilterDefaults.invert\"\n      @reset=\"viewerCssFilter.invert = viewerCssFilterDefaults.invert\"\n    >\n      <FormCheckbox v-model=\"viewerCssFilter.invert\" />\n    </FormItem>\n    <FormItem\n      title=\"Brightness\"\n      :dot=\"viewerCssFilter.brightness !== viewerCssFilterDefaults.brightness\"\n      @reset=\"viewerCssFilter.brightness = viewerCssFilterDefaults.brightness\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.brightness\"\n        :max=\"1.5\"\n        :min=\"0.5\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.brightness\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Contrast\"\n      :dot=\"viewerCssFilter.contrast !== viewerCssFilterDefaults.contrast\"\n      @reset=\"viewerCssFilter.contrast = viewerCssFilterDefaults.contrast\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.contrast\"\n        :max=\"1.5\"\n        :min=\"0.5\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.contrast\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Saturation\"\n      :dot=\"viewerCssFilter.saturate !== viewerCssFilterDefaults.saturate\"\n      @reset=\"viewerCssFilter.saturate = viewerCssFilterDefaults.saturate\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.saturate\"\n        :max=\"1.5\"\n        :min=\"0.5\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.saturate\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Sepia\"\n      :dot=\"viewerCssFilter.sepia !== viewerCssFilterDefaults.sepia\"\n      @reset=\"viewerCssFilter.sepia = viewerCssFilterDefaults.sepia\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.sepia\"\n        :max=\"2\"\n        :min=\"-2\"\n        :step=\"0.02\"\n        :default=\"viewerCssFilterDefaults.sepia\"\n      />\n    </FormItem>\n    <FormItem\n      title=\"Hue Rotate\"\n      :dot=\"viewerCssFilter.hueRotate !== viewerCssFilterDefaults.hueRotate\"\n      @reset=\"viewerCssFilter.hueRotate = viewerCssFilterDefaults.hueRotate\"\n    >\n      <FormSlider\n        v-model=\"viewerCssFilter.hueRotate\"\n        :max=\"180\"\n        :min=\"-180\"\n        :step=\"0.1\"\n        :default=\"viewerCssFilterDefaults.hueRotate\"\n      />\n    </FormItem>\n    <div class=\"h-1px opacity-5 bg-current w-full my2\" />\n    <FormItem\n      v-if=\"!isPresenter\"\n      title=\"Slide Scale\"\n    >\n      <SegmentControl\n        v-model=\"slideScale\"\n        :options=\"[\n          { label: 'Fit', value: 0 },\n          { label: '1:1', value: 1 },\n        ]\"\n      />\n    </FormItem>\n    <FormItem\n      v-if=\"true && isSupported\"\n      title=\"Wake Lock\"\n    >\n      <FormCheckbox v-model=\"wakeLockEnabled\" />\n    </FormItem>\n    <FormItem\n      v-if=\"!isPresenter\"\n      title=\"Hide Idle Cursor\"\n    >\n      <FormCheckbox v-model=\"hideCursorIdle\" />\n    </FormItem>\n  </div>\n</template>\n",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "pre",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708984,
+      "end": 1743409708984,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708984,
+      "end": 1743409709038,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Settings.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,QAAQ,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAChJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,QAAQ,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACxI,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709038,
+      "end": 1743409709038,
+      "order": "normal"
+    }
+  ]
+}

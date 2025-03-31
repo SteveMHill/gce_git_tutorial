@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/stringify/stringifyCollection.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isNode, isPair } from '../nodes/identity.js';\nimport { stringify } from './stringify.js';\nimport { lineComment, indentComment } from './stringifyComment.js';\n\nfunction stringifyCollection(collection, ctx, options) {\n    const flow = ctx.inFlow ?? collection.flow;\n    const stringify = flow ? stringifyFlowCollection : stringifyBlockCollection;\n    return stringify(collection, ctx, options);\n}\nfunction stringifyBlockCollection({ comment, items }, ctx, { blockItemPrefix, flowChars, itemIndent, onChompKeep, onComment }) {\n    const { indent, options: { commentString } } = ctx;\n    const itemCtx = Object.assign({}, ctx, { indent: itemIndent, type: null });\n    let chompKeep = false; // flag for the preceding node's status\n    const lines = [];\n    for (let i = 0; i < items.length; ++i) {\n        const item = items[i];\n        let comment = null;\n        if (isNode(item)) {\n            if (!chompKeep && item.spaceBefore)\n                lines.push('');\n            addCommentBefore(ctx, lines, item.commentBefore, chompKeep);\n            if (item.comment)\n                comment = item.comment;\n        }\n        else if (isPair(item)) {\n            const ik = isNode(item.key) ? item.key : null;\n            if (ik) {\n                if (!chompKeep && ik.spaceBefore)\n                    lines.push('');\n                addCommentBefore(ctx, lines, ik.commentBefore, chompKeep);\n            }\n        }\n        chompKeep = false;\n        let str = stringify(item, itemCtx, () => (comment = null), () => (chompKeep = true));\n        if (comment)\n            str += lineComment(str, itemIndent, commentString(comment));\n        if (chompKeep && comment)\n            chompKeep = false;\n        lines.push(blockItemPrefix + str);\n    }\n    let str;\n    if (lines.length === 0) {\n        str = flowChars.start + flowChars.end;\n    }\n    else {\n        str = lines[0];\n        for (let i = 1; i < lines.length; ++i) {\n            const line = lines[i];\n            str += line ? `\\n${indent}${line}` : '\\n';\n        }\n    }\n    if (comment) {\n        str += '\\n' + indentComment(commentString(comment), indent);\n        if (onComment)\n            onComment();\n    }\n    else if (chompKeep && onChompKeep)\n        onChompKeep();\n    return str;\n}\nfunction stringifyFlowCollection({ items }, ctx, { flowChars, itemIndent }) {\n    const { indent, indentStep, flowCollectionPadding: fcPadding, options: { commentString } } = ctx;\n    itemIndent += indentStep;\n    const itemCtx = Object.assign({}, ctx, {\n        indent: itemIndent,\n        inFlow: true,\n        type: null\n    });\n    let reqNewline = false;\n    let linesAtValue = 0;\n    const lines = [];\n    for (let i = 0; i < items.length; ++i) {\n        const item = items[i];\n        let comment = null;\n        if (isNode(item)) {\n            if (item.spaceBefore)\n                lines.push('');\n            addCommentBefore(ctx, lines, item.commentBefore, false);\n            if (item.comment)\n                comment = item.comment;\n        }\n        else if (isPair(item)) {\n            const ik = isNode(item.key) ? item.key : null;\n            if (ik) {\n                if (ik.spaceBefore)\n                    lines.push('');\n                addCommentBefore(ctx, lines, ik.commentBefore, false);\n                if (ik.comment)\n                    reqNewline = true;\n            }\n            const iv = isNode(item.value) ? item.value : null;\n            if (iv) {\n                if (iv.comment)\n                    comment = iv.comment;\n                if (iv.commentBefore)\n                    reqNewline = true;\n            }\n            else if (item.value == null && ik?.comment) {\n                comment = ik.comment;\n            }\n        }\n        if (comment)\n            reqNewline = true;\n        let str = stringify(item, itemCtx, () => (comment = null));\n        if (i < items.length - 1)\n            str += ',';\n        if (comment)\n            str += lineComment(str, itemIndent, commentString(comment));\n        if (!reqNewline && (lines.length > linesAtValue || str.includes('\\n')))\n            reqNewline = true;\n        lines.push(str);\n        linesAtValue = lines.length;\n    }\n    const { start, end } = flowChars;\n    if (lines.length === 0) {\n        return start + end;\n    }\n    else {\n        if (!reqNewline) {\n            const len = lines.reduce((sum, line) => sum + line.length + 2, 2);\n            reqNewline = ctx.options.lineWidth > 0 && len > ctx.options.lineWidth;\n        }\n        if (reqNewline) {\n            let str = start;\n            for (const line of lines)\n                str += line ? `\\n${indentStep}${indent}${line}` : '\\n';\n            return `${str}\\n${indent}${end}`;\n        }\n        else {\n            return `${start}${fcPadding}${lines.join(' ')}${fcPadding}${end}`;\n        }\n    }\n}\nfunction addCommentBefore({ indent, options: { commentString } }, lines, comment, chompKeep) {\n    if (comment && chompKeep)\n        comment = comment.replace(/^\\n+/, '');\n    if (comment) {\n        const ic = indentComment(commentString(comment), indent);\n        lines.push(ic.trimStart()); // Avoid double indent on first line\n    }\n}\n\nexport { stringifyCollection };\n",
+      "start": 1743409708643,
+      "end": 1743409708652,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    }
+  ]
+}

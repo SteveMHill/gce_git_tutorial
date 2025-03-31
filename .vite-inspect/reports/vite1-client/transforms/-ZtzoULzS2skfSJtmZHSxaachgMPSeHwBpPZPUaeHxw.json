@@ -1,0 +1,170 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/theme/styles/prism.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "@import 'prism-theme-vars/base.css';\n@import 'codemirror-theme-vars/base.css';\n@import 'prism-theme-vars/to-codemirror.css';\n\n:root {\n  --prism-font-family: var(--slidev-code-font-family);\n  --prism-background: var(--slidev-code-background);\n}\n\nhtml:not(.dark) {\n  --prism-foreground: #393a34;\n  --prism-comment: #a0ada0;\n  --prism-string: #b56959;\n  --prism-literal: #2f8a89;\n  --prism-number: #296aa3;\n  --prism-keyword: #1c6b48;\n  --prism-function: #6c7834;\n  --prism-boolean: #1c6b48;\n  --prism-constant: #a65e2b;\n  --prism-deleted: #a14f55;\n  --prism-class: #2993a3;\n  --prism-builtin: #ab5959;\n  --prism-property: #b58451;\n  --prism-namespace: #b05a78;\n  --prism-punctuation: #8e8f8b;\n  --prism-decorator: #bd8f8f;\n  --prism-regex: #ab5e3f;\n  --prism-json-property: #698c96;\n}\n\nhtml.dark {\n  --prism-foreground: #d4cfbf;\n  --prism-comment: #758575;\n  --prism-string: #d48372;\n  --prism-literal: #429988;\n  --prism-keyword: #4d9375;\n  --prism-boolean: #1c6b48;\n  --prism-number: #6394bf;\n  --prism-variable: #c2b36e;\n  --prism-function: #a1b567;\n  --prism-deleted: #a14f55;\n  --prism-class: #54b1bf;\n  --prism-builtin: #e0a569;\n  --prism-property: #dd8e6e;\n  --prism-namespace: #db889a;\n  --prism-punctuation: #858585;\n  --prism-decorator: #bd8f8f;\n  --prism-regex: #ab5e3f;\n  --prism-json-property: #6b8b9e;\n  --prism-line-number: #888888;\n  --prism-line-number-gutter: #eeeeee;\n  --prism-line-highlight-background: #444444;\n  --prism-selection-background: #444444;\n}\n",
+      "start": 1743409708488,
+      "end": 1743409708507,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708507,
+      "end": 1743409708507,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708507,
+      "end": 1743409708507,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708507,
+      "end": 1743409708507,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708507,
+      "end": 1743409708507,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ":root {\n  --prism-scheme: light;\n\n  /* Colors */\n  --prism-foreground: #6e6e6e;\n  --prism-background: #f4f4f4;\n\n  /* Tokens */\n  --prism-comment: #a8a8a8;\n  --prism-string: #555555;\n  --prism-literal: #333333;\n  --prism-keyword: #000000;\n  --prism-function: #4f4f4f;\n  --prism-deleted: #333333;\n  --prism-class: #333333;\n  --prism-builtin: #757575;\n  --prism-property: #333333;\n  --prism-namespace: #4f4f4f;\n  --prism-punctuation: #ababab;\n  --prism-decorator: var(--prism-class);\n  --prism-operator: var(--prism-punctuation);\n  --prism-number: var(--prism-literal);\n  --prism-boolean: var(--prism-literal);\n  --prism-variable: var(--prism-literal);\n  --prism-constant: var(--prism-literal);\n  --prism-symbol: var(--prism-literal);\n  --prism-interpolation: var(--prism-literal);\n  --prism-selector: var(--prism-keyword);\n  --prism-keyword-control: var(--prism-keyword);\n  --prism-regex: var(--prism-string);\n  --prism-json-property: var(--prism-property);\n  --prism-inline-background: var(--prism-background);\n\n  /* Token Styles */\n  --prism-comment-style: italic;\n  --prism-url-decoration: underline;\n\n  /* Extension */\n  --prism-line-number: #a5a5a5;\n  --prism-line-number-gutter: #333333;\n  --prism-line-highlight-background: #eeeeee;\n  --prism-selection-background: #dddddd;\n  --prism-marker-color: var(--prism-foreground);\n  --prism-marker-opacity: 0.4;\n  --prism-marker-font-size: 0.8em;\n\n  /* Font */\n  --prism-font-size: 1em;\n  --prism-line-height: 1.5em;\n  --prism-font-family: monospace;\n  --prism-inline-font-size: var(--prism-font-size);\n  --prism-block-font-size: var(--prism-font-size);\n\n  /* Sizing */\n  --prism-tab-size: 2;\n\n  --prism-block-padding-x: 1em;\n  --prism-block-padding-y: 1em;\n  --prism-block-margin-x: 0;\n  --prism-block-margin-y: 0.5em;\n  --prism-block-radius: 0.3em;\n  --prism-inline-padding-x: 0.3em;\n  --prism-inline-padding-y: 0.1em;\n  --prism-inline-radius: 0.3em;\n}\n\ndiv[class*='language-'],\npre[class*='language-'],\ncode[class*='language-'] {\n  font-size: var(--prism-font-size);\n  font-family: var(--prism-font-family);\n  direction: ltr;\n  text-align: left;\n  white-space: pre;\n  word-spacing: normal;\n  word-break: normal;\n  line-height: var(--prism-line-height);\n  -moz-tab-size: var(--prism-tab-size);\n  -o-tab-size: var(--prism-tab-size);\n  tab-size: var(--prism-tab-size);\n  -webkit-hyphens: none;\n  -moz-hyphens: none;\n  -ms-hyphens: none;\n  hyphens: none;\n  color: var(--prism-foreground) !important;\n}\n\n/* Code blocks */\n\ndiv[class*='language-'],\npre[class*='language-'] {\n  font-size: var(--prism-block-font-size);\n  padding: var(--prism-block-padding-y) var(--prism-block-padding-x);\n  margin: var(--prism-block-margin-y) var(--prism-block-margin-x);\n  border-radius: var(--prism-block-radius);\n  overflow: auto;\n  background: var(--prism-background);\n}\n\n/* Inline code */\n\n:not(pre) > code[class*='language-'] {\n  font-size: var(--prism-inline-font-size);\n  padding: var(--prism-inline-padding-y) var(--prism-inline-padding-x);\n  border-radius: var(--prism-inline-radius);\n  background: var(--prism-inline-background);\n}\n\n/* Selection */\n\npre[class*='language-']::-moz-selection,\npre[class*='language-'] ::-moz-selection,\ncode[class*='language-']::-moz-selection,\ncode[class*='language-'] ::-moz-selection {\n  background: var(--prism-selection-background);\n}\n\npre[class*='language-']::selection,\npre[class*='language-'] ::selection,\ncode[class*='language-']::selection,\ncode[class*='language-'] ::selection {\n  background: var(--prism-selection-background);\n}\n\n/* Tokens */\n\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n  color: var(--prism-comment);\n  font-style: var(--prism-comment-style);\n}\n\n.token.namespace {\n  color: var(--prism-namespace);\n}\n\n.token.interpolation {\n  color: var(--prism-interpolation);\n}\n\n.token.string {\n  color: var(--prism-string);\n}\n\n.token.punctuation {\n  color: var(--prism-punctuation);\n}\n\n.token.operator {\n  color: var(--prism-operator);\n}\n\n.token.keyword.module,\n.token.keyword.control-flow {\n  color: var(--prism-keyword-control);\n}\n\n.token.url,\n.token.symbol,\n.token.inserted {\n  color: var(--prism-symbol);\n}\n\n.token.constant {\n  color: var(--prism-constant);\n}\n\n.token.string.url {\n  text-decoration: var(--prism-url-decoration);\n}\n\n.token.boolean,\n.language-json .token.boolean {\n  color: var(--prism-boolean);\n}\n\n.token.number,\n.language-json .token.number {\n  color: var(--prism-number);\n}\n\n.token.variable {\n  color: var(--prism-variable);\n}\n\n.token.keyword {\n  color: var(--prism-keyword);\n}\n\n.token.atrule,\n.token.attr-value,\n.token.selector {\n  color: var(--prism-selector);\n}\n\n.token.function {\n  color: var(--prism-function);\n}\n\n.token.deleted {\n  color: var(--prism-deleted);\n}\n\n.token.important,\n.token.bold {\n  font-weight: bold;\n}\n\n.token.italic {\n  font-style: italic;\n}\n\n.token.class-name {\n  color: var(--prism-class);\n}\n\n.token.tag,\n.token.builtin {\n  color: var(--prism-builtin);\n}\n\n.token.attr-name,\n.token.property,\n.token.entity {\n  color: var(--prism-property);\n}\n\n.language-json .token.property {\n  color: var(--prism-json-property);\n}\n\n.token.regex {\n  color: var(--prism-regex);\n}\n\n.token.decorator,\n.token.annotation {\n  color: var(--prism-decorator);\n}\n\n/* overrides color-values for the Line Numbers plugin\n * http://prismjs.com/plugins/line-numbers/\n */\n\n.line-numbers .line-numbers-rows {\n  border-right-color: var(--prism-line-number);\n}\n\n.line-numbers-rows > span:before {\n  color: var(--prism-line-number-gutter);\n}\n\n/* overrides color-values for the Line Highlight plugin\n  * http://prismjs.com/plugins/line-highlight/\n  */\n\n.line-highlight {\n  background: var(--prism-line-highlight-background);\n}\n\n:root {\n  --cm-scheme: light;\n\n  /* Colors */\n  --cm-foreground: #6e6e6e;\n  --cm-background: #f4f4f4;\n\n  /* Tokens */\n  --cm-comment: #a8a8a8;\n  --cm-string: #555555;\n  --cm-literal: #333333;\n  --cm-keyword: #000000;\n  --cm-function: #4f4f4f;\n  --cm-deleted: #333333;\n  --cm-class: #333333;\n  --cm-builtin: #757575;\n  --cm-property: #333333;\n  --cm-namespace: #4f4f4f;\n  --cm-punctuation: #ababab;\n  --cm-decorator: var(--cm-class);\n  --cm-operator: var(--cm-punctuation);\n  --cm-number: var(--cm-literal);\n  --cm-boolean: var(--cm-literal);\n  --cm-variable: var(--cm-literal);\n  --cm-constant: var(--cm-literal);\n  --cm-symbol: var(--cm-literal);\n  --cm-interpolation: var(--cm-literal);\n  --cm-selector: var(--cm-keyword);\n  --cm-keyword-control: var(--cm-keyword);\n  --cm-regex: var(--cm-string);\n  --cm-json-property: var(--cm-property);\n  --cm-inline-background: var(--cm-background);\n\n  /* Token Styles */\n  --cm-comment-style: italic;\n  --cm-url-decoration: underline;\n\n  /* Extension */\n  --cm-line-number: #a5a5a5;\n  --cm-line-number-gutter: #333333;\n  --cm-line-highlight-background: #eeeeee;\n  --cm-selection-background: #aaaaaa;\n  --cm-marker-color: var(--cm-foreground);\n  --cm-marker-opacity: 0.4;\n  --cm-marker-font-size: 0.8em;\n\n  /* Font */\n  --cm-font-size: 1em;\n  --cm-line-height: 1.5em;\n  --cm-font-family: monospace;\n  --cm-inline-font-size: var(--cm-font-size);\n  --cm-block-font-size: var(--cm-font-size);\n  \n  /* Sizing */\n  --cm-tab-size: 2;\n  \n  --cm-block-padding-x: 1em;\n  --cm-block-padding-y: 1em;\n  --cm-block-margin-x: 0;\n  --cm-block-margin-y: 0.5em;\n  --cm-block-radius: 0.3em;\n  --cm-inline-padding-x: 0.3em;\n  --cm-inline-padding-y: 0.1em;\n  --cm-inline-radius: 0.3em;\n}\n\n.cm-s-vars.CodeMirror {\n  background-color: var(--cm-background);\n  color: var(--cm-foreground);\n}\n\n.cm-s-vars .CodeMirror-gutters {\n  background: var(--cm-line-number-gutter);\n  color: var(--cm-line-number);\n  border: none;\n}\n\n.cm-s-vars .CodeMirror-guttermarker,\n.cm-s-vars .CodeMirror-guttermarker-subtle,\n.cm-s-vars .CodeMirror-linenumber {\n  color: var(--cm-line-number);\n}\n\n.cm-s-vars div.CodeMirror-selected {\n  background: var(--cm-selection-background);\n}\n\n.cm-s-vars.CodeMirror-focused div.CodeMirror-selected {\n  background: var(--cm-selection-background);\n}\n\n.cm-s-vars .CodeMirror-line::selection,\n.cm-s-vars .CodeMirror-line>span::selection,\n.cm-s-vars .CodeMirror-line>span>span::selection {\n  background: var(--cm-selection-background);\n}\n\n.cm-s-vars .CodeMirror-line::-moz-selection,\n.cm-s-vars .CodeMirror-line>span::-moz-selection,\n.cm-s-vars .CodeMirror-line>span>span::-moz-selection {\n  background: var(--cm-selection-background);\n}\n\n.cm-s-vars .CodeMirror-activeline-background {\n  background: var(--cm-line-highlight-background);\n}\n\n.cm-s-vars .cm-keyword {\n  color: var(--cm-keyword);\n}\n\n.cm-s-vars .cm-variable,\n.cm-s-vars .cm-variable-2,\n.cm-s-vars .cm-variable-3,\n.cm-s-vars .cm-type {\n  color: var(--cm-variable);\n}\n\n.cm-s-vars .cm-builtin {\n  color: var(--cm-builtin);\n}\n\n.cm-s-vars .cm-atom {\n  color: var(--cm-literal);\n}\n\n.cm-s-vars .cm-number {\n  color: var(--cm-number);\n}\n\n.cm-s-vars .cm-def {\n  color: var(--cm-decorator);\n}\n\n.cm-s-vars .cm-string,\n.cm-s-vars .cm-string-2 {\n  color: var(--cm-string);\n}\n\n.cm-s-vars .cm-comment {\n  color: var(--cm-comment);\n}\n\n.cm-s-vars .cm-tag {\n  color: var(--cm-builtin);\n}\n\n.cm-s-vars .cm-meta {\n  color: var(--cm-namespace);\n}\n\n.cm-s-vars .cm-attribute {\n  color: var(--cm-property);\n}\n\n.cm-s-vars .cm-property {\n  color: var(--cm-property);\n}\n\n.cm-s-vars .cm-qualifier {\n  color: var(--cm-keyword);\n}\n\n.cm-s-vars .cm-error {\n  color: var(--prism-deleted);\n}\n\n.cm-s-vars .cm-operator,\n.cm-s-vars .cm-bracket {\n  color: var(--cm-punctuation);\n}\n\n.cm-s-vars .CodeMirror-matchingbracket {\n  text-decoration: underline;\n}\n\n.cm-s-vars .CodeMirror-cursor {\n  border-left: 1px solid currentColor;\n}\n\n:root {\n  --cm-scheme: var(--prism-scheme);\n\n  /* Colors */\n  --cm-foreground: var(--prism-foreground);\n  --cm-background: var(--prism-background);\n\n  /* Tokens */\n  --cm-comment: var(--prism-comment);\n  --cm-string: var(--prism-string);\n  --cm-literal: var(--prism-literal);\n  --cm-keyword: var(--prism-keyword);\n  --cm-function: var(--prism-function);\n  --cm-deleted: var(--prism-deleted);\n  --cm-class: var(--prism-class);\n  --cm-builtin: var(--prism-builtin);\n  --cm-property: var(--prism-property);\n  --cm-namespace: var(--prism-namespace);\n  --cm-punctuation: var(--prism-punctuation);\n  --cm-decorator: var(--prism-decorator);\n  --cm-operator: var(--prism-operator);\n  --cm-number: var(--prism-number);\n  --cm-boolean: var(--prism-boolean);\n  --cm-variable: var(--prism-variable);\n  --cm-constant: var(--prism-constant);\n  --cm-symbol: var(--prism-symbol);\n  --cm-interpolation: var(--prism-interpolation);\n  --cm-selector: var(--prism-selector);\n  --cm-keyword-control: var(--prism-keyword-control);\n  --cm-regex: var(--prism-regex);\n  --cm-json-property: var(--prism-json-property);\n  --cm-inline-background: var(--prism-inline-background);\n\n  /* Token Styles */\n  --cm-comment-style: var(--prism-comment-style);\n  --cm-url-decoration: var(--prism-url-decoration);\n\n  /* Extension */\n  --cm-line-number: var(--prism-line-number);\n  --cm-line-number-gutter: var(--prism-line-number-gutter);\n  --cm-line-highlight-background: var(--prism-line-highlight-background);\n  --cm-selection-background: var(--prism-selection-background);\n  --cm-marker-color: var(--prism-marker-color);\n  --cm-marker-opacity: var(--prism-marker-opacity);\n  --cm-marker-font-size: var(--prism-marker-font-size);\n\n  /* Font */\n  --cm-font-size: var(--prism-font-size);\n  --cm-line-height: var(--prism-line-height);\n  --cm-font-family: var(--prism-font-family);\n  --cm-inline-font-size: var(--prism-inline-font-size);\n  --cm-block-font-size: var(--prism-block-font-size);\n\n  /* Sizing */\n  --cm-tab-size: var(--prism-tab-size);\n\n  --cm-block-padding-x: var(--prism-block-padding-x);\n  --cm-block-padding-y: var(--prism-block-padding-y);\n  --cm-block-margin-x: var(--prism-block-margin-x);\n  --cm-block-margin-y: var(--prism-block-margin-y);\n  --cm-block-radius: var(--prism-block-radius);\n  --cm-inline-padding-x: var(--prism-inline-padding-x);\n  --cm-inline-padding-y: var(--prism-inline-padding-y);\n  --cm-inline-radius: var(--prism-inline-radius);\n}\n\n:root {\n  --prism-font-family: var(--slidev-code-font-family);\n  --prism-background: var(--slidev-code-background);\n}\n\nhtml:not(.dark) {\n  --prism-foreground: #393a34;\n  --prism-comment: #a0ada0;\n  --prism-string: #b56959;\n  --prism-literal: #2f8a89;\n  --prism-number: #296aa3;\n  --prism-keyword: #1c6b48;\n  --prism-function: #6c7834;\n  --prism-boolean: #1c6b48;\n  --prism-constant: #a65e2b;\n  --prism-deleted: #a14f55;\n  --prism-class: #2993a3;\n  --prism-builtin: #ab5959;\n  --prism-property: #b58451;\n  --prism-namespace: #b05a78;\n  --prism-punctuation: #8e8f8b;\n  --prism-decorator: #bd8f8f;\n  --prism-regex: #ab5e3f;\n  --prism-json-property: #698c96;\n}\n\nhtml.dark {\n  --prism-foreground: #d4cfbf;\n  --prism-comment: #758575;\n  --prism-string: #d48372;\n  --prism-literal: #429988;\n  --prism-keyword: #4d9375;\n  --prism-boolean: #1c6b48;\n  --prism-number: #6394bf;\n  --prism-variable: #c2b36e;\n  --prism-function: #a1b567;\n  --prism-deleted: #a14f55;\n  --prism-class: #54b1bf;\n  --prism-builtin: #e0a569;\n  --prism-property: #dd8e6e;\n  --prism-namespace: #db889a;\n  --prism-punctuation: #858585;\n  --prism-decorator: #bd8f8f;\n  --prism-regex: #ab5e3f;\n  --prism-json-property: #6b8b9e;\n  --prism-line-number: #888888;\n  --prism-line-number-gutter: #eeeeee;\n  --prism-line-highlight-background: #444444;\n  --prism-selection-background: #444444;\n}\n",
+      "start": 1743409708507,
+      "end": 1743409708586,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    }
+  ]
+}

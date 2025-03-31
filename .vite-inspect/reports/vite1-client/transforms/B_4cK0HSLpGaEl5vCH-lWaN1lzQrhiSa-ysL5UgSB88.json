@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/infoDiagram-TP2HPDHO.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  parse\n} from \"./chunk-XIYN7VYH.mjs\";\nimport \"./chunk-SDBY772Q.mjs\";\nimport \"./chunk-CCYIEPPW.mjs\";\nimport \"./chunk-OTG2ZAWT.mjs\";\nimport \"./chunk-7JTU5PD2.mjs\";\nimport {\n  package_default\n} from \"./chunk-5EMSI65K.mjs\";\nimport {\n  selectSvgElement\n} from \"./chunk-YIX7P6T4.mjs\";\nimport {\n  configureSvgSize,\n  log\n} from \"./chunk-3L32CQKD.mjs\";\nimport \"./chunk-GTV5PL3S.mjs\";\nimport \"./chunk-4AQQYWZS.mjs\";\nimport \"./chunk-R4WPHL2B.mjs\";\nimport \"./chunk-TGZYFRKZ.mjs\";\nimport \"./chunk-GRZAG2UZ.mjs\";\nimport \"./chunk-HD3LK5B5.mjs\";\nimport {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// src/diagrams/info/infoParser.ts\nvar parser = {\n  parse: /* @__PURE__ */ __name(async (input) => {\n    const ast = await parse(\"info\", input);\n    log.debug(ast);\n  }, \"parse\")\n};\n\n// src/diagrams/info/infoDb.ts\nvar DEFAULT_INFO_DB = { version: package_default.version };\nvar getVersion = /* @__PURE__ */ __name(() => DEFAULT_INFO_DB.version, \"getVersion\");\nvar db = {\n  getVersion\n};\n\n// src/diagrams/info/infoRenderer.ts\nvar draw = /* @__PURE__ */ __name((text, id, version) => {\n  log.debug(\"rendering info diagram\\n\" + text);\n  const svg = selectSvgElement(id);\n  configureSvgSize(svg, 100, 400, true);\n  const group = svg.append(\"g\");\n  group.append(\"text\").attr(\"x\", 100).attr(\"y\", 40).attr(\"class\", \"version\").attr(\"font-size\", 32).style(\"text-anchor\", \"middle\").text(`v${version}`);\n}, \"draw\");\nvar renderer = { draw };\n\n// src/diagrams/info/infoDiagram.ts\nvar diagram = {\n  parser,\n  db,\n  renderer\n};\nexport {\n  diagram\n};\n",
+      "start": 1743409709070,
+      "end": 1743409709186,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    }
+  ]
+}

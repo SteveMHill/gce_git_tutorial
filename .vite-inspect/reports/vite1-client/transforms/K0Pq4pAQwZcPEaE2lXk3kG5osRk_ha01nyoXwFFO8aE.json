@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/parser/dist/chunk-47YLTX76.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// src/utils.ts\nimport { isNumber, range, uniq } from \"@antfu/utils\";\nfunction parseRangeString(total, rangeStr) {\n  if (!rangeStr || rangeStr === \"all\" || rangeStr === \"*\")\n    return range(1, total + 1);\n  if (rangeStr === \"none\")\n    return [];\n  const indexes = [];\n  for (const part of rangeStr.split(/[,;]/g)) {\n    if (!part.includes(\"-\")) {\n      indexes.push(+part);\n    } else {\n      const [start, end] = part.split(\"-\", 2);\n      indexes.push(\n        ...range(+start, !end ? total + 1 : +end + 1)\n      );\n    }\n  }\n  return uniq(indexes).filter((i) => i <= total).sort((a, b) => a - b);\n}\nfunction parseAspectRatio(str) {\n  if (isNumber(str))\n    return str;\n  if (!Number.isNaN(+str))\n    return +str;\n  const [wStr = \"\", hStr = \"\"] = str.split(/[:/x|]/);\n  const w = Number.parseFloat(wStr.trim());\n  const h = Number.parseFloat(hStr.trim());\n  if (Number.isNaN(w) || Number.isNaN(h) || h === 0)\n    throw new Error(`Invalid aspect ratio \"${str}\"`);\n  return w / h;\n}\n\nexport {\n  parseRangeString,\n  parseAspectRatio\n};\n",
+      "start": 1743409708583,
+      "end": 1743409708590,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_9.md",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "# Git vs GitHub – What’s the Difference?\n##\n\n<br> </br>\n\n<div style=\"display: flex; justify-content: center;\">\n  <table style=\"width: 70%; font-size: 0.8em;\">\n    <thead>\n      <tr>\n        <th></th>\n        <th> 🔀  <strong>Git</strong></th>\n        <th> 🌐  <strong>GitHub</strong></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><strong>What is it?</strong></td>\n        <td>A version control system</td>\n        <td>A platform for hosting Git repositories</td>\n      </tr>\n      <tr>\n        <td><strong>Runs where?</strong></td>\n        <td>On your local machine</td>\n        <td>In the cloud (online)</td>\n      </tr>\n      <tr>\n        <td><strong>Purpose</strong></td>\n        <td>Track changes in your files</td>\n        <td>Share and collaborate on Git projects</td>\n      </tr>\n      <tr>\n        <td><strong>Who uses it?</strong></td>\n        <td>Solo users with Git installed</td>\n        <td>Teams and the broader community</td>\n      </tr>\n      <tr>\n        <td><strong>Analogy</strong></td>\n        <td>Like saving a file with history</td>\n        <td>Like Google Drive for Git projects</td>\n      </tr>\n    </tbody>\n  </table>\n</div>",
+      "start": 1743409708832,
+      "end": 1743409708832,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "result": "<template><div><h1>Git vs GitHub – What’s the Difference?</h1>\n<h2></h2>\n<p><br> </br></p>\n<div style=\"display: flex; justify-content: center;\">\n  <table style=\"width: 70%; font-size: 0.8em;\">\n    <thead>\n      <tr>\n        <th></th>\n        <th> 🔀  <strong>Git</strong></th>\n        <th> 🌐  <strong>GitHub</strong></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><strong>What is it?</strong></td>\n        <td>A version control system</td>\n        <td>A platform for hosting Git repositories</td>\n      </tr>\n      <tr>\n        <td><strong>Runs where?</strong></td>\n        <td>On your local machine</td>\n        <td>In the cloud (online)</td>\n      </tr>\n      <tr>\n        <td><strong>Purpose</strong></td>\n        <td>Track changes in your files</td>\n        <td>Share and collaborate on Git projects</td>\n      </tr>\n      <tr>\n        <td><strong>Who uses it?</strong></td>\n        <td>Solo users with Git installed</td>\n        <td>Teams and the broader community</td>\n      </tr>\n      <tr>\n        <td><strong>Analogy</strong></td>\n        <td>Like saving a file with history</td>\n        <td>Like Google Drive for Git projects</td>\n      </tr>\n    </tbody>\n  </table>\n</div></div></template>\n<script setup>\n</script>",
+      "start": 1743409708832,
+      "end": 1743409708833,
+      "order": "pre",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "result": "<template>\n<InjectedLayout v-bind=\"_frontmatterToProps($frontmatter,8)\">\n<h1>Git vs GitHub – What’s the Difference?</h1>\n<h2></h2>\n<p><br> </br></p>\n<div style=\"display: flex; justify-content: center;\">\n  <table style=\"width: 70%; font-size: 0.8em;\">\n    <thead>\n      <tr>\n        <th></th>\n        <th> 🔀  <strong>Git</strong></th>\n        <th> 🌐  <strong>GitHub</strong></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><strong>What is it?</strong></td>\n        <td>A version control system</td>\n        <td>A platform for hosting Git repositories</td>\n      </tr>\n      <tr>\n        <td><strong>Runs where?</strong></td>\n        <td>On your local machine</td>\n        <td>In the cloud (online)</td>\n      </tr>\n      <tr>\n        <td><strong>Purpose</strong></td>\n        <td>Track changes in your files</td>\n        <td>Share and collaborate on Git projects</td>\n      </tr>\n      <tr>\n        <td><strong>Who uses it?</strong></td>\n        <td>Solo users with Git installed</td>\n        <td>Teams and the broader community</td>\n      </tr>\n      <tr>\n        <td><strong>Analogy</strong></td>\n        <td>Like saving a file with history</td>\n        <td>Like Google Drive for Git projects</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n</InjectedLayout>\n</template>\n\n<script setup>\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n</script>",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_9',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),8))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Git vs GitHub – What’s the Difference?\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"div\", { style: {\"display\":\"flex\",\"justify-content\":\"center\"} }, [\n        _createElementVNode(\"table\", { style: {\"width\":\"70%\",\"font-size\":\"0.8em\"} }, [\n          _createElementVNode(\"thead\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"th\"),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🔀 \"),\n                _createElementVNode(\"strong\", null, \"Git\")\n              ]),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🌐 \"),\n                _createElementVNode(\"strong\", null, \"GitHub\")\n              ])\n            ])\n          ]),\n          _createElementVNode(\"tbody\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"What is it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"A version control system\"),\n              _createElementVNode(\"td\", null, \"A platform for hosting Git repositories\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Runs where?\")\n              ]),\n              _createElementVNode(\"td\", null, \"On your local machine\"),\n              _createElementVNode(\"td\", null, \"In the cloud (online)\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Purpose\")\n              ]),\n              _createElementVNode(\"td\", null, \"Track changes in your files\"),\n              _createElementVNode(\"td\", null, \"Share and collaborate on Git projects\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Who uses it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"Solo users with Git installed\"),\n              _createElementVNode(\"td\", null, \"Teams and the broader community\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Analogy\")\n              ]),\n              _createElementVNode(\"td\", null, \"Like saving a file with history\"),\n              _createElementVNode(\"td\", null, \"Like Google Drive for Git projects\")\n            ])\n          ])\n        ])\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_9',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),8))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Git vs GitHub – What’s the Difference?\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"div\", { style: {\"display\":\"flex\",\"justify-content\":\"center\"} }, [\n        _createElementVNode(\"table\", { style: {\"width\":\"70%\",\"font-size\":\"0.8em\"} }, [\n          _createElementVNode(\"thead\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"th\"),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🔀 \"),\n                _createElementVNode(\"strong\", null, \"Git\")\n              ]),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🌐 \"),\n                _createElementVNode(\"strong\", null, \"GitHub\")\n              ])\n            ])\n          ]),\n          _createElementVNode(\"tbody\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"What is it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"A version control system\"),\n              _createElementVNode(\"td\", null, \"A platform for hosting Git repositories\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Runs where?\")\n              ]),\n              _createElementVNode(\"td\", null, \"On your local machine\"),\n              _createElementVNode(\"td\", null, \"In the cloud (online)\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Purpose\")\n              ]),\n              _createElementVNode(\"td\", null, \"Track changes in your files\"),\n              _createElementVNode(\"td\", null, \"Share and collaborate on Git projects\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Who uses it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"Solo users with Git installed\"),\n              _createElementVNode(\"td\", null, \"Teams and the broader community\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Analogy\")\n              ]),\n              _createElementVNode(\"td\", null, \"Like saving a file with history\"),\n              _createElementVNode(\"td\", null, \"Like Google Drive for Git projects\")\n            ])\n          ])\n        ])\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708833,
+      "end": 1743409708833,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_9',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),8))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Git vs GitHub – What’s the Difference?\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"div\", { style: {\"display\":\"flex\",\"justify-content\":\"center\"} }, [\n        _createElementVNode(\"table\", { style: {\"width\":\"70%\",\"font-size\":\"0.8em\"} }, [\n          _createElementVNode(\"thead\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"th\"),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🔀 \"),\n                _createElementVNode(\"strong\", null, \"Git\")\n              ]),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🌐 \"),\n                _createElementVNode(\"strong\", null, \"GitHub\")\n              ])\n            ])\n          ]),\n          _createElementVNode(\"tbody\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"What is it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"A version control system\"),\n              _createElementVNode(\"td\", null, \"A platform for hosting Git repositories\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Runs where?\")\n              ]),\n              _createElementVNode(\"td\", null, \"On your local machine\"),\n              _createElementVNode(\"td\", null, \"In the cloud (online)\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Purpose\")\n              ]),\n              _createElementVNode(\"td\", null, \"Track changes in your files\"),\n              _createElementVNode(\"td\", null, \"Share and collaborate on Git projects\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Who uses it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"Solo users with Git installed\"),\n              _createElementVNode(\"td\", null, \"Teams and the broader community\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Analogy\")\n              ]),\n              _createElementVNode(\"td\", null, \"Like saving a file with history\"),\n              _createElementVNode(\"td\", null, \"Like Google Drive for Git projects\")\n            ])\n          ])\n        ])\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708833,
+      "end": 1743409708834,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_9.md"
+        ],
+        "sourcesContent": [
+          "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_9',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),8))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Git vs GitHub – What’s the Difference?\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"div\", { style: {\"display\":\"flex\",\"justify-content\":\"center\"} }, [\n        _createElementVNode(\"table\", { style: {\"width\":\"70%\",\"font-size\":\"0.8em\"} }, [\n          _createElementVNode(\"thead\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"th\"),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🔀 \"),\n                _createElementVNode(\"strong\", null, \"Git\")\n              ]),\n              _createElementVNode(\"th\", null, [\n                _createTextVNode(\" 🌐 \"),\n                _createElementVNode(\"strong\", null, \"GitHub\")\n              ])\n            ])\n          ]),\n          _createElementVNode(\"tbody\", null, [\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"What is it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"A version control system\"),\n              _createElementVNode(\"td\", null, \"A platform for hosting Git repositories\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Runs where?\")\n              ]),\n              _createElementVNode(\"td\", null, \"On your local machine\"),\n              _createElementVNode(\"td\", null, \"In the cloud (online)\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Purpose\")\n              ]),\n              _createElementVNode(\"td\", null, \"Track changes in your files\"),\n              _createElementVNode(\"td\", null, \"Share and collaborate on Git projects\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Who uses it?\")\n              ]),\n              _createElementVNode(\"td\", null, \"Solo users with Git installed\"),\n              _createElementVNode(\"td\", null, \"Teams and the broader community\")\n            ]),\n            _createElementVNode(\"tr\", null, [\n              _createElementVNode(\"td\", null, [\n                _createElementVNode(\"strong\", null, \"Analogy\")\n              ]),\n              _createElementVNode(\"td\", null, \"Like saving a file with history\"),\n              _createElementVNode(\"td\", null, \"Like Google Drive for Git projects\")\n            ])\n          ])\n        ])\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,cAAc,CAAC,EAAE,CAAC,eAAe,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,OAAO,CAAC,EAAE,CAAC,QAAQ,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,WAAW,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG;;AAE7Q,MAAM,CAAC,cAAc,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,OAAO,CAAC,GAAG;AAClH,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,EAAE;;AAEzH,KAAK,CAAC,SAAS,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,MAAM,CAAC,YAAY,CAAC;AAC/B,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;;AAEjB,KAAK,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AACzG,CAAC,aAAa,CAAC,KAAK,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,SAAS,CAAC,CAAC;;;AAGtB,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,MAAM,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,cAAc,CAAC,CAAC,eAAe,CAAC,mBAAmB,CAAC,MAAM,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChJ,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,GAAG,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,GAAG,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC;AACjG,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC;AAC7D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,OAAO,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3F,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,GAAG,CAAC;AACzD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,MAAM,CAAC;AAC5D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,IAAI,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC;AACjE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,OAAO,CAAC,MAAM,CAAC,CAAC;AACzE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,GAAG,CAAC,OAAO,CAAC,GAAG,CAAC,YAAY,CAAC;AACvF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;AACjE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,CAAC,IAAI,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AACtE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,EAAE,CAAC,GAAG,CAAC,KAAK,CAAC,CAAC,MAAM,CAAC,CAAC;AACrE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC;AAC7D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,EAAE,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;AAC5E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,GAAG,CAAC,WAAW,CAAC,EAAE,CAAC,GAAG,CAAC,QAAQ,CAAC;AACrF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,EAAE,CAAC,CAAC;AAClE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,IAAI,CAAC,GAAG,CAAC,SAAS,CAAC,CAAC;AAC9E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,OAAO,CAAC,SAAS,CAAC;AAC/E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC;AAC7D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,OAAO,CAAC,CAAC;AAChF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,QAAQ,CAAC;AAClF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC;AACzB;AACA;;AAEA;;;;AAIA,MAAM,CAAC,OAAO,CAAC"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    }
+  ]
+}

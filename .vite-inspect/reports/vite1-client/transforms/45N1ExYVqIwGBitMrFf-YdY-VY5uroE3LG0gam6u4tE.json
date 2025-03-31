@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useWakeLock.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useWakeLock as useVueUseWakeLock } from '@vueuse/core'\nimport { watch } from 'vue'\nimport { wakeLockEnabled } from '../state'\n\nexport function useWakeLock() {\n  const { request, release } = useVueUseWakeLock()\n\n  watch(\n    wakeLockEnabled,\n    (enabled) => {\n      if (enabled)\n        request('screen')\n      else\n        release()\n    },\n    { immediate: true },\n  )\n}\n",
+      "start": 1743409708751,
+      "end": 1743409708775,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { useWakeLock as useVueUseWakeLock } from \"@vueuse/core\";\nimport { watch } from \"vue\";\nimport { wakeLockEnabled } from \"../state\";\nexport function useWakeLock() {\n  const { request, release } = useVueUseWakeLock();\n  watch(\n    wakeLockEnabled,\n    (enabled) => {\n      if (enabled)\n        request(\"screen\");\n      else\n        release();\n    },\n    { immediate: true }\n  );\n}\n",
+      "start": 1743409708775,
+      "end": 1743409708909,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useWakeLock.ts"
+        ],
+        "sourcesContent": [
+          "import { useWakeLock as useVueUseWakeLock } from '@vueuse/core'\nimport { watch } from 'vue'\nimport { wakeLockEnabled } from '../state'\n\nexport function useWakeLock() {\n  const { request, release } = useVueUseWakeLock()\n\n  watch(\n    wakeLockEnabled,\n    (enabled) => {\n      if (enabled)\n        request('screen')\n      else\n        release()\n    },\n    { immediate: true },\n  )\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,eAAe,yBAAyB;AACjD,SAAS,aAAa;AACtB,SAAS,uBAAuB;AAEzB,gBAAS,cAAc;AAC5B,QAAM,EAAE,SAAS,QAAQ,IAAI,kBAAkB;AAE/C;AAAA,IACE;AAAA,IACA,CAAC,YAAY;AACX,UAAI;AACF,gBAAQ,QAAQ;AAAA;AAEhB,gBAAQ;AAAA,IACZ;AAAA,IACA,EAAE,WAAW,KAAK;AAAA,EACpB;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

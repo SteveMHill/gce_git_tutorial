@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-drag.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { App } from 'vue'\nimport type { DragElementState } from '../composables/useDragElements'\nimport { watch } from 'vue'\nimport { useDragElement } from '../composables/useDragElements'\n\nexport function createVDragDirective() {\n  return {\n    install(app: App) {\n      app.directive<HTMLElement & { draggingState: DragElementState }>('drag', {\n        // @ts-expect-error extra prop\n        name: 'v-drag',\n\n        created(el, binding, vnode) {\n          const state = useDragElement(binding, binding.value, vnode.props?.markdownSource)\n          if (vnode.props) {\n            vnode.props = { ...vnode.props }\n            delete vnode.props.markdownSource\n          }\n          state.container.value = el\n          el.draggingState = state\n          el.dataset.dragId = state.dragId\n          state.watchStopHandles.push(\n            watch(state.containerStyle, (style) => {\n              for (const [k, v] of Object.entries(style)) {\n                if (v)\n                  el.style[k as any] = v as any\n              }\n            }, { immediate: true }),\n          )\n          el.addEventListener('dblclick', state.startDragging)\n        },\n        mounted(el) {\n          el.draggingState.mounted()\n        },\n        unmounted(el) {\n          const state = el.draggingState\n          state.unmounted()\n          el.removeEventListener('dblclick', state.startDragging)\n          state.watchStopHandles.forEach(fn => fn())\n        },\n      })\n    },\n  }\n}\n",
+      "start": 1743409708376,
+      "end": 1743409708383,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { watch } from \"vue\";\nimport { useDragElement } from \"../composables/useDragElements\";\nexport function createVDragDirective() {\n  return {\n    install(app) {\n      app.directive(\"drag\", {\n        // @ts-expect-error extra prop\n        name: \"v-drag\",\n        created(el, binding, vnode) {\n          const state = useDragElement(binding, binding.value, vnode.props?.markdownSource);\n          if (vnode.props) {\n            vnode.props = { ...vnode.props };\n            delete vnode.props.markdownSource;\n          }\n          state.container.value = el;\n          el.draggingState = state;\n          el.dataset.dragId = state.dragId;\n          state.watchStopHandles.push(\n            watch(state.containerStyle, (style) => {\n              for (const [k, v] of Object.entries(style)) {\n                if (v)\n                  el.style[k] = v;\n              }\n            }, { immediate: true })\n          );\n          el.addEventListener(\"dblclick\", state.startDragging);\n        },\n        mounted(el) {\n          el.draggingState.mounted();\n        },\n        unmounted(el) {\n          const state = el.draggingState;\n          state.unmounted();\n          el.removeEventListener(\"dblclick\", state.startDragging);\n          state.watchStopHandles.forEach((fn) => fn());\n        }\n      });\n    }\n  };\n}\n",
+      "start": 1743409708383,
+      "end": 1743409708465,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-drag.ts"
+        ],
+        "sourcesContent": [
+          "import type { App } from 'vue'\nimport type { DragElementState } from '../composables/useDragElements'\nimport { watch } from 'vue'\nimport { useDragElement } from '../composables/useDragElements'\n\nexport function createVDragDirective() {\n  return {\n    install(app: App) {\n      app.directive<HTMLElement & { draggingState: DragElementState }>('drag', {\n        // @ts-expect-error extra prop\n        name: 'v-drag',\n\n        created(el, binding, vnode) {\n          const state = useDragElement(binding, binding.value, vnode.props?.markdownSource)\n          if (vnode.props) {\n            vnode.props = { ...vnode.props }\n            delete vnode.props.markdownSource\n          }\n          state.container.value = el\n          el.draggingState = state\n          el.dataset.dragId = state.dragId\n          state.watchStopHandles.push(\n            watch(state.containerStyle, (style) => {\n              for (const [k, v] of Object.entries(style)) {\n                if (v)\n                  el.style[k as any] = v as any\n              }\n            }, { immediate: true }),\n          )\n          el.addEventListener('dblclick', state.startDragging)\n        },\n        mounted(el) {\n          el.draggingState.mounted()\n        },\n        unmounted(el) {\n          const state = el.draggingState\n          state.unmounted()\n          el.removeEventListener('dblclick', state.startDragging)\n          state.watchStopHandles.forEach(fn => fn())\n        },\n      })\n    },\n  }\n}\n"
+        ],
+        "mappings": "AAEA,SAAS,aAAa;AACtB,SAAS,sBAAsB;AAExB,gBAAS,uBAAuB;AACrC,SAAO;AAAA,IACL,QAAQ,KAAU;AAChB,UAAI,UAA6D,QAAQ;AAAA;AAAA,QAEvE,MAAM;AAAA,QAEN,QAAQ,IAAI,SAAS,OAAO;AAC1B,gBAAM,QAAQ,eAAe,SAAS,QAAQ,OAAO,MAAM,OAAO,cAAc;AAChF,cAAI,MAAM,OAAO;AACf,kBAAM,QAAQ,EAAE,GAAG,MAAM,MAAM;AAC/B,mBAAO,MAAM,MAAM;AAAA,UACrB;AACA,gBAAM,UAAU,QAAQ;AACxB,aAAG,gBAAgB;AACnB,aAAG,QAAQ,SAAS,MAAM;AAC1B,gBAAM,iBAAiB;AAAA,YACrB,MAAM,MAAM,gBAAgB,CAAC,UAAU;AACrC,yBAAW,CAAC,GAAG,CAAC,KAAK,OAAO,QAAQ,KAAK,GAAG;AAC1C,oBAAI;AACF,qBAAG,MAAM,CAAQ,IAAI;AAAA,cACzB;AAAA,YACF,GAAG,EAAE,WAAW,KAAK,CAAC;AAAA,UACxB;AACA,aAAG,iBAAiB,YAAY,MAAM,aAAa;AAAA,QACrD;AAAA,QACA,QAAQ,IAAI;AACV,aAAG,cAAc,QAAQ;AAAA,QAC3B;AAAA,QACA,UAAU,IAAI;AACZ,gBAAM,QAAQ,GAAG;AACjB,gBAAM,UAAU;AAChB,aAAG,oBAAoB,YAAY,MAAM,aAAa;AACtD,gBAAM,iBAAiB,QAAQ,QAAM,GAAG,CAAC;AAAA,QAC3C;AAAA,MACF,CAAC;AAAA,IACH;AAAA,EACF;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708465,
+      "end": 1743409708465,
+      "order": "normal"
+    }
+  ]
+}

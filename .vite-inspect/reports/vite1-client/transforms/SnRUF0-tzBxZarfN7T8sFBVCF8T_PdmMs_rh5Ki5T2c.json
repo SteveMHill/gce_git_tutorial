@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/schema/yaml-1.1/pairs.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isSeq, isPair, isMap } from '../../nodes/identity.js';\nimport { Pair, createPair } from '../../nodes/Pair.js';\nimport { Scalar } from '../../nodes/Scalar.js';\nimport { YAMLSeq } from '../../nodes/YAMLSeq.js';\n\nfunction resolvePairs(seq, onError) {\n    if (isSeq(seq)) {\n        for (let i = 0; i < seq.items.length; ++i) {\n            let item = seq.items[i];\n            if (isPair(item))\n                continue;\n            else if (isMap(item)) {\n                if (item.items.length > 1)\n                    onError('Each pair must have its own sequence indicator');\n                const pair = item.items[0] || new Pair(new Scalar(null));\n                if (item.commentBefore)\n                    pair.key.commentBefore = pair.key.commentBefore\n                        ? `${item.commentBefore}\\n${pair.key.commentBefore}`\n                        : item.commentBefore;\n                if (item.comment) {\n                    const cn = pair.value ?? pair.key;\n                    cn.comment = cn.comment\n                        ? `${item.comment}\\n${cn.comment}`\n                        : item.comment;\n                }\n                item = pair;\n            }\n            seq.items[i] = isPair(item) ? item : new Pair(item);\n        }\n    }\n    else\n        onError('Expected a sequence for this tag');\n    return seq;\n}\nfunction createPairs(schema, iterable, ctx) {\n    const { replacer } = ctx;\n    const pairs = new YAMLSeq(schema);\n    pairs.tag = 'tag:yaml.org,2002:pairs';\n    let i = 0;\n    if (iterable && Symbol.iterator in Object(iterable))\n        for (let it of iterable) {\n            if (typeof replacer === 'function')\n                it = replacer.call(iterable, String(i++), it);\n            let key, value;\n            if (Array.isArray(it)) {\n                if (it.length === 2) {\n                    key = it[0];\n                    value = it[1];\n                }\n                else\n                    throw new TypeError(`Expected [key, value] tuple: ${it}`);\n            }\n            else if (it && it instanceof Object) {\n                const keys = Object.keys(it);\n                if (keys.length === 1) {\n                    key = keys[0];\n                    value = it[key];\n                }\n                else {\n                    throw new TypeError(`Expected tuple with one key, not ${keys.length} keys`);\n                }\n            }\n            else {\n                key = it;\n            }\n            pairs.items.push(createPair(key, value, ctx));\n        }\n    return pairs;\n}\nconst pairs = {\n    collection: 'seq',\n    default: false,\n    tag: 'tag:yaml.org,2002:pairs',\n    resolve: resolvePairs,\n    createNode: createPairs\n};\n\nexport { createPairs, pairs, resolvePairs };\n",
+      "start": 1743409708653,
+      "end": 1743409708661,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    }
+  ]
+}

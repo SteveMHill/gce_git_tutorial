@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/doc/anchors.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isScalar, isCollection } from '../nodes/identity.js';\nimport { visit } from '../visit.js';\n\n/**\n * Verify that the input string is a valid anchor.\n *\n * Will throw on errors.\n */\nfunction anchorIsValid(anchor) {\n    if (/[\\x00-\\x19\\s,[\\]{}]/.test(anchor)) {\n        const sa = JSON.stringify(anchor);\n        const msg = `Anchor must not contain whitespace or control characters: ${sa}`;\n        throw new Error(msg);\n    }\n    return true;\n}\nfunction anchorNames(root) {\n    const anchors = new Set();\n    visit(root, {\n        Value(_key, node) {\n            if (node.anchor)\n                anchors.add(node.anchor);\n        }\n    });\n    return anchors;\n}\n/** Find a new anchor name with the given `prefix` and a one-indexed suffix. */\nfunction findNewAnchor(prefix, exclude) {\n    for (let i = 1; true; ++i) {\n        const name = `${prefix}${i}`;\n        if (!exclude.has(name))\n            return name;\n    }\n}\nfunction createNodeAnchors(doc, prefix) {\n    const aliasObjects = [];\n    const sourceObjects = new Map();\n    let prevAnchors = null;\n    return {\n        onAnchor: (source) => {\n            aliasObjects.push(source);\n            if (!prevAnchors)\n                prevAnchors = anchorNames(doc);\n            const anchor = findNewAnchor(prefix, prevAnchors);\n            prevAnchors.add(anchor);\n            return anchor;\n        },\n        /**\n         * With circular references, the source node is only resolved after all\n         * of its child nodes are. This is why anchors are set only after all of\n         * the nodes have been created.\n         */\n        setAnchors: () => {\n            for (const source of aliasObjects) {\n                const ref = sourceObjects.get(source);\n                if (typeof ref === 'object' &&\n                    ref.anchor &&\n                    (isScalar(ref.node) || isCollection(ref.node))) {\n                    ref.node.anchor = ref.anchor;\n                }\n                else {\n                    const error = new Error('Failed to resolve repeated object (this should not happen)');\n                    error.source = source;\n                    throw error;\n                }\n            }\n        },\n        sourceObjects\n    };\n}\n\nexport { anchorIsValid, anchorNames, createNodeAnchors, findNewAnchor };\n",
+      "start": 1743409708641,
+      "end": 1743409708650,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    }
+  ]
+}

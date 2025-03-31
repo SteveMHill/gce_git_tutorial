@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteStatic.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport type { ClicksContext } from '@slidev/types'\nimport { useSlideInfo } from '../composables/useSlideInfo'\nimport NoteDisplay from './NoteDisplay.vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'NoteStatic',\n  props: {\n    no: {},\n    class: {},\n    clicksContext: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst { info } = useSlideInfo(props.no)\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(NoteDisplay, {\n    class: _normalizeClass(props.class),\n    note: _unref(info)?.note,\n    \"note-html\": _unref(info)?.noteHTML,\n    \"clicks-context\": _ctx.clicksContext\n  }, null, 8 /* PROPS */, [\"class\", \"note\", \"note-html\", \"clicks-context\"]))\n}\n}\n\n})",
+      "start": 1743409708914,
+      "end": 1743409708914
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { useSlideInfo } from \"../composables/useSlideInfo\";\nimport NoteDisplay from \"./NoteDisplay.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"NoteStatic\",\n  props: {\n    no: {},\n    class: {},\n    clicksContext: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const { info } = useSlideInfo(props.no);\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(NoteDisplay, {\n        class: _normalizeClass(props.class),\n        note: _unref(info)?.note,\n        \"note-html\": _unref(info)?.noteHTML,\n        \"clicks-context\": _ctx.clicksContext\n      }, null, 8, [\"class\", \"note\", \"note-html\", \"clicks-context\"]);\n    };\n  }\n});\n",
+      "start": 1743409708914,
+      "end": 1743409708964,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteStatic.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport type { ClicksContext } from '@slidev/types'\nimport { useSlideInfo } from '../composables/useSlideInfo'\nimport NoteDisplay from './NoteDisplay.vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'NoteStatic',\n  props: {\n    no: {},\n    class: {},\n    clicksContext: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst { info } = useSlideInfo(props.no)\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(NoteDisplay, {\n    class: _normalizeClass(props.class),\n    note: _unref(info)?.note,\n    \"note-html\": _unref(info)?.noteHTML,\n    \"clicks-context\": _ctx.clicksContext\n  }, null, 8 /* PROPS */, [\"class\", \"note\", \"note-html\", \"clicks-context\"]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,kBAAkB,iBAAiB,aAAa,YAAY,eAAe,oBAAoB;AAGzH,SAAS,oBAAoB;AAC7B,OAAO,iBAAiB;AAGxB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACL,IAAI,CAAC;AAAA,IACL,OAAO,CAAC;AAAA,IACR,eAAe,CAAC;AAAA,EAClB;AAAA,EACA,MAAM,SAAc;AAEtB,UAAM,QAAQ;AAEd,UAAM,EAAE,KAAK,IAAI,aAAa,MAAM,EAAE;AAEtC,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,aAAa,aAAa;AAAA,QAC9C,OAAO,gBAAgB,MAAM,KAAK;AAAA,QAClC,MAAM,OAAO,IAAI,GAAG;AAAA,QACpB,aAAa,OAAO,IAAI,GAAG;AAAA,QAC3B,kBAAkB,KAAK;AAAA,MACzB,GAAG,MAAM,GAAe,CAAC,SAAS,QAAQ,aAAa,gBAAgB,CAAC;AAAA,IAC1E;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { useSlideInfo } from \"../composables/useSlideInfo\";\nimport NoteDisplay from \"./NoteDisplay.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"NoteStatic\",\n  props: {\n    no: {},\n    class: {},\n    clicksContext: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const { info } = useSlideInfo(props.no);\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(NoteDisplay, {\n        class: _normalizeClass(props.class),\n        note: _unref(info)?.note,\n        \"note-html\": _unref(info)?.noteHTML,\n        \"clicks-context\": _ctx.clicksContext\n      }, null, 8, [\"class\", \"note\", \"note-html\", \"clicks-context\"]);\n    };\n  }\n});\n",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteStatic.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { useSlideInfo } from \"../composables/useSlideInfo\";\nimport NoteDisplay from \"./NoteDisplay.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"NoteStatic\",\n  props: {\n    no: {},\n    class: {},\n    clicksContext: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const { info } = useSlideInfo(props.no);\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(NoteDisplay, {\n        class: _normalizeClass(props.class),\n        note: _unref(info)?.note,\n        \"note-html\": _unref(info)?.noteHTML,\n        \"clicks-context\": _ctx.clicksContext\n      }, null, 8, [\"class\", \"note\", \"note-html\", \"clicks-context\"]);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACzD,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,cAAc,CAAC,EAAE,CAAC,eAAe,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,WAAW,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AAC9H,MAAM,CAAC,CAAC,CAAC,YAAY,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,YAAY,CAAC;AAC1D,MAAM,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,GAAG,CAAC;AAC3C,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AAChD,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,UAAU,CAAC;AACtB,CAAC,CAAC,KAAK,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC;AACpB,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,OAAO;AACzB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,KAAK,CAAC,EAAE,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,WAAW,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,eAAe,CAAC,KAAK,CAAC,KAAK,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAC,IAAI;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,IAAI,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC;AACnE,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708964,
+      "end": 1743409708964,
+      "order": "normal"
+    }
+  ]
+}

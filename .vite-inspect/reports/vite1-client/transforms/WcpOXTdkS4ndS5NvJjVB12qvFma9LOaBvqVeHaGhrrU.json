@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { useEventListener } from '@vueuse/core'\nimport { computed, ref, watchEffect } from 'vue'\nimport { createFixedClicks } from '../composables/useClicks'\nimport { useNav } from '../composables/useNav'\nimport { CLICKS_MAX } from '../constants'\nimport { pathPrefix } from '../env'\nimport { currentOverviewPage, overviewRowCount } from '../logic/overview'\nimport { isScreenshotSupported } from '../logic/screenshot'\nimport { snapshotManager } from '../logic/snapshot'\nimport { breakpoints, showOverview, windowSize } from '../state'\nimport DrawingPreview from './DrawingPreview.vue'\nimport IconButton from './IconButton.vue'\nimport SlideContainer from './SlideContainer.vue'\nimport SlideWrapper from './SlideWrapper.vue'\n\nconst nav = useNav()\nconst { currentSlideNo, go: goSlide, slides } = nav\n\nfunction close() {\n  showOverview.value = false\n}\n\nfunction go(page: number) {\n  goSlide(page)\n  close()\n}\n\nfunction focus(page: number) {\n  if (page === currentOverviewPage.value)\n    return true\n  return false\n}\n\nconst xs = breakpoints.smaller('xs')\nconst sm = breakpoints.smaller('sm')\n\nconst padding = 4 * 16 * 2\nconst gap = 2 * 16\nconst cardWidth = computed(() => {\n  if (xs.value)\n    return windowSize.width.value - padding\n  else if (sm.value)\n    return (windowSize.width.value - padding - gap) / 2\n  return 300\n})\n\nconst rowCount = computed(() => {\n  return Math.floor((windowSize.width.value - padding) / (cardWidth.value + gap))\n})\n\nconst keyboardBuffer = ref<string>('')\n\nasync function captureSlidesOverview() {\n  showOverview.value = false\n  await snapshotManager.startCapturing(nav)\n  showOverview.value = true\n}\n\nuseEventListener('keypress', (e) => {\n  if (!showOverview.value) {\n    keyboardBuffer.value = ''\n    return\n  }\n  if (e.key === 'Enter') {\n    e.preventDefault()\n    if (keyboardBuffer.value) {\n      go(+keyboardBuffer.value)\n      keyboardBuffer.value = ''\n    }\n    else {\n      go(currentOverviewPage.value)\n    }\n    return\n  }\n  const num = Number.parseInt(e.key.replace(/\\D/g, ''))\n  if (Number.isNaN(num)) {\n    keyboardBuffer.value = ''\n    return\n  }\n  if (!keyboardBuffer.value && num === 0)\n    return\n\n  keyboardBuffer.value += String(num)\n\n  // beyond the number of slides, reset\n  if (+keyboardBuffer.value >= slides.value.length) {\n    keyboardBuffer.value = ''\n    return\n  }\n\n  const extactMatch = slides.value.findIndex(i => `/${i.no}` === keyboardBuffer.value)\n  if (extactMatch !== -1)\n    currentOverviewPage.value = extactMatch + 1\n\n  // When the input number is the largest at the number of digits, we go to that page directly.\n  if (+keyboardBuffer.value * 10 > slides.value.length) {\n    go(+keyboardBuffer.value)\n    keyboardBuffer.value = ''\n  }\n})\n\nwatchEffect(() => {\n  // Watch currentPage, make sure every time we open overview,\n  // we focus on the right page.\n  currentOverviewPage.value = currentSlideNo.value\n  // Watch rowCount, make sure up and down shortcut work correctly.\n  overviewRowCount.value = rowCount.value\n})\n</script>\n\n<template>\n  <Transition\n    enter-active-class=\"duration-150 ease-out\"\n    enter-from-class=\"opacity-0 scale-102 !backdrop-blur-0px\"\n    leave-active-class=\"duration-200 ease-in\"\n    leave-to-class=\"opacity-0 scale-102 !backdrop-blur-0px\"\n  >\n    <div\n      v-if=\"showOverview\"\n      class=\"fixed left-0 right-0 top-0 h-[calc(var(--vh,1vh)*100)] z-modal bg-main !bg-opacity-75 p-16 py-20 overflow-y-auto backdrop-blur-5px select-none\"\n      @click=\"close\"\n    >\n      <div\n        class=\"grid gap-y-4 gap-x-8 w-full\"\n        :style=\"`grid-template-columns: repeat(auto-fit,minmax(${cardWidth}px,1fr))`\"\n      >\n        <div\n          v-for=\"(route, idx) of slides\"\n          :key=\"route.no\"\n          class=\"relative\"\n        >\n          <div\n            class=\"inline-block border rounded overflow-hidden bg-main hover:border-primary transition\"\n            :class=\"(focus(idx + 1) || currentOverviewPage === idx + 1) ? 'border-primary' : 'border-main'\"\n            @click=\"go(route.no)\"\n          >\n            <SlideContainer\n              :key=\"route.no\"\n              :no=\"route.no\"\n              :use-snapshot=\"true\"\n              :width=\"cardWidth\"\n              class=\"pointer-events-none\"\n            >\n              <SlideWrapper\n                :clicks-context=\"createFixedClicks(route, CLICKS_MAX)\"\n                :route=\"route\"\n                render-context=\"overview\"\n              />\n              <DrawingPreview :page=\"route.no\" />\n            </SlideContainer>\n          </div>\n          <div\n            class=\"absolute top-0\"\n            :style=\"`left: ${cardWidth + 5}px`\"\n          >\n            <template v-if=\"keyboardBuffer && String(idx + 1).startsWith(keyboardBuffer)\">\n              <span class=\"text-green font-bold\">{{ keyboardBuffer }}</span>\n              <span class=\"opacity-50\">{{ String(idx + 1).slice(keyboardBuffer.length) }}</span>\n            </template>\n            <span v-else class=\"opacity-50\">\n              {{ idx + 1 }}\n            </span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </Transition>\n  <div\n    v-show=\"showOverview\"\n    class=\"fixed top-4 right-4 z-modal text-gray-400 flex flex-col items-center gap-2\"\n  >\n    <IconButton title=\"Close\" class=\"text-2xl\" @click=\"close\">\n      <div class=\"i-carbon:close\" />\n    </IconButton>\n    <IconButton\n      v-if=\"__SLIDEV_FEATURE_PRESENTER__\"\n      as=\"a\"\n      title=\"Slides Overview\"\n      target=\"_blank\"\n      :href=\"`${pathPrefix}overview`\"\n      tab-index=\"-1\"\n      class=\"text-2xl\"\n    >\n      <div class=\"i-carbon:list-boxes\" />\n    </IconButton>\n    <IconButton\n      v-if=\"__DEV__ && isScreenshotSupported\"\n      title=\"Capture slides as images\"\n      class=\"text-2xl\"\n      @click=\"captureSlidesOverview\"\n    >\n      <div class=\"i-carbon:drop-photo\" />\n    </IconButton>\n  </div>\n</template>\n",
+      "start": 1743409708751,
+      "end": 1743409708795,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "result": "<script setup lang=\"ts\">\nimport { useEventListener } from '@vueuse/core'\nimport { computed, ref, watchEffect } from 'vue'\nimport { createFixedClicks } from '../composables/useClicks'\nimport { useNav } from '../composables/useNav'\nimport { CLICKS_MAX } from '../constants'\nimport { pathPrefix } from '../env'\nimport { currentOverviewPage, overviewRowCount } from '../logic/overview'\nimport { isScreenshotSupported } from '../logic/screenshot'\nimport { snapshotManager } from '../logic/snapshot'\nimport { breakpoints, showOverview, windowSize } from '../state'\nimport DrawingPreview from './DrawingPreview.vue'\nimport IconButton from './IconButton.vue'\nimport SlideContainer from './SlideContainer.vue'\nimport SlideWrapper from './SlideWrapper.vue'\n\nconst nav = useNav()\nconst { currentSlideNo, go: goSlide, slides } = nav\n\nfunction close() {\n  showOverview.value = false\n}\n\nfunction go(page: number) {\n  goSlide(page)\n  close()\n}\n\nfunction focus(page: number) {\n  if (page === currentOverviewPage.value)\n    return true\n  return false\n}\n\nconst xs = breakpoints.smaller('xs')\nconst sm = breakpoints.smaller('sm')\n\nconst padding = 4 * 16 * 2\nconst gap = 2 * 16\nconst cardWidth = computed(() => {\n  if (xs.value)\n    return windowSize.width.value - padding\n  else if (sm.value)\n    return (windowSize.width.value - padding - gap) / 2\n  return 300\n})\n\nconst rowCount = computed(() => {\n  return Math.floor((windowSize.width.value - padding) / (cardWidth.value + gap))\n})\n\nconst keyboardBuffer = ref<string>('')\n\nasync function captureSlidesOverview() {\n  showOverview.value = false\n  await snapshotManager.startCapturing(nav)\n  showOverview.value = true\n}\n\nuseEventListener('keypress', (e) => {\n  if (!showOverview.value) {\n    keyboardBuffer.value = ''\n    return\n  }\n  if (e.key === 'Enter') {\n    e.preventDefault()\n    if (keyboardBuffer.value) {\n      go(+keyboardBuffer.value)\n      keyboardBuffer.value = ''\n    }\n    else {\n      go(currentOverviewPage.value)\n    }\n    return\n  }\n  const num = Number.parseInt(e.key.replace(/\\D/g, ''))\n  if (Number.isNaN(num)) {\n    keyboardBuffer.value = ''\n    return\n  }\n  if (!keyboardBuffer.value && num === 0)\n    return\n\n  keyboardBuffer.value += String(num)\n\n  // beyond the number of slides, reset\n  if (+keyboardBuffer.value >= slides.value.length) {\n    keyboardBuffer.value = ''\n    return\n  }\n\n  const extactMatch = slides.value.findIndex(i => `/${i.no}` === keyboardBuffer.value)\n  if (extactMatch !== -1)\n    currentOverviewPage.value = extactMatch + 1\n\n  // When the input number is the largest at the number of digits, we go to that page directly.\n  if (+keyboardBuffer.value * 10 > slides.value.length) {\n    go(+keyboardBuffer.value)\n    keyboardBuffer.value = ''\n  }\n})\n\nwatchEffect(() => {\n  // Watch currentPage, make sure every time we open overview,\n  // we focus on the right page.\n  currentOverviewPage.value = currentSlideNo.value\n  // Watch rowCount, make sure up and down shortcut work correctly.\n  overviewRowCount.value = rowCount.value\n})\n</script>\n\n<template>\n  <Transition\n    enter-active-class=\"duration-150 ease-out\"\n    enter-from-class=\"opacity-0 scale-102 !backdrop-blur-0px\"\n    leave-active-class=\"duration-200 ease-in\"\n    leave-to-class=\"opacity-0 scale-102 !backdrop-blur-0px\"\n  >\n    <div\n      v-if=\"showOverview\"\n      class=\"fixed left-0 right-0 top-0 h-[calc(var(--vh,1vh)*100)] z-modal bg-main !bg-opacity-75 p-16 py-20 overflow-y-auto backdrop-blur-5px select-none\"\n      @click=\"close\"\n    >\n      <div\n        class=\"grid gap-y-4 gap-x-8 w-full\"\n        :style=\"`grid-template-columns: repeat(auto-fit,minmax(${cardWidth}px,1fr))`\"\n      >\n        <div\n          v-for=\"(route, idx) of slides\"\n          :key=\"route.no\"\n          class=\"relative\"\n        >\n          <div\n            class=\"inline-block border rounded overflow-hidden bg-main hover:border-primary transition\"\n            :class=\"(focus(idx + 1) || currentOverviewPage === idx + 1) ? 'border-primary' : 'border-main'\"\n            @click=\"go(route.no)\"\n          >\n            <SlideContainer\n              :key=\"route.no\"\n              :no=\"route.no\"\n              :use-snapshot=\"true\"\n              :width=\"cardWidth\"\n              class=\"pointer-events-none\"\n            >\n              <SlideWrapper\n                :clicks-context=\"createFixedClicks(route, CLICKS_MAX)\"\n                :route=\"route\"\n                render-context=\"overview\"\n              />\n              <DrawingPreview :page=\"route.no\" />\n            </SlideContainer>\n          </div>\n          <div\n            class=\"absolute top-0\"\n            :style=\"`left: ${cardWidth + 5}px`\"\n          >\n            <template v-if=\"keyboardBuffer && String(idx + 1).startsWith(keyboardBuffer)\">\n              <span class=\"text-green font-bold\">{{ keyboardBuffer }}</span>\n              <span class=\"opacity-50\">{{ String(idx + 1).slice(keyboardBuffer.length) }}</span>\n            </template>\n            <span v-else class=\"opacity-50\">\n              {{ idx + 1 }}\n            </span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </Transition>\n  <div\n    v-show=\"showOverview\"\n    class=\"fixed top-4 right-4 z-modal text-gray-400 flex flex-col items-center gap-2\"\n  >\n    <IconButton title=\"Close\" class=\"text-2xl\" @click=\"close\">\n      <div class=\"i-carbon:close\" />\n    </IconButton>\n    <IconButton\n      v-if=\"true\"\n      as=\"a\"\n      title=\"Slides Overview\"\n      target=\"_blank\"\n      :href=\"`${pathPrefix}overview`\"\n      tab-index=\"-1\"\n      class=\"text-2xl\"\n    >\n      <div class=\"i-carbon:list-boxes\" />\n    </IconButton>\n    <IconButton\n      v-if=\"false && isScreenshotSupported\"\n      title=\"Capture slides as images\"\n      class=\"text-2xl\"\n      @click=\"captureSlidesOverview\"\n    >\n      <div class=\"i-carbon:drop-photo\" />\n    </IconButton>\n  </div>\n</template>\n",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "pre",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708795,
+      "end": 1743409708795,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708795,
+      "end": 1743409708935,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/QuickOverview.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,aAAa,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACrJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,aAAa,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC7I,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "normal"
+    }
+  ]
+}

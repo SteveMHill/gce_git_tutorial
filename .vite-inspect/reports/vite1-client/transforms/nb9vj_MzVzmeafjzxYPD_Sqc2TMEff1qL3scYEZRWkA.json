@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ShadowRoot.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { computed, ref, watchEffect } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'ShadowRoot',\n  props: {\n    innerHtml: {}\n  },\n  emits: [\"shadow\"],\n  setup(__props: any, { emit: __emit }) {\n\nconst props = __props\n\nconst emit = __emit\n\nconst el = ref<HTMLDivElement>()\nconst shadow = computed(() => el.value ? (el.value.shadowRoot || el.value.attachShadow({ mode: 'open' })) : null)\nwatchEffect(() => {\n  if (shadow.value && props.innerHtml) {\n    emit('shadow', shadow.value)\n    shadow.value.innerHTML = props.innerHtml\n  }\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", {\n    ref_key: \"el\",\n    ref: el\n  }, null, 512 /* NEED_PATCH */))\n}\n}\n\n})",
+      "start": 1743409709048,
+      "end": 1743409709048
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709048,
+      "end": 1743409709048,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709048,
+      "end": 1743409709048,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709048,
+      "end": 1743409709048,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709048,
+      "end": 1743409709048,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709048,
+      "end": 1743409709048,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { computed, ref, watchEffect } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"ShadowRoot\",\n  props: {\n    innerHtml: {}\n  },\n  emits: [\"shadow\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const el = ref();\n    const shadow = computed(() => el.value ? el.value.shadowRoot || el.value.attachShadow({ mode: \"open\" }) : null);\n    watchEffect(() => {\n      if (shadow.value && props.innerHtml) {\n        emit(\"shadow\", shadow.value);\n        shadow.value.innerHTML = props.innerHtml;\n      }\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"div\",\n        {\n          ref_key: \"el\",\n          ref: el\n        },\n        null,\n        512\n        /* NEED_PATCH */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709048,
+      "end": 1743409709235,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ShadowRoot.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { computed, ref, watchEffect } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'ShadowRoot',\n  props: {\n    innerHtml: {}\n  },\n  emits: [\"shadow\"],\n  setup(__props: any, { emit: __emit }) {\n\nconst props = __props\n\nconst emit = __emit\n\nconst el = ref<HTMLDivElement>()\nconst shadow = computed(() => el.value ? (el.value.shadowRoot || el.value.attachShadow({ mode: 'open' })) : null)\nwatchEffect(() => {\n  if (shadow.value && props.innerHtml) {\n    emit('shadow', shadow.value)\n    shadow.value.innerHTML = props.innerHtml\n  }\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", {\n    ref_key: \"el\",\n    ref: el\n  }, null, 512 /* NEED_PATCH */))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,aAAa,YAAY,sBAAsB,2BAA2B;AAEnF,SAAS,UAAU,KAAK,mBAAmB;AAG3C,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACL,WAAW,CAAC;AAAA,EACd;AAAA,EACA,OAAO,CAAC,QAAQ;AAAA,EAChB,MAAM,SAAc,EAAE,MAAM,OAAO,GAAG;AAExC,UAAM,QAAQ;AAEd,UAAM,OAAO;AAEb,UAAM,KAAK,IAAoB;AAC/B,UAAM,SAAS,SAAS,MAAM,GAAG,QAAS,GAAG,MAAM,cAAc,GAAG,MAAM,aAAa,EAAE,MAAM,OAAO,CAAC,IAAK,IAAI;AAChH,gBAAY,MAAM;AAChB,UAAI,OAAO,SAAS,MAAM,WAAW;AACnC,aAAK,UAAU,OAAO,KAAK;AAC3B,eAAO,MAAM,YAAY,MAAM;AAAA,MACjC;AAAA,IACF,CAAC;AAED,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG;AAAA,QAAoB;AAAA,QAAO;AAAA,UAC/C,SAAS;AAAA,UACT,KAAK;AAAA,QACP;AAAA,QAAG;AAAA,QAAM;AAAA;AAAA,MAAoB;AAAA,IAC/B;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709235,
+      "end": 1743409709235,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { computed, ref, watchEffect } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"ShadowRoot\",\n  props: {\n    innerHtml: {}\n  },\n  emits: [\"shadow\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const el = ref();\n    const shadow = computed(() => el.value ? el.value.shadowRoot || el.value.attachShadow({ mode: \"open\" }) : null);\n    watchEffect(() => {\n      if (shadow.value && props.innerHtml) {\n        emit(\"shadow\", shadow.value);\n        shadow.value.innerHTML = props.innerHtml;\n      }\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"div\",\n        {\n          ref_key: \"el\",\n          ref: el\n        },\n        null,\n        512\n        /* NEED_PATCH */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709235,
+      "end": 1743409709236,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ShadowRoot.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { computed, ref, watchEffect } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"ShadowRoot\",\n  props: {\n    innerHtml: {}\n  },\n  emits: [\"shadow\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const el = ref();\n    const shadow = computed(() => el.value ? el.value.shadowRoot || el.value.attachShadow({ mode: \"open\" }) : null);\n    watchEffect(() => {\n      if (shadow.value && props.innerHtml) {\n        emit(\"shadow\", shadow.value);\n        shadow.value.innerHTML = props.innerHtml;\n      }\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"div\",\n        {\n          ref_key: \"el\",\n          ref: el\n        },\n        null,\n        512\n        /* NEED_PATCH */\n      );\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709236,
+      "end": 1743409709236,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709236,
+      "end": 1743409709236,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709236,
+      "end": 1743409709236,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/doc/applyReviver.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * Applies the JSON.parse reviver algorithm as defined in the ECMA-262 spec,\n * in section 24.5.1.1 \"Runtime Semantics: InternalizeJSONProperty\" of the\n * 2021 edition: https://tc39.es/ecma262/#sec-json.parse\n *\n * Includes extensions for handling Map and Set objects.\n */\nfunction applyReviver(reviver, obj, key, val) {\n    if (val && typeof val === 'object') {\n        if (Array.isArray(val)) {\n            for (let i = 0, len = val.length; i < len; ++i) {\n                const v0 = val[i];\n                const v1 = applyReviver(reviver, val, String(i), v0);\n                // eslint-disable-next-line @typescript-eslint/no-array-delete\n                if (v1 === undefined)\n                    delete val[i];\n                else if (v1 !== v0)\n                    val[i] = v1;\n            }\n        }\n        else if (val instanceof Map) {\n            for (const k of Array.from(val.keys())) {\n                const v0 = val.get(k);\n                const v1 = applyReviver(reviver, val, k, v0);\n                if (v1 === undefined)\n                    val.delete(k);\n                else if (v1 !== v0)\n                    val.set(k, v1);\n            }\n        }\n        else if (val instanceof Set) {\n            for (const v0 of Array.from(val)) {\n                const v1 = applyReviver(reviver, val, v0, v0);\n                if (v1 === undefined)\n                    val.delete(v0);\n                else if (v1 !== v0) {\n                    val.delete(v0);\n                    val.add(v1);\n                }\n            }\n        }\n        else {\n            for (const [k, v0] of Object.entries(val)) {\n                const v1 = applyReviver(reviver, val, k, v0);\n                if (v1 === undefined)\n                    delete val[k];\n                else if (v1 !== v0)\n                    val[k] = v1;\n            }\n        }\n    }\n    return reviver.call(obj, key, val);\n}\n\nexport { applyReviver };\n",
+      "start": 1743409708641,
+      "end": 1743409708650,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/schema/json/schema.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Scalar } from '../../nodes/Scalar.js';\nimport { map } from '../common/map.js';\nimport { seq } from '../common/seq.js';\n\nfunction intIdentify(value) {\n    return typeof value === 'bigint' || Number.isInteger(value);\n}\nconst stringifyJSON = ({ value }) => JSON.stringify(value);\nconst jsonScalars = [\n    {\n        identify: value => typeof value === 'string',\n        default: true,\n        tag: 'tag:yaml.org,2002:str',\n        resolve: str => str,\n        stringify: stringifyJSON\n    },\n    {\n        identify: value => value == null,\n        createNode: () => new Scalar(null),\n        default: true,\n        tag: 'tag:yaml.org,2002:null',\n        test: /^null$/,\n        resolve: () => null,\n        stringify: stringifyJSON\n    },\n    {\n        identify: value => typeof value === 'boolean',\n        default: true,\n        tag: 'tag:yaml.org,2002:bool',\n        test: /^true$|^false$/,\n        resolve: str => str === 'true',\n        stringify: stringifyJSON\n    },\n    {\n        identify: intIdentify,\n        default: true,\n        tag: 'tag:yaml.org,2002:int',\n        test: /^-?(?:0|[1-9][0-9]*)$/,\n        resolve: (str, _onError, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str, 10),\n        stringify: ({ value }) => intIdentify(value) ? value.toString() : JSON.stringify(value)\n    },\n    {\n        identify: value => typeof value === 'number',\n        default: true,\n        tag: 'tag:yaml.org,2002:float',\n        test: /^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]*)?(?:[eE][-+]?[0-9]+)?$/,\n        resolve: str => parseFloat(str),\n        stringify: stringifyJSON\n    }\n];\nconst jsonError = {\n    default: true,\n    tag: '',\n    test: /^/,\n    resolve(str, onError) {\n        onError(`Unresolved plain scalar ${JSON.stringify(str)}`);\n        return str;\n    }\n};\nconst schema = [map, seq].concat(jsonScalars, jsonError);\n\nexport { schema };\n",
+      "start": 1743409708653,
+      "end": 1743409708660,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/schema/yaml-1.1/binary.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Scalar } from '../../nodes/Scalar.js';\nimport { stringifyString } from '../../stringify/stringifyString.js';\n\nconst binary = {\n    identify: value => value instanceof Uint8Array, // Buffer inherits from Uint8Array\n    default: false,\n    tag: 'tag:yaml.org,2002:binary',\n    /**\n     * Returns a Buffer in node and an Uint8Array in browsers\n     *\n     * To use the resulting buffer as an image, you'll want to do something like:\n     *\n     *   const blob = new Blob([buffer], { type: 'image/jpeg' })\n     *   document.querySelector('#photo').src = URL.createObjectURL(blob)\n     */\n    resolve(src, onError) {\n        if (typeof atob === 'function') {\n            // On IE 11, atob() can't handle newlines\n            const str = atob(src.replace(/[\\n\\r]/g, ''));\n            const buffer = new Uint8Array(str.length);\n            for (let i = 0; i < str.length; ++i)\n                buffer[i] = str.charCodeAt(i);\n            return buffer;\n        }\n        else {\n            onError('This environment does not support reading binary tags; either Buffer or atob is required');\n            return src;\n        }\n    },\n    stringify({ comment, type, value }, ctx, onComment, onChompKeep) {\n        if (!value)\n            return '';\n        const buf = value; // checked earlier by binary.identify()\n        let str;\n        if (typeof btoa === 'function') {\n            let s = '';\n            for (let i = 0; i < buf.length; ++i)\n                s += String.fromCharCode(buf[i]);\n            str = btoa(s);\n        }\n        else {\n            throw new Error('This environment does not support writing binary tags; either Buffer or btoa is required');\n        }\n        if (!type)\n            type = Scalar.BLOCK_LITERAL;\n        if (type !== Scalar.QUOTE_DOUBLE) {\n            const lineWidth = Math.max(ctx.options.lineWidth - ctx.indent.length, ctx.options.minContentWidth);\n            const n = Math.ceil(str.length / lineWidth);\n            const lines = new Array(n);\n            for (let i = 0, o = 0; i < n; ++i, o += lineWidth) {\n                lines[i] = str.substr(o, lineWidth);\n            }\n            str = lines.join(type === Scalar.BLOCK_LITERAL ? '\\n' : ' ');\n        }\n        return stringifyString({ comment, type, value: str }, ctx, onComment, onChompKeep);\n    }\n};\n\nexport { binary };\n",
+      "start": 1743409708653,
+      "end": 1743409708660,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    }
+  ]
+}

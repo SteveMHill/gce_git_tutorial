@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/overview.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { computed, ref } from 'vue'\nimport { slides } from './slides'\n\n// To have same format(.value) as max, wrap it with ref.\nconst min = ref(1)\nconst max = computed(() => slides.value.length)\n\nexport const currentOverviewPage = ref(0)\nexport const overviewRowCount = ref(0)\n\nexport function prevOverviewPage() {\n  if (currentOverviewPage.value > min.value)\n    currentOverviewPage.value -= 1\n}\n\nexport function nextOverviewPage() {\n  if (currentOverviewPage.value < max.value)\n    currentOverviewPage.value += 1\n}\n\nexport function upOverviewPage() {\n  if (currentOverviewPage.value > min.value) {\n    let current = currentOverviewPage.value - overviewRowCount.value\n    if (current < min.value)\n      current = min.value\n\n    currentOverviewPage.value = current\n  }\n}\n\nexport function downOverviewPage() {\n  if (currentOverviewPage.value < max.value) {\n    let current = currentOverviewPage.value + overviewRowCount.value\n    if (current > max.value)\n      current = max.value\n\n    currentOverviewPage.value = current\n  }\n}\n",
+      "start": 1743409709012,
+      "end": 1743409709032,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709032,
+      "end": 1743409709032,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709032,
+      "end": 1743409709032,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709032,
+      "end": 1743409709032,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709032,
+      "end": 1743409709032,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709032,
+      "end": 1743409709032,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { computed, ref } from \"vue\";\nimport { slides } from \"./slides\";\nconst min = ref(1);\nconst max = computed(() => slides.value.length);\nexport const currentOverviewPage = ref(0);\nexport const overviewRowCount = ref(0);\nexport function prevOverviewPage() {\n  if (currentOverviewPage.value > min.value)\n    currentOverviewPage.value -= 1;\n}\nexport function nextOverviewPage() {\n  if (currentOverviewPage.value < max.value)\n    currentOverviewPage.value += 1;\n}\nexport function upOverviewPage() {\n  if (currentOverviewPage.value > min.value) {\n    let current = currentOverviewPage.value - overviewRowCount.value;\n    if (current < min.value)\n      current = min.value;\n    currentOverviewPage.value = current;\n  }\n}\nexport function downOverviewPage() {\n  if (currentOverviewPage.value < max.value) {\n    let current = currentOverviewPage.value + overviewRowCount.value;\n    if (current > max.value)\n      current = max.value;\n    currentOverviewPage.value = current;\n  }\n}\n",
+      "start": 1743409709032,
+      "end": 1743409709044,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/overview.ts"
+        ],
+        "sourcesContent": [
+          "import { computed, ref } from 'vue'\nimport { slides } from './slides'\n\n// To have same format(.value) as max, wrap it with ref.\nconst min = ref(1)\nconst max = computed(() => slides.value.length)\n\nexport const currentOverviewPage = ref(0)\nexport const overviewRowCount = ref(0)\n\nexport function prevOverviewPage() {\n  if (currentOverviewPage.value > min.value)\n    currentOverviewPage.value -= 1\n}\n\nexport function nextOverviewPage() {\n  if (currentOverviewPage.value < max.value)\n    currentOverviewPage.value += 1\n}\n\nexport function upOverviewPage() {\n  if (currentOverviewPage.value > min.value) {\n    let current = currentOverviewPage.value - overviewRowCount.value\n    if (current < min.value)\n      current = min.value\n\n    currentOverviewPage.value = current\n  }\n}\n\nexport function downOverviewPage() {\n  if (currentOverviewPage.value < max.value) {\n    let current = currentOverviewPage.value + overviewRowCount.value\n    if (current > max.value)\n      current = max.value\n\n    currentOverviewPage.value = current\n  }\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,UAAU,WAAW;AAC9B,SAAS,cAAc;AAGvB,MAAM,MAAM,IAAI,CAAC;AACjB,MAAM,MAAM,SAAS,MAAM,OAAO,MAAM,MAAM;AAEvC,aAAM,sBAAsB,IAAI,CAAC;AACjC,aAAM,mBAAmB,IAAI,CAAC;AAE9B,gBAAS,mBAAmB;AACjC,MAAI,oBAAoB,QAAQ,IAAI;AAClC,wBAAoB,SAAS;AACjC;AAEO,gBAAS,mBAAmB;AACjC,MAAI,oBAAoB,QAAQ,IAAI;AAClC,wBAAoB,SAAS;AACjC;AAEO,gBAAS,iBAAiB;AAC/B,MAAI,oBAAoB,QAAQ,IAAI,OAAO;AACzC,QAAI,UAAU,oBAAoB,QAAQ,iBAAiB;AAC3D,QAAI,UAAU,IAAI;AAChB,gBAAU,IAAI;AAEhB,wBAAoB,QAAQ;AAAA,EAC9B;AACF;AAEO,gBAAS,mBAAmB;AACjC,MAAI,oBAAoB,QAAQ,IAAI,OAAO;AACzC,QAAI,UAAU,oBAAoB,QAAQ,iBAAiB;AAC3D,QAAI,UAAU,IAAI;AAChB,gBAAU,IAAI;AAEhB,wBAAoB,QAAQ;AAAA,EAC9B;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    }
+  ]
+}

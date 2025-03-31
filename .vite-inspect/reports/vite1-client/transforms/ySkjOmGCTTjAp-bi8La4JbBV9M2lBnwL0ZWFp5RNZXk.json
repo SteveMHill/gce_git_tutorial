@@ -1,0 +1,188 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_3.md",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "# Your Input is Key!\n\n** **\n\nI want these sessions to be practical, fun, and driven by what you find useful.\n\n\n- 💡 Got a topic in mind?\n- 🛠️ Curious about a tool or workflow?\n- ❓ Want to solve a problem you've run into?\n\n<br> </br>\n\n<v-click>\n\nI am also open to running extended sessions\n- 🕒 30–60 minutes\n- 💻 With hands-on tutorials, live demos, and\n- 👥 Time for you to try things out — with support.\n\n</v-click>",
+      "start": 1743409708823,
+      "end": 1743409708823,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "result": "<template><div><h1>Your Input is Key!</h1>\n<hr />\n<p>I want these sessions to be practical, fun, and driven by what you find useful.</p>\n<ul>\n<li>💡 Got a topic in mind?</li>\n<li>🛠️ Curious about a tool or workflow?</li>\n<li>❓ Want to solve a problem you’ve run into?</li>\n</ul>\n<p><br> </br></p>\n<v-click>\n<p>I am also open to running extended sessions</p>\n<ul>\n<li>🕒 30–60 minutes</li>\n<li>💻 With hands-on tutorials, live demos, and</li>\n<li>👥 Time for you to try things out — with support.</li>\n</ul>\n</v-click></div></template>\n<script setup>\n</script>",
+      "start": 1743409708823,
+      "end": 1743409708824,
+      "order": "pre",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "result": "<template>\n<InjectedLayout v-bind=\"_frontmatterToProps($frontmatter,2)\">\n<h1>Your Input is Key!</h1>\n<hr />\n<p>I want these sessions to be practical, fun, and driven by what you find useful.</p>\n<ul>\n<li>💡 Got a topic in mind?</li>\n<li>🛠️ Curious about a tool or workflow?</li>\n<li>❓ Want to solve a problem you’ve run into?</li>\n</ul>\n<p><br> </br></p>\n<v-click>\n<p>I am also open to running extended sessions</p>\n<ul>\n<li>🕒 30–60 minutes</li>\n<li>💻 With hands-on tutorials, live demos, and</li>\n<li>👥 Time for you to try things out — with support.</li>\n</ul>\n</v-click>\n</InjectedLayout>\n</template>\n\n<script setup>\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n</script>",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_3',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_v_click = _resolveComponent(\"v-click\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),2))), {\n    default: _withCtx(() => [\n      _cache[1] || (_cache[1] = _createElementVNode(\"h1\", null, \"Your Input is Key!\", -1 /* HOISTED */)),\n      _cache[2] || (_cache[2] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[3] || (_cache[3] = _createElementVNode(\"p\", null, \"I want these sessions to be practical, fun, and driven by what you find useful.\", -1 /* HOISTED */)),\n      _cache[4] || (_cache[4] = _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, \"💡 Got a topic in mind?\"),\n        _createElementVNode(\"li\", null, \"🛠️ Curious about a tool or workflow?\"),\n        _createElementVNode(\"li\", null, \"❓ Want to solve a problem you’ve run into?\")\n      ], -1 /* HOISTED */)),\n      _cache[5] || (_cache[5] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */)),\n      _createVNode(_component_v_click, null, {\n        default: _withCtx(() => _cache[0] || (_cache[0] = [\n          _createElementVNode(\"p\", null, \"I am also open to running extended sessions\", -1 /* HOISTED */),\n          _createElementVNode(\"ul\", null, [\n            _createElementVNode(\"li\", null, \"🕒 30–60 minutes\"),\n            _createElementVNode(\"li\", null, \"💻 With hands-on tutorials, live demos, and\"),\n            _createElementVNode(\"li\", null, \"👥 Time for you to try things out — with support.\")\n          ], -1 /* HOISTED */)\n        ])),\n        _: 1 /* STABLE */\n      })\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_3',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_v_click = _resolveComponent(\"v-click\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),2))), {\n    default: _withCtx(() => [\n      _cache[1] || (_cache[1] = _createElementVNode(\"h1\", null, \"Your Input is Key!\", -1 /* HOISTED */)),\n      _cache[2] || (_cache[2] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[3] || (_cache[3] = _createElementVNode(\"p\", null, \"I want these sessions to be practical, fun, and driven by what you find useful.\", -1 /* HOISTED */)),\n      _cache[4] || (_cache[4] = _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, \"💡 Got a topic in mind?\"),\n        _createElementVNode(\"li\", null, \"🛠️ Curious about a tool or workflow?\"),\n        _createElementVNode(\"li\", null, \"❓ Want to solve a problem you’ve run into?\")\n      ], -1 /* HOISTED */)),\n      _cache[5] || (_cache[5] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */)),\n      _createVNode(_component_v_click, null, {\n        default: _withCtx(() => _cache[0] || (_cache[0] = [\n          _createElementVNode(\"p\", null, \"I am also open to running extended sessions\", -1 /* HOISTED */),\n          _createElementVNode(\"ul\", null, [\n            _createElementVNode(\"li\", null, \"🕒 30–60 minutes\"),\n            _createElementVNode(\"li\", null, \"💻 With hands-on tutorials, live demos, and\"),\n            _createElementVNode(\"li\", null, \"👥 Time for you to try things out — with support.\")\n          ], -1 /* HOISTED */)\n        ])),\n        _: 1 /* STABLE */\n      })\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708824,
+      "end": 1743409708824,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import __unplugin_components_0 from '/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClick.ts';\nimport { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_3',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_v_click = __unplugin_components_0\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),2))), {\n    default: _withCtx(() => [\n      _cache[1] || (_cache[1] = _createElementVNode(\"h1\", null, \"Your Input is Key!\", -1 /* HOISTED */)),\n      _cache[2] || (_cache[2] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[3] || (_cache[3] = _createElementVNode(\"p\", null, \"I want these sessions to be practical, fun, and driven by what you find useful.\", -1 /* HOISTED */)),\n      _cache[4] || (_cache[4] = _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, \"💡 Got a topic in mind?\"),\n        _createElementVNode(\"li\", null, \"🛠️ Curious about a tool or workflow?\"),\n        _createElementVNode(\"li\", null, \"❓ Want to solve a problem you’ve run into?\")\n      ], -1 /* HOISTED */)),\n      _cache[5] || (_cache[5] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */)),\n      _createVNode(_component_v_click, null, {\n        default: _withCtx(() => _cache[0] || (_cache[0] = [\n          _createElementVNode(\"p\", null, \"I am also open to running extended sessions\", -1 /* HOISTED */),\n          _createElementVNode(\"ul\", null, [\n            _createElementVNode(\"li\", null, \"🕒 30–60 minutes\"),\n            _createElementVNode(\"li\", null, \"💻 With hands-on tutorials, live demos, and\"),\n            _createElementVNode(\"li\", null, \"👥 Time for you to try things out — with support.\")\n          ], -1 /* HOISTED */)\n        ])),\n        _: 1 /* STABLE */\n      })\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708824,
+      "end": 1743409708825,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_3.md"
+        ],
+        "sourcesContent": [
+          "import { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_3',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_v_click = _resolveComponent(\"v-click\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),2))), {\n    default: _withCtx(() => [\n      _cache[1] || (_cache[1] = _createElementVNode(\"h1\", null, \"Your Input is Key!\", -1 /* HOISTED */)),\n      _cache[2] || (_cache[2] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[3] || (_cache[3] = _createElementVNode(\"p\", null, \"I want these sessions to be practical, fun, and driven by what you find useful.\", -1 /* HOISTED */)),\n      _cache[4] || (_cache[4] = _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, \"💡 Got a topic in mind?\"),\n        _createElementVNode(\"li\", null, \"🛠️ Curious about a tool or workflow?\"),\n        _createElementVNode(\"li\", null, \"❓ Want to solve a problem you’ve run into?\")\n      ], -1 /* HOISTED */)),\n      _cache[5] || (_cache[5] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */)),\n      _createVNode(_component_v_click, null, {\n        default: _withCtx(() => _cache[0] || (_cache[0] = [\n          _createElementVNode(\"p\", null, \"I am also open to running extended sessions\", -1 /* HOISTED */),\n          _createElementVNode(\"ul\", null, [\n            _createElementVNode(\"li\", null, \"🕒 30–60 minutes\"),\n            _createElementVNode(\"li\", null, \"💻 With hands-on tutorials, live demos, and\"),\n            _createElementVNode(\"li\", null, \"👥 Time for you to try things out — with support.\")\n          ], -1 /* HOISTED */)\n        ])),\n        _: 1 /* STABLE */\n      })\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708825,
+      "end": 1743409708825,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708825,
+      "end": 1743409708825,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708825,
+      "end": 1743409708825,
+      "order": "normal"
+    }
+  ]
+}

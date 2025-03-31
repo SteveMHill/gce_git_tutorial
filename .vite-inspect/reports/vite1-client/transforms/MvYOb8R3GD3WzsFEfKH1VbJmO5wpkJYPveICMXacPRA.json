@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useSlideInfo.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { SlideInfo, SlidePatch } from '@slidev/types'\nimport type { MaybeRef } from '@vueuse/core'\nimport type { Ref } from 'vue'\nimport { useFetch } from '@vueuse/core'\nimport { computed, ref, unref } from 'vue'\nimport { getSlide } from '../logic/slides'\n\nexport interface UseSlideInfo {\n  info: Ref<SlideInfo | null>\n  update: (data: SlidePatch) => Promise<SlideInfo | void>\n}\n\nexport function useSlideInfo(no: number): UseSlideInfo {\n  if (!__SLIDEV_HAS_SERVER__) {\n    return {\n      info: ref(getSlide(no)?.meta.slide ?? null) as Ref<SlideInfo | null>,\n      update: async () => {},\n    }\n  }\n  const url = `/__slidev/slides/${no}.json`\n  const { data: info, execute } = useFetch(url).json<SlideInfo>().get()\n\n  execute()\n\n  const update = async (data: SlidePatch) => {\n    return await fetch(\n      url,\n      {\n        method: 'POST',\n        headers: {\n          'Accept': 'application/json',\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify(data),\n      },\n    ).then(r => r.json())\n  }\n\n  if (__DEV__) {\n    import.meta.hot?.on('slidev:update-slide', (payload) => {\n      if (payload.no === no)\n        info.value = payload.data\n    })\n    import.meta.hot?.on('slidev:update-note', (payload) => {\n      if (payload.no === no && info.value && info.value.note?.trim() !== payload.note?.trim())\n        info.value = { ...info.value, ...payload }\n    })\n  }\n\n  return {\n    info,\n    update,\n  }\n}\n\nconst map: Record<number, UseSlideInfo> = {}\n\nexport function useDynamicSlideInfo(no: MaybeRef<number>) {\n  function get(no: number) {\n    return map[no] ??= useSlideInfo(no)\n  }\n\n  return {\n    info: computed({\n      get() {\n        return get(unref(no)).info.value\n      },\n      set(newInfo) {\n        get(unref(no)).info.value = newInfo\n      },\n    }),\n    update: async (data: SlidePatch, newId?: number) => {\n      const info = get(newId ?? unref(no))\n      const newData = await info.update(data)\n      if (newData)\n        info.info.value = newData\n      return newData\n    },\n  }\n}\n",
+      "start": 1743409708631,
+      "end": 1743409708649,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { useFetch } from \"@vueuse/core\";\nimport { computed, ref, unref } from \"vue\";\nimport { getSlide } from \"../logic/slides\";\nexport function useSlideInfo(no) {\n  if (!__SLIDEV_HAS_SERVER__) {\n    return {\n      info: ref(getSlide(no)?.meta.slide ?? null),\n      update: async () => {\n      }\n    };\n  }\n  const url = `/__slidev/slides/${no}.json`;\n  const { data: info, execute } = useFetch(url).json().get();\n  execute();\n  const update = async (data) => {\n    return await fetch(\n      url,\n      {\n        method: \"POST\",\n        headers: {\n          \"Accept\": \"application/json\",\n          \"Content-Type\": \"application/json\"\n        },\n        body: JSON.stringify(data)\n      }\n    ).then((r) => r.json());\n  };\n  if (__DEV__) {\n    import.meta.hot?.on(\"slidev:update-slide\", (payload) => {\n      if (payload.no === no)\n        info.value = payload.data;\n    });\n    import.meta.hot?.on(\"slidev:update-note\", (payload) => {\n      if (payload.no === no && info.value && info.value.note?.trim() !== payload.note?.trim())\n        info.value = { ...info.value, ...payload };\n    });\n  }\n  return {\n    info,\n    update\n  };\n}\nconst map = {};\nexport function useDynamicSlideInfo(no) {\n  function get(no2) {\n    return map[no2] ??= useSlideInfo(no2);\n  }\n  return {\n    info: computed({\n      get() {\n        return get(unref(no)).info.value;\n      },\n      set(newInfo) {\n        get(unref(no)).info.value = newInfo;\n      }\n    }),\n    update: async (data, newId) => {\n      const info = get(newId ?? unref(no));\n      const newData = await info.update(data);\n      if (newData)\n        info.info.value = newData;\n      return newData;\n    }\n  };\n}\n",
+      "start": 1743409708649,
+      "end": 1743409708727,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useSlideInfo.ts"
+        ],
+        "sourcesContent": [
+          "import type { SlideInfo, SlidePatch } from '@slidev/types'\nimport type { MaybeRef } from '@vueuse/core'\nimport type { Ref } from 'vue'\nimport { useFetch } from '@vueuse/core'\nimport { computed, ref, unref } from 'vue'\nimport { getSlide } from '../logic/slides'\n\nexport interface UseSlideInfo {\n  info: Ref<SlideInfo | null>\n  update: (data: SlidePatch) => Promise<SlideInfo | void>\n}\n\nexport function useSlideInfo(no: number): UseSlideInfo {\n  if (!__SLIDEV_HAS_SERVER__) {\n    return {\n      info: ref(getSlide(no)?.meta.slide ?? null) as Ref<SlideInfo | null>,\n      update: async () => {},\n    }\n  }\n  const url = `/__slidev/slides/${no}.json`\n  const { data: info, execute } = useFetch(url).json<SlideInfo>().get()\n\n  execute()\n\n  const update = async (data: SlidePatch) => {\n    return await fetch(\n      url,\n      {\n        method: 'POST',\n        headers: {\n          'Accept': 'application/json',\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify(data),\n      },\n    ).then(r => r.json())\n  }\n\n  if (__DEV__) {\n    import.meta.hot?.on('slidev:update-slide', (payload) => {\n      if (payload.no === no)\n        info.value = payload.data\n    })\n    import.meta.hot?.on('slidev:update-note', (payload) => {\n      if (payload.no === no && info.value && info.value.note?.trim() !== payload.note?.trim())\n        info.value = { ...info.value, ...payload }\n    })\n  }\n\n  return {\n    info,\n    update,\n  }\n}\n\nconst map: Record<number, UseSlideInfo> = {}\n\nexport function useDynamicSlideInfo(no: MaybeRef<number>) {\n  function get(no: number) {\n    return map[no] ??= useSlideInfo(no)\n  }\n\n  return {\n    info: computed({\n      get() {\n        return get(unref(no)).info.value\n      },\n      set(newInfo) {\n        get(unref(no)).info.value = newInfo\n      },\n    }),\n    update: async (data: SlidePatch, newId?: number) => {\n      const info = get(newId ?? unref(no))\n      const newData = await info.update(data)\n      if (newData)\n        info.info.value = newData\n      return newData\n    },\n  }\n}\n"
+        ],
+        "mappings": "AAGA,SAAS,gBAAgB;AACzB,SAAS,UAAU,KAAK,aAAa;AACrC,SAAS,gBAAgB;AAOlB,gBAAS,aAAa,IAA0B;AACrD,MAAI,CAAC,uBAAuB;AAC1B,WAAO;AAAA,MACL,MAAM,IAAI,SAAS,EAAE,GAAG,KAAK,SAAS,IAAI;AAAA,MAC1C,QAAQ,YAAY;AAAA,MAAC;AAAA,IACvB;AAAA,EACF;AACA,QAAM,MAAM,oBAAoB,EAAE;AAClC,QAAM,EAAE,MAAM,MAAM,QAAQ,IAAI,SAAS,GAAG,EAAE,KAAgB,EAAE,IAAI;AAEpE,UAAQ;AAER,QAAM,SAAS,OAAO,SAAqB;AACzC,WAAO,MAAM;AAAA,MACX;AAAA,MACA;AAAA,QACE,QAAQ;AAAA,QACR,SAAS;AAAA,UACP,UAAU;AAAA,UACV,gBAAgB;AAAA,QAClB;AAAA,QACA,MAAM,KAAK,UAAU,IAAI;AAAA,MAC3B;AAAA,IACF,EAAE,KAAK,OAAK,EAAE,KAAK,CAAC;AAAA,EACtB;AAEA,MAAI,SAAS;AACX,gBAAY,KAAK,GAAG,uBAAuB,CAAC,YAAY;AACtD,UAAI,QAAQ,OAAO;AACjB,aAAK,QAAQ,QAAQ;AAAA,IACzB,CAAC;AACD,gBAAY,KAAK,GAAG,sBAAsB,CAAC,YAAY;AACrD,UAAI,QAAQ,OAAO,MAAM,KAAK,SAAS,KAAK,MAAM,MAAM,KAAK,MAAM,QAAQ,MAAM,KAAK;AACpF,aAAK,QAAQ,EAAE,GAAG,KAAK,OAAO,GAAG,QAAQ;AAAA,IAC7C,CAAC;AAAA,EACH;AAEA,SAAO;AAAA,IACL;AAAA,IACA;AAAA,EACF;AACF;AAEA,MAAM,MAAoC,CAAC;AAEpC,gBAAS,oBAAoB,IAAsB;AACxD,WAAS,IAAIA,KAAY;AACvB,WAAO,IAAIA,GAAE,MAAM,aAAaA,GAAE;AAAA,EACpC;AAEA,SAAO;AAAA,IACL,MAAM,SAAS;AAAA,MACb,MAAM;AACJ,eAAO,IAAI,MAAM,EAAE,CAAC,EAAE,KAAK;AAAA,MAC7B;AAAA,MACA,IAAI,SAAS;AACX,YAAI,MAAM,EAAE,CAAC,EAAE,KAAK,QAAQ;AAAA,MAC9B;AAAA,IACF,CAAC;AAAA,IACD,QAAQ,OAAO,MAAkB,UAAmB;AAClD,YAAM,OAAO,IAAI,SAAS,MAAM,EAAE,CAAC;AACnC,YAAM,UAAU,MAAM,KAAK,OAAO,IAAI;AACtC,UAAI;AACF,aAAK,KAAK,QAAQ;AACpB,aAAO;AAAA,IACT;AAAA,EACF;AACF;",
+        "names": [
+          "no"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { useFetch } from \"@vueuse/core\";\nimport { computed, ref, unref } from \"vue\";\nimport { getSlide } from \"../logic/slides\";\nexport function useSlideInfo(no) {\n  if (true) {\n    return {\n      info: ref(getSlide(no)?.meta.slide ?? null),\n      update: async () => {\n      }\n    };\n  }\n  const url = `/__slidev/slides/${no}.json`;\n  const { data: info, execute } = useFetch(url).json().get();\n  execute();\n  const update = async (data) => {\n    return await fetch(\n      url,\n      {\n        method: \"POST\",\n        headers: {\n          \"Accept\": \"application/json\",\n          \"Content-Type\": \"application/json\"\n        },\n        body: JSON.stringify(data)\n      }\n    ).then((r) => r.json());\n  };\n  if (false) {\n  }\n  return {\n    info,\n    update\n  };\n}\nconst map = {};\nexport function useDynamicSlideInfo(no) {\n  function get(no2) {\n    return map[no2] ??= useSlideInfo(no2);\n  }\n  return {\n    info: computed({\n      get() {\n        return get(unref(no)).info.value;\n      },\n      set(newInfo) {\n        get(unref(no)).info.value = newInfo;\n      }\n    }),\n    update: async (data, newId) => {\n      const info = get(newId ?? unref(no));\n      const newData = await info.update(data);\n      if (newData)\n        info.info.value = newData;\n      return newData;\n    }\n  };\n}\n",
+      "start": 1743409708727,
+      "end": 1743409708885,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    }
+  ]
+}

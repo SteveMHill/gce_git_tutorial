@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/theme/layouts/intro.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"slidev-layout intro\">\n    <div class=\"my-auto\">\n      <slot />\n    </div>\n  </div>\n</template>\n",
+      "start": 1743409708876,
+      "end": 1743409708887,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "result": "<script setup>\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n</script>\n<template>\n  <div class=\"slidev-layout intro\">\n    <div class=\"my-auto\">\n      <slot />\n    </div>\n  </div>\n</template>\n",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { renderSlot as _renderSlot, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"slidev-layout intro\" }\nconst _hoisted_2 = { class: \"my-auto\" }\n\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'intro',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _renderSlot(_ctx.$slots, \"default\")\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708887,
+      "end": 1743409708888,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { renderSlot as _renderSlot, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"slidev-layout intro\" }\nconst _hoisted_2 = { class: \"my-auto\" }\n\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'intro',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _renderSlot(_ctx.$slots, \"default\")\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/theme/layouts/intro.vue"
+        ],
+        "sourcesContent": [
+          "import { renderSlot as _renderSlot, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"slidev-layout intro\" }\nconst _hoisted_2 = { class: \"my-auto\" }\n\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'intro',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _renderSlot(_ctx.$slots, \"default\")\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,UAAU,CAAC,EAAE,CAAC,WAAW,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG;;AAE7J,KAAK,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC;AAClD,KAAK,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,EAAE,CAAC,IAAI,CAAC,CAAC;;AAEtC,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,EAAE;;AAEzH,KAAK,CAAC,SAAS,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC;AACjB,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;;AAEjB,KAAK,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AACzG,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,SAAS,CAAC,CAAC;;AAEtB,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,MAAM,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC;AAC/D,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,OAAO,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC;AACJ;AACA;;AAEA;;;;AAIA,MAAM,CAAC,OAAO,CAAC"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708888,
+      "end": 1743409708888,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/App.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport { watchEffect } from 'vue'\nimport { themeVars } from './env'\nimport setupRoot from './setup/root'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'App',\n  setup(__props) {\n\nsetupRoot()\n\nwatchEffect(() => {\n  for (const [key, value] of Object.entries(themeVars.value))\n    document.body.style.setProperty(key, value.toString())\n})\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_RouterView = _resolveComponent(\"RouterView\")!\n\n  return (_openBlock(), _createBlock(_component_RouterView))\n}\n}\n\n})",
+      "start": 1743409708373,
+      "end": 1743409708373
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708373,
+      "end": 1743409708373,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708373,
+      "end": 1743409708373,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708373,
+      "end": 1743409708373,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708373,
+      "end": 1743409708373,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708373,
+      "end": 1743409708373,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { watchEffect } from \"vue\";\nimport { themeVars } from \"./env\";\nimport setupRoot from \"./setup/root\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"App\",\n  setup(__props) {\n    setupRoot();\n    watchEffect(() => {\n      for (const [key, value] of Object.entries(themeVars.value))\n        document.body.style.setProperty(key, value.toString());\n    });\n    return (_ctx, _cache) => {\n      const _component_RouterView = _resolveComponent(\"RouterView\");\n      return _openBlock(), _createBlock(_component_RouterView);\n    };\n  }\n});\n",
+      "start": 1743409708373,
+      "end": 1743409708380,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/App.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nimport { watchEffect } from 'vue'\nimport { themeVars } from './env'\nimport setupRoot from './setup/root'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'App',\n  setup(__props) {\n\nsetupRoot()\n\nwatchEffect(() => {\n  for (const [key, value] of Object.entries(themeVars.value))\n    document.body.style.setProperty(key, value.toString())\n})\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_RouterView = _resolveComponent(\"RouterView\")!\n\n  return (_openBlock(), _createBlock(_component_RouterView))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,oBAAoB,mBAAmB,aAAa,YAAY,eAAe,oBAAoB;AAE5G,SAAS,mBAAmB;AAC5B,SAAS,iBAAiB;AAC1B,OAAO,eAAe;AAGtB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAEjB,cAAU;AAEV,gBAAY,MAAM;AAChB,iBAAW,CAAC,KAAK,KAAK,KAAK,OAAO,QAAQ,UAAU,KAAK;AACvD,iBAAS,KAAK,MAAM,YAAY,KAAK,MAAM,SAAS,CAAC;AAAA,IACzD,CAAC;AAED,WAAO,CAAC,MAAU,WAAgB;AAChC,YAAM,wBAAwB,kBAAkB,YAAY;AAE5D,aAAQ,WAAW,GAAG,aAAa,qBAAqB;AAAA,IAC1D;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { watchEffect } from \"vue\";\nimport { themeVars } from \"./env\";\nimport setupRoot from \"./setup/root\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"App\",\n  setup(__props) {\n    setupRoot();\n    watchEffect(() => {\n      for (const [key, value] of Object.entries(themeVars.value))\n        document.body.style.setProperty(key, value.toString());\n    });\n    return (_ctx, _cache) => {\n      const _component_RouterView = _resolveComponent(\"RouterView\");\n      return _openBlock(), _createBlock(_component_RouterView);\n    };\n  }\n});\n",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/App.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { watchEffect } from \"vue\";\nimport { themeVars } from \"./env\";\nimport setupRoot from \"./setup/root\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"App\",\n  setup(__props) {\n    setupRoot();\n    watchEffect(() => {\n      for (const [key, value] of Object.entries(themeVars.value))\n        document.body.style.setProperty(key, value.toString());\n    });\n    return (_ctx, _cache) => {\n      const _component_RouterView = _resolveComponent(\"RouterView\");\n      return _openBlock(), _createBlock(_component_RouterView);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACzD,MAAM,CAAC,CAAC,CAAC,gBAAgB,CAAC,EAAE,CAAC,iBAAiB,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,WAAW,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACjH,MAAM,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACjC,MAAM,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC;AACjC,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,IAAI,CAAC;AACpC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AAChD,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,GAAG,CAAC;AACf,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,KAAK,CAAC,CAAC,GAAG,CAAC,CAAC,KAAK,CAAC,CAAC,EAAE,CAAC,MAAM,CAAC,OAAO,CAAC,SAAS,CAAC,KAAK,CAAC;AAChE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,IAAI,CAAC,KAAK,CAAC,WAAW,CAAC,GAAG,CAAC,CAAC,KAAK,CAAC,QAAQ,CAAC,CAAC,CAAC;AAC9D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,qBAAqB,CAAC,CAAC,CAAC,iBAAiB,CAAC,CAAC,UAAU,CAAC,CAAC;AACnE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,qBAAqB,CAAC;AAC9D,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708380,
+      "end": 1743409708380,
+      "order": "normal"
+    }
+  ]
+}

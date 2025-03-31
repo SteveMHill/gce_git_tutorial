@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SegmentControl.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, normalizeClass as _normalizeClass, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = {\n  flex: \"~ gap-1 items-center\",\n  rounded: \"\",\n  \"bg-gray:4\": \"\",\n  p1: \"\",\n  \"m--1\": \"\"\n}\n\nimport Badge from './Badge.vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SegmentControl',\n  props: {\n    options: {},\n    modelValue: {}\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props: any) {\n\n\n\n\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_ctx.options, (option) => {\n      return (_openBlock(), _createBlock(Badge, {\n        key: option.value,\n        class: _normalizeClass([\"px-2 py-1 text-xs font-mono\", option.value === _ctx.modelValue ? '' : 'op50']),\n        color: option.value === _ctx.modelValue,\n        \"aria-pressed\": option.value === _ctx.modelValue,\n        size: \"none\",\n        text: option.label,\n        as: \"button\",\n        onClick: ($event: any) => (_ctx.$emit('update:modelValue', option.value))\n      }, null, 8 /* PROPS */, [\"class\", \"color\", \"aria-pressed\", \"text\", \"onClick\"]))\n    }), 128 /* KEYED_FRAGMENT */))\n  ]))\n}\n}\n\n})",
+      "start": 1743409708913,
+      "end": 1743409708913
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708914,
+      "end": 1743409708914,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, normalizeClass as _normalizeClass, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = {\n  flex: \"~ gap-1 items-center\",\n  rounded: \"\",\n  \"bg-gray:4\": \"\",\n  p1: \"\",\n  \"m--1\": \"\"\n};\nimport Badge from \"./Badge.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SegmentControl\",\n  props: {\n    options: {},\n    modelValue: {}\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props) {\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        (_openBlock(true), _createElementBlock(\n          _Fragment,\n          null,\n          _renderList(_ctx.options, (option) => {\n            return _openBlock(), _createBlock(Badge, {\n              key: option.value,\n              class: _normalizeClass([\"px-2 py-1 text-xs font-mono\", option.value === _ctx.modelValue ? \"\" : \"op50\"]),\n              color: option.value === _ctx.modelValue,\n              \"aria-pressed\": option.value === _ctx.modelValue,\n              size: \"none\",\n              text: option.label,\n              as: \"button\",\n              onClick: ($event) => _ctx.$emit(\"update:modelValue\", option.value)\n            }, null, 8, [\"class\", \"color\", \"aria-pressed\", \"text\", \"onClick\"]);\n          }),\n          128\n          /* KEYED_FRAGMENT */\n        ))\n      ]);\n    };\n  }\n});\n",
+      "start": 1743409708914,
+      "end": 1743409708960,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SegmentControl.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, normalizeClass as _normalizeClass, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = {\n  flex: \"~ gap-1 items-center\",\n  rounded: \"\",\n  \"bg-gray:4\": \"\",\n  p1: \"\",\n  \"m--1\": \"\"\n}\n\nimport Badge from './Badge.vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SegmentControl',\n  props: {\n    options: {},\n    modelValue: {}\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props: any) {\n\n\n\n\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_ctx.options, (option) => {\n      return (_openBlock(), _createBlock(Badge, {\n        key: option.value,\n        class: _normalizeClass([\"px-2 py-1 text-xs font-mono\", option.value === _ctx.modelValue ? '' : 'op50']),\n        color: option.value === _ctx.modelValue,\n        \"aria-pressed\": option.value === _ctx.modelValue,\n        size: \"none\",\n        text: option.label,\n        as: \"button\",\n        onClick: ($event: any) => (_ctx.$emit('update:modelValue', option.value))\n      }, null, 8 /* PROPS */, [\"class\", \"color\", \"aria-pressed\", \"text\", \"onClick\"]))\n    }), 128 /* KEYED_FRAGMENT */))\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,cAAc,aAAa,YAAY,WAAW,aAAa,YAAY,sBAAsB,qBAAqB,kBAAkB,iBAAiB,eAAe,oBAAoB;AAErM,MAAM,aAAa;AAAA,EACjB,MAAM;AAAA,EACN,SAAS;AAAA,EACT,aAAa;AAAA,EACb,IAAI;AAAA,EACJ,QAAQ;AACV;AAEA,OAAO,WAAW;AAGlB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACL,SAAS,CAAC;AAAA,IACV,YAAY,CAAC;AAAA,EACf;AAAA,EACA,OAAO,CAAC,mBAAmB;AAAA,EAC3B,MAAM,SAAc;AAMtB,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,SAC1D,WAAW,IAAI,GAAG;AAAA,UAAoB;AAAA,UAAW;AAAA,UAAM,YAAY,KAAK,SAAS,CAAC,WAAW;AAC5F,mBAAQ,WAAW,GAAG,aAAa,OAAO;AAAA,cACxC,KAAK,OAAO;AAAA,cACZ,OAAO,gBAAgB,CAAC,+BAA+B,OAAO,UAAU,KAAK,aAAa,KAAK,MAAM,CAAC;AAAA,cACtG,OAAO,OAAO,UAAU,KAAK;AAAA,cAC7B,gBAAgB,OAAO,UAAU,KAAK;AAAA,cACtC,MAAM;AAAA,cACN,MAAM,OAAO;AAAA,cACb,IAAI;AAAA,cACJ,SAAS,CAAC,WAAiB,KAAK,MAAM,qBAAqB,OAAO,KAAK;AAAA,YACzE,GAAG,MAAM,GAAe,CAAC,SAAS,SAAS,gBAAgB,QAAQ,SAAS,CAAC;AAAA,UAC/E,CAAC;AAAA,UAAG;AAAA;AAAA,QAAwB;AAAA,MAC9B,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, normalizeClass as _normalizeClass, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = {\n  flex: \"~ gap-1 items-center\",\n  rounded: \"\",\n  \"bg-gray:4\": \"\",\n  p1: \"\",\n  \"m--1\": \"\"\n};\nimport Badge from \"./Badge.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SegmentControl\",\n  props: {\n    options: {},\n    modelValue: {}\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props) {\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        (_openBlock(true), _createElementBlock(\n          _Fragment,\n          null,\n          _renderList(_ctx.options, (option) => {\n            return _openBlock(), _createBlock(Badge, {\n              key: option.value,\n              class: _normalizeClass([\"px-2 py-1 text-xs font-mono\", option.value === _ctx.modelValue ? \"\" : \"op50\"]),\n              color: option.value === _ctx.modelValue,\n              \"aria-pressed\": option.value === _ctx.modelValue,\n              size: \"none\",\n              text: option.label,\n              as: \"button\",\n              onClick: ($event) => _ctx.$emit(\"update:modelValue\", option.value)\n            }, null, 8, [\"class\", \"color\", \"aria-pressed\", \"text\", \"onClick\"]);\n          }),\n          128\n          /* KEYED_FRAGMENT */\n        ))\n      ]);\n    };\n  }\n});\n",
+      "start": 1743409708960,
+      "end": 1743409708961,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SegmentControl.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, normalizeClass as _normalizeClass, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = {\n  flex: \"~ gap-1 items-center\",\n  rounded: \"\",\n  \"bg-gray:4\": \"\",\n  p1: \"\",\n  \"m--1\": \"\"\n};\nimport Badge from \"./Badge.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SegmentControl\",\n  props: {\n    options: {},\n    modelValue: {}\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props) {\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        (_openBlock(true), _createElementBlock(\n          _Fragment,\n          null,\n          _renderList(_ctx.options, (option) => {\n            return _openBlock(), _createBlock(Badge, {\n              key: option.value,\n              class: _normalizeClass([\"px-2 py-1 text-xs font-mono\", option.value === _ctx.modelValue ? \"\" : \"op50\"]),\n              color: option.value === _ctx.modelValue,\n              \"aria-pressed\": option.value === _ctx.modelValue,\n              size: \"none\",\n              text: option.label,\n              as: \"button\",\n              onClick: ($event) => _ctx.$emit(\"update:modelValue\", option.value)\n            }, null, 8, [\"class\", \"color\", \"aria-pressed\", \"text\", \"onClick\"]);\n          }),\n          128\n          /* KEYED_FRAGMENT */\n        ))\n      ]);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "normal"
+    }
+  ]
+}

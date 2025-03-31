@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport type { SlideRoute } from '@slidev/types'\nimport { GlobalBottom, GlobalTop } from '#slidev/global-layers'\nimport { recomputeAllPoppers } from 'floating-vue'\nimport { computed, shallowRef, TransitionGroup, watchEffect } from 'vue'\nimport { createFixedClicks } from '../composables/useClicks'\nimport { useNav } from '../composables/useNav'\nimport { useViewTransition } from '../composables/useViewTransition'\nimport { CLICKS_MAX } from '../constants'\nimport { activeDragElement, disableTransition, hmrSkipTransition } from '../state'\nimport DragControl from './DragControl.vue'\nimport SlideWrapper from './SlideWrapper.vue'\n\ndefineProps<{\n  renderContext: 'slide' | 'presenter'\n}>()\n\nconst {\n  currentSlideRoute,\n  currentTransition,\n  getPrimaryClicks,\n  prevRoute,\n  nextRoute,\n  slides,\n  isPrintMode,\n  isPrintWithClicks,\n  clicksDirection,\n  printRange,\n} = useNav()\n\nfunction preloadRoute(route: SlideRoute) {\n  if (route.meta.preload !== false) {\n    route.meta.__preloaded = true\n    route.load()\n  }\n}\n// preload current, prev and next slides\nwatchEffect(() => {\n  preloadRoute(currentSlideRoute.value)\n  preloadRoute(prevRoute.value)\n  preloadRoute(nextRoute.value)\n})\n// preload all slides after 3s\nwatchEffect((onCleanup) => {\n  const routes = slides.value\n  const timeout = setTimeout(() => {\n    routes.forEach(preloadRoute)\n  }, 3000)\n  onCleanup(() => clearTimeout(timeout))\n})\n\nconst hasViewTransition = useViewTransition()\n\nconst DrawingLayer = shallowRef<any>()\nif (__SLIDEV_FEATURE_DRAWINGS__ || __SLIDEV_FEATURE_DRAWINGS_PERSIST__)\n  import('./DrawingLayer.vue').then(v => DrawingLayer.value = v.default)\n\nconst loadedRoutes = computed(() => isPrintMode.value\n  ? printRange.value.map(no => slides.value[no - 1])\n  : slides.value.filter(r => r.meta?.__preloaded || r === currentSlideRoute.value),\n)\n\nfunction onAfterLeave() {\n  // After transition, we disable it so HMR won't trigger it again\n  // We will turn it back on `nav.go` so the normal navigation would still work\n  hmrSkipTransition.value = true\n  // recompute poppers after transition\n  recomputeAllPoppers()\n}\n</script>\n\n<template>\n  <!-- Global Bottom -->\n  <GlobalBottom />\n\n  <!-- Slides -->\n  <component\n    :is=\"(hasViewTransition && !isPrintMode && !hmrSkipTransition && !disableTransition) ? 'div' : TransitionGroup\"\n    v-bind=\"(hmrSkipTransition || disableTransition || isPrintMode) ? {} : currentTransition\"\n    id=\"slideshow\"\n    tag=\"div\"\n    :class=\"{\n      'slidev-nav-go-forward': clicksDirection > 0,\n      'slidev-nav-go-backward': clicksDirection < 0,\n    }\"\n    @after-leave=\"onAfterLeave\"\n  >\n    <template v-for=\"route of loadedRoutes\" :key=\"route.no\">\n      <SlideWrapper\n        v-show=\"route === currentSlideRoute\"\n        :clicks-context=\"isPrintMode && !isPrintWithClicks ? createFixedClicks(route, CLICKS_MAX) : getPrimaryClicks(route)\"\n        :route=\"route\"\n        :render-context=\"renderContext\"\n      />\n    </template>\n  </component>\n\n  <DragControl v-if=\"activeDragElement\" :data=\"activeDragElement\" />\n\n  <!-- Global Top -->\n  <GlobalTop />\n\n  <template v-if=\"(__SLIDEV_FEATURE_DRAWINGS__ || __SLIDEV_FEATURE_DRAWINGS_PERSIST__) && DrawingLayer\">\n    <DrawingLayer />\n  </template>\n</template>\n\n<style scoped>\n#slideshow {\n  height: 100%;\n}\n</style>\n",
+      "start": 1743409708751,
+      "end": 1743409708805,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "result": "<script setup lang=\"ts\">\nimport type { SlideRoute } from '@slidev/types'\nimport { GlobalBottom, GlobalTop } from '#slidev/global-layers'\nimport { recomputeAllPoppers } from 'floating-vue'\nimport { computed, shallowRef, TransitionGroup, watchEffect } from 'vue'\nimport { createFixedClicks } from '../composables/useClicks'\nimport { useNav } from '../composables/useNav'\nimport { useViewTransition } from '../composables/useViewTransition'\nimport { CLICKS_MAX } from '../constants'\nimport { activeDragElement, disableTransition, hmrSkipTransition } from '../state'\nimport DragControl from './DragControl.vue'\nimport SlideWrapper from './SlideWrapper.vue'\n\ndefineProps<{\n  renderContext: 'slide' | 'presenter'\n}>()\n\nconst {\n  currentSlideRoute,\n  currentTransition,\n  getPrimaryClicks,\n  prevRoute,\n  nextRoute,\n  slides,\n  isPrintMode,\n  isPrintWithClicks,\n  clicksDirection,\n  printRange,\n} = useNav()\n\nfunction preloadRoute(route: SlideRoute) {\n  if (route.meta.preload !== false) {\n    route.meta.__preloaded = true\n    route.load()\n  }\n}\n// preload current, prev and next slides\nwatchEffect(() => {\n  preloadRoute(currentSlideRoute.value)\n  preloadRoute(prevRoute.value)\n  preloadRoute(nextRoute.value)\n})\n// preload all slides after 3s\nwatchEffect((onCleanup) => {\n  const routes = slides.value\n  const timeout = setTimeout(() => {\n    routes.forEach(preloadRoute)\n  }, 3000)\n  onCleanup(() => clearTimeout(timeout))\n})\n\nconst hasViewTransition = useViewTransition()\n\nconst DrawingLayer = shallowRef<any>()\nif (true || false)\n  import('./DrawingLayer.vue').then(v => DrawingLayer.value = v.default)\n\nconst loadedRoutes = computed(() => isPrintMode.value\n  ? printRange.value.map(no => slides.value[no - 1])\n  : slides.value.filter(r => r.meta?.__preloaded || r === currentSlideRoute.value),\n)\n\nfunction onAfterLeave() {\n  // After transition, we disable it so HMR won't trigger it again\n  // We will turn it back on `nav.go` so the normal navigation would still work\n  hmrSkipTransition.value = true\n  // recompute poppers after transition\n  recomputeAllPoppers()\n}\n</script>\n\n<template>\n  <!-- Global Bottom -->\n  <GlobalBottom />\n\n  <!-- Slides -->\n  <component\n    :is=\"(hasViewTransition && !isPrintMode && !hmrSkipTransition && !disableTransition) ? 'div' : TransitionGroup\"\n    v-bind=\"(hmrSkipTransition || disableTransition || isPrintMode) ? {} : currentTransition\"\n    id=\"slideshow\"\n    tag=\"div\"\n    :class=\"{\n      'slidev-nav-go-forward': clicksDirection > 0,\n      'slidev-nav-go-backward': clicksDirection < 0,\n    }\"\n    @after-leave=\"onAfterLeave\"\n  >\n    <template v-for=\"route of loadedRoutes\" :key=\"route.no\">\n      <SlideWrapper\n        v-show=\"route === currentSlideRoute\"\n        :clicks-context=\"isPrintMode && !isPrintWithClicks ? createFixedClicks(route, CLICKS_MAX) : getPrimaryClicks(route)\"\n        :route=\"route\"\n        :render-context=\"renderContext\"\n      />\n    </template>\n  </component>\n\n  <DragControl v-if=\"activeDragElement\" :data=\"activeDragElement\" />\n\n  <!-- Global Top -->\n  <GlobalTop />\n\n  <template v-if=\"(true || false) && DrawingLayer\">\n    <DrawingLayer />\n  </template>\n</template>\n\n<style scoped>\n#slideshow {\n  height: 100%;\n}\n</style>\n",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "pre",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708805,
+      "end": 1743409708805,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=style&index=0&scoped=113fd0a1&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-113fd0a1\"]]);\n",
+      "start": 1743409708805,
+      "end": 1743409708935,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=style&index=0&scoped=113fd0a1&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-113fd0a1\"]]);\n",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlidesShow.vue?vue&type=style&index=0&scoped=113fd0a1&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-113fd0a1\"]]);\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,UAAU,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAClJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,UAAU,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC1I,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,UAAU,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,QAAQ,CAAC,IAAI,CAAC,GAAG,CAAC;AAChJ,MAAM,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,MAAM,CAAC,MAAM,CAAC;AACpD,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "normal"
+    }
+  ]
+}

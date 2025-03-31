@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useHideCursorIdle.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { Ref } from 'vue'\nimport { useEventListener } from '@vueuse/core'\nimport { computed, onScopeDispose, watch } from 'vue'\nimport { hideCursorIdle } from '../state'\n\nconst TIMEOUT = 2000\n\nexport function useHideCursorIdle(\n  enabled: Ref<boolean>,\n) {\n  const shouldHide = computed(() => enabled.value && hideCursorIdle.value)\n\n  function hide() {\n    document.body.style.cursor = 'none'\n  }\n  function show() {\n    document.body.style.cursor = ''\n  }\n\n  // If disabled, immediately show the cursor\n  watch(\n    shouldHide,\n    (value) => {\n      if (!value)\n        show()\n    },\n  )\n  onScopeDispose(show)\n\n  let timer: ReturnType<typeof setTimeout> | null = null\n  useEventListener(\n    document.body,\n    ['pointermove', 'pointerdown'],\n    () => {\n      show()\n      if (timer)\n        clearTimeout(timer)\n      if (shouldHide.value) {\n        timer = setTimeout(hide, TIMEOUT)\n      }\n      else {\n        timer = null\n      }\n    },\n    { passive: true },\n  )\n}\n",
+      "start": 1743409708902,
+      "end": 1743409708906,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708906,
+      "end": 1743409708906,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708906,
+      "end": 1743409708906,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708906,
+      "end": 1743409708906,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708906,
+      "end": 1743409708906,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708906,
+      "end": 1743409708906,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { useEventListener } from \"@vueuse/core\";\nimport { computed, onScopeDispose, watch } from \"vue\";\nimport { hideCursorIdle } from \"../state\";\nconst TIMEOUT = 2e3;\nexport function useHideCursorIdle(enabled) {\n  const shouldHide = computed(() => enabled.value && hideCursorIdle.value);\n  function hide() {\n    document.body.style.cursor = \"none\";\n  }\n  function show() {\n    document.body.style.cursor = \"\";\n  }\n  watch(\n    shouldHide,\n    (value) => {\n      if (!value)\n        show();\n    }\n  );\n  onScopeDispose(show);\n  let timer = null;\n  useEventListener(\n    document.body,\n    [\"pointermove\", \"pointerdown\"],\n    () => {\n      show();\n      if (timer)\n        clearTimeout(timer);\n      if (shouldHide.value) {\n        timer = setTimeout(hide, TIMEOUT);\n      } else {\n        timer = null;\n      }\n    },\n    { passive: true }\n  );\n}\n",
+      "start": 1743409708906,
+      "end": 1743409708946,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useHideCursorIdle.ts"
+        ],
+        "sourcesContent": [
+          "import type { Ref } from 'vue'\nimport { useEventListener } from '@vueuse/core'\nimport { computed, onScopeDispose, watch } from 'vue'\nimport { hideCursorIdle } from '../state'\n\nconst TIMEOUT = 2000\n\nexport function useHideCursorIdle(\n  enabled: Ref<boolean>,\n) {\n  const shouldHide = computed(() => enabled.value && hideCursorIdle.value)\n\n  function hide() {\n    document.body.style.cursor = 'none'\n  }\n  function show() {\n    document.body.style.cursor = ''\n  }\n\n  // If disabled, immediately show the cursor\n  watch(\n    shouldHide,\n    (value) => {\n      if (!value)\n        show()\n    },\n  )\n  onScopeDispose(show)\n\n  let timer: ReturnType<typeof setTimeout> | null = null\n  useEventListener(\n    document.body,\n    ['pointermove', 'pointerdown'],\n    () => {\n      show()\n      if (timer)\n        clearTimeout(timer)\n      if (shouldHide.value) {\n        timer = setTimeout(hide, TIMEOUT)\n      }\n      else {\n        timer = null\n      }\n    },\n    { passive: true },\n  )\n}\n"
+        ],
+        "mappings": "AACA,SAAS,wBAAwB;AACjC,SAAS,UAAU,gBAAgB,aAAa;AAChD,SAAS,sBAAsB;AAE/B,MAAM,UAAU;AAET,gBAAS,kBACd,SACA;AACA,QAAM,aAAa,SAAS,MAAM,QAAQ,SAAS,eAAe,KAAK;AAEvE,WAAS,OAAO;AACd,aAAS,KAAK,MAAM,SAAS;AAAA,EAC/B;AACA,WAAS,OAAO;AACd,aAAS,KAAK,MAAM,SAAS;AAAA,EAC/B;AAGA;AAAA,IACE;AAAA,IACA,CAAC,UAAU;AACT,UAAI,CAAC;AACH,aAAK;AAAA,IACT;AAAA,EACF;AACA,iBAAe,IAAI;AAEnB,MAAI,QAA8C;AAClD;AAAA,IACE,SAAS;AAAA,IACT,CAAC,eAAe,aAAa;AAAA,IAC7B,MAAM;AACJ,WAAK;AACL,UAAI;AACF,qBAAa,KAAK;AACpB,UAAI,WAAW,OAAO;AACpB,gBAAQ,WAAW,MAAM,OAAO;AAAA,MAClC,OACK;AACH,gBAAQ;AAAA,MACV;AAAA,IACF;AAAA,IACA,EAAE,SAAS,KAAK;AAAA,EAClB;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    }
+  ]
+}

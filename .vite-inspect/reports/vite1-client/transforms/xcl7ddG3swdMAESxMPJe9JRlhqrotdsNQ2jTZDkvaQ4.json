@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-motion.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { ClicksInfo } from '@slidev/types'\nimport type { App, ObjectDirective } from 'vue'\nimport { MotionDirective } from '@vueuse/motion'\nimport { watch } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { injectionClicksContext, injectionCurrentPage, injectionRenderContext } from '../constants'\nimport { makeId } from '../logic/utils'\nimport { directiveInject } from '../utils'\nimport { resolvedClickMap } from './v-click'\n\nexport function createVMotionDirectives() {\n  return {\n    install(app: App) {\n      const original = MotionDirective() as ObjectDirective\n      app.directive<HTMLElement | SVGElement, string>('motion', {\n        // @ts-expect-error extra prop\n        name: 'v-motion',\n        mounted(el, binding, node, prevNode) {\n          const clicksContext = directiveInject(binding, injectionClicksContext)\n          const thisPage = directiveInject(binding, injectionCurrentPage)\n          const renderContext = directiveInject(binding, injectionRenderContext)\n          const { currentPage, clicks: currentClicks, isPrintMode } = useNav()\n\n          const props = node.props = { ...node.props }\n\n          const variantInitial = { ...props.initial, ...props.variants?.['slidev-initial'] }\n          const variantEnter = { ...props.enter, ...props.variants?.['slidev-enter'] }\n          const variantLeave = { ...props.leave, ...props.variants?.['slidev-leave'] }\n          delete props.initial\n          delete props.enter\n          delete props.leave\n\n          const idPrefix = `${makeId()}-`\n          const clicks: {\n            id: string\n            at: number | [number, number]\n            variant: Record<string, unknown>\n            info: ClicksInfo | null | undefined\n          }[] = []\n\n          for (const k of Object.keys(props)) {\n            if (k.startsWith('click-')) {\n              const s = k.slice(6)\n              const at = s.includes('-') ? s.split('-').map(Number) as [number, number] : +s\n              const id = idPrefix + s\n              clicks.push({\n                id,\n                at,\n                variant: { ...props[k] },\n                info: clicksContext?.value.calculate(at),\n              })\n              delete props[k]\n            }\n          }\n\n          clicks.sort((a, b) => (Array.isArray(a.at) ? a.at[0] : a.at) - (Array.isArray(b.at) ? b.at[0] : b.at))\n\n          original.created!(el, binding, node, prevNode)\n          original.mounted!(el, binding, node, prevNode)\n\n          // @ts-expect-error extra prop\n          const motion = el.motionInstance\n          motion.clickIds = clicks.map(i => i.id)\n          motion.set(variantInitial)\n          motion.watchStopHandle = watch(\n            [thisPage, currentPage, currentClicks].filter(Boolean),\n            () => {\n              const visibility = resolvedClickMap.get(el)?.visibilityState.value ?? 'shown'\n              if (!clicksContext?.value || !['slide', 'presenter'].includes(renderContext?.value ?? '')) {\n                const mixedVariant: Record<string, unknown> = { ...variantInitial, ...variantEnter }\n                for (const { variant } of clicks)\n                  Object.assign(mixedVariant, variant)\n\n                motion.set(mixedVariant)\n              }\n              else if (isPrintMode.value || thisPage?.value === currentPage.value) {\n                if (visibility === 'shown') {\n                  const mixedVariant: Record<string, unknown> = { ...variantInitial, ...variantEnter }\n                  for (const { variant, info } of clicks) {\n                    if (!info || info.isActive.value)\n                      Object.assign(mixedVariant, variant)\n                  }\n                  if (isPrintMode.value)\n                    motion.set(mixedVariant) // print with clicks\n                  else\n                    motion.apply(mixedVariant)\n                }\n                else {\n                  motion.apply(visibility === 'before' ? variantInitial : variantLeave)\n                }\n              }\n              else {\n                motion.apply((thisPage?.value ?? -1) > currentPage.value ? variantInitial : variantLeave)\n              }\n            },\n            {\n              immediate: true,\n            },\n          )\n        },\n        unmounted(el) {\n          // @ts-expect-error extra prop\n          const motion = el.motionInstance\n          motion.watchStopHandle()\n        },\n      })\n    },\n  }\n}\n",
+      "start": 1743409708376,
+      "end": 1743409708384,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { MotionDirective } from \"@vueuse/motion\";\nimport { watch } from \"vue\";\nimport { useNav } from \"../composables/useNav\";\nimport { injectionClicksContext, injectionCurrentPage, injectionRenderContext } from \"../constants\";\nimport { makeId } from \"../logic/utils\";\nimport { directiveInject } from \"../utils\";\nimport { resolvedClickMap } from \"./v-click\";\nexport function createVMotionDirectives() {\n  return {\n    install(app) {\n      const original = MotionDirective();\n      app.directive(\"motion\", {\n        // @ts-expect-error extra prop\n        name: \"v-motion\",\n        mounted(el, binding, node, prevNode) {\n          const clicksContext = directiveInject(binding, injectionClicksContext);\n          const thisPage = directiveInject(binding, injectionCurrentPage);\n          const renderContext = directiveInject(binding, injectionRenderContext);\n          const { currentPage, clicks: currentClicks, isPrintMode } = useNav();\n          const props = node.props = { ...node.props };\n          const variantInitial = { ...props.initial, ...props.variants?.[\"slidev-initial\"] };\n          const variantEnter = { ...props.enter, ...props.variants?.[\"slidev-enter\"] };\n          const variantLeave = { ...props.leave, ...props.variants?.[\"slidev-leave\"] };\n          delete props.initial;\n          delete props.enter;\n          delete props.leave;\n          const idPrefix = `${makeId()}-`;\n          const clicks = [];\n          for (const k of Object.keys(props)) {\n            if (k.startsWith(\"click-\")) {\n              const s = k.slice(6);\n              const at = s.includes(\"-\") ? s.split(\"-\").map(Number) : +s;\n              const id = idPrefix + s;\n              clicks.push({\n                id,\n                at,\n                variant: { ...props[k] },\n                info: clicksContext?.value.calculate(at)\n              });\n              delete props[k];\n            }\n          }\n          clicks.sort((a, b) => (Array.isArray(a.at) ? a.at[0] : a.at) - (Array.isArray(b.at) ? b.at[0] : b.at));\n          original.created(el, binding, node, prevNode);\n          original.mounted(el, binding, node, prevNode);\n          const motion = el.motionInstance;\n          motion.clickIds = clicks.map((i) => i.id);\n          motion.set(variantInitial);\n          motion.watchStopHandle = watch(\n            [thisPage, currentPage, currentClicks].filter(Boolean),\n            () => {\n              const visibility = resolvedClickMap.get(el)?.visibilityState.value ?? \"shown\";\n              if (!clicksContext?.value || ![\"slide\", \"presenter\"].includes(renderContext?.value ?? \"\")) {\n                const mixedVariant = { ...variantInitial, ...variantEnter };\n                for (const { variant } of clicks)\n                  Object.assign(mixedVariant, variant);\n                motion.set(mixedVariant);\n              } else if (isPrintMode.value || thisPage?.value === currentPage.value) {\n                if (visibility === \"shown\") {\n                  const mixedVariant = { ...variantInitial, ...variantEnter };\n                  for (const { variant, info } of clicks) {\n                    if (!info || info.isActive.value)\n                      Object.assign(mixedVariant, variant);\n                  }\n                  if (isPrintMode.value)\n                    motion.set(mixedVariant);\n                  else\n                    motion.apply(mixedVariant);\n                } else {\n                  motion.apply(visibility === \"before\" ? variantInitial : variantLeave);\n                }\n              } else {\n                motion.apply((thisPage?.value ?? -1) > currentPage.value ? variantInitial : variantLeave);\n              }\n            },\n            {\n              immediate: true\n            }\n          );\n        },\n        unmounted(el) {\n          const motion = el.motionInstance;\n          motion.watchStopHandle();\n        }\n      });\n    }\n  };\n}\n",
+      "start": 1743409708384,
+      "end": 1743409708468,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-motion.ts"
+        ],
+        "sourcesContent": [
+          "import type { ClicksInfo } from '@slidev/types'\nimport type { App, ObjectDirective } from 'vue'\nimport { MotionDirective } from '@vueuse/motion'\nimport { watch } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { injectionClicksContext, injectionCurrentPage, injectionRenderContext } from '../constants'\nimport { makeId } from '../logic/utils'\nimport { directiveInject } from '../utils'\nimport { resolvedClickMap } from './v-click'\n\nexport function createVMotionDirectives() {\n  return {\n    install(app: App) {\n      const original = MotionDirective() as ObjectDirective\n      app.directive<HTMLElement | SVGElement, string>('motion', {\n        // @ts-expect-error extra prop\n        name: 'v-motion',\n        mounted(el, binding, node, prevNode) {\n          const clicksContext = directiveInject(binding, injectionClicksContext)\n          const thisPage = directiveInject(binding, injectionCurrentPage)\n          const renderContext = directiveInject(binding, injectionRenderContext)\n          const { currentPage, clicks: currentClicks, isPrintMode } = useNav()\n\n          const props = node.props = { ...node.props }\n\n          const variantInitial = { ...props.initial, ...props.variants?.['slidev-initial'] }\n          const variantEnter = { ...props.enter, ...props.variants?.['slidev-enter'] }\n          const variantLeave = { ...props.leave, ...props.variants?.['slidev-leave'] }\n          delete props.initial\n          delete props.enter\n          delete props.leave\n\n          const idPrefix = `${makeId()}-`\n          const clicks: {\n            id: string\n            at: number | [number, number]\n            variant: Record<string, unknown>\n            info: ClicksInfo | null | undefined\n          }[] = []\n\n          for (const k of Object.keys(props)) {\n            if (k.startsWith('click-')) {\n              const s = k.slice(6)\n              const at = s.includes('-') ? s.split('-').map(Number) as [number, number] : +s\n              const id = idPrefix + s\n              clicks.push({\n                id,\n                at,\n                variant: { ...props[k] },\n                info: clicksContext?.value.calculate(at),\n              })\n              delete props[k]\n            }\n          }\n\n          clicks.sort((a, b) => (Array.isArray(a.at) ? a.at[0] : a.at) - (Array.isArray(b.at) ? b.at[0] : b.at))\n\n          original.created!(el, binding, node, prevNode)\n          original.mounted!(el, binding, node, prevNode)\n\n          // @ts-expect-error extra prop\n          const motion = el.motionInstance\n          motion.clickIds = clicks.map(i => i.id)\n          motion.set(variantInitial)\n          motion.watchStopHandle = watch(\n            [thisPage, currentPage, currentClicks].filter(Boolean),\n            () => {\n              const visibility = resolvedClickMap.get(el)?.visibilityState.value ?? 'shown'\n              if (!clicksContext?.value || !['slide', 'presenter'].includes(renderContext?.value ?? '')) {\n                const mixedVariant: Record<string, unknown> = { ...variantInitial, ...variantEnter }\n                for (const { variant } of clicks)\n                  Object.assign(mixedVariant, variant)\n\n                motion.set(mixedVariant)\n              }\n              else if (isPrintMode.value || thisPage?.value === currentPage.value) {\n                if (visibility === 'shown') {\n                  const mixedVariant: Record<string, unknown> = { ...variantInitial, ...variantEnter }\n                  for (const { variant, info } of clicks) {\n                    if (!info || info.isActive.value)\n                      Object.assign(mixedVariant, variant)\n                  }\n                  if (isPrintMode.value)\n                    motion.set(mixedVariant) // print with clicks\n                  else\n                    motion.apply(mixedVariant)\n                }\n                else {\n                  motion.apply(visibility === 'before' ? variantInitial : variantLeave)\n                }\n              }\n              else {\n                motion.apply((thisPage?.value ?? -1) > currentPage.value ? variantInitial : variantLeave)\n              }\n            },\n            {\n              immediate: true,\n            },\n          )\n        },\n        unmounted(el) {\n          // @ts-expect-error extra prop\n          const motion = el.motionInstance\n          motion.watchStopHandle()\n        },\n      })\n    },\n  }\n}\n"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708469,
+      "end": 1743409708469,
+      "order": "normal"
+    }
+  ]
+}

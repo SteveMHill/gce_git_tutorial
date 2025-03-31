@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/parse/line-counter.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * Tracks newlines during parsing in order to provide an efficient API for\n * determining the one-indexed `{ line, col }` position for any offset\n * within the input.\n */\nclass LineCounter {\n    constructor() {\n        this.lineStarts = [];\n        /**\n         * Should be called in ascending order. Otherwise, call\n         * `lineCounter.lineStarts.sort()` before calling `linePos()`.\n         */\n        this.addNewLine = (offset) => this.lineStarts.push(offset);\n        /**\n         * Performs a binary search and returns the 1-indexed { line, col }\n         * position of `offset`. If `line === 0`, `addNewLine` has never been\n         * called or `offset` is before the first known newline.\n         */\n        this.linePos = (offset) => {\n            let low = 0;\n            let high = this.lineStarts.length;\n            while (low < high) {\n                const mid = (low + high) >> 1; // Math.floor((low + high) / 2)\n                if (this.lineStarts[mid] < offset)\n                    low = mid + 1;\n                else\n                    high = mid;\n            }\n            if (this.lineStarts[low] === offset)\n                return { line: low + 1, col: 1 };\n            if (low === 0)\n                return { line: 0, col: offset };\n            const start = this.lineStarts[low - 1];\n            return { line: low, col: offset - start + 1 };\n        };\n    }\n}\n\nexport { LineCounter };\n",
+      "start": 1743409708622,
+      "end": 1743409708635,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    }
+  ]
+}

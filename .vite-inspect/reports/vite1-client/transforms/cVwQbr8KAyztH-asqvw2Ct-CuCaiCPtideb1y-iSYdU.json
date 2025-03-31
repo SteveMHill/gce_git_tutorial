@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/slides.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { SlideRoute } from '@slidev/types'\nimport { slides } from '#slidev/slides'\nimport { computed, watch, watchEffect } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { useSlideContext } from '../context'\n\nexport { slides }\n\nexport function getSlide(no: number | string) {\n  return slides.value.find(\n    s => (s.no === +no || s.meta.slide?.frontmatter.routeAlias === no),\n  )\n}\n\nexport function getSlidePath(\n  route: SlideRoute | number | string,\n  presenter: boolean,\n  exporting: boolean = false,\n) {\n  if (typeof route === 'number' || typeof route === 'string')\n    route = getSlide(route)!\n  const no = route.meta.slide?.frontmatter.routeAlias ?? route.no\n  return exporting ? `/export/${no}` : presenter ? `/presenter/${no}` : `/${no}`\n}\n\nexport function useIsSlideActive() {\n  const { $page } = useSlideContext()\n  const { currentSlideNo } = useNav()\n  return computed(() => $page.value === currentSlideNo.value)\n}\n\nexport function onSlideEnter(cb: () => void) {\n  const isActive = useIsSlideActive()\n  watchEffect(() => isActive.value && cb())\n}\n\nexport function onSlideLeave(cb: () => void) {\n  const isActive = useIsSlideActive()\n  watch(isActive, () => !isActive.value && cb())\n}\n",
+      "start": 1743409708583,
+      "end": 1743409708590,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708590,
+      "end": 1743409708590,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { slides } from \"#slidev/slides\";\nimport { computed, watch, watchEffect } from \"vue\";\nimport { useNav } from \"../composables/useNav\";\nimport { useSlideContext } from \"../context\";\nexport { slides };\nexport function getSlide(no) {\n  return slides.value.find(\n    (s) => s.no === +no || s.meta.slide?.frontmatter.routeAlias === no\n  );\n}\nexport function getSlidePath(route, presenter, exporting = false) {\n  if (typeof route === \"number\" || typeof route === \"string\")\n    route = getSlide(route);\n  const no = route.meta.slide?.frontmatter.routeAlias ?? route.no;\n  return exporting ? `/export/${no}` : presenter ? `/presenter/${no}` : `/${no}`;\n}\nexport function useIsSlideActive() {\n  const { $page } = useSlideContext();\n  const { currentSlideNo } = useNav();\n  return computed(() => $page.value === currentSlideNo.value);\n}\nexport function onSlideEnter(cb) {\n  const isActive = useIsSlideActive();\n  watchEffect(() => isActive.value && cb());\n}\nexport function onSlideLeave(cb) {\n  const isActive = useIsSlideActive();\n  watch(isActive, () => !isActive.value && cb());\n}\n",
+      "start": 1743409708590,
+      "end": 1743409708705,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/slides.ts"
+        ],
+        "sourcesContent": [
+          "import type { SlideRoute } from '@slidev/types'\nimport { slides } from '#slidev/slides'\nimport { computed, watch, watchEffect } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { useSlideContext } from '../context'\n\nexport { slides }\n\nexport function getSlide(no: number | string) {\n  return slides.value.find(\n    s => (s.no === +no || s.meta.slide?.frontmatter.routeAlias === no),\n  )\n}\n\nexport function getSlidePath(\n  route: SlideRoute | number | string,\n  presenter: boolean,\n  exporting: boolean = false,\n) {\n  if (typeof route === 'number' || typeof route === 'string')\n    route = getSlide(route)!\n  const no = route.meta.slide?.frontmatter.routeAlias ?? route.no\n  return exporting ? `/export/${no}` : presenter ? `/presenter/${no}` : `/${no}`\n}\n\nexport function useIsSlideActive() {\n  const { $page } = useSlideContext()\n  const { currentSlideNo } = useNav()\n  return computed(() => $page.value === currentSlideNo.value)\n}\n\nexport function onSlideEnter(cb: () => void) {\n  const isActive = useIsSlideActive()\n  watchEffect(() => isActive.value && cb())\n}\n\nexport function onSlideLeave(cb: () => void) {\n  const isActive = useIsSlideActive()\n  watch(isActive, () => !isActive.value && cb())\n}\n"
+        ],
+        "mappings": "AACA,SAAS,cAAc;AACvB,SAAS,UAAU,OAAO,mBAAmB;AAC7C,SAAS,cAAc;AACvB,SAAS,uBAAuB;AAEhC,SAAS;AAEF,gBAAS,SAAS,IAAqB;AAC5C,SAAO,OAAO,MAAM;AAAA,IAClB,OAAM,EAAE,OAAO,CAAC,MAAM,EAAE,KAAK,OAAO,YAAY,eAAe;AAAA,EACjE;AACF;AAEO,gBAAS,aACd,OACA,WACA,YAAqB,OACrB;AACA,MAAI,OAAO,UAAU,YAAY,OAAO,UAAU;AAChD,YAAQ,SAAS,KAAK;AACxB,QAAM,KAAK,MAAM,KAAK,OAAO,YAAY,cAAc,MAAM;AAC7D,SAAO,YAAY,WAAW,EAAE,KAAK,YAAY,cAAc,EAAE,KAAK,IAAI,EAAE;AAC9E;AAEO,gBAAS,mBAAmB;AACjC,QAAM,EAAE,MAAM,IAAI,gBAAgB;AAClC,QAAM,EAAE,eAAe,IAAI,OAAO;AAClC,SAAO,SAAS,MAAM,MAAM,UAAU,eAAe,KAAK;AAC5D;AAEO,gBAAS,aAAa,IAAgB;AAC3C,QAAM,WAAW,iBAAiB;AAClC,cAAY,MAAM,SAAS,SAAS,GAAG,CAAC;AAC1C;AAEO,gBAAS,aAAa,IAAgB;AAC3C,QAAM,WAAW,iBAAiB;AAClC,QAAM,UAAU,MAAM,CAAC,SAAS,SAAS,GAAG,CAAC;AAC/C;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { useStyleTag } from '@vueuse/core'\nimport { computed, ref, shallowRef } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useHideCursorIdle } from '../composables/useHideCursorIdle'\nimport { useNav } from '../composables/useNav'\nimport { useSwipeControls } from '../composables/useSwipeControls'\nimport { useWakeLock } from '../composables/useWakeLock'\nimport Controls from '../internals/Controls.vue'\nimport NavControls from '../internals/NavControls.vue'\nimport PresenterMouse from '../internals/PresenterMouse.vue'\nimport SlideContainer from '../internals/SlideContainer.vue'\nimport SlidesShow from '../internals/SlidesShow.vue'\nimport { onContextMenu } from '../logic/contextMenu'\nimport { registerShortcuts } from '../logic/shortcuts'\nimport { editorHeight, editorWidth, isEditorVertical, isScreenVertical, showEditor, viewerCssFilter, viewerCssFilterDefaults } from '../state'\n\nconst { next, prev, isPrintMode, isPlaying, isEmbedded } = useNav()\nconst { isDrawing } = useDrawings()\n\nconst root = ref<HTMLDivElement>()\nfunction onClick(e: MouseEvent) {\n  if (showEditor.value)\n    return\n\n  if (e.button === 0 && (e.target as HTMLElement)?.id === 'slide-container') {\n    // click right to next, left to previous\n    if ((e.pageX / window.innerWidth) > 0.5)\n      next()\n    else\n      prev()\n  }\n}\n\nuseSwipeControls(root)\nregisterShortcuts()\nif (__SLIDEV_FEATURE_WAKE_LOCK__)\n  useWakeLock()\nuseHideCursorIdle(computed(() => isPlaying.value && !isEmbedded.value && !showEditor.value))\n\nif (import.meta.hot) {\n  useStyleTag(computed(() => showEditor.value\n    ? `\n    vite-error-overlay {\n      --width: calc(100vw - ${isEditorVertical.value ? 0 : editorWidth.value}px);\n      --height: calc(100vh - ${isEditorVertical.value ? editorHeight.value : 0}px);\n      position: fixed;\n      left: 0;\n      top: 0;\n      width: calc(var(--width) / var(--slidev-slide-scale));\n      height: calc(var(--height) / var(--slidev-slide-scale));\n      transform-origin: top left;\n      transform: scale(var(--slidev-slide-scale));\n    }`\n    : '',\n  ))\n}\n\nconst persistNav = computed(() => isScreenVertical.value || showEditor.value)\n\nconst SideEditor = shallowRef<any>()\nif (__DEV__ && __SLIDEV_FEATURE_EDITOR__)\n  import('../internals/SideEditor.vue').then(v => SideEditor.value = v.default)\n\nconst contentStyle = computed(() => {\n  let filter = ''\n\n  if (viewerCssFilter.value.brightness !== viewerCssFilterDefaults.brightness)\n    filter += `brightness(${viewerCssFilter.value.brightness}) `\n  if (viewerCssFilter.value.contrast !== viewerCssFilterDefaults.contrast)\n    filter += `contrast(${viewerCssFilter.value.contrast}) `\n  if (viewerCssFilter.value.sepia !== viewerCssFilterDefaults.sepia)\n    filter += `sepia(${viewerCssFilter.value.sepia}) `\n  if (viewerCssFilter.value.hueRotate !== viewerCssFilterDefaults.hueRotate)\n    filter += `hue-rotate(${viewerCssFilter.value.hueRotate}deg) `\n  if (viewerCssFilter.value.invert)\n    filter += 'invert(1) '\n\n  return {\n    filter,\n  }\n})\n</script>\n\n<template>\n  <div\n    id=\"page-root\" ref=\"root\" class=\"grid\"\n    :class=\"isEditorVertical ? 'grid-rows-[1fr_max-content]' : 'grid-cols-[1fr_max-content]'\"\n  >\n    <SlideContainer\n      :style=\"{ background: 'var(--slidev-slide-container-background, black)' }\"\n      is-main\n      :content-style=\"contentStyle\"\n      @pointerdown=\"onClick\"\n      @contextmenu=\"onContextMenu\"\n    >\n      <template #default>\n        <SlidesShow render-context=\"slide\" />\n        <PresenterMouse />\n      </template>\n      <template #controls>\n        <div\n          v-if=\"!isPrintMode\"\n          class=\"absolute bottom-0 left-0 transition duration-300 opacity-0 hover:opacity-100 focus-within:opacity-100 focus-visible:opacity-100\"\n          :class=\"[\n            persistNav ? '!opacity-100 right-0' : 'opacity-0 p-2',\n            isDrawing ? 'pointer-events-none' : '',\n          ]\"\n        >\n          <NavControls :persist=\"persistNav\" />\n        </div>\n      </template>\n    </SlideContainer>\n    <SideEditor v-if=\"SideEditor && showEditor\" :resize=\"true\" />\n  </div>\n  <Controls v-if=\"!isPrintMode\" />\n  <div id=\"twoslash-container\" />\n</template>\n",
+      "start": 1743409708498,
+      "end": 1743409708548,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "result": "<script setup lang=\"ts\">\nimport { useStyleTag } from '@vueuse/core'\nimport { computed, ref, shallowRef } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useHideCursorIdle } from '../composables/useHideCursorIdle'\nimport { useNav } from '../composables/useNav'\nimport { useSwipeControls } from '../composables/useSwipeControls'\nimport { useWakeLock } from '../composables/useWakeLock'\nimport Controls from '../internals/Controls.vue'\nimport NavControls from '../internals/NavControls.vue'\nimport PresenterMouse from '../internals/PresenterMouse.vue'\nimport SlideContainer from '../internals/SlideContainer.vue'\nimport SlidesShow from '../internals/SlidesShow.vue'\nimport { onContextMenu } from '../logic/contextMenu'\nimport { registerShortcuts } from '../logic/shortcuts'\nimport { editorHeight, editorWidth, isEditorVertical, isScreenVertical, showEditor, viewerCssFilter, viewerCssFilterDefaults } from '../state'\n\nconst { next, prev, isPrintMode, isPlaying, isEmbedded } = useNav()\nconst { isDrawing } = useDrawings()\n\nconst root = ref<HTMLDivElement>()\nfunction onClick(e: MouseEvent) {\n  if (showEditor.value)\n    return\n\n  if (e.button === 0 && (e.target as HTMLElement)?.id === 'slide-container') {\n    // click right to next, left to previous\n    if ((e.pageX / window.innerWidth) > 0.5)\n      next()\n    else\n      prev()\n  }\n}\n\nuseSwipeControls(root)\nregisterShortcuts()\nif (true)\n  useWakeLock()\nuseHideCursorIdle(computed(() => isPlaying.value && !isEmbedded.value && !showEditor.value))\n\nif (import.meta.hot) {\n  useStyleTag(computed(() => showEditor.value\n    ? `\n    vite-error-overlay {\n      --width: calc(100vw - ${isEditorVertical.value ? 0 : editorWidth.value}px);\n      --height: calc(100vh - ${isEditorVertical.value ? editorHeight.value : 0}px);\n      position: fixed;\n      left: 0;\n      top: 0;\n      width: calc(var(--width) / var(--slidev-slide-scale));\n      height: calc(var(--height) / var(--slidev-slide-scale));\n      transform-origin: top left;\n      transform: scale(var(--slidev-slide-scale));\n    }`\n    : '',\n  ))\n}\n\nconst persistNav = computed(() => isScreenVertical.value || showEditor.value)\n\nconst SideEditor = shallowRef<any>()\nif (false && false)\n  import('../internals/SideEditor.vue').then(v => SideEditor.value = v.default)\n\nconst contentStyle = computed(() => {\n  let filter = ''\n\n  if (viewerCssFilter.value.brightness !== viewerCssFilterDefaults.brightness)\n    filter += `brightness(${viewerCssFilter.value.brightness}) `\n  if (viewerCssFilter.value.contrast !== viewerCssFilterDefaults.contrast)\n    filter += `contrast(${viewerCssFilter.value.contrast}) `\n  if (viewerCssFilter.value.sepia !== viewerCssFilterDefaults.sepia)\n    filter += `sepia(${viewerCssFilter.value.sepia}) `\n  if (viewerCssFilter.value.hueRotate !== viewerCssFilterDefaults.hueRotate)\n    filter += `hue-rotate(${viewerCssFilter.value.hueRotate}deg) `\n  if (viewerCssFilter.value.invert)\n    filter += 'invert(1) '\n\n  return {\n    filter,\n  }\n})\n</script>\n\n<template>\n  <div\n    id=\"page-root\" ref=\"root\" class=\"grid\"\n    :class=\"isEditorVertical ? 'grid-rows-[1fr_max-content]' : 'grid-cols-[1fr_max-content]'\"\n  >\n    <SlideContainer\n      :style=\"{ background: 'var(--slidev-slide-container-background, black)' }\"\n      is-main\n      :content-style=\"contentStyle\"\n      @pointerdown=\"onClick\"\n      @contextmenu=\"onContextMenu\"\n    >\n      <template #default>\n        <SlidesShow render-context=\"slide\" />\n        <PresenterMouse />\n      </template>\n      <template #controls>\n        <div\n          v-if=\"!isPrintMode\"\n          class=\"absolute bottom-0 left-0 transition duration-300 opacity-0 hover:opacity-100 focus-within:opacity-100 focus-visible:opacity-100\"\n          :class=\"[\n            persistNav ? '!opacity-100 right-0' : 'opacity-0 p-2',\n            isDrawing ? 'pointer-events-none' : '',\n          ]\"\n        >\n          <NavControls :persist=\"persistNav\" />\n        </div>\n      </template>\n    </SlideContainer>\n    <SideEditor v-if=\"SideEditor && showEditor\" :resize=\"true\" />\n  </div>\n  <Controls v-if=\"!isPrintMode\" />\n  <div id=\"twoslash-container\" />\n</template>\n",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "pre",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708548,
+      "end": 1743409708548,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708548,
+      "end": 1743409708694,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708694,
+      "end": 1743409708694,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708694,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/play.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACxI,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAChI,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    }
+  ]
+}

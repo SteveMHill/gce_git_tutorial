@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/transition.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { SlideRoute } from '@slidev/types'\nimport type { TransitionGroupProps } from 'vue'\nimport { configs } from '../env'\n\nconst transitionResolveMap: Record<string, string | undefined> = {\n  'slide-left': 'slide-left | slide-right',\n  'slide-right': 'slide-right | slide-left',\n  'slide-up': 'slide-up | slide-down',\n  'slide-down': 'slide-down | slide-up',\n}\n\nexport function resolveTransition(transition?: string | TransitionGroupProps, isBackward = false): TransitionGroupProps | undefined {\n  if (!transition)\n    return undefined\n  if (typeof transition === 'string') {\n    transition = {\n      name: transition,\n    }\n  }\n\n  if (!transition.name)\n    return undefined\n\n  let name = transition.name.includes('|')\n    ? transition.name\n    : (transitionResolveMap[transition.name] || transition.name)\n\n  if (name.includes('|')) {\n    const [forward, backward] = name.split('|').map(i => i.trim())\n    name = isBackward ? backward : forward\n  }\n\n  if (!name)\n    return undefined\n\n  return {\n    ...transition,\n    name,\n  }\n}\n\nexport function getCurrentTransition(direction: number, currentRoute?: SlideRoute, prevRoute?: SlideRoute) {\n  let transition = direction > 0\n    ? prevRoute?.meta?.transition\n    : currentRoute?.meta?.transition\n  if (!transition)\n    transition = configs.transition || undefined\n\n  return resolveTransition(transition, direction < 0)\n}\n",
+      "start": 1743409708715,
+      "end": 1743409708716,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { configs } from \"../env\";\nconst transitionResolveMap = {\n  \"slide-left\": \"slide-left | slide-right\",\n  \"slide-right\": \"slide-right | slide-left\",\n  \"slide-up\": \"slide-up | slide-down\",\n  \"slide-down\": \"slide-down | slide-up\"\n};\nexport function resolveTransition(transition, isBackward = false) {\n  if (!transition)\n    return void 0;\n  if (typeof transition === \"string\") {\n    transition = {\n      name: transition\n    };\n  }\n  if (!transition.name)\n    return void 0;\n  let name = transition.name.includes(\"|\") ? transition.name : transitionResolveMap[transition.name] || transition.name;\n  if (name.includes(\"|\")) {\n    const [forward, backward] = name.split(\"|\").map((i) => i.trim());\n    name = isBackward ? backward : forward;\n  }\n  if (!name)\n    return void 0;\n  return {\n    ...transition,\n    name\n  };\n}\nexport function getCurrentTransition(direction, currentRoute, prevRoute) {\n  let transition = direction > 0 ? prevRoute?.meta?.transition : currentRoute?.meta?.transition;\n  if (!transition)\n    transition = configs.transition || void 0;\n  return resolveTransition(transition, direction < 0);\n}\n",
+      "start": 1743409708716,
+      "end": 1743409708885,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/transition.ts"
+        ],
+        "sourcesContent": [
+          "import type { SlideRoute } from '@slidev/types'\nimport type { TransitionGroupProps } from 'vue'\nimport { configs } from '../env'\n\nconst transitionResolveMap: Record<string, string | undefined> = {\n  'slide-left': 'slide-left | slide-right',\n  'slide-right': 'slide-right | slide-left',\n  'slide-up': 'slide-up | slide-down',\n  'slide-down': 'slide-down | slide-up',\n}\n\nexport function resolveTransition(transition?: string | TransitionGroupProps, isBackward = false): TransitionGroupProps | undefined {\n  if (!transition)\n    return undefined\n  if (typeof transition === 'string') {\n    transition = {\n      name: transition,\n    }\n  }\n\n  if (!transition.name)\n    return undefined\n\n  let name = transition.name.includes('|')\n    ? transition.name\n    : (transitionResolveMap[transition.name] || transition.name)\n\n  if (name.includes('|')) {\n    const [forward, backward] = name.split('|').map(i => i.trim())\n    name = isBackward ? backward : forward\n  }\n\n  if (!name)\n    return undefined\n\n  return {\n    ...transition,\n    name,\n  }\n}\n\nexport function getCurrentTransition(direction: number, currentRoute?: SlideRoute, prevRoute?: SlideRoute) {\n  let transition = direction > 0\n    ? prevRoute?.meta?.transition\n    : currentRoute?.meta?.transition\n  if (!transition)\n    transition = configs.transition || undefined\n\n  return resolveTransition(transition, direction < 0)\n}\n"
+        ],
+        "mappings": "AAEA,SAAS,eAAe;AAExB,MAAM,uBAA2D;AAAA,EAC/D,cAAc;AAAA,EACd,eAAe;AAAA,EACf,YAAY;AAAA,EACZ,cAAc;AAChB;AAEO,gBAAS,kBAAkB,YAA4C,aAAa,OAAyC;AAClI,MAAI,CAAC;AACH,WAAO;AACT,MAAI,OAAO,eAAe,UAAU;AAClC,iBAAa;AAAA,MACX,MAAM;AAAA,IACR;AAAA,EACF;AAEA,MAAI,CAAC,WAAW;AACd,WAAO;AAET,MAAI,OAAO,WAAW,KAAK,SAAS,GAAG,IACnC,WAAW,OACV,qBAAqB,WAAW,IAAI,KAAK,WAAW;AAEzD,MAAI,KAAK,SAAS,GAAG,GAAG;AACtB,UAAM,CAAC,SAAS,QAAQ,IAAI,KAAK,MAAM,GAAG,EAAE,IAAI,OAAK,EAAE,KAAK,CAAC;AAC7D,WAAO,aAAa,WAAW;AAAA,EACjC;AAEA,MAAI,CAAC;AACH,WAAO;AAET,SAAO;AAAA,IACL,GAAG;AAAA,IACH;AAAA,EACF;AACF;AAEO,gBAAS,qBAAqB,WAAmB,cAA2B,WAAwB;AACzG,MAAI,aAAa,YAAY,IACzB,WAAW,MAAM,aACjB,cAAc,MAAM;AACxB,MAAI,CAAC;AACH,iBAAa,QAAQ,cAAc;AAErC,SAAO,kBAAkB,YAAY,YAAY,CAAC;AACpD;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708885,
+      "end": 1743409708885,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708885,
+      "end": 1743409708886,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708886,
+      "end": 1743409708886,
+      "order": "normal"
+    }
+  ]
+}

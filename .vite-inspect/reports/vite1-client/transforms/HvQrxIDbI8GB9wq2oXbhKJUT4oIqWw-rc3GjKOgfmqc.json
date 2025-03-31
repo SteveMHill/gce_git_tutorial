@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { onClickOutside, useElementBounding, useEventListener, useWindowFocus } from '@vueuse/core'\nimport { computed, ref, watch } from 'vue'\nimport { useDynamicSlideInfo } from '../composables/useSlideInfo'\nimport { configs } from '../env'\nimport { closeContextMenu, currentContextMenu } from '../logic/contextMenu'\nimport { windowSize } from '../state'\n\nconst container = ref<HTMLElement>()\n\nonClickOutside(container, closeContextMenu)\nuseEventListener(document, 'mousedown', (ev) => {\n  if (ev.buttons & 2)\n    closeContextMenu()\n}, {\n  passive: true,\n  capture: true,\n})\n\nconst isExplicitEnabled = computed(() => configs.contextMenu != null)\n\nconst windowFocus = useWindowFocus()\nwatch(windowFocus, (hasFocus) => {\n  if (!hasFocus)\n    closeContextMenu()\n})\n\nconst firstSlide = useDynamicSlideInfo(1)\nfunction disableContextMenu() {\n  const info = firstSlide.info.value\n  if (!info)\n    return\n  firstSlide.update({\n    frontmatter: {\n      contextMenu: false,\n    },\n  })\n}\n\nconst { width, height } = useElementBounding(container)\nconst left = computed(() => {\n  const x = currentContextMenu.value?.x\n  if (!x)\n    return 0\n  if (x + width.value > windowSize.width.value)\n    return windowSize.width.value - width.value\n  return x\n})\nconst top = computed(() => {\n  const y = currentContextMenu.value?.y\n  if (!y)\n    return 0\n  if (y + height.value > windowSize.height.value)\n    return windowSize.height.value - height.value\n  return y\n})\n</script>\n\n<template>\n  <div\n    v-if=\"currentContextMenu\"\n    ref=\"container\"\n    :style=\"`left:${left}px;top:${top}px`\"\n    class=\"slidev-glass-effect fixed z-context-menu w-60 flex flex-wrap justify-items-start p-1 animate-fade-in animate-duration-100 rounded-md shadow overflow-hidden select-none\"\n    @contextmenu.prevent=\"\"\n    @click=\"closeContextMenu\"\n  >\n    <template v-for=\"item, index of currentContextMenu.items.value\" :key=\"index\">\n      <div v-if=\"item === 'separator'\" :key=\"index\" class=\"w-full my1 border-t border-main\" />\n      <div\n        v-else-if=\"item.small\"\n        class=\"p-2 w-[40px] h-[40px] inline-block text-center cursor-pointer rounded flex\"\n        :class=\"item.disabled ? `op40` : `hover:bg-active`\"\n        :title=\"(item.label as string)\"\n        @click=\"item.action\"\n      >\n        <div v-if=\"typeof item.icon === 'string'\" :class=\"item.icon\" class=\"text-1.2em ma\" />\n        <component :is=\"item.icon\" v-else />\n      </div>\n      <div\n        v-else\n        class=\"w-full grid grid-cols-[35px_1fr] p-2 pl-0 cursor-pointer rounded\"\n        :class=\"item.disabled ? `op40` : `hover:bg-active`\"\n        @click=\"item.action\"\n      >\n        <div class=\"mx-auto flex\">\n          <div v-if=\"typeof item.icon === 'string'\" :class=\"item.icon\" class=\"text-1.2em ma\" />\n          <component :is=\"item.icon\" v-else />\n        </div>\n        <div v-if=\"typeof item.label === 'string'\">\n          {{ item.label }}\n        </div>\n        <component :is=\"item.label\" v-else />\n      </div>\n    </template>\n    <template v-if=\"!isExplicitEnabled\">\n      <div class=\"w-full my1 border-t border-main\" />\n      <div class=\"w-full text-xs p2\">\n        <div class=\"text-main text-opacity-50!\">\n          Hold <kbd class=\"border px1 py0.5 border-main rounded text-primary\">Shift</kbd> and right click to open the native context menu\n          <button\n            v-if=\"__DEV__\"\n            class=\"underline op50 hover:op100 mt1 block\"\n            @click=\"disableContextMenu()\"\n          >\n            Disable custom context menu\n          </button>\n        </div>\n      </div>\n    </template>\n  </div>\n</template>\n",
+      "start": 1743409708751,
+      "end": 1743409708776,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "result": "<script setup lang=\"ts\">\nimport { onClickOutside, useElementBounding, useEventListener, useWindowFocus } from '@vueuse/core'\nimport { computed, ref, watch } from 'vue'\nimport { useDynamicSlideInfo } from '../composables/useSlideInfo'\nimport { configs } from '../env'\nimport { closeContextMenu, currentContextMenu } from '../logic/contextMenu'\nimport { windowSize } from '../state'\n\nconst container = ref<HTMLElement>()\n\nonClickOutside(container, closeContextMenu)\nuseEventListener(document, 'mousedown', (ev) => {\n  if (ev.buttons & 2)\n    closeContextMenu()\n}, {\n  passive: true,\n  capture: true,\n})\n\nconst isExplicitEnabled = computed(() => configs.contextMenu != null)\n\nconst windowFocus = useWindowFocus()\nwatch(windowFocus, (hasFocus) => {\n  if (!hasFocus)\n    closeContextMenu()\n})\n\nconst firstSlide = useDynamicSlideInfo(1)\nfunction disableContextMenu() {\n  const info = firstSlide.info.value\n  if (!info)\n    return\n  firstSlide.update({\n    frontmatter: {\n      contextMenu: false,\n    },\n  })\n}\n\nconst { width, height } = useElementBounding(container)\nconst left = computed(() => {\n  const x = currentContextMenu.value?.x\n  if (!x)\n    return 0\n  if (x + width.value > windowSize.width.value)\n    return windowSize.width.value - width.value\n  return x\n})\nconst top = computed(() => {\n  const y = currentContextMenu.value?.y\n  if (!y)\n    return 0\n  if (y + height.value > windowSize.height.value)\n    return windowSize.height.value - height.value\n  return y\n})\n</script>\n\n<template>\n  <div\n    v-if=\"currentContextMenu\"\n    ref=\"container\"\n    :style=\"`left:${left}px;top:${top}px`\"\n    class=\"slidev-glass-effect fixed z-context-menu w-60 flex flex-wrap justify-items-start p-1 animate-fade-in animate-duration-100 rounded-md shadow overflow-hidden select-none\"\n    @contextmenu.prevent=\"\"\n    @click=\"closeContextMenu\"\n  >\n    <template v-for=\"item, index of currentContextMenu.items.value\" :key=\"index\">\n      <div v-if=\"item === 'separator'\" :key=\"index\" class=\"w-full my1 border-t border-main\" />\n      <div\n        v-else-if=\"item.small\"\n        class=\"p-2 w-[40px] h-[40px] inline-block text-center cursor-pointer rounded flex\"\n        :class=\"item.disabled ? `op40` : `hover:bg-active`\"\n        :title=\"(item.label as string)\"\n        @click=\"item.action\"\n      >\n        <div v-if=\"typeof item.icon === 'string'\" :class=\"item.icon\" class=\"text-1.2em ma\" />\n        <component :is=\"item.icon\" v-else />\n      </div>\n      <div\n        v-else\n        class=\"w-full grid grid-cols-[35px_1fr] p-2 pl-0 cursor-pointer rounded\"\n        :class=\"item.disabled ? `op40` : `hover:bg-active`\"\n        @click=\"item.action\"\n      >\n        <div class=\"mx-auto flex\">\n          <div v-if=\"typeof item.icon === 'string'\" :class=\"item.icon\" class=\"text-1.2em ma\" />\n          <component :is=\"item.icon\" v-else />\n        </div>\n        <div v-if=\"typeof item.label === 'string'\">\n          {{ item.label }}\n        </div>\n        <component :is=\"item.label\" v-else />\n      </div>\n    </template>\n    <template v-if=\"!isExplicitEnabled\">\n      <div class=\"w-full my1 border-t border-main\" />\n      <div class=\"w-full text-xs p2\">\n        <div class=\"text-main text-opacity-50!\">\n          Hold <kbd class=\"border px1 py0.5 border-main rounded text-primary\">Shift</kbd> and right click to open the native context menu\n          <button\n            v-if=\"false\"\n            class=\"underline op50 hover:op100 mt1 block\"\n            @click=\"disableContextMenu()\"\n          >\n            Disable custom context menu\n          </button>\n        </div>\n      </div>\n    </template>\n  </div>\n</template>\n",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708776,
+      "end": 1743409708908,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708908,
+      "end": 1743409708909,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ContextMenu.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACnJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC3I,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/nodes/toJS.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { hasAnchor } from './identity.js';\n\n/**\n * Recursively convert any node or its contents to native JavaScript\n *\n * @param value - The input value\n * @param arg - If `value` defines a `toJSON()` method, use this\n *   as its first argument\n * @param ctx - Conversion context, originally set in Document#toJS(). If\n *   `{ keep: true }` is not set, output should be suitable for JSON\n *   stringification.\n */\nfunction toJS(value, arg, ctx) {\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-return\n    if (Array.isArray(value))\n        return value.map((v, i) => toJS(v, String(i), ctx));\n    if (value && typeof value.toJSON === 'function') {\n        // eslint-disable-next-line @typescript-eslint/no-unsafe-call\n        if (!ctx || !hasAnchor(value))\n            return value.toJSON(arg, ctx);\n        const data = { aliasCount: 0, count: 1, res: undefined };\n        ctx.anchors.set(value, data);\n        ctx.onCreate = res => {\n            data.res = res;\n            delete ctx.onCreate;\n        };\n        const res = value.toJSON(arg, ctx);\n        if (ctx.onCreate)\n            ctx.onCreate(res);\n        return res;\n    }\n    if (typeof value === 'bigint' && !ctx?.keep)\n        return Number(value);\n    return value;\n}\n\nexport { toJS };\n",
+      "start": 1743409708641,
+      "end": 1743409708650,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708650,
+      "end": 1743409708650,
+      "order": "normal"
+    }
+  ]
+}

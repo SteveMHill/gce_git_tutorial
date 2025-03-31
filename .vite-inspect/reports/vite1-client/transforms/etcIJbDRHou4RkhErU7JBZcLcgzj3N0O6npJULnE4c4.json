@@ -1,0 +1,170 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/styles/transitions.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/* Sliding */\n.slide-left-enter-active,\n.slide-left-leave-active,\n.slide-right-enter-active,\n.slide-right-leave-active,\n.slide-up-enter-active,\n.slide-up-leave-active,\n.slide-down-enter-active,\n.slide-down-leave-active {\n  transition: all var(--slidev-transition-duration) ease;\n}\n\n.slide-left-enter-from,\n.slide-right-leave-to {\n  transform: translateX(100%);\n}\n\n.slide-left-leave-to,\n.slide-right-enter-from {\n  transform: translateX(-100%);\n}\n\n.slide-up-enter-from,\n.slide-down-leave-to {\n  transform: translateY(100%);\n}\n\n.slide-up-leave-to,\n.slide-down-enter-from {\n  transform: translateY(-100%);\n}\n\n/* Fading */\n.fade-enter-active,\n.fade-leave-active {\n  transition: opacity var(--slidev-transition-duration) ease;\n}\n\n.fade-enter-from,\n.fade-leave-to {\n  opacity: 0;\n}\n\n.fade-out-leave-active {\n  transition: opacity calc(var(--slidev-transition-duration) * 0.6) ease-out;\n}\n\n.fade-out-enter-active {\n  transition: opacity calc(var(--slidev-transition-duration) * 0.8) ease-in;\n  transition-delay: calc(var(--slidev-transition-duration) * 0.6);\n}\n\n.fade-out-enter-from,\n.fade-out-leave-to {\n  opacity: 0;\n}\n",
+      "start": 1743409708380,
+      "end": 1743409708412,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708412,
+      "end": 1743409708412,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708412,
+      "end": 1743409708412,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708412,
+      "end": 1743409708412,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708412,
+      "end": 1743409708412,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "/* Sliding */\n.slide-left-enter-active,\n.slide-left-leave-active,\n.slide-right-enter-active,\n.slide-right-leave-active,\n.slide-up-enter-active,\n.slide-up-leave-active,\n.slide-down-enter-active,\n.slide-down-leave-active {\n  transition: all var(--slidev-transition-duration) ease;\n}\n\n.slide-left-enter-from,\n.slide-right-leave-to {\n  transform: translateX(100%);\n}\n\n.slide-left-leave-to,\n.slide-right-enter-from {\n  transform: translateX(-100%);\n}\n\n.slide-up-enter-from,\n.slide-down-leave-to {\n  transform: translateY(100%);\n}\n\n.slide-up-leave-to,\n.slide-down-enter-from {\n  transform: translateY(-100%);\n}\n\n/* Fading */\n.fade-enter-active,\n.fade-leave-active {\n  transition: opacity var(--slidev-transition-duration) ease;\n}\n\n.fade-enter-from,\n.fade-leave-to {\n  opacity: 0;\n}\n\n.fade-out-leave-active {\n  transition: opacity calc(var(--slidev-transition-duration) * 0.6) ease-out;\n}\n\n.fade-out-enter-active {\n  transition: opacity calc(var(--slidev-transition-duration) * 0.8) ease-in;\n  transition-delay: calc(var(--slidev-transition-duration) * 0.6);\n}\n\n.fade-out-enter-from,\n.fade-out-leave-to {\n  opacity: 0;\n}\n",
+      "start": 1743409708412,
+      "end": 1743409708429,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useViewTransition.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { ref } from 'vue'\nimport { useRouter } from 'vue-router'\nimport { configs } from '../env'\nimport { getSlide } from '../logic/slides'\n\nexport function useViewTransition() {\n  const router = useRouter()\n  const isViewTransition = ref(false)\n\n  let viewTransitionFinish: undefined | (() => void)\n  let viewTransitionAbort: undefined | (() => void)\n\n  const supportViewTransition = typeof document !== 'undefined' && 'startViewTransition' in document\n\n  router.beforeResolve((to, from) => {\n    const fromMeta = getSlide(from.params.no as string)?.meta\n    const toMeta = getSlide(to.params.no as string)?.meta\n    const fromNo = fromMeta?.slide?.no\n    const toNo = toMeta?.slide?.no\n    const transitionType = fromNo != null && toNo != null && fromNo !== toNo\n      && ((fromNo < toNo ? fromMeta?.transition : toMeta?.transition) ?? configs.transition)\n    if (transitionType !== 'view-transition') {\n      isViewTransition.value = false\n      return\n    }\n\n    if (!supportViewTransition) {\n      isViewTransition.value = false\n      console.warn('View transition is not supported in your browser, fallback to normal transition.')\n      return\n    }\n\n    isViewTransition.value = true\n    const promise = new Promise<void>((resolve, reject) => {\n      viewTransitionFinish = resolve\n      viewTransitionAbort = reject\n    })\n\n    let changeRoute: () => void\n    const ready = new Promise<void>(resolve => (changeRoute = resolve))\n\n    // Wait for `TransitionGroup` to become normal `div`\n    setTimeout(() => {\n      document.startViewTransition(() => {\n        changeRoute()\n        return promise\n      })\n    }, 50)\n\n    return ready\n  })\n\n  if (supportViewTransition) {\n    router.afterEach(() => {\n      viewTransitionFinish?.()\n      viewTransitionAbort?.()\n    })\n  }\n\n  return isViewTransition\n}\n",
+      "start": 1743409708983,
+      "end": 1743409708994,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708994,
+      "end": 1743409708994,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708994,
+      "end": 1743409708994,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708994,
+      "end": 1743409708994,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708994,
+      "end": 1743409708994,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708994,
+      "end": 1743409708994,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { ref } from \"vue\";\nimport { useRouter } from \"vue-router\";\nimport { configs } from \"../env\";\nimport { getSlide } from \"../logic/slides\";\nexport function useViewTransition() {\n  const router = useRouter();\n  const isViewTransition = ref(false);\n  let viewTransitionFinish;\n  let viewTransitionAbort;\n  const supportViewTransition = typeof document !== \"undefined\" && \"startViewTransition\" in document;\n  router.beforeResolve((to, from) => {\n    const fromMeta = getSlide(from.params.no)?.meta;\n    const toMeta = getSlide(to.params.no)?.meta;\n    const fromNo = fromMeta?.slide?.no;\n    const toNo = toMeta?.slide?.no;\n    const transitionType = fromNo != null && toNo != null && fromNo !== toNo && ((fromNo < toNo ? fromMeta?.transition : toMeta?.transition) ?? configs.transition);\n    if (transitionType !== \"view-transition\") {\n      isViewTransition.value = false;\n      return;\n    }\n    if (!supportViewTransition) {\n      isViewTransition.value = false;\n      console.warn(\"View transition is not supported in your browser, fallback to normal transition.\");\n      return;\n    }\n    isViewTransition.value = true;\n    const promise = new Promise((resolve, reject) => {\n      viewTransitionFinish = resolve;\n      viewTransitionAbort = reject;\n    });\n    let changeRoute;\n    const ready = new Promise((resolve) => changeRoute = resolve);\n    setTimeout(() => {\n      document.startViewTransition(() => {\n        changeRoute();\n        return promise;\n      });\n    }, 50);\n    return ready;\n  });\n  if (supportViewTransition) {\n    router.afterEach(() => {\n      viewTransitionFinish?.();\n      viewTransitionAbort?.();\n    });\n  }\n  return isViewTransition;\n}\n",
+      "start": 1743409708994,
+      "end": 1743409709041,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useViewTransition.ts"
+        ],
+        "sourcesContent": [
+          "import { ref } from 'vue'\nimport { useRouter } from 'vue-router'\nimport { configs } from '../env'\nimport { getSlide } from '../logic/slides'\n\nexport function useViewTransition() {\n  const router = useRouter()\n  const isViewTransition = ref(false)\n\n  let viewTransitionFinish: undefined | (() => void)\n  let viewTransitionAbort: undefined | (() => void)\n\n  const supportViewTransition = typeof document !== 'undefined' && 'startViewTransition' in document\n\n  router.beforeResolve((to, from) => {\n    const fromMeta = getSlide(from.params.no as string)?.meta\n    const toMeta = getSlide(to.params.no as string)?.meta\n    const fromNo = fromMeta?.slide?.no\n    const toNo = toMeta?.slide?.no\n    const transitionType = fromNo != null && toNo != null && fromNo !== toNo\n      && ((fromNo < toNo ? fromMeta?.transition : toMeta?.transition) ?? configs.transition)\n    if (transitionType !== 'view-transition') {\n      isViewTransition.value = false\n      return\n    }\n\n    if (!supportViewTransition) {\n      isViewTransition.value = false\n      console.warn('View transition is not supported in your browser, fallback to normal transition.')\n      return\n    }\n\n    isViewTransition.value = true\n    const promise = new Promise<void>((resolve, reject) => {\n      viewTransitionFinish = resolve\n      viewTransitionAbort = reject\n    })\n\n    let changeRoute: () => void\n    const ready = new Promise<void>(resolve => (changeRoute = resolve))\n\n    // Wait for `TransitionGroup` to become normal `div`\n    setTimeout(() => {\n      document.startViewTransition(() => {\n        changeRoute()\n        return promise\n      })\n    }, 50)\n\n    return ready\n  })\n\n  if (supportViewTransition) {\n    router.afterEach(() => {\n      viewTransitionFinish?.()\n      viewTransitionAbort?.()\n    })\n  }\n\n  return isViewTransition\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,WAAW;AACpB,SAAS,iBAAiB;AAC1B,SAAS,eAAe;AACxB,SAAS,gBAAgB;AAElB,gBAAS,oBAAoB;AAClC,QAAM,SAAS,UAAU;AACzB,QAAM,mBAAmB,IAAI,KAAK;AAElC,MAAI;AACJ,MAAI;AAEJ,QAAM,wBAAwB,OAAO,aAAa,eAAe,yBAAyB;AAE1F,SAAO,cAAc,CAAC,IAAI,SAAS;AACjC,UAAM,WAAW,SAAS,KAAK,OAAO,EAAY,GAAG;AACrD,UAAM,SAAS,SAAS,GAAG,OAAO,EAAY,GAAG;AACjD,UAAM,SAAS,UAAU,OAAO;AAChC,UAAM,OAAO,QAAQ,OAAO;AAC5B,UAAM,iBAAiB,UAAU,QAAQ,QAAQ,QAAQ,WAAW,UAC7D,SAAS,OAAO,UAAU,aAAa,QAAQ,eAAe,QAAQ;AAC7E,QAAI,mBAAmB,mBAAmB;AACxC,uBAAiB,QAAQ;AACzB;AAAA,IACF;AAEA,QAAI,CAAC,uBAAuB;AAC1B,uBAAiB,QAAQ;AACzB,cAAQ,KAAK,kFAAkF;AAC/F;AAAA,IACF;AAEA,qBAAiB,QAAQ;AACzB,UAAM,UAAU,IAAI,QAAc,CAAC,SAAS,WAAW;AACrD,6BAAuB;AACvB,4BAAsB;AAAA,IACxB,CAAC;AAED,QAAI;AACJ,UAAM,QAAQ,IAAI,QAAc,aAAY,cAAc,OAAQ;AAGlE,eAAW,MAAM;AACf,eAAS,oBAAoB,MAAM;AACjC,oBAAY;AACZ,eAAO;AAAA,MACT,CAAC;AAAA,IACH,GAAG,EAAE;AAEL,WAAO;AAAA,EACT,CAAC;AAED,MAAI,uBAAuB;AACzB,WAAO,UAAU,MAAM;AACrB,6BAAuB;AACvB,4BAAsB;AAAA,IACxB,CAAC;AAAA,EACH;AAEA,SAAO;AACT;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    }
+  ]
+}

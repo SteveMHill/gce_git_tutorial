@@ -1,0 +1,187 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingLayer.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { onBeforeUnmount, onMounted, ref, watch } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useSlideContext } from '../context'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'DrawingLayer',\n  setup(__props) {\n\nconst { drauu, drawingEnabled, loadCanvas } = useDrawings()\n\nconst scale = useSlideContext().$scale\nconst svg = ref<SVGSVGElement>()\n\nonMounted(() => {\n  drauu.mount(svg.value!, svg.value!.parentElement!)\n  watch(scale, scale => drauu.options.coordinateScale = 1 / scale, { immediate: true })\n  loadCanvas()\n})\n\nonBeforeUnmount(() => {\n  drauu.unmount()\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"svg\", {\n    ref_key: \"svg\",\n    ref: svg,\n    class: _normalizeClass([\"w-full h-full absolute top-0\", { 'pointer-events-none': !_unref(drawingEnabled), 'touch-none': _unref(drawingEnabled) }])\n  }, null, 2 /* CLASS */))\n}\n}\n\n})",
+      "start": 1743409709042,
+      "end": 1743409709042
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709042,
+      "end": 1743409709042,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709042,
+      "end": 1743409709042,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709042,
+      "end": 1743409709042,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709042,
+      "end": 1743409709042,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709042,
+      "end": 1743409709042,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { onBeforeUnmount, onMounted, ref, watch } from \"vue\";\nimport { useDrawings } from \"../composables/useDrawings\";\nimport { useSlideContext } from \"../context\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"DrawingLayer\",\n  setup(__props) {\n    const { drauu, drawingEnabled, loadCanvas } = useDrawings();\n    const scale = useSlideContext().$scale;\n    const svg = ref();\n    onMounted(() => {\n      drauu.mount(svg.value, svg.value.parentElement);\n      watch(scale, (scale2) => drauu.options.coordinateScale = 1 / scale2, { immediate: true });\n      loadCanvas();\n    });\n    onBeforeUnmount(() => {\n      drauu.unmount();\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"svg\",\n        {\n          ref_key: \"svg\",\n          ref: svg,\n          class: _normalizeClass([\"w-full h-full absolute top-0\", { \"pointer-events-none\": !_unref(drawingEnabled), \"touch-none\": _unref(drawingEnabled) }])\n        },\n        null,\n        2\n        /* CLASS */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709042,
+      "end": 1743409709064,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingLayer.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { onBeforeUnmount, onMounted, ref, watch } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useSlideContext } from '../context'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'DrawingLayer',\n  setup(__props) {\n\nconst { drauu, drawingEnabled, loadCanvas } = useDrawings()\n\nconst scale = useSlideContext().$scale\nconst svg = ref<SVGSVGElement>()\n\nonMounted(() => {\n  drauu.mount(svg.value!, svg.value!.parentElement!)\n  watch(scale, scale => drauu.options.coordinateScale = 1 / scale, { immediate: true })\n  loadCanvas()\n})\n\nonBeforeUnmount(() => {\n  drauu.unmount()\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"svg\", {\n    ref_key: \"svg\",\n    ref: svg,\n    class: _normalizeClass([\"w-full h-full absolute top-0\", { 'pointer-events-none': !_unref(drawingEnabled), 'touch-none': _unref(drawingEnabled) }])\n  }, null, 2 /* CLASS */))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,kBAAkB,iBAAiB,aAAa,YAAY,sBAAsB,2BAA2B;AAEvI,SAAS,iBAAiB,WAAW,KAAK,aAAa;AACvD,SAAS,mBAAmB;AAC5B,SAAS,uBAAuB;AAGhC,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAEjB,UAAM,EAAE,OAAO,gBAAgB,WAAW,IAAI,YAAY;AAE1D,UAAM,QAAQ,gBAAgB,EAAE;AAChC,UAAM,MAAM,IAAmB;AAE/B,cAAU,MAAM;AACd,YAAM,MAAM,IAAI,OAAQ,IAAI,MAAO,aAAc;AACjD,YAAM,OAAO,CAAAA,WAAS,MAAM,QAAQ,kBAAkB,IAAIA,QAAO,EAAE,WAAW,KAAK,CAAC;AACpF,iBAAW;AAAA,IACb,CAAC;AAED,oBAAgB,MAAM;AACpB,YAAM,QAAQ;AAAA,IAChB,CAAC;AAED,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG;AAAA,QAAoB;AAAA,QAAO;AAAA,UAC/C,SAAS;AAAA,UACT,KAAK;AAAA,UACL,OAAO,gBAAgB,CAAC,gCAAgC,EAAE,uBAAuB,CAAC,OAAO,cAAc,GAAG,cAAc,OAAO,cAAc,EAAE,CAAC,CAAC;AAAA,QACnJ;AAAA,QAAG;AAAA,QAAM;AAAA;AAAA,MAAa;AAAA,IACxB;AAAA,EACA;AAEA,CAAC;",
+        "names": [
+          "scale"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { onBeforeUnmount, onMounted, ref, watch } from \"vue\";\nimport { useDrawings } from \"../composables/useDrawings\";\nimport { useSlideContext } from \"../context\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"DrawingLayer\",\n  setup(__props) {\n    const { drauu, drawingEnabled, loadCanvas } = useDrawings();\n    const scale = useSlideContext().$scale;\n    const svg = ref();\n    onMounted(() => {\n      drauu.mount(svg.value, svg.value.parentElement);\n      watch(scale, (scale2) => drauu.options.coordinateScale = 1 / scale2, { immediate: true });\n      loadCanvas();\n    });\n    onBeforeUnmount(() => {\n      drauu.unmount();\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"svg\",\n        {\n          ref_key: \"svg\",\n          ref: svg,\n          class: _normalizeClass([\"w-full h-full absolute top-0\", { \"pointer-events-none\": !_unref(drawingEnabled), \"touch-none\": _unref(drawingEnabled) }])\n        },\n        null,\n        2\n        /* CLASS */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DrawingLayer.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { onBeforeUnmount, onMounted, ref, watch } from \"vue\";\nimport { useDrawings } from \"../composables/useDrawings\";\nimport { useSlideContext } from \"../context\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"DrawingLayer\",\n  setup(__props) {\n    const { drauu, drawingEnabled, loadCanvas } = useDrawings();\n    const scale = useSlideContext().$scale;\n    const svg = ref();\n    onMounted(() => {\n      drauu.mount(svg.value, svg.value.parentElement);\n      watch(scale, (scale2) => drauu.options.coordinateScale = 1 / scale2, { immediate: true });\n      loadCanvas();\n    });\n    onBeforeUnmount(() => {\n      drauu.unmount();\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"svg\",\n        {\n          ref_key: \"svg\",\n          ref: svg,\n          class: _normalizeClass([\"w-full h-full absolute top-0\", { \"pointer-events-none\": !_unref(drawingEnabled), \"touch-none\": _unref(drawingEnabled) }])\n        },\n        null,\n        2\n        /* CLASS */\n      );\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709064,
+      "end": 1743409709064,
+      "order": "normal"
+    }
+  ]
+}

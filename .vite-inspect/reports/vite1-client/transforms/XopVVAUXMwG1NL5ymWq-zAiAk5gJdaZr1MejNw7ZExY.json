@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/chunk-SDBY772Q.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  AbstractMermaidTokenBuilder,\n  AbstractMermaidValueConverter,\n  EmptyFileSystem,\n  MermaidGeneratedSharedModule,\n  PieGeneratedModule,\n  __name as __name2,\n  createDefaultCoreModule,\n  createDefaultSharedCoreModule,\n  inject,\n  lib_exports\n} from \"./chunk-R4WPHL2B.mjs\";\nimport {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// ../parser/dist/chunks/mermaid-parser.core/chunk-ROXG7S4E.mjs\nvar PieTokenBuilder = class extends AbstractMermaidTokenBuilder {\n  static {\n    __name(this, \"PieTokenBuilder\");\n  }\n  static {\n    __name2(this, \"PieTokenBuilder\");\n  }\n  constructor() {\n    super([\"pie\", \"showData\"]);\n  }\n};\nvar PieValueConverter = class extends AbstractMermaidValueConverter {\n  static {\n    __name(this, \"PieValueConverter\");\n  }\n  static {\n    __name2(this, \"PieValueConverter\");\n  }\n  runCustomConverter(rule, input, _cstNode) {\n    if (rule.name !== \"PIE_SECTION_LABEL\") {\n      return void 0;\n    }\n    return input.replace(/\"/g, \"\").trim();\n  }\n};\nvar PieModule = {\n  parser: {\n    TokenBuilder: /* @__PURE__ */ __name2(() => new PieTokenBuilder(), \"TokenBuilder\"),\n    ValueConverter: /* @__PURE__ */ __name2(() => new PieValueConverter(), \"ValueConverter\")\n  }\n};\nfunction createPieServices(context = EmptyFileSystem) {\n  const shared = inject(\n    createDefaultSharedCoreModule(context),\n    MermaidGeneratedSharedModule\n  );\n  const Pie = inject(\n    createDefaultCoreModule({ shared }),\n    PieGeneratedModule,\n    PieModule\n  );\n  shared.ServiceRegistry.register(Pie);\n  return { shared, Pie };\n}\n__name(createPieServices, \"createPieServices\");\n__name2(createPieServices, \"createPieServices\");\n\nexport {\n  PieModule,\n  createPieServices\n};\n",
+      "start": 1743409709192,
+      "end": 1743409709301,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    }
+  ]
+}

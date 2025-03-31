@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useSlideBounds.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useElementBounding } from '@vueuse/core'\nimport { inject, ref, watch } from 'vue'\nimport { injectionSlideElement } from '../constants'\nimport { editorHeight, editorWidth, isEditorVertical, showEditor, slideScale, windowSize } from '../state'\n\nexport function useSlideBounds(slideElement = inject(injectionSlideElement, ref())) {\n  const bounding = useElementBounding(slideElement)\n  const stop = watch(\n    [\n      showEditor,\n      isEditorVertical,\n      editorWidth,\n      editorHeight,\n      slideScale,\n      windowSize.width,\n      windowSize.height,\n    ],\n    () => {\n      setTimeout(bounding.update, 300)\n    },\n    {\n      flush: 'post',\n      immediate: true,\n    },\n  )\n  return {\n    ...bounding,\n    stop,\n  }\n}\n",
+      "start": 1743409708631,
+      "end": 1743409708649,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708649,
+      "end": 1743409708649,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { useElementBounding } from \"@vueuse/core\";\nimport { inject, ref, watch } from \"vue\";\nimport { injectionSlideElement } from \"../constants\";\nimport { editorHeight, editorWidth, isEditorVertical, showEditor, slideScale, windowSize } from \"../state\";\nexport function useSlideBounds(slideElement = inject(injectionSlideElement, ref())) {\n  const bounding = useElementBounding(slideElement);\n  const stop = watch(\n    [\n      showEditor,\n      isEditorVertical,\n      editorWidth,\n      editorHeight,\n      slideScale,\n      windowSize.width,\n      windowSize.height\n    ],\n    () => {\n      setTimeout(bounding.update, 300);\n    },\n    {\n      flush: \"post\",\n      immediate: true\n    }\n  );\n  return {\n    ...bounding,\n    stop\n  };\n}\n",
+      "start": 1743409708649,
+      "end": 1743409708727,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useSlideBounds.ts"
+        ],
+        "sourcesContent": [
+          "import { useElementBounding } from '@vueuse/core'\nimport { inject, ref, watch } from 'vue'\nimport { injectionSlideElement } from '../constants'\nimport { editorHeight, editorWidth, isEditorVertical, showEditor, slideScale, windowSize } from '../state'\n\nexport function useSlideBounds(slideElement = inject(injectionSlideElement, ref())) {\n  const bounding = useElementBounding(slideElement)\n  const stop = watch(\n    [\n      showEditor,\n      isEditorVertical,\n      editorWidth,\n      editorHeight,\n      slideScale,\n      windowSize.width,\n      windowSize.height,\n    ],\n    () => {\n      setTimeout(bounding.update, 300)\n    },\n    {\n      flush: 'post',\n      immediate: true,\n    },\n  )\n  return {\n    ...bounding,\n    stop,\n  }\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,0BAA0B;AACnC,SAAS,QAAQ,KAAK,aAAa;AACnC,SAAS,6BAA6B;AACtC,SAAS,cAAc,aAAa,kBAAkB,YAAY,YAAY,kBAAkB;AAEzF,gBAAS,eAAe,eAAe,OAAO,uBAAuB,IAAI,CAAC,GAAG;AAClF,QAAM,WAAW,mBAAmB,YAAY;AAChD,QAAM,OAAO;AAAA,IACX;AAAA,MACE;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA,WAAW;AAAA,MACX,WAAW;AAAA,IACb;AAAA,IACA,MAAM;AACJ,iBAAW,SAAS,QAAQ,GAAG;AAAA,IACjC;AAAA,IACA;AAAA,MACE,OAAO;AAAA,MACP,WAAW;AAAA,IACb;AAAA,EACF;AACA,SAAO;AAAA,IACL,GAAG;AAAA,IACH;AAAA,EACF;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    }
+  ]
+}

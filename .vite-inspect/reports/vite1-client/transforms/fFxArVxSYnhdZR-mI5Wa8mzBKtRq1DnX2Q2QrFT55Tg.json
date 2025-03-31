@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/points-on-path/lib/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { pointsOnBezierCurves, simplify } from 'points-on-curve';\nimport { parsePath, absolutize, normalize } from 'path-data-parser';\nexport function pointsOnPath(path, tolerance, distance) {\n    const segments = parsePath(path);\n    const normalized = normalize(absolutize(segments));\n    const sets = [];\n    let currentPoints = [];\n    let start = [0, 0];\n    let pendingCurve = [];\n    const appendPendingCurve = () => {\n        if (pendingCurve.length >= 4) {\n            currentPoints.push(...pointsOnBezierCurves(pendingCurve, tolerance));\n        }\n        pendingCurve = [];\n    };\n    const appendPendingPoints = () => {\n        appendPendingCurve();\n        if (currentPoints.length) {\n            sets.push(currentPoints);\n            currentPoints = [];\n        }\n    };\n    for (const { key, data } of normalized) {\n        switch (key) {\n            case 'M':\n                appendPendingPoints();\n                start = [data[0], data[1]];\n                currentPoints.push(start);\n                break;\n            case 'L':\n                appendPendingCurve();\n                currentPoints.push([data[0], data[1]]);\n                break;\n            case 'C':\n                if (!pendingCurve.length) {\n                    const lastPoint = currentPoints.length ? currentPoints[currentPoints.length - 1] : start;\n                    pendingCurve.push([lastPoint[0], lastPoint[1]]);\n                }\n                pendingCurve.push([data[0], data[1]]);\n                pendingCurve.push([data[2], data[3]]);\n                pendingCurve.push([data[4], data[5]]);\n                break;\n            case 'Z':\n                appendPendingCurve();\n                currentPoints.push([start[0], start[1]]);\n                break;\n        }\n    }\n    appendPendingPoints();\n    if (!distance) {\n        return sets;\n    }\n    const out = [];\n    for (const set of sets) {\n        const simplifiedSet = simplify(set, distance);\n        if (simplifiedSet.length) {\n            out.push(simplifiedSet);\n        }\n    }\n    return out;\n}\n",
+      "start": 1743409708485,
+      "end": 1743409708491,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708491,
+      "end": 1743409708491,
+      "order": "normal"
+    }
+  ]
+}

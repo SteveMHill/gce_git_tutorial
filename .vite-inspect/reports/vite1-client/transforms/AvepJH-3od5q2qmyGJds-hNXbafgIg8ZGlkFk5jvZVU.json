@@ -1,0 +1,179 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/syncState.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { reactive, ref, toRaw, watch } from 'vue'\n\nexport type SyncWrite<State extends object> = (state: State, updating?: boolean) => void\n\nexport interface Sync {\n  enabled?: boolean\n  init: <State extends object>(channelKey: string, onUpdate: (data: Partial<State>) => void, state: State, persist?: boolean) => SyncWrite<State> | undefined\n}\n\ninterface BuiltinSync extends Sync {\n  channels: BroadcastChannel[]\n  disable: () => void\n  listener?: (event: StorageEvent) => void\n}\n\nconst builtinSync: BuiltinSync = {\n  channels: [],\n  enabled: true,\n  init<State extends object>(channelKey: string, onUpdate: (data: Partial<State>) => void, state: State, persist = false) {\n    let stateChannel: BroadcastChannel\n    if (!__SLIDEV_HAS_SERVER__ && !persist) {\n      stateChannel = new BroadcastChannel(channelKey)\n      stateChannel.addEventListener('message', (event: MessageEvent<Partial<State>>) => onUpdate(event.data))\n      this.channels.push(stateChannel)\n    }\n    else if (!__SLIDEV_HAS_SERVER__ && persist) {\n      this.listener = function (event: StorageEvent) {\n        if (event && event.key === channelKey && event.newValue)\n          onUpdate(JSON.parse(event.newValue) as Partial<State>)\n      }\n      window.addEventListener('storage', this.listener)\n      const serializedState = window.localStorage.getItem(channelKey)\n      if (serializedState)\n        onUpdate(JSON.parse(serializedState) as Partial<State>)\n    }\n    return (state: State, updating = false) => {\n      if (this.enabled) {\n        if (!persist && stateChannel && !updating)\n          stateChannel.postMessage(toRaw(state))\n        if (persist && !updating)\n          window.localStorage.setItem(channelKey, JSON.stringify(state))\n      }\n    }\n  },\n  disable() {\n    this.enabled = false\n    this.channels.forEach(channel => channel.close())\n    if (this.listener) {\n      window.removeEventListener('storage', this.listener)\n    }\n  },\n}\nconst syncInterfaces: Sync[] = reactive([builtinSync])\nconst channels: Map<string, { onUpdate: (data: Partial<object>) => void, persist?: boolean, state: object }> = new Map()\nconst syncWrites = ref<Record<string, SyncWrite<object>[]>>({})\n\nexport function disableBuiltinSync() {\n  builtinSync.disable()\n}\n\nexport function addSyncMethod(sync: Sync) {\n  syncInterfaces.push(sync)\n  for (const [channelKey, { onUpdate, persist, state }] of channels.entries()) {\n    const write = sync.init(channelKey, onUpdate, state, persist)\n    if (write) {\n      syncWrites.value[channelKey].push(write)\n    }\n  }\n}\n\nexport function createSyncState<State extends object>(serverState: State, defaultState: State, persist = false) {\n  const onPatchCallbacks: ((state: State) => void)[] = []\n  let patching = false\n  let updating = false\n  let patchingTimeout: NodeJS.Timeout\n  let updatingTimeout: NodeJS.Timeout\n\n  const state = __SLIDEV_HAS_SERVER__\n    ? reactive<State>(serverState) as State\n    : reactive<State>(defaultState) as State\n\n  function onPatch(fn: (state: State) => void) {\n    onPatchCallbacks.push(fn)\n  }\n\n  function patch<K extends keyof State>(key: K, value: State[K]) {\n    if (state[key] === value)\n      return\n    clearTimeout(patchingTimeout)\n    patching = true\n    state[key] = value\n    patchingTimeout = setTimeout(() => patching = false, 0)\n  }\n\n  function onUpdate(patch: Partial<State>) {\n    if (!patching) {\n      clearTimeout(updatingTimeout)\n      updating = true\n      Object.entries(patch).forEach(([key, value]) => {\n        state[key as keyof State] = value as State[keyof State]\n      })\n      updatingTimeout = setTimeout(() => updating = false, 0)\n    }\n  }\n\n  function init(channelKey: string) {\n    channels.set(channelKey, { onUpdate, persist, state })\n    syncWrites.value[channelKey] = syncInterfaces\n      .map(sync => sync.init<State>(channelKey, onUpdate, state, persist))\n      .filter((x): x is SyncWrite<object> => Boolean(x))\n\n    function onStateChanged() {\n      syncWrites.value[channelKey].forEach(write => write?.(toRaw(state), updating))\n      if (!patching)\n        onPatchCallbacks.forEach((fn: (state: State) => void) => fn(state))\n    }\n\n    watch(state, onStateChanged, { deep: true })\n  }\n\n  return { init, onPatch, onUpdate, patch, state }\n}\n",
+      "start": 1743409708707,
+      "end": 1743409708716,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { reactive, ref, toRaw, watch } from \"vue\";\nconst builtinSync = {\n  channels: [],\n  enabled: true,\n  init(channelKey, onUpdate, state, persist = false) {\n    let stateChannel;\n    if (!__SLIDEV_HAS_SERVER__ && !persist) {\n      stateChannel = new BroadcastChannel(channelKey);\n      stateChannel.addEventListener(\"message\", (event) => onUpdate(event.data));\n      this.channels.push(stateChannel);\n    } else if (!__SLIDEV_HAS_SERVER__ && persist) {\n      this.listener = function(event) {\n        if (event && event.key === channelKey && event.newValue)\n          onUpdate(JSON.parse(event.newValue));\n      };\n      window.addEventListener(\"storage\", this.listener);\n      const serializedState = window.localStorage.getItem(channelKey);\n      if (serializedState)\n        onUpdate(JSON.parse(serializedState));\n    }\n    return (state2, updating = false) => {\n      if (this.enabled) {\n        if (!persist && stateChannel && !updating)\n          stateChannel.postMessage(toRaw(state2));\n        if (persist && !updating)\n          window.localStorage.setItem(channelKey, JSON.stringify(state2));\n      }\n    };\n  },\n  disable() {\n    this.enabled = false;\n    this.channels.forEach((channel) => channel.close());\n    if (this.listener) {\n      window.removeEventListener(\"storage\", this.listener);\n    }\n  }\n};\nconst syncInterfaces = reactive([builtinSync]);\nconst channels = /* @__PURE__ */ new Map();\nconst syncWrites = ref({});\nexport function disableBuiltinSync() {\n  builtinSync.disable();\n}\nexport function addSyncMethod(sync) {\n  syncInterfaces.push(sync);\n  for (const [channelKey, { onUpdate, persist, state }] of channels.entries()) {\n    const write = sync.init(channelKey, onUpdate, state, persist);\n    if (write) {\n      syncWrites.value[channelKey].push(write);\n    }\n  }\n}\nexport function createSyncState(serverState, defaultState, persist = false) {\n  const onPatchCallbacks = [];\n  let patching = false;\n  let updating = false;\n  let patchingTimeout;\n  let updatingTimeout;\n  const state = __SLIDEV_HAS_SERVER__ ? reactive(serverState) : reactive(defaultState);\n  function onPatch(fn) {\n    onPatchCallbacks.push(fn);\n  }\n  function patch(key, value) {\n    if (state[key] === value)\n      return;\n    clearTimeout(patchingTimeout);\n    patching = true;\n    state[key] = value;\n    patchingTimeout = setTimeout(() => patching = false, 0);\n  }\n  function onUpdate(patch2) {\n    if (!patching) {\n      clearTimeout(updatingTimeout);\n      updating = true;\n      Object.entries(patch2).forEach(([key, value]) => {\n        state[key] = value;\n      });\n      updatingTimeout = setTimeout(() => updating = false, 0);\n    }\n  }\n  function init(channelKey) {\n    channels.set(channelKey, { onUpdate, persist, state });\n    syncWrites.value[channelKey] = syncInterfaces.map((sync) => sync.init(channelKey, onUpdate, state, persist)).filter((x) => Boolean(x));\n    function onStateChanged() {\n      syncWrites.value[channelKey].forEach((write) => write?.(toRaw(state), updating));\n      if (!patching)\n        onPatchCallbacks.forEach((fn) => fn(state));\n    }\n    watch(state, onStateChanged, { deep: true });\n  }\n  return { init, onPatch, onUpdate, patch, state };\n}\n",
+      "start": 1743409708716,
+      "end": 1743409708875,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/syncState.ts"
+        ],
+        "sourcesContent": [
+          "import { reactive, ref, toRaw, watch } from 'vue'\n\nexport type SyncWrite<State extends object> = (state: State, updating?: boolean) => void\n\nexport interface Sync {\n  enabled?: boolean\n  init: <State extends object>(channelKey: string, onUpdate: (data: Partial<State>) => void, state: State, persist?: boolean) => SyncWrite<State> | undefined\n}\n\ninterface BuiltinSync extends Sync {\n  channels: BroadcastChannel[]\n  disable: () => void\n  listener?: (event: StorageEvent) => void\n}\n\nconst builtinSync: BuiltinSync = {\n  channels: [],\n  enabled: true,\n  init<State extends object>(channelKey: string, onUpdate: (data: Partial<State>) => void, state: State, persist = false) {\n    let stateChannel: BroadcastChannel\n    if (!__SLIDEV_HAS_SERVER__ && !persist) {\n      stateChannel = new BroadcastChannel(channelKey)\n      stateChannel.addEventListener('message', (event: MessageEvent<Partial<State>>) => onUpdate(event.data))\n      this.channels.push(stateChannel)\n    }\n    else if (!__SLIDEV_HAS_SERVER__ && persist) {\n      this.listener = function (event: StorageEvent) {\n        if (event && event.key === channelKey && event.newValue)\n          onUpdate(JSON.parse(event.newValue) as Partial<State>)\n      }\n      window.addEventListener('storage', this.listener)\n      const serializedState = window.localStorage.getItem(channelKey)\n      if (serializedState)\n        onUpdate(JSON.parse(serializedState) as Partial<State>)\n    }\n    return (state: State, updating = false) => {\n      if (this.enabled) {\n        if (!persist && stateChannel && !updating)\n          stateChannel.postMessage(toRaw(state))\n        if (persist && !updating)\n          window.localStorage.setItem(channelKey, JSON.stringify(state))\n      }\n    }\n  },\n  disable() {\n    this.enabled = false\n    this.channels.forEach(channel => channel.close())\n    if (this.listener) {\n      window.removeEventListener('storage', this.listener)\n    }\n  },\n}\nconst syncInterfaces: Sync[] = reactive([builtinSync])\nconst channels: Map<string, { onUpdate: (data: Partial<object>) => void, persist?: boolean, state: object }> = new Map()\nconst syncWrites = ref<Record<string, SyncWrite<object>[]>>({})\n\nexport function disableBuiltinSync() {\n  builtinSync.disable()\n}\n\nexport function addSyncMethod(sync: Sync) {\n  syncInterfaces.push(sync)\n  for (const [channelKey, { onUpdate, persist, state }] of channels.entries()) {\n    const write = sync.init(channelKey, onUpdate, state, persist)\n    if (write) {\n      syncWrites.value[channelKey].push(write)\n    }\n  }\n}\n\nexport function createSyncState<State extends object>(serverState: State, defaultState: State, persist = false) {\n  const onPatchCallbacks: ((state: State) => void)[] = []\n  let patching = false\n  let updating = false\n  let patchingTimeout: NodeJS.Timeout\n  let updatingTimeout: NodeJS.Timeout\n\n  const state = __SLIDEV_HAS_SERVER__\n    ? reactive<State>(serverState) as State\n    : reactive<State>(defaultState) as State\n\n  function onPatch(fn: (state: State) => void) {\n    onPatchCallbacks.push(fn)\n  }\n\n  function patch<K extends keyof State>(key: K, value: State[K]) {\n    if (state[key] === value)\n      return\n    clearTimeout(patchingTimeout)\n    patching = true\n    state[key] = value\n    patchingTimeout = setTimeout(() => patching = false, 0)\n  }\n\n  function onUpdate(patch: Partial<State>) {\n    if (!patching) {\n      clearTimeout(updatingTimeout)\n      updating = true\n      Object.entries(patch).forEach(([key, value]) => {\n        state[key as keyof State] = value as State[keyof State]\n      })\n      updatingTimeout = setTimeout(() => updating = false, 0)\n    }\n  }\n\n  function init(channelKey: string) {\n    channels.set(channelKey, { onUpdate, persist, state })\n    syncWrites.value[channelKey] = syncInterfaces\n      .map(sync => sync.init<State>(channelKey, onUpdate, state, persist))\n      .filter((x): x is SyncWrite<object> => Boolean(x))\n\n    function onStateChanged() {\n      syncWrites.value[channelKey].forEach(write => write?.(toRaw(state), updating))\n      if (!patching)\n        onPatchCallbacks.forEach((fn: (state: State) => void) => fn(state))\n    }\n\n    watch(state, onStateChanged, { deep: true })\n  }\n\n  return { init, onPatch, onUpdate, patch, state }\n}\n"
+        ],
+        "mappings": "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",
+        "names": [
+          "state",
+          "patch"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708875,
+      "end": 1743409708875,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { reactive, ref, toRaw, watch } from \"vue\";\nconst builtinSync = {\n  channels: [],\n  enabled: true,\n  init(channelKey, onUpdate, state, persist = false) {\n    let stateChannel;\n    if (!persist) {\n      stateChannel = new BroadcastChannel(channelKey);\n      stateChannel.addEventListener(\"message\", (event) => onUpdate(event.data));\n      this.channels.push(stateChannel);\n    } else if (persist) {\n      this.listener = function(event) {\n        if (event && event.key === channelKey && event.newValue)\n          onUpdate(JSON.parse(event.newValue));\n      };\n      window.addEventListener(\"storage\", this.listener);\n      const serializedState = window.localStorage.getItem(channelKey);\n      if (serializedState)\n        onUpdate(JSON.parse(serializedState));\n    }\n    return (state2, updating = false) => {\n      if (this.enabled) {\n        if (!persist && stateChannel && !updating)\n          stateChannel.postMessage(toRaw(state2));\n        if (persist && !updating)\n          window.localStorage.setItem(channelKey, JSON.stringify(state2));\n      }\n    };\n  },\n  disable() {\n    this.enabled = false;\n    this.channels.forEach((channel) => channel.close());\n    if (this.listener) {\n      window.removeEventListener(\"storage\", this.listener);\n    }\n  }\n};\nconst syncInterfaces = reactive([builtinSync]);\nconst channels = /* @__PURE__ */ new Map();\nconst syncWrites = ref({});\nexport function disableBuiltinSync() {\n  builtinSync.disable();\n}\nexport function addSyncMethod(sync) {\n  syncInterfaces.push(sync);\n  for (const [channelKey, { onUpdate, persist, state }] of channels.entries()) {\n    const write = sync.init(channelKey, onUpdate, state, persist);\n    if (write) {\n      syncWrites.value[channelKey].push(write);\n    }\n  }\n}\nexport function createSyncState(serverState, defaultState, persist = false) {\n  const onPatchCallbacks = [];\n  let patching = false;\n  let updating = false;\n  let patchingTimeout;\n  let updatingTimeout;\n  const state = false ? reactive(serverState) : reactive(defaultState);\n  function onPatch(fn) {\n    onPatchCallbacks.push(fn);\n  }\n  function patch(key, value) {\n    if (state[key] === value)\n      return;\n    clearTimeout(patchingTimeout);\n    patching = true;\n    state[key] = value;\n    patchingTimeout = setTimeout(() => patching = false, 0);\n  }\n  function onUpdate(patch2) {\n    if (!patching) {\n      clearTimeout(updatingTimeout);\n      updating = true;\n      Object.entries(patch2).forEach(([key, value]) => {\n        state[key] = value;\n      });\n      updatingTimeout = setTimeout(() => updating = false, 0);\n    }\n  }\n  function init(channelKey) {\n    channels.set(channelKey, { onUpdate, persist, state });\n    syncWrites.value[channelKey] = syncInterfaces.map((sync) => sync.init(channelKey, onUpdate, state, persist)).filter((x) => Boolean(x));\n    function onStateChanged() {\n      syncWrites.value[channelKey].forEach((write) => write?.(toRaw(state), updating));\n      if (!patching)\n        onPatchCallbacks.forEach((fn) => fn(state));\n    }\n    watch(state, onStateChanged, { deep: true });\n  }\n  return { init, onPatch, onUpdate, patch, state };\n}\n",
+      "start": 1743409708875,
+      "end": 1743409708945,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    }
+  ]
+}

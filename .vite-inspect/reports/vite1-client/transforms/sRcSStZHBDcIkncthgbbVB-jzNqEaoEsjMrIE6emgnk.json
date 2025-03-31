@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, openBlock as _openBlock, createBlock as _createBlock, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = [\"data-slidev-no\", \"lang\"]\n\nimport type { ClicksContext, RenderContext, SlideRoute } from '@slidev/types'\nimport type { CSSProperties, PropType } from 'vue'\nimport { SlideBottom, SlideTop } from '#slidev/global-layers'\nimport { provideLocal } from '@vueuse/core'\nimport { computed, ref, toRef } from 'vue'\nimport { injectionClicksContext, injectionCurrentPage, injectionFrontmatter, injectionRenderContext, injectionRoute, injectionSlideZoom } from '../constants'\nimport { configs } from '../env'\nimport { getSlideClass } from '../utils'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SlideWrapper',\n  props: {\n  clicksContext: {\n    type: Object as PropType<ClicksContext>,\n    required: true,\n  },\n  renderContext: {\n    type: String as PropType<RenderContext>,\n    default: 'slide',\n  },\n  route: {\n    type: Object as PropType<SlideRoute>,\n    required: true,\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\nconst zoom = computed(() => props.route.meta?.slide?.frontmatter.zoom ?? 1)\n\nprovideLocal(injectionRoute, props.route)\nprovideLocal(injectionFrontmatter, props.route.meta.slide.frontmatter)\nprovideLocal(injectionCurrentPage, ref(props.route.no))\nprovideLocal(injectionRenderContext, ref(props.renderContext))\nprovideLocal(injectionClicksContext, toRef(props, 'clicksContext'))\nprovideLocal(injectionSlideZoom, zoom)\n\nconst zoomStyle = computed(() => {\n  return zoom.value === 1\n    ? undefined\n    : {\n        width: `${100 / zoom.value}%`,\n        height: `${100 / zoom.value}%`,\n        transformOrigin: 'top left',\n        transform: `scale(${zoom.value})`,\n      }\n})\nconst style = computed<CSSProperties>(() => ({\n  ...zoomStyle.value,\n  'user-select': configs.selectable ? undefined : 'none',\n}))\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", {\n    \"data-slidev-no\": props.route.no,\n    class: _normalizeClass(_unref(getSlideClass)(__props.route, ['slide', 'presenter'].includes(props.renderContext) ? '' : 'disable-view-transition')),\n    style: _normalizeStyle(style.value),\n    lang: props.route.meta.slide.frontmatter.lang\n  }, [\n    _createVNode(_unref(SlideBottom)),\n    (_openBlock(), _createBlock(_resolveDynamicComponent(props.route.component))),\n    _createVNode(_unref(SlideTop))\n  ], 14 /* CLASS, STYLE, PROPS */, _hoisted_1))\n}\n}\n\n})",
+      "start": 1743409708947,
+      "end": 1743409708947
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708947,
+      "end": 1743409708947,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, openBlock as _openBlock, createBlock as _createBlock, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = [\"data-slidev-no\", \"lang\"];\nimport { SlideBottom, SlideTop } from \"#slidev/global-layers\";\nimport { provideLocal } from \"@vueuse/core\";\nimport { computed, ref, toRef } from \"vue\";\nimport { injectionClicksContext, injectionCurrentPage, injectionFrontmatter, injectionRenderContext, injectionRoute, injectionSlideZoom } from \"../constants\";\nimport { configs } from \"../env\";\nimport { getSlideClass } from \"../utils\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideWrapper\",\n  props: {\n    clicksContext: {\n      type: Object,\n      required: true\n    },\n    renderContext: {\n      type: String,\n      default: \"slide\"\n    },\n    route: {\n      type: Object,\n      required: true\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const zoom = computed(() => props.route.meta?.slide?.frontmatter.zoom ?? 1);\n    provideLocal(injectionRoute, props.route);\n    provideLocal(injectionFrontmatter, props.route.meta.slide.frontmatter);\n    provideLocal(injectionCurrentPage, ref(props.route.no));\n    provideLocal(injectionRenderContext, ref(props.renderContext));\n    provideLocal(injectionClicksContext, toRef(props, \"clicksContext\"));\n    provideLocal(injectionSlideZoom, zoom);\n    const zoomStyle = computed(() => {\n      return zoom.value === 1 ? void 0 : {\n        width: `${100 / zoom.value}%`,\n        height: `${100 / zoom.value}%`,\n        transformOrigin: \"top left\",\n        transform: `scale(${zoom.value})`\n      };\n    });\n    const style = computed(() => ({\n      ...zoomStyle.value,\n      \"user-select\": configs.selectable ? void 0 : \"none\"\n    }));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", {\n        \"data-slidev-no\": props.route.no,\n        class: _normalizeClass(_unref(getSlideClass)(__props.route, [\"slide\", \"presenter\"].includes(props.renderContext) ? \"\" : \"disable-view-transition\")),\n        style: _normalizeStyle(style.value),\n        lang: props.route.meta.slide.frontmatter.lang\n      }, [\n        _createVNode(_unref(SlideBottom)),\n        (_openBlock(), _createBlock(_resolveDynamicComponent(props.route.component))),\n        _createVNode(_unref(SlideTop))\n      ], 14, _hoisted_1);\n    };\n  }\n});\n",
+      "start": 1743409708947,
+      "end": 1743409708993,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, openBlock as _openBlock, createBlock as _createBlock, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = [\"data-slidev-no\", \"lang\"]\n\nimport type { ClicksContext, RenderContext, SlideRoute } from '@slidev/types'\nimport type { CSSProperties, PropType } from 'vue'\nimport { SlideBottom, SlideTop } from '#slidev/global-layers'\nimport { provideLocal } from '@vueuse/core'\nimport { computed, ref, toRef } from 'vue'\nimport { injectionClicksContext, injectionCurrentPage, injectionFrontmatter, injectionRenderContext, injectionRoute, injectionSlideZoom } from '../constants'\nimport { configs } from '../env'\nimport { getSlideClass } from '../utils'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SlideWrapper',\n  props: {\n  clicksContext: {\n    type: Object as PropType<ClicksContext>,\n    required: true,\n  },\n  renderContext: {\n    type: String as PropType<RenderContext>,\n    default: 'slide',\n  },\n  route: {\n    type: Object as PropType<SlideRoute>,\n    required: true,\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\nconst zoom = computed(() => props.route.meta?.slide?.frontmatter.zoom ?? 1)\n\nprovideLocal(injectionRoute, props.route)\nprovideLocal(injectionFrontmatter, props.route.meta.slide.frontmatter)\nprovideLocal(injectionCurrentPage, ref(props.route.no))\nprovideLocal(injectionRenderContext, ref(props.renderContext))\nprovideLocal(injectionClicksContext, toRef(props, 'clicksContext'))\nprovideLocal(injectionSlideZoom, zoom)\n\nconst zoomStyle = computed(() => {\n  return zoom.value === 1\n    ? undefined\n    : {\n        width: `${100 / zoom.value}%`,\n        height: `${100 / zoom.value}%`,\n        transformOrigin: 'top left',\n        transform: `scale(${zoom.value})`,\n      }\n})\nconst style = computed<CSSProperties>(() => ({\n  ...zoomStyle.value,\n  'user-select': configs.selectable ? undefined : 'none',\n}))\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", {\n    \"data-slidev-no\": props.route.no,\n    class: _normalizeClass(_unref(getSlideClass)(__props.route, ['slide', 'presenter'].includes(props.renderContext) ? '' : 'disable-view-transition')),\n    style: _normalizeStyle(style.value),\n    lang: props.route.meta.slide.frontmatter.lang\n  }, [\n    _createVNode(_unref(SlideBottom)),\n    (_openBlock(), _createBlock(_resolveDynamicComponent(props.route.component))),\n    _createVNode(_unref(SlideTop))\n  ], 14 /* CLASS, STYLE, PROPS */, _hoisted_1))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,eAAe,cAAc,2BAA2B,0BAA0B,aAAa,YAAY,eAAe,cAAc,kBAAkB,iBAAiB,kBAAkB,iBAAiB,sBAAsB,2BAA2B;AAEzR,MAAM,aAAa,CAAC,kBAAkB,MAAM;AAI5C,SAAS,aAAa,gBAAgB;AACtC,SAAS,oBAAoB;AAC7B,SAAS,UAAU,KAAK,aAAa;AACrC,SAAS,wBAAwB,sBAAsB,sBAAsB,wBAAwB,gBAAgB,0BAA0B;AAC/I,SAAS,eAAe;AACxB,SAAS,qBAAqB;AAG9B,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACP,eAAe;AAAA,MACb,MAAM;AAAA,MACN,UAAU;AAAA,IACZ;AAAA,IACA,eAAe;AAAA,MACb,MAAM;AAAA,MACN,SAAS;AAAA,IACX;AAAA,IACA,OAAO;AAAA,MACL,MAAM;AAAA,MACN,UAAU;AAAA,IACZ;AAAA,EACF;AAAA,EACE,MAAM,SAAS;AAEjB,UAAM,QAAQ;AAEd,UAAM,OAAO,SAAS,MAAM,MAAM,MAAM,MAAM,OAAO,YAAY,QAAQ,CAAC;AAE1E,iBAAa,gBAAgB,MAAM,KAAK;AACxC,iBAAa,sBAAsB,MAAM,MAAM,KAAK,MAAM,WAAW;AACrE,iBAAa,sBAAsB,IAAI,MAAM,MAAM,EAAE,CAAC;AACtD,iBAAa,wBAAwB,IAAI,MAAM,aAAa,CAAC;AAC7D,iBAAa,wBAAwB,MAAM,OAAO,eAAe,CAAC;AAClE,iBAAa,oBAAoB,IAAI;AAErC,UAAM,YAAY,SAAS,MAAM;AAC/B,aAAO,KAAK,UAAU,IAClB,SACA;AAAA,QACE,OAAO,GAAG,MAAM,KAAK,KAAK;AAAA,QAC1B,QAAQ,GAAG,MAAM,KAAK,KAAK;AAAA,QAC3B,iBAAiB;AAAA,QACjB,WAAW,SAAS,KAAK,KAAK;AAAA,MAChC;AAAA,IACN,CAAC;AACD,UAAM,QAAQ,SAAwB,OAAO;AAAA,MAC3C,GAAG,UAAU;AAAA,MACb,eAAe,QAAQ,aAAa,SAAY;AAAA,IAClD,EAAE;AAEF,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,oBAAoB,OAAO;AAAA,QAC/C,kBAAkB,MAAM,MAAM;AAAA,QAC9B,OAAO,gBAAgB,OAAO,aAAa,EAAE,QAAQ,OAAO,CAAC,SAAS,WAAW,EAAE,SAAS,MAAM,aAAa,IAAI,KAAK,yBAAyB,CAAC;AAAA,QAClJ,OAAO,gBAAgB,MAAM,KAAK;AAAA,QAClC,MAAM,MAAM,MAAM,KAAK,MAAM,YAAY;AAAA,MAC3C,GAAG;AAAA,QACD,aAAa,OAAO,WAAW,CAAC;AAAA,SAC/B,WAAW,GAAG,aAAa,yBAAyB,MAAM,MAAM,SAAS,CAAC;AAAA,QAC3E,aAAa,OAAO,QAAQ,CAAC;AAAA,MAC/B,GAAG,IAA8B,UAAU;AAAA,IAC7C;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, openBlock as _openBlock, createBlock as _createBlock, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = [\"data-slidev-no\", \"lang\"];\nimport { SlideBottom, SlideTop } from \"#slidev/global-layers\";\nimport { provideLocal } from \"@vueuse/core\";\nimport { computed, ref, toRef } from \"vue\";\nimport { injectionClicksContext, injectionCurrentPage, injectionFrontmatter, injectionRenderContext, injectionRoute, injectionSlideZoom } from \"../constants\";\nimport { configs } from \"../env\";\nimport { getSlideClass } from \"../utils\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideWrapper\",\n  props: {\n    clicksContext: {\n      type: Object,\n      required: true\n    },\n    renderContext: {\n      type: String,\n      default: \"slide\"\n    },\n    route: {\n      type: Object,\n      required: true\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const zoom = computed(() => props.route.meta?.slide?.frontmatter.zoom ?? 1);\n    provideLocal(injectionRoute, props.route);\n    provideLocal(injectionFrontmatter, props.route.meta.slide.frontmatter);\n    provideLocal(injectionCurrentPage, ref(props.route.no));\n    provideLocal(injectionRenderContext, ref(props.renderContext));\n    provideLocal(injectionClicksContext, toRef(props, \"clicksContext\"));\n    provideLocal(injectionSlideZoom, zoom);\n    const zoomStyle = computed(() => {\n      return zoom.value === 1 ? void 0 : {\n        width: `${100 / zoom.value}%`,\n        height: `${100 / zoom.value}%`,\n        transformOrigin: \"top left\",\n        transform: `scale(${zoom.value})`\n      };\n    });\n    const style = computed(() => ({\n      ...zoomStyle.value,\n      \"user-select\": configs.selectable ? void 0 : \"none\"\n    }));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", {\n        \"data-slidev-no\": props.route.no,\n        class: _normalizeClass(_unref(getSlideClass)(__props.route, [\"slide\", \"presenter\"].includes(props.renderContext) ? \"\" : \"disable-view-transition\")),\n        style: _normalizeStyle(style.value),\n        lang: props.route.meta.slide.frontmatter.lang\n      }, [\n        _createVNode(_unref(SlideBottom)),\n        (_openBlock(), _createBlock(_resolveDynamicComponent(props.route.component))),\n        _createVNode(_unref(SlideTop))\n      ], 14, _hoisted_1);\n    };\n  }\n});\n",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, openBlock as _openBlock, createBlock as _createBlock, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = [\"data-slidev-no\", \"lang\"];\nimport { SlideBottom, SlideTop } from \"#slidev/global-layers\";\nimport { provideLocal } from \"@vueuse/core\";\nimport { computed, ref, toRef } from \"vue\";\nimport { injectionClicksContext, injectionCurrentPage, injectionFrontmatter, injectionRenderContext, injectionRoute, injectionSlideZoom } from \"../constants\";\nimport { configs } from \"../env\";\nimport { getSlideClass } from \"../utils\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideWrapper\",\n  props: {\n    clicksContext: {\n      type: Object,\n      required: true\n    },\n    renderContext: {\n      type: String,\n      default: \"slide\"\n    },\n    route: {\n      type: Object,\n      required: true\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const zoom = computed(() => props.route.meta?.slide?.frontmatter.zoom ?? 1);\n    provideLocal(injectionRoute, props.route);\n    provideLocal(injectionFrontmatter, props.route.meta.slide.frontmatter);\n    provideLocal(injectionCurrentPage, ref(props.route.no));\n    provideLocal(injectionRenderContext, ref(props.renderContext));\n    provideLocal(injectionClicksContext, toRef(props, \"clicksContext\"));\n    provideLocal(injectionSlideZoom, zoom);\n    const zoomStyle = computed(() => {\n      return zoom.value === 1 ? void 0 : {\n        width: `${100 / zoom.value}%`,\n        height: `${100 / zoom.value}%`,\n        transformOrigin: \"top left\",\n        transform: `scale(${zoom.value})`\n      };\n    });\n    const style = computed(() => ({\n      ...zoomStyle.value,\n      \"user-select\": configs.selectable ? void 0 : \"none\"\n    }));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", {\n        \"data-slidev-no\": props.route.no,\n        class: _normalizeClass(_unref(getSlideClass)(__props.route, [\"slide\", \"presenter\"].includes(props.renderContext) ? \"\" : \"disable-view-transition\")),\n        style: _normalizeStyle(style.value),\n        lang: props.route.meta.slide.frontmatter.lang\n      }, [\n        _createVNode(_unref(SlideBottom)),\n        (_openBlock(), _createBlock(_resolveDynamicComponent(props.route.component))),\n        _createVNode(_unref(SlideTop))\n      ], 14, _hoisted_1);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AACzD,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,WAAW,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,uBAAuB,CAAC,EAAE,CAAC,wBAAwB,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,WAAW,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,cAAc,CAAC,EAAE,CAAC,eAAe,CAAC,CAAC,cAAc,CAAC,EAAE,CAAC,eAAe,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AAC9R,KAAK,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;AAC7C,MAAM,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,MAAM,CAAC;AAC7D,MAAM,CAAC,CAAC,CAAC,YAAY,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC;AAC3C,MAAM,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG,CAAC;AAC1C,MAAM,CAAC,CAAC,CAAC,sBAAsB,CAAC,CAAC,oBAAoB,CAAC,CAAC,oBAAoB,CAAC,CAAC,sBAAsB,CAAC,CAAC,cAAc,CAAC,CAAC,kBAAkB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC;AAC7J,MAAM,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC;AAChC,MAAM,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC;AACxC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AAChD,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,YAAY,CAAC;AACxB,CAAC,CAAC,KAAK,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,CAAC,CAAC,KAAK;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,OAAO;AACzB,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC,KAAK,CAAC,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/E,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,cAAc,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,oBAAoB,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,IAAI,CAAC,KAAK,CAAC,WAAW,CAAC;AAC1E,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,oBAAoB,CAAC,CAAC,GAAG,CAAC,KAAK,CAAC,KAAK,CAAC,EAAE,CAAC,CAAC;AAC3D,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,sBAAsB,CAAC,CAAC,GAAG,CAAC,KAAK,CAAC,aAAa,CAAC,CAAC;AAClE,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,sBAAsB,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC;AACvE,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,kBAAkB,CAAC,CAAC,IAAI,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,SAAS,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,eAAe,CAAC,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,KAAK;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC,CAAC,OAAO,CAAC,UAAU,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,EAAE,CAAC,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,EAAE;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,eAAe,CAAC,MAAM,CAAC,aAAa,CAAC,CAAC,OAAO,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,QAAQ,CAAC,KAAK,CAAC,aAAa,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,OAAO,CAAC,IAAI,CAAC,UAAU,CAAC,CAAC,CAAC;AAC3J,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,eAAe,CAAC,KAAK,CAAC,KAAK,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,IAAI,CAAC,KAAK,CAAC,WAAW,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,MAAM,CAAC,WAAW,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,wBAAwB,CAAC,KAAK,CAAC,KAAK,CAAC,SAAS,CAAC,CAAC,CAAC;AACrF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,MAAM,CAAC,QAAQ,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,UAAU,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708993,
+      "end": 1743409708993,
+      "order": "normal"
+    }
+  ]
+}

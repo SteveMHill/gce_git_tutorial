@@ -1,0 +1,188 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_10.md",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "# Open Science Foundations\n##\n\n<br> </br>\n\n- <b>Reproducibility</b> – track every change and restore previous versions.\n- <b>Collaboration</b> – work with others without overwriting each other’s work.\n- <b>Openness</b> – share your work with the world or your team.\n- <b>Transparency</b> – document your workflow and code.\n\n<br> </br>\n\n<img\n  src=\"./images/fair3.png\"\n  class=\"center_image\"\n/>",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "result": "<template><div><h1>Open Science Foundations</h1>\n<h2></h2>\n<p><br> </br></p>\n<ul>\n<li><b>Reproducibility</b> – track every change and restore previous versions.</li>\n<li><b>Collaboration</b> – work with others without overwriting each other’s work.</li>\n<li><b>Openness</b> – share your work with the world or your team.</li>\n<li><b>Transparency</b> – document your workflow and code.</li>\n</ul>\n<p><br> </br></p>\n<p><img\n  src=\"./images/fair3.png\"\n  class=\"center_image\"\n/></p>\n</div></template>\n<script setup>\n</script>",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "pre",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "result": "<template>\n<InjectedLayout v-bind=\"_frontmatterToProps($frontmatter,9)\">\n<h1>Open Science Foundations</h1>\n<h2></h2>\n<p><br> </br></p>\n<ul>\n<li><b>Reproducibility</b> – track every change and restore previous versions.</li>\n<li><b>Collaboration</b> – work with others without overwriting each other’s work.</li>\n<li><b>Openness</b> – share your work with the world or your team.</li>\n<li><b>Transparency</b> – document your workflow and code.</li>\n</ul>\n<p><br> </br></p>\n<p><img\n  src=\"./images/fair3.png\"\n  class=\"center_image\"\n/></p>\n\n</InjectedLayout>\n</template>\n\n<script setup>\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n</script>",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708834,
+      "end": 1743409708834,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\nimport _imports_0 from './images/fair3.png'\n\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_10',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),9))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Open Science Foundations\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Reproducibility\"),\n          _createTextVNode(\" – track every change and restore previous versions.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Collaboration\"),\n          _createTextVNode(\" – work with others without overwriting each other’s work.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Openness\"),\n          _createTextVNode(\" – share your work with the world or your team.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Transparency\"),\n          _createTextVNode(\" – document your workflow and code.\")\n        ])\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"img\", {\n          src: _imports_0,\n          class: \"center_image\"\n        })\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708834,
+      "end": 1743409708835,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\nimport _imports_0 from './images/fair3.png'\n\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_10',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),9))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Open Science Foundations\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Reproducibility\"),\n          _createTextVNode(\" – track every change and restore previous versions.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Collaboration\"),\n          _createTextVNode(\" – work with others without overwriting each other’s work.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Openness\"),\n          _createTextVNode(\" – share your work with the world or your team.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Transparency\"),\n          _createTextVNode(\" – document your workflow and code.\")\n        ])\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"img\", {\n          src: _imports_0,\n          class: \"center_image\"\n        })\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\nimport _imports_0 from './images/fair3.png'\n\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_10',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),9))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Open Science Foundations\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Reproducibility\"),\n          _createTextVNode(\" – track every change and restore previous versions.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Collaboration\"),\n          _createTextVNode(\" – work with others without overwriting each other’s work.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Openness\"),\n          _createTextVNode(\" – share your work with the world or your team.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Transparency\"),\n          _createTextVNode(\" – document your workflow and code.\")\n        ])\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"img\", {\n          src: _imports_0,\n          class: \"center_image\"\n        })\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_10.md"
+        ],
+        "sourcesContent": [
+          "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\nimport _imports_0 from './images/fair3.png'\n\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/two-cols-header.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_10',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),9))), {\n    default: _withCtx(() => _cache[0] || (_cache[0] = [\n      _createElementVNode(\"h1\", null, \"Open Science Foundations\", -1 /* HOISTED */),\n      _createElementVNode(\"h2\", null, null, -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Reproducibility\"),\n          _createTextVNode(\" – track every change and restore previous versions.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Collaboration\"),\n          _createTextVNode(\" – work with others without overwriting each other’s work.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Openness\"),\n          _createTextVNode(\" – share your work with the world or your team.\")\n        ]),\n        _createElementVNode(\"li\", null, [\n          _createElementVNode(\"b\", null, \"Transparency\"),\n          _createTextVNode(\" – document your workflow and code.\")\n        ])\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"br\")\n      ], -1 /* HOISTED */),\n      _createElementVNode(\"p\", null, [\n        _createElementVNode(\"img\", {\n          src: _imports_0,\n          class: \"center_image\"\n        })\n      ], -1 /* HOISTED */)\n    ])),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708835,
+      "end": 1743409708835,
+      "order": "normal"
+    }
+  ]
+}

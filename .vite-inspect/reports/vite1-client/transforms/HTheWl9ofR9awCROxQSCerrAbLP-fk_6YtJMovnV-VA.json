@@ -1,0 +1,198 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SelectList.vue?vue&type=style&index=0&scoped=6cd69f25&lang.postcss",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.item {\n  @apply flex rounded whitespace-nowrap py-1 gap-1 px-2 cursor-default hover:bg-gray-400 hover:bg-opacity-10;\n}\n\n.title {\n  @apply text-sm op75 px3 py1 select-none text-nowrap font-bold;\n}\n",
+      "start": 1743409709299,
+      "end": 1743409709299
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709299,
+      "end": 1743409709299,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709299,
+      "end": 1743409709299,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": "\n.item {\n  display:flex;cursor:default;gap:0.25rem;white-space:nowrap;border-radius:0.25rem;padding-top:0.25rem;padding-bottom:0.25rem;padding-left:0.5rem;padding-right:0.5rem;\n}.item:hover{--un-bg-opacity:1;background-color:rgb(156 163 175 / var(--un-bg-opacity)) /* #9ca3af */;--un-bg-opacity:0.1;}\n\n.title {\n  -webkit-user-select:none;user-select:none;padding-left:0.75rem;padding-right:0.75rem;padding-top:0.25rem;padding-bottom:0.25rem;text-wrap:nowrap;font-size:0.875rem;line-height:1.25rem;font-weight:700;opacity:0.75;\n}\n",
+      "start": 1743409709299,
+      "end": 1743409709300,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": ";AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC;AACD;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC;AACD",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SelectList.vue?vue&type=style&index=0&scoped=6cd69f25&lang.postcss"
+        ],
+        "sourcesContent": [
+          "\n.item {\n  display:flex;cursor:default;gap:0.25rem;white-space:nowrap;border-radius:0.25rem;padding-top:0.25rem;padding-bottom:0.25rem;padding-left:0.5rem;padding-right:0.5rem;\n}.item:hover{--un-bg-opacity:1;background-color:rgb(156 163 175 / var(--un-bg-opacity)) /* #9ca3af */;--un-bg-opacity:0.1;}\n\n.title {\n  -webkit-user-select:none;user-select:none;padding-left:0.75rem;padding-right:0.75rem;padding-top:0.25rem;padding-bottom:0.25rem;text-wrap:nowrap;font-size:0.875rem;line-height:1.25rem;font-weight:700;opacity:0.75;\n}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "\n.item {\n  display:flex;cursor:default;gap:0.25rem;white-space:nowrap;border-radius:0.25rem;padding-top:0.25rem;padding-bottom:0.25rem;padding-left:0.5rem;padding-right:0.5rem;\n}.item:hover{--un-bg-opacity:1;background-color:rgb(156 163 175 / var(--un-bg-opacity)) /* #9ca3af */;--un-bg-opacity:0.1;}\n\n.title {\n  -webkit-user-select:none;user-select:none;padding-left:0.75rem;padding-right:0.75rem;padding-top:0.25rem;padding-bottom:0.25rem;text-wrap:nowrap;font-size:0.875rem;line-height:1.25rem;font-weight:700;opacity:0.75;\n}\n",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709300,
+      "end": 1743409709300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\n.item[data-v-6cd69f25] {\n  display:flex;cursor:default;gap:0.25rem;white-space:nowrap;border-radius:0.25rem;padding-top:0.25rem;padding-bottom:0.25rem;padding-left:0.5rem;padding-right:0.5rem;\n}.item[data-v-6cd69f25]:hover{--un-bg-opacity:1;background-color:rgb(156 163 175 / var(--un-bg-opacity)) /* #9ca3af */;--un-bg-opacity:0.1;}\n.title[data-v-6cd69f25] {\n  -webkit-user-select:none;user-select:none;padding-left:0.75rem;padding-right:0.75rem;padding-top:0.25rem;padding-bottom:0.25rem;text-wrap:nowrap;font-size:0.875rem;line-height:1.25rem;font-weight:700;opacity:0.75;\n}\n",
+      "start": 1743409709300,
+      "end": 1743409709301,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SelectList.vue?vue&type=style&index=0&scoped=6cd69f25&lang.postcss"
+        ],
+        "sourcesContent": [
+          ""
+        ],
+        "names": [],
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    }
+  ]
+}

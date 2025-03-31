@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/IconButton.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, renderSlot as _renderSlot, normalizeClass as _normalizeClass, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"sr-only\" }\n\nimport { computed } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'IconButton',\n  props: {\n    title: {},\n    icon: {},\n    as: {},\n    to: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst type = computed(() => props.as || (props.to ? 'router-link' : 'button'))\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(_resolveDynamicComponent(type.value), {\n    class: \"slidev-icon-btn\",\n    title: _ctx.title,\n    to: _ctx.to\n  }, {\n    default: _withCtx(() => [\n      _createElementVNode(\"span\", _hoisted_1, _toDisplayString(_ctx.title), 1 /* TEXT */),\n      _renderSlot(_ctx.$slots, \"default\", {}, () => [\n        _createElementVNode(\"div\", {\n          class: _normalizeClass(_ctx.icon)\n        }, null, 2 /* CLASS */)\n      ])\n    ]),\n    _: 3 /* FORWARDED */\n  }, 8 /* PROPS */, [\"title\", \"to\"]))\n}\n}\n\n})",
+      "start": 1743409708913,
+      "end": 1743409708913
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708913,
+      "end": 1743409708913,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708913,
+      "end": 1743409708913,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708913,
+      "end": 1743409708913,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708913,
+      "end": 1743409708913,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708913,
+      "end": 1743409708913,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, renderSlot as _renderSlot, normalizeClass as _normalizeClass, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { class: \"sr-only\" };\nimport { computed } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"IconButton\",\n  props: {\n    title: {},\n    icon: {},\n    as: {},\n    to: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const type = computed(() => props.as || (props.to ? \"router-link\" : \"button\"));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(_resolveDynamicComponent(type.value), {\n        class: \"slidev-icon-btn\",\n        title: _ctx.title,\n        to: _ctx.to\n      }, {\n        default: _withCtx(() => [\n          _createElementVNode(\n            \"span\",\n            _hoisted_1,\n            _toDisplayString(_ctx.title),\n            1\n            /* TEXT */\n          ),\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createElementVNode(\n              \"div\",\n              {\n                class: _normalizeClass(_ctx.icon)\n              },\n              null,\n              2\n              /* CLASS */\n            )\n          ])\n        ]),\n        _: 3\n        /* FORWARDED */\n      }, 8, [\"title\", \"to\"]);\n    };\n  }\n});\n",
+      "start": 1743409708913,
+      "end": 1743409708959,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/IconButton.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, renderSlot as _renderSlot, normalizeClass as _normalizeClass, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"sr-only\" }\n\nimport { computed } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'IconButton',\n  props: {\n    title: {},\n    icon: {},\n    as: {},\n    to: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst type = computed(() => props.as || (props.to ? 'router-link' : 'button'))\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createBlock(_resolveDynamicComponent(type.value), {\n    class: \"slidev-icon-btn\",\n    title: _ctx.title,\n    to: _ctx.to\n  }, {\n    default: _withCtx(() => [\n      _createElementVNode(\"span\", _hoisted_1, _toDisplayString(_ctx.title), 1 /* TEXT */),\n      _renderSlot(_ctx.$slots, \"default\", {}, () => [\n        _createElementVNode(\"div\", {\n          class: _normalizeClass(_ctx.icon)\n        }, null, 2 /* CLASS */)\n      ])\n    ]),\n    _: 3 /* FORWARDED */\n  }, 8 /* PROPS */, [\"title\", \"to\"]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,mBAAmB,kBAAkB,sBAAsB,qBAAqB,cAAc,aAAa,kBAAkB,iBAAiB,2BAA2B,0BAA0B,WAAW,UAAU,aAAa,YAAY,eAAe,oBAAoB;AAE7R,MAAM,aAAa,EAAE,OAAO,UAAU;AAEtC,SAAS,gBAAgB;AAGzB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACL,OAAO,CAAC;AAAA,IACR,MAAM,CAAC;AAAA,IACP,IAAI,CAAC;AAAA,IACL,IAAI,CAAC;AAAA,EACP;AAAA,EACA,MAAM,SAAc;AAEtB,UAAM,QAAQ;AAEd,UAAM,OAAO,SAAS,MAAM,MAAM,OAAO,MAAM,KAAK,gBAAgB,SAAS;AAE7E,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,aAAa,yBAAyB,KAAK,KAAK,GAAG;AAAA,QACvE,OAAO;AAAA,QACP,OAAO,KAAK;AAAA,QACZ,IAAI,KAAK;AAAA,MACX,GAAG;AAAA,QACD,SAAS,SAAS,MAAM;AAAA,UACtB;AAAA,YAAoB;AAAA,YAAQ;AAAA,YAAY,iBAAiB,KAAK,KAAK;AAAA,YAAG;AAAA;AAAA,UAAY;AAAA,UAClF,YAAY,KAAK,QAAQ,WAAW,CAAC,GAAG,MAAM;AAAA,YAC5C;AAAA,cAAoB;AAAA,cAAO;AAAA,gBACzB,OAAO,gBAAgB,KAAK,IAAI;AAAA,cAClC;AAAA,cAAG;AAAA,cAAM;AAAA;AAAA,YAAa;AAAA,UACxB,CAAC;AAAA,QACH,CAAC;AAAA,QACD,GAAG;AAAA;AAAA,MACL,GAAG,GAAe,CAAC,SAAS,IAAI,CAAC;AAAA,IACnC;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, renderSlot as _renderSlot, normalizeClass as _normalizeClass, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { class: \"sr-only\" };\nimport { computed } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"IconButton\",\n  props: {\n    title: {},\n    icon: {},\n    as: {},\n    to: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const type = computed(() => props.as || (props.to ? \"router-link\" : \"button\"));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(_resolveDynamicComponent(type.value), {\n        class: \"slidev-icon-btn\",\n        title: _ctx.title,\n        to: _ctx.to\n      }, {\n        default: _withCtx(() => [\n          _createElementVNode(\n            \"span\",\n            _hoisted_1,\n            _toDisplayString(_ctx.title),\n            1\n            /* TEXT */\n          ),\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createElementVNode(\n              \"div\",\n              {\n                class: _normalizeClass(_ctx.icon)\n              },\n              null,\n              2\n              /* CLASS */\n            )\n          ])\n        ]),\n        _: 3\n        /* FORWARDED */\n      }, 8, [\"title\", \"to\"]);\n    };\n  }\n});\n",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/IconButton.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, renderSlot as _renderSlot, normalizeClass as _normalizeClass, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { class: \"sr-only\" };\nimport { computed } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"IconButton\",\n  props: {\n    title: {},\n    icon: {},\n    as: {},\n    to: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const type = computed(() => props.as || (props.to ? \"router-link\" : \"button\"));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createBlock(_resolveDynamicComponent(type.value), {\n        class: \"slidev-icon-btn\",\n        title: _ctx.title,\n        to: _ctx.to\n      }, {\n        default: _withCtx(() => [\n          _createElementVNode(\n            \"span\",\n            _hoisted_1,\n            _toDisplayString(_ctx.title),\n            1\n            /* TEXT */\n          ),\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createElementVNode(\n              \"div\",\n              {\n                class: _normalizeClass(_ctx.icon)\n              },\n              null,\n              2\n              /* CLASS */\n            )\n          ])\n        ]),\n        _: 3\n        /* FORWARDED */\n      }, 8, [\"title\", \"to\"]);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708959,
+      "end": 1743409708959,
+      "order": "normal"
+    }
+  ]
+}

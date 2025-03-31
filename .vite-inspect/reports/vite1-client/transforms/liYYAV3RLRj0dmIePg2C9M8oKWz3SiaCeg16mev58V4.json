@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/popmotion/dist/es/animations/index.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { __rest } from 'tslib';\nimport { detectAnimationFromOptions } from './utils/detect-animation-from-options.mjs';\nimport sync, { cancelSync } from 'framesync';\nimport { interpolate } from '../utils/interpolate.mjs';\nimport { hasRepeatDelayElapsed, reverseElapsed, loopElapsed } from './utils/elapsed.mjs';\n\nconst framesync = (update) => {\n    const passTimestamp = ({ delta }) => update(delta);\n    return {\n        start: () => sync.update(passTimestamp, true),\n        stop: () => cancelSync.update(passTimestamp),\n    };\n};\nfunction animate(_a) {\n    var _b, _c;\n    var { from, autoplay = true, driver = framesync, elapsed = 0, repeat: repeatMax = 0, repeatType = \"loop\", repeatDelay = 0, onPlay, onStop, onComplete, onRepeat, onUpdate } = _a, options = __rest(_a, [\"from\", \"autoplay\", \"driver\", \"elapsed\", \"repeat\", \"repeatType\", \"repeatDelay\", \"onPlay\", \"onStop\", \"onComplete\", \"onRepeat\", \"onUpdate\"]);\n    let { to } = options;\n    let driverControls;\n    let repeatCount = 0;\n    let computedDuration = options.duration;\n    let latest;\n    let isComplete = false;\n    let isForwardPlayback = true;\n    let interpolateFromNumber;\n    const animator = detectAnimationFromOptions(options);\n    if ((_c = (_b = animator).needsInterpolation) === null || _c === void 0 ? void 0 : _c.call(_b, from, to)) {\n        interpolateFromNumber = interpolate([0, 100], [from, to], {\n            clamp: false,\n        });\n        from = 0;\n        to = 100;\n    }\n    const animation = animator(Object.assign(Object.assign({}, options), { from, to }));\n    function repeat() {\n        repeatCount++;\n        if (repeatType === \"reverse\") {\n            isForwardPlayback = repeatCount % 2 === 0;\n            elapsed = reverseElapsed(elapsed, computedDuration, repeatDelay, isForwardPlayback);\n        }\n        else {\n            elapsed = loopElapsed(elapsed, computedDuration, repeatDelay);\n            if (repeatType === \"mirror\")\n                animation.flipTarget();\n        }\n        isComplete = false;\n        onRepeat && onRepeat();\n    }\n    function complete() {\n        driverControls.stop();\n        onComplete && onComplete();\n    }\n    function update(delta) {\n        if (!isForwardPlayback)\n            delta = -delta;\n        elapsed += delta;\n        if (!isComplete) {\n            const state = animation.next(Math.max(0, elapsed));\n            latest = state.value;\n            if (interpolateFromNumber)\n                latest = interpolateFromNumber(latest);\n            isComplete = isForwardPlayback ? state.done : elapsed <= 0;\n        }\n        onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(latest);\n        if (isComplete) {\n            if (repeatCount === 0)\n                computedDuration !== null && computedDuration !== void 0 ? computedDuration : (computedDuration = elapsed);\n            if (repeatCount < repeatMax) {\n                hasRepeatDelayElapsed(elapsed, computedDuration, repeatDelay, isForwardPlayback) && repeat();\n            }\n            else {\n                complete();\n            }\n        }\n    }\n    function play() {\n        onPlay === null || onPlay === void 0 ? void 0 : onPlay();\n        driverControls = driver(update);\n        driverControls.start();\n    }\n    autoplay && play();\n    return {\n        stop: () => {\n            onStop === null || onStop === void 0 ? void 0 : onStop();\n            driverControls.stop();\n        },\n    };\n}\n\nexport { animate };\n",
+      "start": 1743409708601,
+      "end": 1743409708609,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    }
+  ]
+}

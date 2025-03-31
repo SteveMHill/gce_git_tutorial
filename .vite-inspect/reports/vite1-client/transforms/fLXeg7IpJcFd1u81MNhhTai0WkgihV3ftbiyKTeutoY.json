@@ -1,0 +1,183 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/styles/vars.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": ":root {\n  --slidev-code-background: #f5f5f5;\n  --slidev-code-foreground: #1b1b1b;\n  --slidev-code-font-family: theme('fontFamily.mono');\n  --slidev-code-padding: 8px;\n  --slidev-code-font-size: 12px;\n  --slidev-code-line-height: 18px;\n  --slidev-code-radius: 4px;\n  --slidev-code-margin: 4px 0;\n  --slidev-theme-primary: #3ab9d5;\n\n  --slidev-transition-duration: 0.5s;\n  --slidev-slide-container-background: black;\n  --slidev-controls-foreground: white;\n}\n\nhtml.dark {\n  --slidev-code-background: #1b1b1b;\n  --slidev-code-foreground: #eee;\n}\n",
+      "start": 1743409708380,
+      "end": 1743409708386,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708386,
+      "end": 1743409708386,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708386,
+      "end": 1743409708386,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": ":root {\n  --slidev-code-background: #f5f5f5;\n  --slidev-code-foreground: #1b1b1b;\n  --slidev-code-font-family: \"Fira Code\",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace;\n  --slidev-code-padding: 8px;\n  --slidev-code-font-size: 12px;\n  --slidev-code-line-height: 18px;\n  --slidev-code-radius: 4px;\n  --slidev-code-margin: 4px 0;\n  --slidev-theme-primary: #3ab9d5;\n\n  --slidev-transition-duration: 0.5s;\n  --slidev-slide-container-background: black;\n  --slidev-controls-foreground: white;\n}\n\nhtml.dark {\n  --slidev-code-background: #1b1b1b;\n  --slidev-code-foreground: #eee;\n}\n",
+      "start": 1743409708386,
+      "end": 1743409708389,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": "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",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/styles/vars.css"
+        ],
+        "sourcesContent": [
+          ":root {\n  --slidev-code-background: #f5f5f5;\n  --slidev-code-foreground: #1b1b1b;\n  --slidev-code-font-family: \"Fira Code\",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace;\n  --slidev-code-padding: 8px;\n  --slidev-code-font-size: 12px;\n  --slidev-code-line-height: 18px;\n  --slidev-code-radius: 4px;\n  --slidev-code-margin: 4px 0;\n  --slidev-theme-primary: #3ab9d5;\n\n  --slidev-transition-duration: 0.5s;\n  --slidev-slide-container-background: black;\n  --slidev-controls-foreground: white;\n}\n\nhtml.dark {\n  --slidev-code-background: #1b1b1b;\n  --slidev-code-foreground: #eee;\n}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708389,
+      "end": 1743409708389,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ":root {\n  --slidev-code-background: #f5f5f5;\n  --slidev-code-foreground: #1b1b1b;\n  --slidev-code-font-family: \"Fira Code\",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace;\n  --slidev-code-padding: 8px;\n  --slidev-code-font-size: 12px;\n  --slidev-code-line-height: 18px;\n  --slidev-code-radius: 4px;\n  --slidev-code-margin: 4px 0;\n  --slidev-theme-primary: #3ab9d5;\n\n  --slidev-transition-duration: 0.5s;\n  --slidev-slide-container-background: black;\n  --slidev-controls-foreground: white;\n}\n\nhtml.dark {\n  --slidev-code-background: #1b1b1b;\n  --slidev-code-foreground: #eee;\n}\n",
+      "start": 1743409708389,
+      "end": 1743409708429,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    }
+  ]
+}

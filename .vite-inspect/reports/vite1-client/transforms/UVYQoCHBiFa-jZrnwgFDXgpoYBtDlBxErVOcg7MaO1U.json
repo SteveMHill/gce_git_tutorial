@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/popmotion/dist/es/animations/inertia.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { animate } from './index.mjs';\nimport { velocityPerSecond } from '../utils/velocity-per-second.mjs';\nimport { getFrameData } from 'framesync';\n\nfunction inertia({ from = 0, velocity = 0, min, max, power = 0.8, timeConstant = 750, bounceStiffness = 500, bounceDamping = 10, restDelta = 1, modifyTarget, driver, onUpdate, onComplete, onStop, }) {\n    let currentAnimation;\n    function isOutOfBounds(v) {\n        return (min !== undefined && v < min) || (max !== undefined && v > max);\n    }\n    function boundaryNearest(v) {\n        if (min === undefined)\n            return max;\n        if (max === undefined)\n            return min;\n        return Math.abs(min - v) < Math.abs(max - v) ? min : max;\n    }\n    function startAnimation(options) {\n        currentAnimation === null || currentAnimation === void 0 ? void 0 : currentAnimation.stop();\n        currentAnimation = animate(Object.assign(Object.assign({}, options), { driver, onUpdate: (v) => {\n                var _a;\n                onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(v);\n                (_a = options.onUpdate) === null || _a === void 0 ? void 0 : _a.call(options, v);\n            }, onComplete,\n            onStop }));\n    }\n    function startSpring(options) {\n        startAnimation(Object.assign({ type: \"spring\", stiffness: bounceStiffness, damping: bounceDamping, restDelta }, options));\n    }\n    if (isOutOfBounds(from)) {\n        startSpring({ from, velocity, to: boundaryNearest(from) });\n    }\n    else {\n        let target = power * velocity + from;\n        if (typeof modifyTarget !== \"undefined\")\n            target = modifyTarget(target);\n        const boundary = boundaryNearest(target);\n        const heading = boundary === min ? -1 : 1;\n        let prev;\n        let current;\n        const checkBoundary = (v) => {\n            prev = current;\n            current = v;\n            velocity = velocityPerSecond(v - prev, getFrameData().delta);\n            if ((heading === 1 && v > boundary) ||\n                (heading === -1 && v < boundary)) {\n                startSpring({ from: v, to: boundary, velocity });\n            }\n        };\n        startAnimation({\n            type: \"decay\",\n            from,\n            velocity,\n            timeConstant,\n            power,\n            restDelta,\n            modifyTarget,\n            onUpdate: isOutOfBounds(target) ? checkBoundary : undefined,\n        });\n    }\n    return {\n        stop: () => currentAnimation === null || currentAnimation === void 0 ? void 0 : currentAnimation.stop(),\n    };\n}\n\nexport { inertia };\n",
+      "start": 1743409708601,
+      "end": 1743409708609,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    }
+  ]
+}

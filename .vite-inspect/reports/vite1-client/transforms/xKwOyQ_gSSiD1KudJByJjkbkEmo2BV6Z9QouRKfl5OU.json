@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useTimer.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useInterval } from '@vueuse/core'\nimport { computed } from 'vue'\n\nexport function useTimer() {\n  const { counter, isActive, reset, pause, resume } = useInterval(1000, { controls: true })\n\n  const timer = computed(() => {\n    const passed = counter.value\n    const sec = Math.floor(passed % 60).toString().padStart(2, '0')\n    const min = Math.floor(passed / 60).toString().padStart(2, '0')\n    return `${min}:${sec}`\n  })\n\n  return {\n    timer,\n    isTimerActive: isActive,\n    resetTimer: reset,\n    toggleTimer: () => (isActive.value ? pause() : resume()),\n  }\n}\n",
+      "start": 1743409708751,
+      "end": 1743409708776,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { useInterval } from \"@vueuse/core\";\nimport { computed } from \"vue\";\nexport function useTimer() {\n  const { counter, isActive, reset, pause, resume } = useInterval(1e3, { controls: true });\n  const timer = computed(() => {\n    const passed = counter.value;\n    const sec = Math.floor(passed % 60).toString().padStart(2, \"0\");\n    const min = Math.floor(passed / 60).toString().padStart(2, \"0\");\n    return `${min}:${sec}`;\n  });\n  return {\n    timer,\n    isTimerActive: isActive,\n    resetTimer: reset,\n    toggleTimer: () => isActive.value ? pause() : resume()\n  };\n}\n",
+      "start": 1743409708776,
+      "end": 1743409708916,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useTimer.ts"
+        ],
+        "sourcesContent": [
+          "import { useInterval } from '@vueuse/core'\nimport { computed } from 'vue'\n\nexport function useTimer() {\n  const { counter, isActive, reset, pause, resume } = useInterval(1000, { controls: true })\n\n  const timer = computed(() => {\n    const passed = counter.value\n    const sec = Math.floor(passed % 60).toString().padStart(2, '0')\n    const min = Math.floor(passed / 60).toString().padStart(2, '0')\n    return `${min}:${sec}`\n  })\n\n  return {\n    timer,\n    isTimerActive: isActive,\n    resetTimer: reset,\n    toggleTimer: () => (isActive.value ? pause() : resume()),\n  }\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB;AAC5B,SAAS,gBAAgB;AAElB,gBAAS,WAAW;AACzB,QAAM,EAAE,SAAS,UAAU,OAAO,OAAO,OAAO,IAAI,YAAY,KAAM,EAAE,UAAU,KAAK,CAAC;AAExF,QAAM,QAAQ,SAAS,MAAM;AAC3B,UAAM,SAAS,QAAQ;AACvB,UAAM,MAAM,KAAK,MAAM,SAAS,EAAE,EAAE,SAAS,EAAE,SAAS,GAAG,GAAG;AAC9D,UAAM,MAAM,KAAK,MAAM,SAAS,EAAE,EAAE,SAAS,EAAE,SAAS,GAAG,GAAG;AAC9D,WAAO,GAAG,GAAG,IAAI,GAAG;AAAA,EACtB,CAAC;AAED,SAAO;AAAA,IACL;AAAA,IACA,eAAe;AAAA,IACf,YAAY;AAAA,IACZ,aAAa,MAAO,SAAS,QAAQ,MAAM,IAAI,OAAO;AAAA,EACxD;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708916,
+      "end": 1743409708916,
+      "order": "normal"
+    }
+  ]
+}

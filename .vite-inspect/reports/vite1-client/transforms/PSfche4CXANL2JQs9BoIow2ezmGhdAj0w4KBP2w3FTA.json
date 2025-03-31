@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/errors.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "class YAMLError extends Error {\n    constructor(name, pos, code, message) {\n        super();\n        this.name = name;\n        this.code = code;\n        this.message = message;\n        this.pos = pos;\n    }\n}\nclass YAMLParseError extends YAMLError {\n    constructor(pos, code, message) {\n        super('YAMLParseError', pos, code, message);\n    }\n}\nclass YAMLWarning extends YAMLError {\n    constructor(pos, code, message) {\n        super('YAMLWarning', pos, code, message);\n    }\n}\nconst prettifyError = (src, lc) => (error) => {\n    if (error.pos[0] === -1)\n        return;\n    error.linePos = error.pos.map(pos => lc.linePos(pos));\n    const { line, col } = error.linePos[0];\n    error.message += ` at line ${line}, column ${col}`;\n    let ci = col - 1;\n    let lineStr = src\n        .substring(lc.lineStarts[line - 1], lc.lineStarts[line])\n        .replace(/[\\n\\r]+$/, '');\n    // Trim to max 80 chars, keeping col position near the middle\n    if (ci >= 60 && lineStr.length > 80) {\n        const trimStart = Math.min(ci - 39, lineStr.length - 79);\n        lineStr = '…' + lineStr.substring(trimStart);\n        ci -= trimStart - 1;\n    }\n    if (lineStr.length > 80)\n        lineStr = lineStr.substring(0, 79) + '…';\n    // Include previous line in context if pointing at line start\n    if (line > 1 && /^ *$/.test(lineStr.substring(0, ci))) {\n        // Regexp won't match if start is trimmed\n        let prev = src.substring(lc.lineStarts[line - 2], lc.lineStarts[line - 1]);\n        if (prev.length > 80)\n            prev = prev.substring(0, 79) + '…\\n';\n        lineStr = prev + lineStr;\n    }\n    if (/[^ ]/.test(lineStr)) {\n        let count = 1;\n        const end = error.linePos[1];\n        if (end && end.line === line && end.col > col) {\n            count = Math.max(1, Math.min(end.col - col, 80 - ci));\n        }\n        const pointer = ' '.repeat(ci) + '^'.repeat(count);\n        error.message += `:\\n\\n${lineStr}\\n${pointer}\\n`;\n    }\n};\n\nexport { YAMLError, YAMLParseError, YAMLWarning, prettifyError };\n",
+      "start": 1743409708622,
+      "end": 1743409708633,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708633,
+      "end": 1743409708633,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708633,
+      "end": 1743409708633,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708633,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    }
+  ]
+}

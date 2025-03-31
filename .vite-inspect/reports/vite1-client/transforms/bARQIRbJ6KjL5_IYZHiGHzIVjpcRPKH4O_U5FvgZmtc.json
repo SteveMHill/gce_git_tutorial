@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { Tooltip } from 'floating-vue'\n\ndefineProps<{\n  title: string\n  nested?: boolean | number\n  div?: boolean\n  description?: string\n  dot?: boolean\n}>()\n\nconst emit = defineEmits<{\n  (event: 'reset'): void\n}>()\n\nfunction reset() {\n  emit('reset')\n}\n</script>\n\n<template>\n  <component :is=\"div ? 'div' : 'label'\" flex=\"~ row gap-2 items-center\" select-none>\n    <div w-30 h-8 flex=\"~ gap-1 items-center\">\n      <div\n        v-if=\"nested\" i-ri-corner-down-right-line op40\n        :style=\"typeof nested === 'number' ? { marginLeft: `${nested * 0.5 + 0.5}rem` } : { marginLeft: '0.25rem' }\"\n      />\n      <div v-if=\"!description\" op75 relative @dblclick=\"reset\">\n        {{ title }}\n        <div v-if=\"dot\" w-1.5 h-1.5 bg-primary rounded absolute top-0 right--2 />\n      </div>\n      <Tooltip v-else distance=\"10\">\n        <div op75 text-right relative @dblclick=\"reset\">\n          {{ title }}\n          <div v-if=\"dot\" w-1.5 h-1.5 bg-primary rounded absolute top-0 right--2 />\n        </div>\n        <template #popper>\n          <div text-sm min-w-90 v-html=\"description\" />\n        </template>\n      </Tooltip>\n    </div>\n    <slot />\n  </component>\n</template>\n",
+      "start": 1743409709186,
+      "end": 1743409709295,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709295,
+      "end": 1743409709295,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709295,
+      "end": 1743409709311,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormItem.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,QAAQ,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAChJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,QAAQ,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACxI,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    }
+  ]
+}

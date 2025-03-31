@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/nodes/YAMLSeq.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createNode } from '../doc/createNode.js';\nimport { stringifyCollection } from '../stringify/stringifyCollection.js';\nimport { Collection } from './Collection.js';\nimport { SEQ, isScalar } from './identity.js';\nimport { isScalarValue } from './Scalar.js';\nimport { toJS } from './toJS.js';\n\nclass YAMLSeq extends Collection {\n    static get tagName() {\n        return 'tag:yaml.org,2002:seq';\n    }\n    constructor(schema) {\n        super(SEQ, schema);\n        this.items = [];\n    }\n    add(value) {\n        this.items.push(value);\n    }\n    /**\n     * Removes a value from the collection.\n     *\n     * `key` must contain a representation of an integer for this to succeed.\n     * It may be wrapped in a `Scalar`.\n     *\n     * @returns `true` if the item was found and removed.\n     */\n    delete(key) {\n        const idx = asItemIndex(key);\n        if (typeof idx !== 'number')\n            return false;\n        const del = this.items.splice(idx, 1);\n        return del.length > 0;\n    }\n    get(key, keepScalar) {\n        const idx = asItemIndex(key);\n        if (typeof idx !== 'number')\n            return undefined;\n        const it = this.items[idx];\n        return !keepScalar && isScalar(it) ? it.value : it;\n    }\n    /**\n     * Checks if the collection includes a value with the key `key`.\n     *\n     * `key` must contain a representation of an integer for this to succeed.\n     * It may be wrapped in a `Scalar`.\n     */\n    has(key) {\n        const idx = asItemIndex(key);\n        return typeof idx === 'number' && idx < this.items.length;\n    }\n    /**\n     * Sets a value in this collection. For `!!set`, `value` needs to be a\n     * boolean to add/remove the item from the set.\n     *\n     * If `key` does not contain a representation of an integer, this will throw.\n     * It may be wrapped in a `Scalar`.\n     */\n    set(key, value) {\n        const idx = asItemIndex(key);\n        if (typeof idx !== 'number')\n            throw new Error(`Expected a valid index, not ${key}.`);\n        const prev = this.items[idx];\n        if (isScalar(prev) && isScalarValue(value))\n            prev.value = value;\n        else\n            this.items[idx] = value;\n    }\n    toJSON(_, ctx) {\n        const seq = [];\n        if (ctx?.onCreate)\n            ctx.onCreate(seq);\n        let i = 0;\n        for (const item of this.items)\n            seq.push(toJS(item, String(i++), ctx));\n        return seq;\n    }\n    toString(ctx, onComment, onChompKeep) {\n        if (!ctx)\n            return JSON.stringify(this);\n        return stringifyCollection(this, ctx, {\n            blockItemPrefix: '- ',\n            flowChars: { start: '[', end: ']' },\n            itemIndent: (ctx.indent || '') + '  ',\n            onChompKeep,\n            onComment\n        });\n    }\n    static from(schema, obj, ctx) {\n        const { replacer } = ctx;\n        const seq = new this(schema);\n        if (obj && Symbol.iterator in Object(obj)) {\n            let i = 0;\n            for (let it of obj) {\n                if (typeof replacer === 'function') {\n                    const key = obj instanceof Set ? it : String(i++);\n                    it = replacer.call(obj, key, it);\n                }\n                seq.items.push(createNode(it, undefined, ctx));\n            }\n        }\n        return seq;\n    }\n}\nfunction asItemIndex(key) {\n    let idx = isScalar(key) ? key.value : key;\n    if (idx && typeof idx === 'string')\n        idx = Number(idx);\n    return typeof idx === 'number' && Number.isInteger(idx) && idx >= 0\n        ? idx\n        : null;\n}\n\nexport { YAMLSeq };\n",
+      "start": 1743409708622,
+      "end": 1743409708634,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708634,
+      "end": 1743409708634,
+      "order": "normal"
+    }
+  ]
+}

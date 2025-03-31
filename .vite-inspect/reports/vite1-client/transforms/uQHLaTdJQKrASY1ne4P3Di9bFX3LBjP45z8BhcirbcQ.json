@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/points-on-curve/lib/curve-to-bezier.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function clone(p) {\n    return [...p];\n}\nexport function curveToBezier(pointsIn, curveTightness = 0) {\n    const len = pointsIn.length;\n    if (len < 3) {\n        throw new Error('A curve must have at least three points.');\n    }\n    const out = [];\n    if (len === 3) {\n        out.push(clone(pointsIn[0]), clone(pointsIn[1]), clone(pointsIn[2]), clone(pointsIn[2]));\n    }\n    else {\n        const points = [];\n        points.push(pointsIn[0], pointsIn[0]);\n        for (let i = 1; i < pointsIn.length; i++) {\n            points.push(pointsIn[i]);\n            if (i === (pointsIn.length - 1)) {\n                points.push(pointsIn[i]);\n            }\n        }\n        const b = [];\n        const s = 1 - curveTightness;\n        out.push(clone(points[0]));\n        for (let i = 1; (i + 2) < points.length; i++) {\n            const cachedVertArray = points[i];\n            b[0] = [cachedVertArray[0], cachedVertArray[1]];\n            b[1] = [cachedVertArray[0] + (s * points[i + 1][0] - s * points[i - 1][0]) / 6, cachedVertArray[1] + (s * points[i + 1][1] - s * points[i - 1][1]) / 6];\n            b[2] = [points[i + 1][0] + (s * points[i][0] - s * points[i + 2][0]) / 6, points[i + 1][1] + (s * points[i][1] - s * points[i + 2][1]) / 6];\n            b[3] = [points[i + 1][0], points[i + 1][1]];\n            out.push(b[1], b[2], b[3]);\n        }\n    }\n    return out;\n}\n",
+      "start": 1743409708485,
+      "end": 1743409708490,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    }
+  ]
+}

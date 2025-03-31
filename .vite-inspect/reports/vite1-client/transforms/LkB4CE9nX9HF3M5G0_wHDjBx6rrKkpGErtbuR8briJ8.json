@@ -1,0 +1,176 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClicks.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * <v-clicks/> click animations component\n *\n * Learn more: https://sli.dev/guide/animations.html#click-animation\n */\n\nimport type { VNode, VNodeArrayChildren } from 'vue'\nimport { toArray } from '@antfu/utils'\nimport { Comment, createVNode, defineComponent, h, isVNode, resolveDirective, withDirectives } from 'vue'\nimport { normalizeSingleAtValue } from '../composables/useClicks'\nimport VClickGap from './VClickGap.vue'\n\nconst listTags = ['ul', 'ol']\n\nexport default defineComponent({\n  props: {\n    depth: {\n      type: [Number, String],\n      default: 1,\n    },\n    every: {\n      type: [Number, String],\n      default: 1,\n    },\n    at: {\n      type: [Number, String],\n      default: '+1',\n    },\n    hide: {\n      type: Boolean,\n      default: false,\n    },\n    fade: {\n      type: Boolean,\n      default: false,\n    },\n    handleSpecialElements: {\n      type: Boolean,\n      default: true,\n    },\n  },\n  render() {\n    const every = +this.every\n    const at = normalizeSingleAtValue(this.at)\n    const isRelative = typeof at === 'string'\n\n    let elements = this.$slots.default?.()\n\n    if (at == null || !elements) {\n      return elements\n    }\n\n    const click = resolveDirective('click')!\n\n    const applyDirective = (node: VNode, value: number | string) => {\n      return withDirectives(node, [[\n        click,\n        value,\n        '',\n        {\n          hide: this.hide,\n          fade: this.fade,\n        },\n      ]])\n    }\n\n    const openAllTopLevelSlots = <T extends VNodeArrayChildren | VNode[]>(children: T): T => {\n      return children.flatMap((i) => {\n        if (isVNode(i) && typeof i.type === 'symbol' && Array.isArray(i.children))\n          return openAllTopLevelSlots(i.children)\n        else\n          return [i]\n      }) as T\n    }\n\n    elements = openAllTopLevelSlots(toArray(elements))\n\n    const mapSubList = (children: VNodeArrayChildren, depth = 1): VNodeArrayChildren => {\n      const vNodes = openAllTopLevelSlots(children).map((i) => {\n        if (!isVNode(i))\n          return i\n        if (listTags.includes(i.type as string) && Array.isArray(i.children)) {\n          // eslint-disable-next-line ts/no-use-before-define\n          const vNodes = mapChildren(i.children, depth + 1)\n          return h(i, {}, vNodes)\n        }\n        return h(i)\n      })\n      return vNodes\n    }\n\n    let globalIdx = 1\n    let execIdx = 0\n    const mapChildren = (children: VNodeArrayChildren, depth = 1): VNodeArrayChildren => {\n      const vNodes = openAllTopLevelSlots(children).map((i) => {\n        if (!isVNode(i) || i.type === Comment)\n          return i\n\n        const thisShowIdx = +at + Math.ceil(globalIdx++ / every) - 1\n\n        let vNode\n        if (depth < +this.depth && Array.isArray(i.children))\n          vNode = h(i, {}, mapSubList(i.children, depth))\n        else\n          vNode = h(i)\n\n        const delta = thisShowIdx - execIdx\n        execIdx = thisShowIdx\n\n        return applyDirective(\n          vNode,\n          isRelative\n            ? delta >= 0 ? `+${delta}` : `${delta}`\n            : thisShowIdx,\n        )\n      })\n      return vNodes\n    }\n\n    const lastGap = () => createVNode(VClickGap, {\n      size: +at + Math.ceil((globalIdx - 1) / every) - 1 - execIdx,\n    })\n\n    if (this.handleSpecialElements) {\n      // handle ul, ol list\n      if (elements.length === 1 && listTags.includes(elements[0].type as string) && Array.isArray(elements[0].children))\n        return h(elements[0], {}, [...mapChildren(elements[0].children), lastGap()])\n\n      if (elements.length === 1 && elements[0].type as string === 'table') {\n        const tableNode = elements[0]\n        if (Array.isArray(tableNode.children)) {\n          return h(tableNode, {}, tableNode.children.map((i) => {\n            if (!isVNode(i))\n              return i\n            else if (i.type === 'tbody' && Array.isArray(i.children))\n              return h(i, {}, [...mapChildren(i.children), lastGap()])\n            else\n              return h(i)\n          }))\n        }\n      }\n    }\n\n    return [...mapChildren(elements), lastGap()]\n  },\n})\n",
+      "start": 1743409708957,
+      "end": 1743409708961,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708961,
+      "end": 1743409708961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { toArray } from \"@antfu/utils\";\nimport { Comment, createVNode, defineComponent, h, isVNode, resolveDirective, withDirectives } from \"vue\";\nimport { normalizeSingleAtValue } from \"../composables/useClicks\";\nimport VClickGap from \"./VClickGap.vue\";\nconst listTags = [\"ul\", \"ol\"];\nexport default defineComponent({\n  props: {\n    depth: {\n      type: [Number, String],\n      default: 1\n    },\n    every: {\n      type: [Number, String],\n      default: 1\n    },\n    at: {\n      type: [Number, String],\n      default: \"+1\"\n    },\n    hide: {\n      type: Boolean,\n      default: false\n    },\n    fade: {\n      type: Boolean,\n      default: false\n    },\n    handleSpecialElements: {\n      type: Boolean,\n      default: true\n    }\n  },\n  render() {\n    const every = +this.every;\n    const at = normalizeSingleAtValue(this.at);\n    const isRelative = typeof at === \"string\";\n    let elements = this.$slots.default?.();\n    if (at == null || !elements) {\n      return elements;\n    }\n    const click = resolveDirective(\"click\");\n    const applyDirective = (node, value) => {\n      return withDirectives(node, [[\n        click,\n        value,\n        \"\",\n        {\n          hide: this.hide,\n          fade: this.fade\n        }\n      ]]);\n    };\n    const openAllTopLevelSlots = (children) => {\n      return children.flatMap((i) => {\n        if (isVNode(i) && typeof i.type === \"symbol\" && Array.isArray(i.children))\n          return openAllTopLevelSlots(i.children);\n        else\n          return [i];\n      });\n    };\n    elements = openAllTopLevelSlots(toArray(elements));\n    const mapSubList = (children, depth = 1) => {\n      const vNodes = openAllTopLevelSlots(children).map((i) => {\n        if (!isVNode(i))\n          return i;\n        if (listTags.includes(i.type) && Array.isArray(i.children)) {\n          const vNodes2 = mapChildren(i.children, depth + 1);\n          return h(i, {}, vNodes2);\n        }\n        return h(i);\n      });\n      return vNodes;\n    };\n    let globalIdx = 1;\n    let execIdx = 0;\n    const mapChildren = (children, depth = 1) => {\n      const vNodes = openAllTopLevelSlots(children).map((i) => {\n        if (!isVNode(i) || i.type === Comment)\n          return i;\n        const thisShowIdx = +at + Math.ceil(globalIdx++ / every) - 1;\n        let vNode;\n        if (depth < +this.depth && Array.isArray(i.children))\n          vNode = h(i, {}, mapSubList(i.children, depth));\n        else\n          vNode = h(i);\n        const delta = thisShowIdx - execIdx;\n        execIdx = thisShowIdx;\n        return applyDirective(\n          vNode,\n          isRelative ? delta >= 0 ? `+${delta}` : `${delta}` : thisShowIdx\n        );\n      });\n      return vNodes;\n    };\n    const lastGap = () => createVNode(VClickGap, {\n      size: +at + Math.ceil((globalIdx - 1) / every) - 1 - execIdx\n    });\n    if (this.handleSpecialElements) {\n      if (elements.length === 1 && listTags.includes(elements[0].type) && Array.isArray(elements[0].children))\n        return h(elements[0], {}, [...mapChildren(elements[0].children), lastGap()]);\n      if (elements.length === 1 && elements[0].type === \"table\") {\n        const tableNode = elements[0];\n        if (Array.isArray(tableNode.children)) {\n          return h(tableNode, {}, tableNode.children.map((i) => {\n            if (!isVNode(i))\n              return i;\n            else if (i.type === \"tbody\" && Array.isArray(i.children))\n              return h(i, {}, [...mapChildren(i.children), lastGap()]);\n            else\n              return h(i);\n          }));\n        }\n      }\n    }\n    return [...mapChildren(elements), lastGap()];\n  }\n});\n",
+      "start": 1743409708961,
+      "end": 1743409709036,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClicks.ts"
+        ],
+        "sourcesContent": [
+          "/**\n * <v-clicks/> click animations component\n *\n * Learn more: https://sli.dev/guide/animations.html#click-animation\n */\n\nimport type { VNode, VNodeArrayChildren } from 'vue'\nimport { toArray } from '@antfu/utils'\nimport { Comment, createVNode, defineComponent, h, isVNode, resolveDirective, withDirectives } from 'vue'\nimport { normalizeSingleAtValue } from '../composables/useClicks'\nimport VClickGap from './VClickGap.vue'\n\nconst listTags = ['ul', 'ol']\n\nexport default defineComponent({\n  props: {\n    depth: {\n      type: [Number, String],\n      default: 1,\n    },\n    every: {\n      type: [Number, String],\n      default: 1,\n    },\n    at: {\n      type: [Number, String],\n      default: '+1',\n    },\n    hide: {\n      type: Boolean,\n      default: false,\n    },\n    fade: {\n      type: Boolean,\n      default: false,\n    },\n    handleSpecialElements: {\n      type: Boolean,\n      default: true,\n    },\n  },\n  render() {\n    const every = +this.every\n    const at = normalizeSingleAtValue(this.at)\n    const isRelative = typeof at === 'string'\n\n    let elements = this.$slots.default?.()\n\n    if (at == null || !elements) {\n      return elements\n    }\n\n    const click = resolveDirective('click')!\n\n    const applyDirective = (node: VNode, value: number | string) => {\n      return withDirectives(node, [[\n        click,\n        value,\n        '',\n        {\n          hide: this.hide,\n          fade: this.fade,\n        },\n      ]])\n    }\n\n    const openAllTopLevelSlots = <T extends VNodeArrayChildren | VNode[]>(children: T): T => {\n      return children.flatMap((i) => {\n        if (isVNode(i) && typeof i.type === 'symbol' && Array.isArray(i.children))\n          return openAllTopLevelSlots(i.children)\n        else\n          return [i]\n      }) as T\n    }\n\n    elements = openAllTopLevelSlots(toArray(elements))\n\n    const mapSubList = (children: VNodeArrayChildren, depth = 1): VNodeArrayChildren => {\n      const vNodes = openAllTopLevelSlots(children).map((i) => {\n        if (!isVNode(i))\n          return i\n        if (listTags.includes(i.type as string) && Array.isArray(i.children)) {\n          // eslint-disable-next-line ts/no-use-before-define\n          const vNodes = mapChildren(i.children, depth + 1)\n          return h(i, {}, vNodes)\n        }\n        return h(i)\n      })\n      return vNodes\n    }\n\n    let globalIdx = 1\n    let execIdx = 0\n    const mapChildren = (children: VNodeArrayChildren, depth = 1): VNodeArrayChildren => {\n      const vNodes = openAllTopLevelSlots(children).map((i) => {\n        if (!isVNode(i) || i.type === Comment)\n          return i\n\n        const thisShowIdx = +at + Math.ceil(globalIdx++ / every) - 1\n\n        let vNode\n        if (depth < +this.depth && Array.isArray(i.children))\n          vNode = h(i, {}, mapSubList(i.children, depth))\n        else\n          vNode = h(i)\n\n        const delta = thisShowIdx - execIdx\n        execIdx = thisShowIdx\n\n        return applyDirective(\n          vNode,\n          isRelative\n            ? delta >= 0 ? `+${delta}` : `${delta}`\n            : thisShowIdx,\n        )\n      })\n      return vNodes\n    }\n\n    const lastGap = () => createVNode(VClickGap, {\n      size: +at + Math.ceil((globalIdx - 1) / every) - 1 - execIdx,\n    })\n\n    if (this.handleSpecialElements) {\n      // handle ul, ol list\n      if (elements.length === 1 && listTags.includes(elements[0].type as string) && Array.isArray(elements[0].children))\n        return h(elements[0], {}, [...mapChildren(elements[0].children), lastGap()])\n\n      if (elements.length === 1 && elements[0].type as string === 'table') {\n        const tableNode = elements[0]\n        if (Array.isArray(tableNode.children)) {\n          return h(tableNode, {}, tableNode.children.map((i) => {\n            if (!isVNode(i))\n              return i\n            else if (i.type === 'tbody' && Array.isArray(i.children))\n              return h(i, {}, [...mapChildren(i.children), lastGap()])\n            else\n              return h(i)\n          }))\n        }\n      }\n    }\n\n    return [...mapChildren(elements), lastGap()]\n  },\n})\n"
+        ],
+        "mappings": "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",
+        "names": [
+          "vNodes"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport type { ClicksContext } from '@slidev/types'\nimport { computed, nextTick, onMounted, ref, watch, watchEffect } from 'vue'\nimport { CLICKS_MAX } from '../constants'\n\nconst props = withDefaults(\n  defineProps<{\n    class?: string | string[]\n    noteHtml?: string\n    note?: string\n    highlight?: boolean\n    placeholder?: string\n    clicksContext?: ClicksContext\n    autoScroll?: boolean\n  }>(),\n  {\n    highlight: true,\n  },\n)\n\nconst emit = defineEmits<{\n  (type: 'markerDblclick', e: MouseEvent, clicks: number): void\n  (type: 'markerClick', e: MouseEvent, clicks: number): void\n}>()\n\nconst withClicks = computed(() => props.clicksContext != null && props.noteHtml?.includes('slidev-note-click-mark'))\nconst noteDisplay = ref<HTMLElement | null>(null)\n\nconst CLASS_FADE = 'slidev-note-fade'\nconst CLASS_MARKER = 'slidev-note-click-mark'\n\nfunction processNote() {\n  if (!noteDisplay.value || !withClicks.value)\n    return\n\n  const markers = Array.from(noteDisplay.value.querySelectorAll(`.${CLASS_MARKER}`)) as HTMLElement[]\n\n  const markersMap = new Map<HTMLElement, number>()\n  const parentsMap = new Map<HTMLElement, [divider: HTMLElement | null, dividerClicks: number][]>()\n  let lastClicks = 0\n  for (const marker of markers) {\n    const clicks = Number(marker.dataset!.clicks)\n    markersMap.set(marker, clicks)\n\n    // Set parent clicks map\n    let n = marker\n    let p = marker.parentElement\n    while (p && n !== noteDisplay.value) {\n      if (!parentsMap.has(p))\n        parentsMap.set(p, [[null, lastClicks]])\n      parentsMap.get(p)!.push([n, clicks])\n      n = p\n      p = p.parentElement\n    }\n\n    lastClicks = clicks\n  }\n\n  const siblingsMap = new Map<HTMLElement, number>()\n  for (const [parent, dividers] of parentsMap) {\n    let hasPrefix = false\n    let dividerIdx = 0\n    for (const sibling of Array.from(parent.childNodes)) {\n      let skip = false\n      while (sibling === dividers[dividerIdx + 1]?.[0]) {\n        skip = true\n        dividerIdx++\n      }\n      if (skip)\n        continue\n\n      // Convert sibling text nodes to spans\n      let siblingEl = sibling as HTMLElement\n      if (sibling.nodeType === 3 /* text node */) {\n        if (!sibling.textContent?.trim())\n          continue\n        siblingEl = document.createElement('span')\n        siblingEl.textContent = sibling.textContent\n        parent.insertBefore(siblingEl, sibling)\n        sibling.remove()\n      }\n\n      hasPrefix ||= dividerIdx === 0\n      siblingsMap.set(siblingEl, dividers[dividerIdx][1])\n    }\n    if (!hasPrefix)\n      dividers[0][1] = -1\n  }\n\n  // Apply\n  return (current: number) => {\n    const enabled = props.highlight\n    for (const [parent, clicks] of parentsMap)\n      parent.classList.toggle(CLASS_FADE, enabled && !clicks.some(([_, c]) => c === current))\n    for (const [parent, clicks] of siblingsMap)\n      parent.classList.toggle(CLASS_FADE, enabled && clicks !== current)\n    for (const [marker, clicks] of markersMap) {\n      marker.classList.remove(CLASS_FADE)\n      marker.classList.toggle(`${CLASS_MARKER}-past`, enabled && clicks < current)\n      marker.classList.toggle(`${CLASS_MARKER}-active`, enabled && clicks === current)\n      marker.classList.toggle(`${CLASS_MARKER}-next`, enabled && clicks === current + 1)\n      marker.classList.toggle(`${CLASS_MARKER}-future`, enabled && clicks > current + 1)\n      marker.ondblclick = enabled\n        ? (e) => {\n            emit('markerDblclick', e, clicks)\n            if (e.defaultPrevented)\n              return\n            props.clicksContext!.current = clicks\n            e.stopPropagation()\n            e.stopImmediatePropagation()\n          }\n        : null\n      marker.onclick = enabled\n        ? (e) => {\n            emit('markerClick', e, clicks)\n          }\n        : null\n\n      if (enabled && props.autoScroll && clicks === current)\n        marker.scrollIntoView({ block: 'center', behavior: 'smooth' })\n    }\n  }\n}\n\nconst applyHighlight = ref<ReturnType<typeof processNote>>()\n\nwatch(\n  () => [props.noteHtml, props.highlight],\n  () => {\n    nextTick(() => {\n      applyHighlight.value = processNote()\n    })\n  },\n  { immediate: true },\n)\n\nonMounted(() => {\n  processNote()\n})\n\nwatchEffect(() => {\n  const current = props.clicksContext?.current ?? CLICKS_MAX\n  applyHighlight.value?.(current)\n})\n</script>\n\n<template>\n  <div\n    v-if=\"noteHtml\"\n    ref=\"noteDisplay\"\n    class=\"prose overflow-auto outline-none slidev-note\"\n    :class=\"[props.class, withClicks ? 'slidev-note-with-clicks' : '']\"\n    v-html=\"noteHtml\"\n  />\n  <div\n    v-else-if=\"note\"\n    class=\"prose overflow-auto outline-none slidev-note\"\n    :class=\"props.class\"\n  >\n    <p v-text=\"note\" />\n  </div>\n  <div\n    v-else\n    class=\"prose overflow-auto outline-none opacity-50 italic select-none slidev-note\"\n    :class=\"props.class\"\n  >\n    <p v-text=\"props.placeholder || 'No notes.'\" />\n  </div>\n</template>\n\n<style>\n.slidev-note :first-child {\n  margin-top: 0;\n}\n</style>\n",
+      "start": 1743409708736,
+      "end": 1743409708768,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708768,
+      "end": 1743409708768,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708768,
+      "end": 1743409708768,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708768,
+      "end": 1743409708768,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708768,
+      "end": 1743409708770,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708771,
+      "end": 1743409708771,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708771,
+      "end": 1743409708771,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708771,
+      "end": 1743409708771,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708771,
+      "end": 1743409708771,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708771,
+      "end": 1743409708771,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708771,
+      "end": 1743409708771,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708771,
+      "end": 1743409708771,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=style&index=0&lang.css\";\nexport default _sfc_main;\n",
+      "start": 1743409708771,
+      "end": 1743409708908,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=style&index=0&lang.css\";\nexport default _sfc_main;\n",
+      "start": 1743409708908,
+      "end": 1743409708909,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NoteDisplay.vue?vue&type=style&index=0&lang.css\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACnJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC3I,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,GAAG,CAAC;AACjI,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

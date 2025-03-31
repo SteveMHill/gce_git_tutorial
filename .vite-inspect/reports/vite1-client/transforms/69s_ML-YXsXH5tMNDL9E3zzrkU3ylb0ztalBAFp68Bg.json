@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/compose/compose-node.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Alias } from '../nodes/Alias.js';\nimport { isScalar } from '../nodes/identity.js';\nimport { composeCollection } from './compose-collection.js';\nimport { composeScalar } from './compose-scalar.js';\nimport { resolveEnd } from './resolve-end.js';\nimport { emptyScalarPosition } from './util-empty-scalar-position.js';\n\nconst CN = { composeNode, composeEmptyNode };\nfunction composeNode(ctx, token, props, onError) {\n    const atKey = ctx.atKey;\n    const { spaceBefore, comment, anchor, tag } = props;\n    let node;\n    let isSrcToken = true;\n    switch (token.type) {\n        case 'alias':\n            node = composeAlias(ctx, token, onError);\n            if (anchor || tag)\n                onError(token, 'ALIAS_PROPS', 'An alias node must not specify any properties');\n            break;\n        case 'scalar':\n        case 'single-quoted-scalar':\n        case 'double-quoted-scalar':\n        case 'block-scalar':\n            node = composeScalar(ctx, token, tag, onError);\n            if (anchor)\n                node.anchor = anchor.source.substring(1);\n            break;\n        case 'block-map':\n        case 'block-seq':\n        case 'flow-collection':\n            node = composeCollection(CN, ctx, token, props, onError);\n            if (anchor)\n                node.anchor = anchor.source.substring(1);\n            break;\n        default: {\n            const message = token.type === 'error'\n                ? token.message\n                : `Unsupported token (type: ${token.type})`;\n            onError(token, 'UNEXPECTED_TOKEN', message);\n            node = composeEmptyNode(ctx, token.offset, undefined, null, props, onError);\n            isSrcToken = false;\n        }\n    }\n    if (anchor && node.anchor === '')\n        onError(anchor, 'BAD_ALIAS', 'Anchor cannot be an empty string');\n    if (atKey &&\n        ctx.options.stringKeys &&\n        (!isScalar(node) ||\n            typeof node.value !== 'string' ||\n            (node.tag && node.tag !== 'tag:yaml.org,2002:str'))) {\n        const msg = 'With stringKeys, all keys must be strings';\n        onError(tag ?? token, 'NON_STRING_KEY', msg);\n    }\n    if (spaceBefore)\n        node.spaceBefore = true;\n    if (comment) {\n        if (token.type === 'scalar' && token.source === '')\n            node.comment = comment;\n        else\n            node.commentBefore = comment;\n    }\n    // @ts-expect-error Type checking misses meaning of isSrcToken\n    if (ctx.options.keepSourceTokens && isSrcToken)\n        node.srcToken = token;\n    return node;\n}\nfunction composeEmptyNode(ctx, offset, before, pos, { spaceBefore, comment, anchor, tag, end }, onError) {\n    const token = {\n        type: 'scalar',\n        offset: emptyScalarPosition(offset, before, pos),\n        indent: -1,\n        source: ''\n    };\n    const node = composeScalar(ctx, token, tag, onError);\n    if (anchor) {\n        node.anchor = anchor.source.substring(1);\n        if (node.anchor === '')\n            onError(anchor, 'BAD_ALIAS', 'Anchor cannot be an empty string');\n    }\n    if (spaceBefore)\n        node.spaceBefore = true;\n    if (comment) {\n        node.comment = comment;\n        node.range[2] = end;\n    }\n    return node;\n}\nfunction composeAlias({ options }, { offset, source, end }, onError) {\n    const alias = new Alias(source.substring(1));\n    if (alias.source === '')\n        onError(offset, 'BAD_ALIAS', 'Alias cannot be an empty string');\n    if (alias.source.endsWith(':'))\n        onError(offset + source.length - 1, 'BAD_ALIAS', 'Alias ending in : is ambiguous', true);\n    const valueEnd = offset + source.length;\n    const re = resolveEnd(end, valueEnd, options.strict, onError);\n    alias.range = [offset, valueEnd, re.offset];\n    if (re.comment)\n        alias.comment = re.comment;\n    return alias;\n}\n\nexport { composeEmptyNode, composeNode };\n",
+      "start": 1743409708655,
+      "end": 1743409708662,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708662,
+      "end": 1743409708662,
+      "order": "normal"
+    }
+  ]
+}

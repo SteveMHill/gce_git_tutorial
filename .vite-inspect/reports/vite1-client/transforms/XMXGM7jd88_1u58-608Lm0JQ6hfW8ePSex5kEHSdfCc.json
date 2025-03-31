@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useTocTree.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { SlideRoute, TocItem } from '@slidev/types'\nimport type { ComputedRef, Ref } from 'vue'\nimport { computed } from 'vue'\nimport { getSlidePath } from '../logic/slides'\n\nfunction addToTree(tree: TocItem[], route: SlideRoute, level = 1) {\n  const titleLevel = route.meta.slide.level ?? level\n  if (titleLevel && titleLevel > level && tree.length > 0) {\n    addToTree(tree[tree.length - 1].children, route, level + 1)\n  }\n  else {\n    tree.push({\n      no: route.no,\n      children: [],\n      level,\n      titleLevel,\n      path: getSlidePath(route.meta.slide?.frontmatter?.routeAlias ?? route.no, false),\n      hideInToc: Boolean(route.meta?.slide?.frontmatter?.hideInToc),\n      title: route.meta?.slide?.title,\n    })\n  }\n}\n\nfunction getTreeWithActiveStatuses(\n  tree: TocItem[],\n  currentRoute?: SlideRoute,\n  hasActiveParent = false,\n  parent?: TocItem,\n  currentSlideNo?: Ref<number>,\n): TocItem[] {\n  return tree.map((item: TocItem) => {\n    const clone = {\n      ...item,\n      active: item.no === currentSlideNo?.value,\n      hasActiveParent,\n    }\n    if (clone.children.length > 0) {\n      clone.children = getTreeWithActiveStatuses(\n        clone.children,\n        currentRoute,\n        clone.active || clone.hasActiveParent,\n        clone,\n        currentSlideNo,\n      )\n    }\n    if (parent && (clone.active || clone.activeParent))\n      parent.activeParent = true\n    return clone\n  })\n}\n\nfunction filterTree(tree: TocItem[], level = 1): TocItem[] {\n  return tree\n    .filter((item: TocItem) => !item.hideInToc)\n    .map((item: TocItem) => ({\n      ...item,\n      children: filterTree(item.children, level + 1),\n    }))\n}\n\nexport function useTocTree(\n  slides: Ref<SlideRoute[]>,\n  currentSlideNo: Ref<number>,\n  currentSlideRoute: Ref<SlideRoute>,\n): ComputedRef<TocItem[]> {\n  const rawTree = computed(() => slides.value\n    .filter((route: SlideRoute) => route.meta?.slide?.title)\n    .reduce((acc: TocItem[], route: SlideRoute) => {\n      addToTree(acc, route)\n      return acc\n    }, []))\n\n  const treeWithActiveStatuses = computed(() => getTreeWithActiveStatuses(\n    rawTree.value,\n    currentSlideRoute.value,\n    undefined,\n    undefined,\n    currentSlideNo,\n  ))\n\n  return computed(() => filterTree(treeWithActiveStatuses.value))\n}\n",
+      "start": 1743409708715,
+      "end": 1743409708716,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { computed } from \"vue\";\nimport { getSlidePath } from \"../logic/slides\";\nfunction addToTree(tree, route, level = 1) {\n  const titleLevel = route.meta.slide.level ?? level;\n  if (titleLevel && titleLevel > level && tree.length > 0) {\n    addToTree(tree[tree.length - 1].children, route, level + 1);\n  } else {\n    tree.push({\n      no: route.no,\n      children: [],\n      level,\n      titleLevel,\n      path: getSlidePath(route.meta.slide?.frontmatter?.routeAlias ?? route.no, false),\n      hideInToc: Boolean(route.meta?.slide?.frontmatter?.hideInToc),\n      title: route.meta?.slide?.title\n    });\n  }\n}\nfunction getTreeWithActiveStatuses(tree, currentRoute, hasActiveParent = false, parent, currentSlideNo) {\n  return tree.map((item) => {\n    const clone = {\n      ...item,\n      active: item.no === currentSlideNo?.value,\n      hasActiveParent\n    };\n    if (clone.children.length > 0) {\n      clone.children = getTreeWithActiveStatuses(\n        clone.children,\n        currentRoute,\n        clone.active || clone.hasActiveParent,\n        clone,\n        currentSlideNo\n      );\n    }\n    if (parent && (clone.active || clone.activeParent))\n      parent.activeParent = true;\n    return clone;\n  });\n}\nfunction filterTree(tree, level = 1) {\n  return tree.filter((item) => !item.hideInToc).map((item) => ({\n    ...item,\n    children: filterTree(item.children, level + 1)\n  }));\n}\nexport function useTocTree(slides, currentSlideNo, currentSlideRoute) {\n  const rawTree = computed(() => slides.value.filter((route) => route.meta?.slide?.title).reduce((acc, route) => {\n    addToTree(acc, route);\n    return acc;\n  }, []));\n  const treeWithActiveStatuses = computed(() => getTreeWithActiveStatuses(\n    rawTree.value,\n    currentSlideRoute.value,\n    void 0,\n    void 0,\n    currentSlideNo\n  ));\n  return computed(() => filterTree(treeWithActiveStatuses.value));\n}\n",
+      "start": 1743409708716,
+      "end": 1743409708883,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useTocTree.ts"
+        ],
+        "sourcesContent": [
+          "import type { SlideRoute, TocItem } from '@slidev/types'\nimport type { ComputedRef, Ref } from 'vue'\nimport { computed } from 'vue'\nimport { getSlidePath } from '../logic/slides'\n\nfunction addToTree(tree: TocItem[], route: SlideRoute, level = 1) {\n  const titleLevel = route.meta.slide.level ?? level\n  if (titleLevel && titleLevel > level && tree.length > 0) {\n    addToTree(tree[tree.length - 1].children, route, level + 1)\n  }\n  else {\n    tree.push({\n      no: route.no,\n      children: [],\n      level,\n      titleLevel,\n      path: getSlidePath(route.meta.slide?.frontmatter?.routeAlias ?? route.no, false),\n      hideInToc: Boolean(route.meta?.slide?.frontmatter?.hideInToc),\n      title: route.meta?.slide?.title,\n    })\n  }\n}\n\nfunction getTreeWithActiveStatuses(\n  tree: TocItem[],\n  currentRoute?: SlideRoute,\n  hasActiveParent = false,\n  parent?: TocItem,\n  currentSlideNo?: Ref<number>,\n): TocItem[] {\n  return tree.map((item: TocItem) => {\n    const clone = {\n      ...item,\n      active: item.no === currentSlideNo?.value,\n      hasActiveParent,\n    }\n    if (clone.children.length > 0) {\n      clone.children = getTreeWithActiveStatuses(\n        clone.children,\n        currentRoute,\n        clone.active || clone.hasActiveParent,\n        clone,\n        currentSlideNo,\n      )\n    }\n    if (parent && (clone.active || clone.activeParent))\n      parent.activeParent = true\n    return clone\n  })\n}\n\nfunction filterTree(tree: TocItem[], level = 1): TocItem[] {\n  return tree\n    .filter((item: TocItem) => !item.hideInToc)\n    .map((item: TocItem) => ({\n      ...item,\n      children: filterTree(item.children, level + 1),\n    }))\n}\n\nexport function useTocTree(\n  slides: Ref<SlideRoute[]>,\n  currentSlideNo: Ref<number>,\n  currentSlideRoute: Ref<SlideRoute>,\n): ComputedRef<TocItem[]> {\n  const rawTree = computed(() => slides.value\n    .filter((route: SlideRoute) => route.meta?.slide?.title)\n    .reduce((acc: TocItem[], route: SlideRoute) => {\n      addToTree(acc, route)\n      return acc\n    }, []))\n\n  const treeWithActiveStatuses = computed(() => getTreeWithActiveStatuses(\n    rawTree.value,\n    currentSlideRoute.value,\n    undefined,\n    undefined,\n    currentSlideNo,\n  ))\n\n  return computed(() => filterTree(treeWithActiveStatuses.value))\n}\n"
+        ],
+        "mappings": "AAEA,SAAS,gBAAgB;AACzB,SAAS,oBAAoB;AAE7B,SAAS,UAAU,MAAiB,OAAmB,QAAQ,GAAG;AAChE,QAAM,aAAa,MAAM,KAAK,MAAM,SAAS;AAC7C,MAAI,cAAc,aAAa,SAAS,KAAK,SAAS,GAAG;AACvD,cAAU,KAAK,KAAK,SAAS,CAAC,EAAE,UAAU,OAAO,QAAQ,CAAC;AAAA,EAC5D,OACK;AACH,SAAK,KAAK;AAAA,MACR,IAAI,MAAM;AAAA,MACV,UAAU,CAAC;AAAA,MACX;AAAA,MACA;AAAA,MACA,MAAM,aAAa,MAAM,KAAK,OAAO,aAAa,cAAc,MAAM,IAAI,KAAK;AAAA,MAC/E,WAAW,QAAQ,MAAM,MAAM,OAAO,aAAa,SAAS;AAAA,MAC5D,OAAO,MAAM,MAAM,OAAO;AAAA,IAC5B,CAAC;AAAA,EACH;AACF;AAEA,SAAS,0BACP,MACA,cACA,kBAAkB,OAClB,QACA,gBACW;AACX,SAAO,KAAK,IAAI,CAAC,SAAkB;AACjC,UAAM,QAAQ;AAAA,MACZ,GAAG;AAAA,MACH,QAAQ,KAAK,OAAO,gBAAgB;AAAA,MACpC;AAAA,IACF;AACA,QAAI,MAAM,SAAS,SAAS,GAAG;AAC7B,YAAM,WAAW;AAAA,QACf,MAAM;AAAA,QACN;AAAA,QACA,MAAM,UAAU,MAAM;AAAA,QACtB;AAAA,QACA;AAAA,MACF;AAAA,IACF;AACA,QAAI,WAAW,MAAM,UAAU,MAAM;AACnC,aAAO,eAAe;AACxB,WAAO;AAAA,EACT,CAAC;AACH;AAEA,SAAS,WAAW,MAAiB,QAAQ,GAAc;AACzD,SAAO,KACJ,OAAO,CAAC,SAAkB,CAAC,KAAK,SAAS,EACzC,IAAI,CAAC,UAAmB;AAAA,IACvB,GAAG;AAAA,IACH,UAAU,WAAW,KAAK,UAAU,QAAQ,CAAC;AAAA,EAC/C,EAAE;AACN;AAEO,gBAAS,WACd,QACA,gBACA,mBACwB;AACxB,QAAM,UAAU,SAAS,MAAM,OAAO,MACnC,OAAO,CAAC,UAAsB,MAAM,MAAM,OAAO,KAAK,EACtD,OAAO,CAAC,KAAgB,UAAsB;AAC7C,cAAU,KAAK,KAAK;AACpB,WAAO;AAAA,EACT,GAAG,CAAC,CAAC,CAAC;AAER,QAAM,yBAAyB,SAAS,MAAM;AAAA,IAC5C,QAAQ;AAAA,IACR,kBAAkB;AAAA,IAClB;AAAA,IACA;AAAA,IACA;AAAA,EACF,CAAC;AAED,SAAO,SAAS,MAAM,WAAW,uBAAuB,KAAK,CAAC;AAChE;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708883,
+      "end": 1743409708883,
+      "order": "normal"
+    }
+  ]
+}

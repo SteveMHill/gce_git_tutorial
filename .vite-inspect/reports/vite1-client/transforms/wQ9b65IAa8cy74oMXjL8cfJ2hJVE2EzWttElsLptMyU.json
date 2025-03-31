@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/mermaid.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { clearUndefined } from '@antfu/utils'\nimport lz from 'lz-string'\nimport mermaid from 'mermaid/dist/mermaid.esm.mjs'\nimport { makeId } from '../logic/utils'\nimport setupMermaid from '../setup/mermaid'\n\nmermaid.startOnLoad = false\nmermaid.initialize({ startOnLoad: false })\n\nconst cache = new Map<string, string>()\nlet containerElement: Element | undefined\n\nexport async function renderMermaid(lzEncoded: string, options: any) {\n  containerElement ??= document.getElementById('mermaid-rendering-container')!\n  const key = lzEncoded + JSON.stringify(options)\n  const _cache = cache.get(key)\n  if (_cache)\n    return _cache\n\n  mermaid.initialize({\n    startOnLoad: false,\n    ...clearUndefined(await setupMermaid() || {}),\n    ...clearUndefined(options),\n  })\n  const code = lz.decompressFromBase64(lzEncoded)\n  const id = makeId()\n  const { svg } = await mermaid.render(id, code, containerElement)\n  cache.set(key, svg)\n  return svg\n}\n",
+      "start": 1743409709033,
+      "end": 1743409709039,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709039,
+      "end": 1743409709039,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709039,
+      "end": 1743409709039,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709039,
+      "end": 1743409709039,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709039,
+      "end": 1743409709039,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709039,
+      "end": 1743409709039,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { clearUndefined } from \"@antfu/utils\";\nimport lz from \"lz-string\";\nimport mermaid from \"mermaid/dist/mermaid.esm.mjs\";\nimport { makeId } from \"../logic/utils\";\nimport setupMermaid from \"../setup/mermaid\";\nmermaid.startOnLoad = false;\nmermaid.initialize({ startOnLoad: false });\nconst cache = /* @__PURE__ */ new Map();\nlet containerElement;\nexport async function renderMermaid(lzEncoded, options) {\n  containerElement ??= document.getElementById(\"mermaid-rendering-container\");\n  const key = lzEncoded + JSON.stringify(options);\n  const _cache = cache.get(key);\n  if (_cache)\n    return _cache;\n  mermaid.initialize({\n    startOnLoad: false,\n    ...clearUndefined(await setupMermaid() || {}),\n    ...clearUndefined(options)\n  });\n  const code = lz.decompressFromBase64(lzEncoded);\n  const id = makeId();\n  const { svg } = await mermaid.render(id, code, containerElement);\n  cache.set(key, svg);\n  return svg;\n}\n",
+      "start": 1743409709039,
+      "end": 1743409709045,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/mermaid.ts"
+        ],
+        "sourcesContent": [
+          "import { clearUndefined } from '@antfu/utils'\nimport lz from 'lz-string'\nimport mermaid from 'mermaid/dist/mermaid.esm.mjs'\nimport { makeId } from '../logic/utils'\nimport setupMermaid from '../setup/mermaid'\n\nmermaid.startOnLoad = false\nmermaid.initialize({ startOnLoad: false })\n\nconst cache = new Map<string, string>()\nlet containerElement: Element | undefined\n\nexport async function renderMermaid(lzEncoded: string, options: any) {\n  containerElement ??= document.getElementById('mermaid-rendering-container')!\n  const key = lzEncoded + JSON.stringify(options)\n  const _cache = cache.get(key)\n  if (_cache)\n    return _cache\n\n  mermaid.initialize({\n    startOnLoad: false,\n    ...clearUndefined(await setupMermaid() || {}),\n    ...clearUndefined(options),\n  })\n  const code = lz.decompressFromBase64(lzEncoded)\n  const id = makeId()\n  const { svg } = await mermaid.render(id, code, containerElement)\n  cache.set(key, svg)\n  return svg\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,sBAAsB;AAC/B,OAAO,QAAQ;AACf,OAAO,aAAa;AACpB,SAAS,cAAc;AACvB,OAAO,kBAAkB;AAEzB,QAAQ,cAAc;AACtB,QAAQ,WAAW,EAAE,aAAa,MAAM,CAAC;AAEzC,MAAM,QAAQ,oBAAI,IAAoB;AACtC,IAAI;AAEJ,sBAAsB,cAAc,WAAmB,SAAc;AACnE,uBAAqB,SAAS,eAAe,6BAA6B;AAC1E,QAAM,MAAM,YAAY,KAAK,UAAU,OAAO;AAC9C,QAAM,SAAS,MAAM,IAAI,GAAG;AAC5B,MAAI;AACF,WAAO;AAET,UAAQ,WAAW;AAAA,IACjB,aAAa;AAAA,IACb,GAAG,eAAe,MAAM,aAAa,KAAK,CAAC,CAAC;AAAA,IAC5C,GAAG,eAAe,OAAO;AAAA,EAC3B,CAAC;AACD,QAAM,OAAO,GAAG,qBAAqB,SAAS;AAC9C,QAAM,KAAK,OAAO;AAClB,QAAM,EAAE,IAAI,IAAI,MAAM,QAAQ,OAAO,IAAI,MAAM,gBAAgB;AAC/D,QAAM,IAAI,KAAK,GAAG;AAClB,SAAO;AACT;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709045,
+      "end": 1743409709045,
+      "order": "normal"
+    }
+  ]
+}

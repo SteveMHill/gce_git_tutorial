@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/route.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { WritableComputedRef } from 'vue'\nimport { computed, nextTick, unref } from 'vue'\nimport { useRouter } from 'vue-router'\n\nexport function useRouteQuery<T extends string | string[]>(\n  name: string,\n  defaultValue?: T,\n  {\n    mode = 'replace',\n  } = {},\n): WritableComputedRef<T> {\n  const router = useRouter()\n\n  return computed<any>({\n    get() {\n      const data = router.currentRoute.value.query[name]\n      if (data == null)\n        return defaultValue ?? null\n      if (Array.isArray(data))\n        return data.filter(Boolean)\n      return data\n    },\n    set(v) {\n      nextTick(() => {\n        const oldValue = router.currentRoute.value.query[name]\n        if ((oldValue ?? defaultValue?.toString()) === v.toString())\n          return\n        router[unref(mode) as 'replace' | 'push']({\n          query: {\n            ...router.currentRoute.value.query,\n            [name]: `${v}` === defaultValue ? undefined : v,\n          },\n        })\n      })\n    },\n  })\n}\n",
+      "start": 1743409708715,
+      "end": 1743409708716,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { computed, nextTick, unref } from \"vue\";\nimport { useRouter } from \"vue-router\";\nexport function useRouteQuery(name, defaultValue, {\n  mode = \"replace\"\n} = {}) {\n  const router = useRouter();\n  return computed({\n    get() {\n      const data = router.currentRoute.value.query[name];\n      if (data == null)\n        return defaultValue ?? null;\n      if (Array.isArray(data))\n        return data.filter(Boolean);\n      return data;\n    },\n    set(v) {\n      nextTick(() => {\n        const oldValue = router.currentRoute.value.query[name];\n        if ((oldValue ?? defaultValue?.toString()) === v.toString())\n          return;\n        router[unref(mode)]({\n          query: {\n            ...router.currentRoute.value.query,\n            [name]: `${v}` === defaultValue ? void 0 : v\n          }\n        });\n      });\n    }\n  });\n}\n",
+      "start": 1743409708716,
+      "end": 1743409708879,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/route.ts"
+        ],
+        "sourcesContent": [
+          "import type { WritableComputedRef } from 'vue'\nimport { computed, nextTick, unref } from 'vue'\nimport { useRouter } from 'vue-router'\n\nexport function useRouteQuery<T extends string | string[]>(\n  name: string,\n  defaultValue?: T,\n  {\n    mode = 'replace',\n  } = {},\n): WritableComputedRef<T> {\n  const router = useRouter()\n\n  return computed<any>({\n    get() {\n      const data = router.currentRoute.value.query[name]\n      if (data == null)\n        return defaultValue ?? null\n      if (Array.isArray(data))\n        return data.filter(Boolean)\n      return data\n    },\n    set(v) {\n      nextTick(() => {\n        const oldValue = router.currentRoute.value.query[name]\n        if ((oldValue ?? defaultValue?.toString()) === v.toString())\n          return\n        router[unref(mode) as 'replace' | 'push']({\n          query: {\n            ...router.currentRoute.value.query,\n            [name]: `${v}` === defaultValue ? undefined : v,\n          },\n        })\n      })\n    },\n  })\n}\n"
+        ],
+        "mappings": "AACA,SAAS,UAAU,UAAU,aAAa;AAC1C,SAAS,iBAAiB;AAEnB,gBAAS,cACd,MACA,cACA;AAAA,EACE,OAAO;AACT,IAAI,CAAC,GACmB;AACxB,QAAM,SAAS,UAAU;AAEzB,SAAO,SAAc;AAAA,IACnB,MAAM;AACJ,YAAM,OAAO,OAAO,aAAa,MAAM,MAAM,IAAI;AACjD,UAAI,QAAQ;AACV,eAAO,gBAAgB;AACzB,UAAI,MAAM,QAAQ,IAAI;AACpB,eAAO,KAAK,OAAO,OAAO;AAC5B,aAAO;AAAA,IACT;AAAA,IACA,IAAI,GAAG;AACL,eAAS,MAAM;AACb,cAAM,WAAW,OAAO,aAAa,MAAM,MAAM,IAAI;AACrD,aAAK,YAAY,cAAc,SAAS,OAAO,EAAE,SAAS;AACxD;AACF,eAAO,MAAM,IAAI,CAAuB,EAAE;AAAA,UACxC,OAAO;AAAA,YACL,GAAG,OAAO,aAAa,MAAM;AAAA,YAC7B,CAAC,IAAI,GAAG,GAAG,CAAC,OAAO,eAAe,SAAY;AAAA,UAChD;AAAA,QACF,CAAC;AAAA,MACH,CAAC;AAAA,IACH;AAAA,EACF,CAAC;AACH;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    }
+  ]
+}

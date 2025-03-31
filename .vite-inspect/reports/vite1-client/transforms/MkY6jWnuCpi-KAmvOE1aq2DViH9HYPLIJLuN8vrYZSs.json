@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/color.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isDark } from './dark'\n\n/**\n * Predefined color map for matching the branding\n *\n * Accpet a 6-digit hex color string or a hue number\n * Hue numbers are preferred because they will adapt better contrast in light/dark mode\n *\n * Hue numbers reference:\n * - 0: red\n * - 30: orange\n * - 60: yellow\n * - 120: green\n * - 180: cyan\n * - 240: blue\n * - 270: purple\n */\nconst predefinedColorMap = {\n  error: 0,\n  client: 60,\n  Light: 60,\n  Dark: 240,\n} as Record<string, number>\n\nexport function getHashColorFromString(\n  name: string,\n  opacity: number | string = 1,\n) {\n  if (predefinedColorMap[name])\n    return getHsla(predefinedColorMap[name], opacity)\n\n  let hash = 0\n  for (let i = 0; i < name.length; i++)\n    hash = name.charCodeAt(i) + ((hash << 5) - hash)\n  const hue = hash % 360\n  return getHsla(hue, opacity)\n}\n\nexport function getHsla(\n  hue: number,\n  opacity: number | string = 1,\n) {\n  const saturation = hue === -1\n    ? 0\n    : isDark.value ? 50 : 100\n  const lightness = isDark.value ? 60 : 20\n  return `hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity})`\n}\n\nexport function getPluginColor(name: string, opacity = 1): string {\n  if (predefinedColorMap[name]) {\n    const color = predefinedColorMap[name]\n    if (typeof color === 'number') {\n      return getHsla(color, opacity)\n    }\n    else {\n      if (opacity === 1)\n        return color\n      const opacityHex = Math.floor(opacity * 255).toString(16).padStart(2, '0')\n      return color + opacityHex\n    }\n  }\n  return getHashColorFromString(name, opacity)\n}\n",
+      "start": 1743409709049,
+      "end": 1743409709059,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709059,
+      "end": 1743409709059,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709059,
+      "end": 1743409709059,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709059,
+      "end": 1743409709059,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709059,
+      "end": 1743409709059,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709059,
+      "end": 1743409709059,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { isDark } from \"./dark\";\nconst predefinedColorMap = {\n  error: 0,\n  client: 60,\n  Light: 60,\n  Dark: 240\n};\nexport function getHashColorFromString(name, opacity = 1) {\n  if (predefinedColorMap[name])\n    return getHsla(predefinedColorMap[name], opacity);\n  let hash = 0;\n  for (let i = 0; i < name.length; i++)\n    hash = name.charCodeAt(i) + ((hash << 5) - hash);\n  const hue = hash % 360;\n  return getHsla(hue, opacity);\n}\nexport function getHsla(hue, opacity = 1) {\n  const saturation = hue === -1 ? 0 : isDark.value ? 50 : 100;\n  const lightness = isDark.value ? 60 : 20;\n  return `hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity})`;\n}\nexport function getPluginColor(name, opacity = 1) {\n  if (predefinedColorMap[name]) {\n    const color = predefinedColorMap[name];\n    if (typeof color === \"number\") {\n      return getHsla(color, opacity);\n    } else {\n      if (opacity === 1)\n        return color;\n      const opacityHex = Math.floor(opacity * 255).toString(16).padStart(2, \"0\");\n      return color + opacityHex;\n    }\n  }\n  return getHashColorFromString(name, opacity);\n}\n",
+      "start": 1743409709059,
+      "end": 1743409709260,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/color.ts"
+        ],
+        "sourcesContent": [
+          "import { isDark } from './dark'\n\n/**\n * Predefined color map for matching the branding\n *\n * Accpet a 6-digit hex color string or a hue number\n * Hue numbers are preferred because they will adapt better contrast in light/dark mode\n *\n * Hue numbers reference:\n * - 0: red\n * - 30: orange\n * - 60: yellow\n * - 120: green\n * - 180: cyan\n * - 240: blue\n * - 270: purple\n */\nconst predefinedColorMap = {\n  error: 0,\n  client: 60,\n  Light: 60,\n  Dark: 240,\n} as Record<string, number>\n\nexport function getHashColorFromString(\n  name: string,\n  opacity: number | string = 1,\n) {\n  if (predefinedColorMap[name])\n    return getHsla(predefinedColorMap[name], opacity)\n\n  let hash = 0\n  for (let i = 0; i < name.length; i++)\n    hash = name.charCodeAt(i) + ((hash << 5) - hash)\n  const hue = hash % 360\n  return getHsla(hue, opacity)\n}\n\nexport function getHsla(\n  hue: number,\n  opacity: number | string = 1,\n) {\n  const saturation = hue === -1\n    ? 0\n    : isDark.value ? 50 : 100\n  const lightness = isDark.value ? 60 : 20\n  return `hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity})`\n}\n\nexport function getPluginColor(name: string, opacity = 1): string {\n  if (predefinedColorMap[name]) {\n    const color = predefinedColorMap[name]\n    if (typeof color === 'number') {\n      return getHsla(color, opacity)\n    }\n    else {\n      if (opacity === 1)\n        return color\n      const opacityHex = Math.floor(opacity * 255).toString(16).padStart(2, '0')\n      return color + opacityHex\n    }\n  }\n  return getHashColorFromString(name, opacity)\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,cAAc;AAiBvB,MAAM,qBAAqB;AAAA,EACzB,OAAO;AAAA,EACP,QAAQ;AAAA,EACR,OAAO;AAAA,EACP,MAAM;AACR;AAEO,gBAAS,uBACd,MACA,UAA2B,GAC3B;AACA,MAAI,mBAAmB,IAAI;AACzB,WAAO,QAAQ,mBAAmB,IAAI,GAAG,OAAO;AAElD,MAAI,OAAO;AACX,WAAS,IAAI,GAAG,IAAI,KAAK,QAAQ;AAC/B,WAAO,KAAK,WAAW,CAAC,MAAM,QAAQ,KAAK;AAC7C,QAAM,MAAM,OAAO;AACnB,SAAO,QAAQ,KAAK,OAAO;AAC7B;AAEO,gBAAS,QACd,KACA,UAA2B,GAC3B;AACA,QAAM,aAAa,QAAQ,KACvB,IACA,OAAO,QAAQ,KAAK;AACxB,QAAM,YAAY,OAAO,QAAQ,KAAK;AACtC,SAAO,QAAQ,GAAG,KAAK,UAAU,MAAM,SAAS,MAAM,OAAO;AAC/D;AAEO,gBAAS,eAAe,MAAc,UAAU,GAAW;AAChE,MAAI,mBAAmB,IAAI,GAAG;AAC5B,UAAM,QAAQ,mBAAmB,IAAI;AACrC,QAAI,OAAO,UAAU,UAAU;AAC7B,aAAO,QAAQ,OAAO,OAAO;AAAA,IAC/B,OACK;AACH,UAAI,YAAY;AACd,eAAO;AACT,YAAM,aAAa,KAAK,MAAM,UAAU,GAAG,EAAE,SAAS,EAAE,EAAE,SAAS,GAAG,GAAG;AACzE,aAAO,QAAQ;AAAA,IACjB;AAAA,EACF;AACA,SAAO,uBAAuB,MAAM,OAAO;AAC7C;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709260,
+      "end": 1743409709260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709261,
+      "end": 1743409709261,
+      "order": "normal"
+    }
+  ]
+}

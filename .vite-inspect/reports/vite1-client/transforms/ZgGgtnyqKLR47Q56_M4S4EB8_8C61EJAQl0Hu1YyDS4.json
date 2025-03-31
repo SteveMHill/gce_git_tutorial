@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/contextMenu.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { ContextMenuItem } from '@slidev/types'\nimport type { ComputedRef } from 'vue'\nimport { shallowRef } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { configs, mode } from '../env'\nimport setupContextMenu from '../setup/context-menu'\n\nexport const currentContextMenu = shallowRef<null | {\n  x: number\n  y: number\n  items: ComputedRef<ContextMenuItem[]>\n}>(null)\n\nexport function openContextMenu(x: number, y: number) {\n  currentContextMenu.value = {\n    x,\n    y,\n    items: setupContextMenu(),\n  }\n}\n\nexport function closeContextMenu() {\n  currentContextMenu.value = null\n}\n\nexport function onContextMenu(ev: MouseEvent) {\n  if (configs.contextMenu !== true && configs.contextMenu != null && configs.contextMenu !== mode)\n    return\n  if (ev.shiftKey || ev.defaultPrevented)\n    return\n\n  const { isEmbedded } = useNav()\n  if (isEmbedded.value)\n    return\n\n  openContextMenu(ev.pageX, ev.pageY)\n  ev.preventDefault()\n  ev.stopPropagation()\n}\n",
+      "start": 1743409708768,
+      "end": 1743409708879,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { shallowRef } from \"vue\";\nimport { useNav } from \"../composables/useNav\";\nimport { configs, mode } from \"../env\";\nimport setupContextMenu from \"../setup/context-menu\";\nexport const currentContextMenu = shallowRef(null);\nexport function openContextMenu(x, y) {\n  currentContextMenu.value = {\n    x,\n    y,\n    items: setupContextMenu()\n  };\n}\nexport function closeContextMenu() {\n  currentContextMenu.value = null;\n}\nexport function onContextMenu(ev) {\n  if (configs.contextMenu !== true && configs.contextMenu != null && configs.contextMenu !== mode)\n    return;\n  if (ev.shiftKey || ev.defaultPrevented)\n    return;\n  const { isEmbedded } = useNav();\n  if (isEmbedded.value)\n    return;\n  openContextMenu(ev.pageX, ev.pageY);\n  ev.preventDefault();\n  ev.stopPropagation();\n}\n",
+      "start": 1743409708879,
+      "end": 1743409708945,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/contextMenu.ts"
+        ],
+        "sourcesContent": [
+          "import type { ContextMenuItem } from '@slidev/types'\nimport type { ComputedRef } from 'vue'\nimport { shallowRef } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { configs, mode } from '../env'\nimport setupContextMenu from '../setup/context-menu'\n\nexport const currentContextMenu = shallowRef<null | {\n  x: number\n  y: number\n  items: ComputedRef<ContextMenuItem[]>\n}>(null)\n\nexport function openContextMenu(x: number, y: number) {\n  currentContextMenu.value = {\n    x,\n    y,\n    items: setupContextMenu(),\n  }\n}\n\nexport function closeContextMenu() {\n  currentContextMenu.value = null\n}\n\nexport function onContextMenu(ev: MouseEvent) {\n  if (configs.contextMenu !== true && configs.contextMenu != null && configs.contextMenu !== mode)\n    return\n  if (ev.shiftKey || ev.defaultPrevented)\n    return\n\n  const { isEmbedded } = useNav()\n  if (isEmbedded.value)\n    return\n\n  openContextMenu(ev.pageX, ev.pageY)\n  ev.preventDefault()\n  ev.stopPropagation()\n}\n"
+        ],
+        "mappings": "AAEA,SAAS,kBAAkB;AAC3B,SAAS,cAAc;AACvB,SAAS,SAAS,YAAY;AAC9B,OAAO,sBAAsB;AAEtB,aAAM,qBAAqB,WAI/B,IAAI;AAEA,gBAAS,gBAAgB,GAAW,GAAW;AACpD,qBAAmB,QAAQ;AAAA,IACzB;AAAA,IACA;AAAA,IACA,OAAO,iBAAiB;AAAA,EAC1B;AACF;AAEO,gBAAS,mBAAmB;AACjC,qBAAmB,QAAQ;AAC7B;AAEO,gBAAS,cAAc,IAAgB;AAC5C,MAAI,QAAQ,gBAAgB,QAAQ,QAAQ,eAAe,QAAQ,QAAQ,gBAAgB;AACzF;AACF,MAAI,GAAG,YAAY,GAAG;AACpB;AAEF,QAAM,EAAE,WAAW,IAAI,OAAO;AAC9B,MAAI,WAAW;AACb;AAEF,kBAAgB,GAAG,OAAO,GAAG,KAAK;AAClC,KAAG,eAAe;AAClB,KAAG,gBAAgB;AACrB;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    }
+  ]
+}

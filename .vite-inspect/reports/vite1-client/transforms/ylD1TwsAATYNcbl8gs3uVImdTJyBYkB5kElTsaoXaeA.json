@@ -1,0 +1,166 @@
+{
+  "resolvedId": "~icons/ph/check-circle",
+  "transforms": [
+    {
+      "name": "unplugin-icons",
+      "result": "import { markRaw } from 'vue'\nimport { createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = {\n  class: \"slidev-icon\",\n  viewBox: \"0 0 256 256\",\n  width: \"1.2em\",\n  height: \"1.2em\"\n}\n\nfunction render(_ctx, _cache) {\n  return (_openBlock(), _createElementBlock(\"svg\", _hoisted_1, _cache[0] || (_cache[0] = [\n    _createElementVNode(\"path\", {\n      fill: \"currentColor\",\n      d: \"M173.66 98.34a8 8 0 0 1 0 11.32l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 0M232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104m-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88\"\n    }, null, -1 /* HOISTED */)\n  ])))\n}\n\nexport default markRaw({ name: 'ph-check-circle', render })\n/* vite-plugin-components disabled */",
+      "start": 1743409709021,
+      "end": 1743409709028,
+      "sourcemaps": {
+        "version": 3,
+        "mappings": "",
+        "sources": []
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709028,
+      "end": 1743409709028,
+      "order": "normal"
+    }
+  ]
+}

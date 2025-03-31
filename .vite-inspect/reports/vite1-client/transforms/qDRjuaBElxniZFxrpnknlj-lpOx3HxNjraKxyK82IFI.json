@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClick.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * <v-click/> click animations component\n *\n * Learn more: https://sli.dev/guide/animations.html#click-animation\n */\n\nimport type { PropType, VNode } from 'vue'\nimport { defineComponent, h, Text } from 'vue'\nimport { CLICKS_MAX } from '../constants'\nimport VClicks from './VClicks'\n\nexport default defineComponent({\n  props: {\n    at: {\n      type: [Number, String],\n      default: '+1',\n    },\n    hide: {\n      type: Boolean,\n      default: false,\n    },\n    fade: {\n      type: Boolean,\n      default: false,\n    },\n    wrapText: {\n      type: Function as PropType<(text: VNode) => VNode>,\n      default: (text: VNode) => h('span', text),\n    },\n  },\n  render() {\n    return h(\n      VClicks,\n      {\n        every: CLICKS_MAX,\n        at: this.at,\n        hide: this.hide,\n        fade: this.fade,\n        handleSpecialElements: false,\n      },\n      {\n        default: () =>\n          this.$slots.default?.().map(v =>\n            v.type === Text\n              ? this.wrapText(v)\n              : v,\n          ),\n      },\n    )\n  },\n})\n",
+      "start": 1743409708876,
+      "end": 1743409708887,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708887,
+      "end": 1743409708887,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent, h, Text } from \"vue\";\nimport { CLICKS_MAX } from \"../constants\";\nimport VClicks from \"./VClicks\";\nexport default defineComponent({\n  props: {\n    at: {\n      type: [Number, String],\n      default: \"+1\"\n    },\n    hide: {\n      type: Boolean,\n      default: false\n    },\n    fade: {\n      type: Boolean,\n      default: false\n    },\n    wrapText: {\n      type: Function,\n      default: (text) => h(\"span\", text)\n    }\n  },\n  render() {\n    return h(\n      VClicks,\n      {\n        every: CLICKS_MAX,\n        at: this.at,\n        hide: this.hide,\n        fade: this.fade,\n        handleSpecialElements: false\n      },\n      {\n        default: () => this.$slots.default?.().map(\n          (v) => v.type === Text ? this.wrapText(v) : v\n        )\n      }\n    );\n  }\n});\n",
+      "start": 1743409708887,
+      "end": 1743409708946,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/VClick.ts"
+        ],
+        "sourcesContent": [
+          "/**\n * <v-click/> click animations component\n *\n * Learn more: https://sli.dev/guide/animations.html#click-animation\n */\n\nimport type { PropType, VNode } from 'vue'\nimport { defineComponent, h, Text } from 'vue'\nimport { CLICKS_MAX } from '../constants'\nimport VClicks from './VClicks'\n\nexport default defineComponent({\n  props: {\n    at: {\n      type: [Number, String],\n      default: '+1',\n    },\n    hide: {\n      type: Boolean,\n      default: false,\n    },\n    fade: {\n      type: Boolean,\n      default: false,\n    },\n    wrapText: {\n      type: Function as PropType<(text: VNode) => VNode>,\n      default: (text: VNode) => h('span', text),\n    },\n  },\n  render() {\n    return h(\n      VClicks,\n      {\n        every: CLICKS_MAX,\n        at: this.at,\n        hide: this.hide,\n        fade: this.fade,\n        handleSpecialElements: false,\n      },\n      {\n        default: () =>\n          this.$slots.default?.().map(v =>\n            v.type === Text\n              ? this.wrapText(v)\n              : v,\n          ),\n      },\n    )\n  },\n})\n"
+        ],
+        "mappings": "AAOA,SAAS,iBAAiB,GAAG,YAAY;AACzC,SAAS,kBAAkB;AAC3B,OAAO,aAAa;AAEpB,eAAe,gBAAgB;AAAA,EAC7B,OAAO;AAAA,IACL,IAAI;AAAA,MACF,MAAM,CAAC,QAAQ,MAAM;AAAA,MACrB,SAAS;AAAA,IACX;AAAA,IACA,MAAM;AAAA,MACJ,MAAM;AAAA,MACN,SAAS;AAAA,IACX;AAAA,IACA,MAAM;AAAA,MACJ,MAAM;AAAA,MACN,SAAS;AAAA,IACX;AAAA,IACA,UAAU;AAAA,MACR,MAAM;AAAA,MACN,SAAS,CAAC,SAAgB,EAAE,QAAQ,IAAI;AAAA,IAC1C;AAAA,EACF;AAAA,EACA,SAAS;AACP,WAAO;AAAA,MACL;AAAA,MACA;AAAA,QACE,OAAO;AAAA,QACP,IAAI,KAAK;AAAA,QACT,MAAM,KAAK;AAAA,QACX,MAAM,KAAK;AAAA,QACX,uBAAuB;AAAA,MACzB;AAAA,MACA;AAAA,QACE,SAAS,MACP,KAAK,OAAO,UAAU,EAAE;AAAA,UAAI,OAC1B,EAAE,SAAS,OACP,KAAK,SAAS,CAAC,IACf;AAAA,QACN;AAAA,MACJ;AAAA,IACF;AAAA,EACF;AACF,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708946,
+      "end": 1743409708946,
+      "order": "normal"
+    }
+  ]
+}

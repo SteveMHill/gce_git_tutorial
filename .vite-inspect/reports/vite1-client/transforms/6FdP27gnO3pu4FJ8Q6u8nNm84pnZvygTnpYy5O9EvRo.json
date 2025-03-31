@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/shortcuts.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { ShortcutOptions } from '@slidev/types'\nimport type { Fn, KeyFilter } from '@vueuse/core'\nimport type { Ref } from 'vue'\nimport { onKeyStroke } from '@vueuse/core'\nimport { and, not } from '@vueuse/math'\nimport { watch } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport setupShortcuts from '../setup/shortcuts'\nimport { fullscreen, isInputting, isOnFocus, magicKeys, shortcutsEnabled } from '../state'\n\nexport function registerShortcuts() {\n  const { isPrintMode } = useNav()\n  const enabled = and(not(isInputting), not(isOnFocus), not(isPrintMode), shortcutsEnabled)\n\n  const allShortcuts = setupShortcuts()\n  const shortcuts = new Map<string | Ref<boolean>, ShortcutOptions>(\n    allShortcuts.map((options: ShortcutOptions) => [options.key, options]),\n  )\n\n  shortcuts.forEach((options) => {\n    if (options.fn)\n      shortcut(options.key, options.fn, options.autoRepeat)\n  })\n\n  strokeShortcut('f', () => fullscreen.toggle())\n\n  function shortcut(key: string | Ref<boolean>, fn: Fn, autoRepeat = false) {\n    if (typeof key === 'string')\n      key = magicKeys[key]\n\n    const source = and(key, enabled)\n    let count = 0\n    let timer: any\n    const trigger = () => {\n      clearTimeout(timer)\n      if (!source.value) {\n        count = 0\n        return\n      }\n      if (autoRepeat) {\n        timer = setTimeout(trigger, Math.max(1000 - count * 250, 150))\n        count++\n      }\n      fn()\n    }\n\n    return watch(source, trigger, { flush: 'sync' })\n  }\n\n  function strokeShortcut(key: KeyFilter, fn: Fn) {\n    return onKeyStroke(key, (ev) => {\n      if (!enabled.value)\n        return\n      if (!ev.repeat)\n        fn()\n    })\n  }\n}\n",
+      "start": 1743409708774,
+      "end": 1743409708881,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708881,
+      "end": 1743409708881,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708881,
+      "end": 1743409708881,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708881,
+      "end": 1743409708881,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708881,
+      "end": 1743409708881,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708881,
+      "end": 1743409708881,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { onKeyStroke } from \"@vueuse/core\";\nimport { and, not } from \"@vueuse/math\";\nimport { watch } from \"vue\";\nimport { useNav } from \"../composables/useNav\";\nimport setupShortcuts from \"../setup/shortcuts\";\nimport { fullscreen, isInputting, isOnFocus, magicKeys, shortcutsEnabled } from \"../state\";\nexport function registerShortcuts() {\n  const { isPrintMode } = useNav();\n  const enabled = and(not(isInputting), not(isOnFocus), not(isPrintMode), shortcutsEnabled);\n  const allShortcuts = setupShortcuts();\n  const shortcuts = new Map(\n    allShortcuts.map((options) => [options.key, options])\n  );\n  shortcuts.forEach((options) => {\n    if (options.fn)\n      shortcut(options.key, options.fn, options.autoRepeat);\n  });\n  strokeShortcut(\"f\", () => fullscreen.toggle());\n  function shortcut(key, fn, autoRepeat = false) {\n    if (typeof key === \"string\")\n      key = magicKeys[key];\n    const source = and(key, enabled);\n    let count = 0;\n    let timer;\n    const trigger = () => {\n      clearTimeout(timer);\n      if (!source.value) {\n        count = 0;\n        return;\n      }\n      if (autoRepeat) {\n        timer = setTimeout(trigger, Math.max(1e3 - count * 250, 150));\n        count++;\n      }\n      fn();\n    };\n    return watch(source, trigger, { flush: \"sync\" });\n  }\n  function strokeShortcut(key, fn) {\n    return onKeyStroke(key, (ev) => {\n      if (!enabled.value)\n        return;\n      if (!ev.repeat)\n        fn();\n    });\n  }\n}\n",
+      "start": 1743409708881,
+      "end": 1743409708945,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/shortcuts.ts"
+        ],
+        "sourcesContent": [
+          "import type { ShortcutOptions } from '@slidev/types'\nimport type { Fn, KeyFilter } from '@vueuse/core'\nimport type { Ref } from 'vue'\nimport { onKeyStroke } from '@vueuse/core'\nimport { and, not } from '@vueuse/math'\nimport { watch } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport setupShortcuts from '../setup/shortcuts'\nimport { fullscreen, isInputting, isOnFocus, magicKeys, shortcutsEnabled } from '../state'\n\nexport function registerShortcuts() {\n  const { isPrintMode } = useNav()\n  const enabled = and(not(isInputting), not(isOnFocus), not(isPrintMode), shortcutsEnabled)\n\n  const allShortcuts = setupShortcuts()\n  const shortcuts = new Map<string | Ref<boolean>, ShortcutOptions>(\n    allShortcuts.map((options: ShortcutOptions) => [options.key, options]),\n  )\n\n  shortcuts.forEach((options) => {\n    if (options.fn)\n      shortcut(options.key, options.fn, options.autoRepeat)\n  })\n\n  strokeShortcut('f', () => fullscreen.toggle())\n\n  function shortcut(key: string | Ref<boolean>, fn: Fn, autoRepeat = false) {\n    if (typeof key === 'string')\n      key = magicKeys[key]\n\n    const source = and(key, enabled)\n    let count = 0\n    let timer: any\n    const trigger = () => {\n      clearTimeout(timer)\n      if (!source.value) {\n        count = 0\n        return\n      }\n      if (autoRepeat) {\n        timer = setTimeout(trigger, Math.max(1000 - count * 250, 150))\n        count++\n      }\n      fn()\n    }\n\n    return watch(source, trigger, { flush: 'sync' })\n  }\n\n  function strokeShortcut(key: KeyFilter, fn: Fn) {\n    return onKeyStroke(key, (ev) => {\n      if (!enabled.value)\n        return\n      if (!ev.repeat)\n        fn()\n    })\n  }\n}\n"
+        ],
+        "mappings": "AAGA,SAAS,mBAAmB;AAC5B,SAAS,KAAK,WAAW;AACzB,SAAS,aAAa;AACtB,SAAS,cAAc;AACvB,OAAO,oBAAoB;AAC3B,SAAS,YAAY,aAAa,WAAW,WAAW,wBAAwB;AAEzE,gBAAS,oBAAoB;AAClC,QAAM,EAAE,YAAY,IAAI,OAAO;AAC/B,QAAM,UAAU,IAAI,IAAI,WAAW,GAAG,IAAI,SAAS,GAAG,IAAI,WAAW,GAAG,gBAAgB;AAExF,QAAM,eAAe,eAAe;AACpC,QAAM,YAAY,IAAI;AAAA,IACpB,aAAa,IAAI,CAAC,YAA6B,CAAC,QAAQ,KAAK,OAAO,CAAC;AAAA,EACvE;AAEA,YAAU,QAAQ,CAAC,YAAY;AAC7B,QAAI,QAAQ;AACV,eAAS,QAAQ,KAAK,QAAQ,IAAI,QAAQ,UAAU;AAAA,EACxD,CAAC;AAED,iBAAe,KAAK,MAAM,WAAW,OAAO,CAAC;AAE7C,WAAS,SAAS,KAA4B,IAAQ,aAAa,OAAO;AACxE,QAAI,OAAO,QAAQ;AACjB,YAAM,UAAU,GAAG;AAErB,UAAM,SAAS,IAAI,KAAK,OAAO;AAC/B,QAAI,QAAQ;AACZ,QAAI;AACJ,UAAM,UAAU,MAAM;AACpB,mBAAa,KAAK;AAClB,UAAI,CAAC,OAAO,OAAO;AACjB,gBAAQ;AACR;AAAA,MACF;AACA,UAAI,YAAY;AACd,gBAAQ,WAAW,SAAS,KAAK,IAAI,MAAO,QAAQ,KAAK,GAAG,CAAC;AAC7D;AAAA,MACF;AACA,SAAG;AAAA,IACL;AAEA,WAAO,MAAM,QAAQ,SAAS,EAAE,OAAO,OAAO,CAAC;AAAA,EACjD;AAEA,WAAS,eAAe,KAAgB,IAAQ;AAC9C,WAAO,YAAY,KAAK,CAAC,OAAO;AAC9B,UAAI,CAAC,QAAQ;AACX;AACF,UAAI,CAAC,GAAG;AACN,WAAG;AAAA,IACP,CAAC;AAAA,EACH;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    }
+  ]
+}

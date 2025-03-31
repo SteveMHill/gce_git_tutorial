@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\ndefineProps<{\n  disabled?: boolean\n}>()\n\nconst value = defineModel<boolean>('modelValue', {\n  type: Boolean,\n})\n</script>\n\n<template>\n  <div border=\"~ main rounded\" flex=\"~ gap-2 items-center\" relative h-5 w-5 p0.5 hover:bg-active p1>\n    <div i-ri-check-line :class=\"value ? '' : 'op0'\" />\n    <input v-model=\"value\" type=\"checkbox\" absolute inset-0 opacity-10 :disabled=\"disabled\">\n  </div>\n</template>\n",
+      "start": 1743409709186,
+      "end": 1743409709294,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709294,
+      "end": 1743409709311,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormCheckbox.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACpJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC5I,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    }
+  ]
+}

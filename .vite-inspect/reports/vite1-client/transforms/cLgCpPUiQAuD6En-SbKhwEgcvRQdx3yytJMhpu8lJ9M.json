@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/dark.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isClient, useLocalStorage, usePreferredDark, useToggle } from '@vueuse/core'\nimport { computed, watch } from 'vue'\nimport { configs } from '../env'\n\nconst preferredDark = usePreferredDark()\nconst store = useLocalStorage('slidev-color-schema', 'auto')\n\nexport const isColorSchemaConfigured = computed(() => configs.colorSchema !== 'auto')\nexport const isDark = computed<boolean>({\n  get() {\n    if (isColorSchemaConfigured.value)\n      return configs.colorSchema === 'dark'\n    return store.value === 'auto'\n      ? preferredDark.value\n      : store.value === 'dark'\n  },\n  set(v) {\n    if (isColorSchemaConfigured.value)\n      return\n    store.value = v === preferredDark.value\n      ? 'auto'\n      : v ? 'dark' : 'light'\n  },\n})\n\nexport const toggleDark = useToggle(isDark)\n\nif (isClient) {\n  const CSS_DISABLE_TRANS = '*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}'\n\n  watch(\n    isDark,\n    (v) => {\n      const style = window!.document.createElement('style')\n      style.appendChild(document.createTextNode(CSS_DISABLE_TRANS))\n      window!.document.head.appendChild(style)\n\n      const html = document.querySelector('html')!\n      html.classList.toggle('dark', v)\n      html.classList.toggle('light', !v)\n\n      // Calling getComputedStyle forces the browser to redraw\n      // @ts-expect-error unused variable\n      const _ = window!.getComputedStyle(style!).opacity\n      document.head.removeChild(style!)\n    },\n    { immediate: true },\n  )\n}\n",
+      "start": 1743409708706,
+      "end": 1743409708716,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { isClient, useLocalStorage, usePreferredDark, useToggle } from \"@vueuse/core\";\nimport { computed, watch } from \"vue\";\nimport { configs } from \"../env\";\nconst preferredDark = usePreferredDark();\nconst store = useLocalStorage(\"slidev-color-schema\", \"auto\");\nexport const isColorSchemaConfigured = computed(() => configs.colorSchema !== \"auto\");\nexport const isDark = computed({\n  get() {\n    if (isColorSchemaConfigured.value)\n      return configs.colorSchema === \"dark\";\n    return store.value === \"auto\" ? preferredDark.value : store.value === \"dark\";\n  },\n  set(v) {\n    if (isColorSchemaConfigured.value)\n      return;\n    store.value = v === preferredDark.value ? \"auto\" : v ? \"dark\" : \"light\";\n  }\n});\nexport const toggleDark = useToggle(isDark);\nif (isClient) {\n  const CSS_DISABLE_TRANS = \"*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}\";\n  watch(\n    isDark,\n    (v) => {\n      const style = window.document.createElement(\"style\");\n      style.appendChild(document.createTextNode(CSS_DISABLE_TRANS));\n      window.document.head.appendChild(style);\n      const html = document.querySelector(\"html\");\n      html.classList.toggle(\"dark\", v);\n      html.classList.toggle(\"light\", !v);\n      const _ = window.getComputedStyle(style).opacity;\n      document.head.removeChild(style);\n    },\n    { immediate: true }\n  );\n}\n",
+      "start": 1743409708716,
+      "end": 1743409708790,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/dark.ts"
+        ],
+        "sourcesContent": [
+          "import { isClient, useLocalStorage, usePreferredDark, useToggle } from '@vueuse/core'\nimport { computed, watch } from 'vue'\nimport { configs } from '../env'\n\nconst preferredDark = usePreferredDark()\nconst store = useLocalStorage('slidev-color-schema', 'auto')\n\nexport const isColorSchemaConfigured = computed(() => configs.colorSchema !== 'auto')\nexport const isDark = computed<boolean>({\n  get() {\n    if (isColorSchemaConfigured.value)\n      return configs.colorSchema === 'dark'\n    return store.value === 'auto'\n      ? preferredDark.value\n      : store.value === 'dark'\n  },\n  set(v) {\n    if (isColorSchemaConfigured.value)\n      return\n    store.value = v === preferredDark.value\n      ? 'auto'\n      : v ? 'dark' : 'light'\n  },\n})\n\nexport const toggleDark = useToggle(isDark)\n\nif (isClient) {\n  const CSS_DISABLE_TRANS = '*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}'\n\n  watch(\n    isDark,\n    (v) => {\n      const style = window!.document.createElement('style')\n      style.appendChild(document.createTextNode(CSS_DISABLE_TRANS))\n      window!.document.head.appendChild(style)\n\n      const html = document.querySelector('html')!\n      html.classList.toggle('dark', v)\n      html.classList.toggle('light', !v)\n\n      // Calling getComputedStyle forces the browser to redraw\n      // @ts-expect-error unused variable\n      const _ = window!.getComputedStyle(style!).opacity\n      document.head.removeChild(style!)\n    },\n    { immediate: true },\n  )\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,UAAU,iBAAiB,kBAAkB,iBAAiB;AACvE,SAAS,UAAU,aAAa;AAChC,SAAS,eAAe;AAExB,MAAM,gBAAgB,iBAAiB;AACvC,MAAM,QAAQ,gBAAgB,uBAAuB,MAAM;AAEpD,aAAM,0BAA0B,SAAS,MAAM,QAAQ,gBAAgB,MAAM;AAC7E,aAAM,SAAS,SAAkB;AAAA,EACtC,MAAM;AACJ,QAAI,wBAAwB;AAC1B,aAAO,QAAQ,gBAAgB;AACjC,WAAO,MAAM,UAAU,SACnB,cAAc,QACd,MAAM,UAAU;AAAA,EACtB;AAAA,EACA,IAAI,GAAG;AACL,QAAI,wBAAwB;AAC1B;AACF,UAAM,QAAQ,MAAM,cAAc,QAC9B,SACA,IAAI,SAAS;AAAA,EACnB;AACF,CAAC;AAEM,aAAM,aAAa,UAAU,MAAM;AAE1C,IAAI,UAAU;AACZ,QAAM,oBAAoB;AAE1B;AAAA,IACE;AAAA,IACA,CAAC,MAAM;AACL,YAAM,QAAQ,OAAQ,SAAS,cAAc,OAAO;AACpD,YAAM,YAAY,SAAS,eAAe,iBAAiB,CAAC;AAC5D,aAAQ,SAAS,KAAK,YAAY,KAAK;AAEvC,YAAM,OAAO,SAAS,cAAc,MAAM;AAC1C,WAAK,UAAU,OAAO,QAAQ,CAAC;AAC/B,WAAK,UAAU,OAAO,SAAS,CAAC,CAAC;AAIjC,YAAM,IAAI,OAAQ,iBAAiB,KAAM,EAAE;AAC3C,eAAS,KAAK,YAAY,KAAM;AAAA,IAClC;AAAA,IACA,EAAE,WAAW,KAAK;AAAA,EACpB;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708790,
+      "end": 1743409708790,
+      "order": "normal"
+    }
+  ]
+}

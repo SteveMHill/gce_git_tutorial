@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/compose/resolve-flow-scalar.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Scalar } from '../nodes/Scalar.js';\nimport { resolveEnd } from './resolve-end.js';\n\nfunction resolveFlowScalar(scalar, strict, onError) {\n    const { offset, type, source, end } = scalar;\n    let _type;\n    let value;\n    const _onError = (rel, code, msg) => onError(offset + rel, code, msg);\n    switch (type) {\n        case 'scalar':\n            _type = Scalar.PLAIN;\n            value = plainValue(source, _onError);\n            break;\n        case 'single-quoted-scalar':\n            _type = Scalar.QUOTE_SINGLE;\n            value = singleQuotedValue(source, _onError);\n            break;\n        case 'double-quoted-scalar':\n            _type = Scalar.QUOTE_DOUBLE;\n            value = doubleQuotedValue(source, _onError);\n            break;\n        /* istanbul ignore next should not happen */\n        default:\n            onError(scalar, 'UNEXPECTED_TOKEN', `Expected a flow scalar value, but found: ${type}`);\n            return {\n                value: '',\n                type: null,\n                comment: '',\n                range: [offset, offset + source.length, offset + source.length]\n            };\n    }\n    const valueEnd = offset + source.length;\n    const re = resolveEnd(end, valueEnd, strict, onError);\n    return {\n        value,\n        type: _type,\n        comment: re.comment,\n        range: [offset, valueEnd, re.offset]\n    };\n}\nfunction plainValue(source, onError) {\n    let badChar = '';\n    switch (source[0]) {\n        /* istanbul ignore next should not happen */\n        case '\\t':\n            badChar = 'a tab character';\n            break;\n        case ',':\n            badChar = 'flow indicator character ,';\n            break;\n        case '%':\n            badChar = 'directive indicator character %';\n            break;\n        case '|':\n        case '>': {\n            badChar = `block scalar indicator ${source[0]}`;\n            break;\n        }\n        case '@':\n        case '`': {\n            badChar = `reserved character ${source[0]}`;\n            break;\n        }\n    }\n    if (badChar)\n        onError(0, 'BAD_SCALAR_START', `Plain value cannot start with ${badChar}`);\n    return foldLines(source);\n}\nfunction singleQuotedValue(source, onError) {\n    if (source[source.length - 1] !== \"'\" || source.length === 1)\n        onError(source.length, 'MISSING_CHAR', \"Missing closing 'quote\");\n    return foldLines(source.slice(1, -1)).replace(/''/g, \"'\");\n}\nfunction foldLines(source) {\n    /**\n     * The negative lookbehind here and in the `re` RegExp is to\n     * prevent causing a polynomial search time in certain cases.\n     *\n     * The try-catch is for Safari, which doesn't support this yet:\n     * https://caniuse.com/js-regexp-lookbehind\n     */\n    let first, line;\n    try {\n        first = new RegExp('(.*?)(?<![ \\t])[ \\t]*\\r?\\n', 'sy');\n        line = new RegExp('[ \\t]*(.*?)(?:(?<![ \\t])[ \\t]*)?\\r?\\n', 'sy');\n    }\n    catch {\n        first = /(.*?)[ \\t]*\\r?\\n/sy;\n        line = /[ \\t]*(.*?)[ \\t]*\\r?\\n/sy;\n    }\n    let match = first.exec(source);\n    if (!match)\n        return source;\n    let res = match[1];\n    let sep = ' ';\n    let pos = first.lastIndex;\n    line.lastIndex = pos;\n    while ((match = line.exec(source))) {\n        if (match[1] === '') {\n            if (sep === '\\n')\n                res += sep;\n            else\n                sep = '\\n';\n        }\n        else {\n            res += sep + match[1];\n            sep = ' ';\n        }\n        pos = line.lastIndex;\n    }\n    const last = /[ \\t]*(.*)/sy;\n    last.lastIndex = pos;\n    match = last.exec(source);\n    return res + sep + (match?.[1] ?? '');\n}\nfunction doubleQuotedValue(source, onError) {\n    let res = '';\n    for (let i = 1; i < source.length - 1; ++i) {\n        const ch = source[i];\n        if (ch === '\\r' && source[i + 1] === '\\n')\n            continue;\n        if (ch === '\\n') {\n            const { fold, offset } = foldNewline(source, i);\n            res += fold;\n            i = offset;\n        }\n        else if (ch === '\\\\') {\n            let next = source[++i];\n            const cc = escapeCodes[next];\n            if (cc)\n                res += cc;\n            else if (next === '\\n') {\n                // skip escaped newlines, but still trim the following line\n                next = source[i + 1];\n                while (next === ' ' || next === '\\t')\n                    next = source[++i + 1];\n            }\n            else if (next === '\\r' && source[i + 1] === '\\n') {\n                // skip escaped CRLF newlines, but still trim the following line\n                next = source[++i + 1];\n                while (next === ' ' || next === '\\t')\n                    next = source[++i + 1];\n            }\n            else if (next === 'x' || next === 'u' || next === 'U') {\n                const length = { x: 2, u: 4, U: 8 }[next];\n                res += parseCharCode(source, i + 1, length, onError);\n                i += length;\n            }\n            else {\n                const raw = source.substr(i - 1, 2);\n                onError(i - 1, 'BAD_DQ_ESCAPE', `Invalid escape sequence ${raw}`);\n                res += raw;\n            }\n        }\n        else if (ch === ' ' || ch === '\\t') {\n            // trim trailing whitespace\n            const wsStart = i;\n            let next = source[i + 1];\n            while (next === ' ' || next === '\\t')\n                next = source[++i + 1];\n            if (next !== '\\n' && !(next === '\\r' && source[i + 2] === '\\n'))\n                res += i > wsStart ? source.slice(wsStart, i + 1) : ch;\n        }\n        else {\n            res += ch;\n        }\n    }\n    if (source[source.length - 1] !== '\"' || source.length === 1)\n        onError(source.length, 'MISSING_CHAR', 'Missing closing \"quote');\n    return res;\n}\n/**\n * Fold a single newline into a space, multiple newlines to N - 1 newlines.\n * Presumes `source[offset] === '\\n'`\n */\nfunction foldNewline(source, offset) {\n    let fold = '';\n    let ch = source[offset + 1];\n    while (ch === ' ' || ch === '\\t' || ch === '\\n' || ch === '\\r') {\n        if (ch === '\\r' && source[offset + 2] !== '\\n')\n            break;\n        if (ch === '\\n')\n            fold += '\\n';\n        offset += 1;\n        ch = source[offset + 1];\n    }\n    if (!fold)\n        fold = ' ';\n    return { fold, offset };\n}\nconst escapeCodes = {\n    '0': '\\0', // null character\n    a: '\\x07', // bell character\n    b: '\\b', // backspace\n    e: '\\x1b', // escape character\n    f: '\\f', // form feed\n    n: '\\n', // line feed\n    r: '\\r', // carriage return\n    t: '\\t', // horizontal tab\n    v: '\\v', // vertical tab\n    N: '\\u0085', // Unicode next line\n    _: '\\u00a0', // Unicode non-breaking space\n    L: '\\u2028', // Unicode line separator\n    P: '\\u2029', // Unicode paragraph separator\n    ' ': ' ',\n    '\"': '\"',\n    '/': '/',\n    '\\\\': '\\\\',\n    '\\t': '\\t'\n};\nfunction parseCharCode(source, offset, length, onError) {\n    const cc = source.substr(offset, length);\n    const ok = cc.length === length && /^[0-9a-fA-F]+$/.test(cc);\n    const code = ok ? parseInt(cc, 16) : NaN;\n    if (isNaN(code)) {\n        const raw = source.substr(offset - 2, length + 2);\n        onError(offset - 2, 'BAD_DQ_ESCAPE', `Invalid escape sequence ${raw}`);\n        return raw;\n    }\n    return String.fromCodePoint(code);\n}\n\nexport { resolveFlowScalar };\n",
+      "start": 1743409708658,
+      "end": 1743409708668,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708668,
+      "end": 1743409708668,
+      "order": "normal"
+    }
+  ]
+}

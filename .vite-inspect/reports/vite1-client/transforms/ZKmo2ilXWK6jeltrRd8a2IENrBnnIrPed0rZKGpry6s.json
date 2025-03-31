@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/chunk-VKJI5BFR.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// src/utils/lineWithOffset.ts\nvar markerOffsets = {\n  aggregation: 18,\n  extension: 18,\n  composition: 18,\n  dependency: 6,\n  lollipop: 13.5,\n  arrow_point: 4\n};\nfunction calculateDeltaAndAngle(point1, point2) {\n  if (point1 === void 0 || point2 === void 0) {\n    return { angle: 0, deltaX: 0, deltaY: 0 };\n  }\n  point1 = pointTransformer(point1);\n  point2 = pointTransformer(point2);\n  const [x1, y1] = [point1.x, point1.y];\n  const [x2, y2] = [point2.x, point2.y];\n  const deltaX = x2 - x1;\n  const deltaY = y2 - y1;\n  return { angle: Math.atan(deltaY / deltaX), deltaX, deltaY };\n}\n__name(calculateDeltaAndAngle, \"calculateDeltaAndAngle\");\nvar pointTransformer = /* @__PURE__ */ __name((data) => {\n  if (Array.isArray(data)) {\n    return { x: data[0], y: data[1] };\n  }\n  return data;\n}, \"pointTransformer\");\nvar getLineFunctionsWithOffset = /* @__PURE__ */ __name((edge) => {\n  return {\n    x: /* @__PURE__ */ __name(function(d, i, data) {\n      let offset = 0;\n      const DIRECTION = pointTransformer(data[0]).x < pointTransformer(data[data.length - 1]).x ? \"left\" : \"right\";\n      if (i === 0 && Object.hasOwn(markerOffsets, edge.arrowTypeStart)) {\n        const { angle, deltaX } = calculateDeltaAndAngle(data[0], data[1]);\n        offset = markerOffsets[edge.arrowTypeStart] * Math.cos(angle) * (deltaX >= 0 ? 1 : -1);\n      } else if (i === data.length - 1 && Object.hasOwn(markerOffsets, edge.arrowTypeEnd)) {\n        const { angle, deltaX } = calculateDeltaAndAngle(\n          data[data.length - 1],\n          data[data.length - 2]\n        );\n        offset = markerOffsets[edge.arrowTypeEnd] * Math.cos(angle) * (deltaX >= 0 ? 1 : -1);\n      }\n      const differenceToEnd = Math.abs(\n        pointTransformer(d).x - pointTransformer(data[data.length - 1]).x\n      );\n      const differenceInYEnd = Math.abs(\n        pointTransformer(d).y - pointTransformer(data[data.length - 1]).y\n      );\n      const differenceToStart = Math.abs(pointTransformer(d).x - pointTransformer(data[0]).x);\n      const differenceInYStart = Math.abs(pointTransformer(d).y - pointTransformer(data[0]).y);\n      const startMarkerHeight = markerOffsets[edge.arrowTypeStart];\n      const endMarkerHeight = markerOffsets[edge.arrowTypeEnd];\n      const extraRoom = 1;\n      if (differenceToEnd < endMarkerHeight && differenceToEnd > 0 && differenceInYEnd < endMarkerHeight) {\n        let adjustment = endMarkerHeight + extraRoom - differenceToEnd;\n        adjustment *= DIRECTION === \"right\" ? -1 : 1;\n        offset -= adjustment;\n      }\n      if (differenceToStart < startMarkerHeight && differenceToStart > 0 && differenceInYStart < startMarkerHeight) {\n        let adjustment = startMarkerHeight + extraRoom - differenceToStart;\n        adjustment *= DIRECTION === \"right\" ? -1 : 1;\n        offset += adjustment;\n      }\n      return pointTransformer(d).x + offset;\n    }, \"x\"),\n    y: /* @__PURE__ */ __name(function(d, i, data) {\n      let offset = 0;\n      const DIRECTION = pointTransformer(data[0]).y < pointTransformer(data[data.length - 1]).y ? \"down\" : \"up\";\n      if (i === 0 && Object.hasOwn(markerOffsets, edge.arrowTypeStart)) {\n        const { angle, deltaY } = calculateDeltaAndAngle(data[0], data[1]);\n        offset = markerOffsets[edge.arrowTypeStart] * Math.abs(Math.sin(angle)) * (deltaY >= 0 ? 1 : -1);\n      } else if (i === data.length - 1 && Object.hasOwn(markerOffsets, edge.arrowTypeEnd)) {\n        const { angle, deltaY } = calculateDeltaAndAngle(\n          data[data.length - 1],\n          data[data.length - 2]\n        );\n        offset = markerOffsets[edge.arrowTypeEnd] * Math.abs(Math.sin(angle)) * (deltaY >= 0 ? 1 : -1);\n      }\n      const differenceToEnd = Math.abs(\n        pointTransformer(d).y - pointTransformer(data[data.length - 1]).y\n      );\n      const differenceInXEnd = Math.abs(\n        pointTransformer(d).x - pointTransformer(data[data.length - 1]).x\n      );\n      const differenceToStart = Math.abs(pointTransformer(d).y - pointTransformer(data[0]).y);\n      const differenceInXStart = Math.abs(pointTransformer(d).x - pointTransformer(data[0]).x);\n      const startMarkerHeight = markerOffsets[edge.arrowTypeStart];\n      const endMarkerHeight = markerOffsets[edge.arrowTypeEnd];\n      const extraRoom = 1;\n      if (differenceToEnd < endMarkerHeight && differenceToEnd > 0 && differenceInXEnd < endMarkerHeight) {\n        let adjustment = endMarkerHeight + extraRoom - differenceToEnd;\n        adjustment *= DIRECTION === \"up\" ? -1 : 1;\n        offset -= adjustment;\n      }\n      if (differenceToStart < startMarkerHeight && differenceToStart > 0 && differenceInXStart < startMarkerHeight) {\n        let adjustment = startMarkerHeight + extraRoom - differenceToStart;\n        adjustment *= DIRECTION === \"up\" ? -1 : 1;\n        offset += adjustment;\n      }\n      return pointTransformer(d).y + offset;\n    }, \"y\")\n  };\n}, \"getLineFunctionsWithOffset\");\nif (void 0) {\n  const { it, expect, describe } = void 0;\n  describe(\"calculateDeltaAndAngle\", () => {\n    it(\"should calculate the angle and deltas between two points\", () => {\n      expect(calculateDeltaAndAngle([0, 0], [0, 1])).toStrictEqual({\n        angle: 1.5707963267948966,\n        deltaX: 0,\n        deltaY: 1\n      });\n      expect(calculateDeltaAndAngle([1, 0], [0, -1])).toStrictEqual({\n        angle: 0.7853981633974483,\n        deltaX: -1,\n        deltaY: -1\n      });\n      expect(calculateDeltaAndAngle({ x: 1, y: 0 }, [0, -1])).toStrictEqual({\n        angle: 0.7853981633974483,\n        deltaX: -1,\n        deltaY: -1\n      });\n      expect(calculateDeltaAndAngle({ x: 1, y: 0 }, { x: 1, y: 0 })).toStrictEqual({\n        angle: NaN,\n        deltaX: 0,\n        deltaY: 0\n      });\n    });\n    it(\"should calculate the angle and deltas if one point in undefined\", () => {\n      expect(calculateDeltaAndAngle(void 0, [0, 1])).toStrictEqual({\n        angle: 0,\n        deltaX: 0,\n        deltaY: 0\n      });\n      expect(calculateDeltaAndAngle([0, 1], void 0)).toStrictEqual({\n        angle: 0,\n        deltaX: 0,\n        deltaY: 0\n      });\n    });\n  });\n}\n\nexport {\n  getLineFunctionsWithOffset\n};\n",
+      "start": 1743409709063,
+      "end": 1743409709071,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport type { Pausable } from '@vueuse/core'\nimport type { DragElementState } from '../composables/useDragElements'\nimport { clamp } from '@antfu/utils'\nimport { useIntervalFn } from '@vueuse/core'\nimport { computed, inject, ref, watchEffect } from 'vue'\nimport { useSlideBounds } from '../composables/useSlideBounds'\nimport { injectionSlideScale } from '../constants'\nimport { slideHeight, slideWidth } from '../env'\nimport { magicKeys } from '../state'\n\nconst { data } = defineProps<{ data: DragElementState }>()\nconst { dragId, zoom, autoHeight, x0, y0, width, height, rotate, isArrow } = data\n\nconst slideScale = inject(injectionSlideScale, ref(1))\nconst scale = computed(() => slideScale.value * zoom.value)\nconst { left: slideLeft, top: slideTop } = useSlideBounds()\n\nconst ctrlSize = 10\nconst minSize = isArrow ? Number.NEGATIVE_INFINITY : 40\nconst minRemain = 10\n\nconst rotateRad = computed(() => rotate.value * Math.PI / 180)\nconst rotateSin = computed(() => Math.sin(rotateRad.value))\nconst rotateCos = computed(() => Math.cos(rotateRad.value))\n\nconst boundingWidth = computed(() => width.value * rotateCos.value + height.value * rotateSin.value)\nconst boundingHeight = computed(() => width.value * rotateSin.value + height.value * rotateCos.value)\n\nconst boundingLeft = computed(() => x0.value - boundingWidth.value / 2)\nconst boundingTop = computed(() => y0.value - boundingHeight.value / 2)\nconst boundingRight = computed(() => x0.value + boundingWidth.value / 2)\nconst boundingBottom = computed(() => y0.value + boundingHeight.value / 2)\n\nconst arrowRevX = computed(() => isArrow && width.value < 0)\nconst arrowRevY = computed(() => isArrow && height.value < 0)\n\nlet currentDrag: {\n  x0: number\n  y0: number\n  width: number\n  height: number\n  rotate: number\n  dx0: number\n  dy0: number\n  ltx: number\n  lty: number\n  rtx: number\n  rty: number\n  lbx: number\n  lby: number\n  rbx: number\n  rby: number\n} | null = null\n\nfunction onPointerdown(ev: PointerEvent) {\n  if (ev.buttons !== 1)\n    return\n\n  ev.preventDefault()\n  ev.stopPropagation()\n  const el = ev.target as HTMLElement\n  const elBounds = el.getBoundingClientRect()\n\n  const cross1x = width.value * rotateCos.value - height.value * rotateSin.value\n  const cross1y = width.value * rotateSin.value + height.value * rotateCos.value\n  const cross2x = width.value * rotateCos.value + height.value * rotateSin.value\n  const cross2y = -width.value * rotateSin.value + height.value * rotateCos.value\n\n  currentDrag = {\n    x0: x0.value,\n    y0: y0.value,\n    width: width.value,\n    height: height.value,\n    rotate: rotate.value,\n    dx0: ev.clientX - (elBounds.left + elBounds.right) / 2,\n    dy0: ev.clientY - (elBounds.top + elBounds.bottom) / 2,\n    ltx: x0.value - cross1x / 2,\n    lty: y0.value - cross1y / 2,\n    rtx: x0.value + cross2x / 2,\n    rty: y0.value - cross2y / 2,\n    lbx: x0.value - cross2x / 2,\n    lby: y0.value + cross2y / 2,\n    rbx: x0.value + cross1x / 2,\n    rby: y0.value + cross1y / 2,\n  };\n\n  (ev.currentTarget as HTMLElement).setPointerCapture(ev.pointerId)\n}\n\nfunction onPointermove(ev: PointerEvent) {\n  if (!currentDrag || ev.buttons !== 1)\n    return\n\n  ev.preventDefault()\n  ev.stopPropagation()\n\n  const x = (ev.clientX - slideLeft.value - currentDrag.dx0) / scale.value\n  const y = (ev.clientY - slideTop.value - currentDrag.dy0) / scale.value\n\n  x0.value = clamp(x, -boundingWidth.value / 2 + minRemain, slideWidth.value + boundingWidth.value / 2 - minRemain)\n  y0.value = clamp(y, -boundingHeight.value / 2 + minRemain, slideHeight.value + boundingHeight.value / 2 - minRemain)\n}\n\nfunction onPointerup(ev: PointerEvent) {\n  if (!currentDrag)\n    return\n\n  ev.preventDefault()\n  ev.stopPropagation()\n\n  currentDrag = null\n}\n\nconst ctrlClasses = `absolute border border-gray bg-gray dark:border-gray-500 dark:bg-gray-800 bg-opacity-30 `\n\nfunction getCornerProps(isLeft: boolean, isTop: boolean) {\n  return {\n    onPointerdown,\n    onPointermove: (ev: PointerEvent) => {\n      if (!currentDrag || ev.buttons !== 1)\n        return\n\n      ev.preventDefault()\n      ev.stopPropagation()\n\n      let x = (ev.clientX - slideLeft.value) / scale.value\n      let y = (ev.clientY - slideTop.value) / scale.value\n\n      const { ltx, lty, rtx, rty, lbx, lby, rbx, rby } = currentDrag\n\n      const ratio = currentDrag.width / currentDrag.height\n      const wMin = Math.max(minSize, minSize * ratio)\n      function getSize(w1: number, h1: number) {\n        if (ev.shiftKey) {\n          const w = Math.max(w1, h1 * ratio, wMin)\n          const h = w / ratio\n          return { w, h }\n        }\n        else {\n          return { w: Math.max(w1, minSize), h: Math.max(h1, minSize) }\n        }\n      }\n\n      if (isLeft) {\n        if (isTop) {\n          const w1 = (rbx - x) * rotateCos.value + (rby - y) * rotateSin.value\n          const h1 = -(rbx - x) * rotateSin.value + (rby - y) * rotateCos.value\n          const { w, h } = getSize(w1, h1)\n          x = rbx - w * rotateCos.value + h * rotateSin.value\n          y = rby - w * rotateSin.value - h * rotateCos.value\n        }\n        else {\n          const w1 = (rtx - x) * rotateCos.value - (y - rty) * rotateSin.value\n          const h1 = (rtx - x) * rotateSin.value + (y - rty) * rotateCos.value\n          const { w, h } = getSize(w1, h1)\n          x = rtx - w * rotateCos.value - h * rotateSin.value\n          y = rty - w * rotateSin.value + h * rotateCos.value\n        }\n      }\n      else {\n        if (isTop) {\n          const w1 = (x - lbx) * rotateCos.value - (lby - y) * rotateSin.value\n          const h1 = (x - lbx) * rotateSin.value + (lby - y) * rotateCos.value\n          const { w, h } = getSize(w1, h1)\n          x = lbx + w * rotateCos.value + h * rotateSin.value\n          y = lby + w * rotateSin.value - h * rotateCos.value\n        }\n        else {\n          const w1 = (x - ltx) * rotateCos.value + (y - lty) * rotateSin.value\n          const h1 = -(x - ltx) * rotateSin.value + (y - lty) * rotateCos.value\n          const { w, h } = getSize(w1, h1)\n          x = ltx + w * rotateCos.value - h * rotateSin.value\n          y = lty + w * rotateSin.value + h * rotateCos.value\n        }\n      }\n\n      if (isLeft) {\n        if (isTop) {\n          x0.value = (x + rbx) / 2\n          y0.value = (y + rby) / 2\n          width.value = (rbx - x) * rotateCos.value + (rby - y) * rotateSin.value\n          height.value = -(rbx - x) * rotateSin.value + (rby - y) * rotateCos.value\n        }\n        else {\n          x0.value = (x + rtx) / 2\n          y0.value = (y + rty) / 2\n          width.value = (rtx - x) * rotateCos.value - (y - rty) * rotateSin.value\n          height.value = (rtx - x) * rotateSin.value + (y - rty) * rotateCos.value\n        }\n      }\n      else {\n        if (isTop) {\n          x0.value = (x + lbx) / 2\n          y0.value = (y + lby) / 2\n          width.value = (x - lbx) * rotateCos.value - (lby - y) * rotateSin.value\n          height.value = (x - lbx) * rotateSin.value + (lby - y) * rotateCos.value\n        }\n        else {\n          x0.value = (x + ltx) / 2\n          y0.value = (y + lty) / 2\n          width.value = (x - ltx) * rotateCos.value + (y - lty) * rotateSin.value\n          height.value = -(x - ltx) * rotateSin.value + (y - lty) * rotateCos.value\n        }\n      }\n    },\n    onPointerup,\n    style: {\n      width: `${ctrlSize}px`,\n      height: `${ctrlSize}px`,\n      margin: `-${ctrlSize / 2}px`,\n      left: isLeft !== arrowRevX.value ? '0' : undefined,\n      right: isLeft !== arrowRevX.value ? undefined : '0',\n      top: isTop !== arrowRevY.value ? '0' : undefined,\n      bottom: isTop !== arrowRevY.value ? undefined : '0',\n      cursor: isArrow ? 'move' : +isLeft + +isTop === 1 ? 'nesw-resize' : 'nwse-resize',\n      borderRadius: isArrow ? '50%' : undefined,\n    },\n    class: ctrlClasses,\n  }\n}\n\nfunction getBorderProps(dir: 'l' | 'r' | 't' | 'b') {\n  return {\n    onPointerdown,\n    onPointermove: (ev: PointerEvent) => {\n      if (!currentDrag || ev.buttons !== 1)\n        return\n\n      ev.preventDefault()\n      ev.stopPropagation()\n\n      const x = (ev.clientX - slideLeft.value) / scale.value\n      const y = (ev.clientY - slideTop.value) / scale.value\n\n      const { ltx, lty, rtx, rty, lbx, lby, rbx, rby } = currentDrag\n\n      if (dir === 'l') {\n        const rx = (rtx + rbx) / 2\n        const ry = (rty + rby) / 2\n        width.value = Math.max((rx - x) * rotateCos.value + (ry - y) * rotateSin.value, minSize)\n        x0.value = rx - width.value * rotateCos.value / 2\n        y0.value = ry - width.value * rotateSin.value / 2\n      }\n      else if (dir === 'r') {\n        const lx = (ltx + lbx) / 2\n        const ly = (lty + lby) / 2\n        width.value = Math.max((x - lx) * rotateCos.value + (y - ly) * rotateSin.value, minSize)\n        x0.value = lx + width.value * rotateCos.value / 2\n        y0.value = ly + width.value * rotateSin.value / 2\n      }\n      else if (dir === 't') {\n        const bx = (lbx + rbx) / 2\n        const by = (lby + rby) / 2\n        height.value = Math.max((by - y) * rotateCos.value - (bx - x) * rotateSin.value, minSize)\n        x0.value = bx + height.value * rotateSin.value / 2\n        y0.value = by - height.value * rotateCos.value / 2\n      }\n      else if (dir === 'b') {\n        const tx = (ltx + rtx) / 2\n        const ty = (lty + rty) / 2\n        height.value = Math.max((y - ty) * rotateCos.value - (x - tx) * rotateSin.value, minSize)\n        x0.value = tx - height.value * rotateSin.value / 2\n        y0.value = ty + height.value * rotateCos.value / 2\n      }\n    },\n    onPointerup,\n    style: {\n      width: `${ctrlSize}px`,\n      height: `${ctrlSize}px`,\n      margin: `-${ctrlSize / 2}px`,\n      left: dir === 'l' ? '0' : dir === 'r' ? `100%` : `50%`,\n      top: dir === 't' ? '0' : dir === 'b' ? `100%` : `50%`,\n      cursor: 'lr'.includes(dir) ? 'ew-resize' : 'ns-resize',\n      borderRadius: '50%',\n    },\n    class: ctrlClasses,\n  }\n}\n\nfunction getRotateProps() {\n  return {\n    onPointerdown,\n    onPointermove: (ev: PointerEvent) => {\n      if (!currentDrag || ev.buttons !== 1)\n        return\n\n      ev.preventDefault()\n      ev.stopPropagation()\n\n      const x = (ev.clientX - slideLeft.value - currentDrag.dx0) / scale.value - ctrlSize / 4\n      const y = (ev.clientY - slideTop.value - currentDrag.dy0) / scale.value - ctrlSize / 4\n\n      let angle = Math.atan2(y - y0.value, x - x0.value) * 180 / Math.PI + 90\n\n      const commonAngles = [0, 90, 180, 270, 360]\n      for (const a of commonAngles) {\n        if (Math.abs(angle - a) < 5) {\n          angle = a % 360\n          break\n        }\n      }\n\n      rotate.value = angle\n    },\n    onPointerup,\n    style: {\n      width: `${ctrlSize}px`,\n      height: `${ctrlSize}px`,\n      margin: `-${ctrlSize / 2}px`,\n      left: '50%',\n      top: '-20px',\n      cursor: 'grab',\n      borderRadius: '50%',\n    },\n    class: ctrlClasses,\n  }\n}\n\nconst moveInterval = 20\nconst intervalFnOptions = {\n  immediate: false,\n  immediateCallback: false,\n}\nconst moveLeft = useIntervalFn(() => {\n  if (boundingRight.value <= minRemain)\n    return\n  x0.value--\n}, moveInterval, intervalFnOptions)\nconst moveRight = useIntervalFn(() => {\n  if (boundingLeft.value >= slideWidth.value - minRemain)\n    return\n  x0.value++\n}, moveInterval, intervalFnOptions)\nconst moveUp = useIntervalFn(() => {\n  if (boundingBottom.value <= minRemain)\n    return\n  y0.value--\n}, moveInterval, intervalFnOptions)\nconst moveDown = useIntervalFn(() => {\n  if (boundingTop.value >= slideHeight.value - minRemain)\n    return\n  y0.value++\n}, moveInterval, intervalFnOptions)\n\nwatchEffect(() => {\n  function shortcut(key: string, fn: Pausable) {\n    if (magicKeys[key].value)\n      fn.resume()\n    else fn.pause()\n  }\n  shortcut('left', moveLeft)\n  shortcut('right', moveRight)\n  shortcut('up', moveUp)\n  shortcut('down', moveDown)\n})\n</script>\n\n<template>\n  <div\n    v-if=\"Number.isFinite(x0)\"\n    id=\"drag-control-container\"\n    :data-drag-id=\"dragId\"\n    :style=\"{\n      position: 'absolute',\n      zIndex: 100,\n      left: `${zoom * (x0 - Math.abs(width) / 2)}px`,\n      top: `${zoom * (y0 - Math.abs(height) / 2)}px`,\n      width: `${zoom * Math.abs(width)}px`,\n      height: `${zoom * Math.abs(height)}px`,\n      transformOrigin: 'center center',\n      transform: `rotate(${rotate}deg)`,\n    }\"\n    @pointerdown=\"onPointerdown\"\n    @pointermove=\"onPointermove\"\n    @pointerup=\"onPointerup\"\n  >\n    <div class=\"absolute inset-0 z-nav dark:b-gray-400\" :class=\"isArrow ? '' : 'b b-dark'\">\n      <template v-if=\"!autoHeight\">\n        <div v-bind=\"getCornerProps(true, true)\" />\n        <div v-bind=\"getCornerProps(false, false)\" />\n        <template v-if=\"!isArrow\">\n          <div v-bind=\"getCornerProps(true, false)\" />\n          <div v-bind=\"getCornerProps(false, true)\" />\n        </template>\n      </template>\n      <template v-if=\"!isArrow\">\n        <div v-bind=\"getBorderProps('l')\" />\n        <div v-bind=\"getBorderProps('r')\" />\n        <template v-if=\"!autoHeight\">\n          <div v-bind=\"getBorderProps('t')\" />\n          <div v-bind=\"getBorderProps('b')\" />\n        </template>\n        <div v-bind=\"getRotateProps()\" />\n        <div\n          class=\"absolute -top-15px w-0 b b-dashed b-dark dark:b-gray-400\"\n          :style=\"{\n            left: 'calc(50% - 1px)',\n            height: autoHeight ? '14px' : '10px',\n          }\"\n        />\n      </template>\n    </div>\n  </div>\n</template>\n",
+      "start": 1743409708983,
+      "end": 1743409708995,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708995,
+      "end": 1743409708995,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708995,
+      "end": 1743409708995,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708995,
+      "end": 1743409708995,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708995,
+      "end": 1743409708995,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708996,
+      "end": 1743409708996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708996,
+      "end": 1743409708996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708996,
+      "end": 1743409708996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708996,
+      "end": 1743409708996,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708996,
+      "end": 1743409708996,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708996,
+      "end": 1743409708996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708996,
+      "end": 1743409708996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708996,
+      "end": 1743409709041,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/DragControl.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACnJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC3I,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709041,
+      "end": 1743409709041,
+      "order": "normal"
+    }
+  ]
+}

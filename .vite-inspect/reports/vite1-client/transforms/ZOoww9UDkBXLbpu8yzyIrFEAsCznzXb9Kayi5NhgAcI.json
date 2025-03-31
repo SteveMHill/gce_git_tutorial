@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/shortcuts.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { NavOperations, ShortcutOptions } from '@slidev/types'\nimport setups from '#slidev/setups/shortcuts'\nimport { and, not, or } from '@vueuse/math'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useNav } from '../composables/useNav'\nimport { toggleDark } from '../logic/dark'\nimport { activeDragElement, magicKeys, showGotoDialog, showOverview, toggleOverview } from '../state'\nimport { downloadPDF } from '../utils'\nimport { currentOverviewPage, downOverviewPage, nextOverviewPage, prevOverviewPage, upOverviewPage } from './../logic/overview'\n\nexport default function setupShortcuts() {\n  const { go, goFirst, goLast, next, nextSlide, prev, prevSlide } = useNav()\n  const { drawingEnabled } = useDrawings()\n  const { escape, space, shift, left, right, up, down, enter, d, g, o, '`': backtick } = magicKeys\n\n  const context: NavOperations = {\n    next,\n    prev,\n    nextSlide,\n    prevSlide,\n    go,\n    goFirst,\n    goLast,\n    downloadPDF,\n    toggleDark,\n    toggleOverview,\n    toggleDrawing: () => drawingEnabled.value = !drawingEnabled.value,\n    escapeOverview: () => showOverview.value = false,\n    showGotoDialog: () => showGotoDialog.value = !showGotoDialog.value,\n  }\n\n  const navViaArrowKeys = and(not(showOverview), not(activeDragElement))\n\n  let shortcuts: ShortcutOptions[] = [\n    { name: 'next_space', key: and(space, not(shift)), fn: next, autoRepeat: true },\n    { name: 'prev_space', key: and(space, shift), fn: prev, autoRepeat: true },\n    { name: 'next_right', key: and(right, not(shift), navViaArrowKeys), fn: next, autoRepeat: true },\n    { name: 'prev_left', key: and(left, not(shift), navViaArrowKeys), fn: prev, autoRepeat: true },\n    { name: 'next_page_key', key: 'pageDown', fn: next, autoRepeat: true },\n    { name: 'prev_page_key', key: 'pageUp', fn: prev, autoRepeat: true },\n    { name: 'next_down', key: and(down, navViaArrowKeys), fn: nextSlide, autoRepeat: true },\n    { name: 'prev_up', key: and(up, navViaArrowKeys), fn: prevSlide, autoRepeat: true },\n    { name: 'next_shift', key: and(right, shift), fn: nextSlide, autoRepeat: true },\n    { name: 'prev_shift', key: and(left, shift), fn: prevSlide, autoRepeat: true },\n    { name: 'toggle_dark', key: and(d, not(drawingEnabled)), fn: toggleDark },\n    { name: 'toggle_overview', key: and(or(o, backtick), not(drawingEnabled)), fn: toggleOverview },\n    { name: 'hide_overview', key: and(escape, not(drawingEnabled)), fn: () => showOverview.value = false },\n    { name: 'goto', key: and(g, not(drawingEnabled)), fn: () => showGotoDialog.value = !showGotoDialog.value },\n    { name: 'next_overview', key: and(right, showOverview), fn: nextOverviewPage },\n    { name: 'prev_overview', key: and(left, showOverview), fn: prevOverviewPage },\n    { name: 'up_overview', key: and(up, showOverview), fn: upOverviewPage },\n    { name: 'down_overview', key: and(down, showOverview), fn: downOverviewPage },\n    {\n      name: 'goto_from_overview',\n      key: and(enter, showOverview),\n      fn: () => {\n        go(currentOverviewPage.value)\n        showOverview.value = false\n      },\n    },\n  ]\n\n  const baseShortcutNames = new Set(shortcuts.map(s => s.name))\n\n  for (const setup of setups) {\n    shortcuts = setup(context, shortcuts)\n  }\n\n  const remainingBaseShortcutNames = shortcuts.filter(s => s.name && baseShortcutNames.has(s.name))\n  if (remainingBaseShortcutNames.length === 0) {\n    const message = [\n      '========== WARNING ==========',\n      'defineShortcutsSetup did not return any of the base shortcuts.',\n      'See https://sli.dev/custom/config-shortcuts.html for migration.',\n      'If it is intentional, return at least one shortcut with one of the base names (e.g. name:\"goto\").',\n    ].join('\\n\\n')\n    // eslint-disable-next-line no-alert\n    alert(message)\n\n    console.warn(message)\n  }\n\n  return shortcuts\n}\n",
+      "start": 1743409708948,
+      "end": 1743409708960,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708960,
+      "end": 1743409708960,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import setups from \"#slidev/setups/shortcuts\";\nimport { and, not, or } from \"@vueuse/math\";\nimport { useDrawings } from \"../composables/useDrawings\";\nimport { useNav } from \"../composables/useNav\";\nimport { toggleDark } from \"../logic/dark\";\nimport { activeDragElement, magicKeys, showGotoDialog, showOverview, toggleOverview } from \"../state\";\nimport { downloadPDF } from \"../utils\";\nimport { currentOverviewPage, downOverviewPage, nextOverviewPage, prevOverviewPage, upOverviewPage } from \"./../logic/overview\";\nexport default function setupShortcuts() {\n  const { go, goFirst, goLast, next, nextSlide, prev, prevSlide } = useNav();\n  const { drawingEnabled } = useDrawings();\n  const { escape, space, shift, left, right, up, down, enter, d, g, o, \"`\": backtick } = magicKeys;\n  const context = {\n    next,\n    prev,\n    nextSlide,\n    prevSlide,\n    go,\n    goFirst,\n    goLast,\n    downloadPDF,\n    toggleDark,\n    toggleOverview,\n    toggleDrawing: () => drawingEnabled.value = !drawingEnabled.value,\n    escapeOverview: () => showOverview.value = false,\n    showGotoDialog: () => showGotoDialog.value = !showGotoDialog.value\n  };\n  const navViaArrowKeys = and(not(showOverview), not(activeDragElement));\n  let shortcuts = [\n    { name: \"next_space\", key: and(space, not(shift)), fn: next, autoRepeat: true },\n    { name: \"prev_space\", key: and(space, shift), fn: prev, autoRepeat: true },\n    { name: \"next_right\", key: and(right, not(shift), navViaArrowKeys), fn: next, autoRepeat: true },\n    { name: \"prev_left\", key: and(left, not(shift), navViaArrowKeys), fn: prev, autoRepeat: true },\n    { name: \"next_page_key\", key: \"pageDown\", fn: next, autoRepeat: true },\n    { name: \"prev_page_key\", key: \"pageUp\", fn: prev, autoRepeat: true },\n    { name: \"next_down\", key: and(down, navViaArrowKeys), fn: nextSlide, autoRepeat: true },\n    { name: \"prev_up\", key: and(up, navViaArrowKeys), fn: prevSlide, autoRepeat: true },\n    { name: \"next_shift\", key: and(right, shift), fn: nextSlide, autoRepeat: true },\n    { name: \"prev_shift\", key: and(left, shift), fn: prevSlide, autoRepeat: true },\n    { name: \"toggle_dark\", key: and(d, not(drawingEnabled)), fn: toggleDark },\n    { name: \"toggle_overview\", key: and(or(o, backtick), not(drawingEnabled)), fn: toggleOverview },\n    { name: \"hide_overview\", key: and(escape, not(drawingEnabled)), fn: () => showOverview.value = false },\n    { name: \"goto\", key: and(g, not(drawingEnabled)), fn: () => showGotoDialog.value = !showGotoDialog.value },\n    { name: \"next_overview\", key: and(right, showOverview), fn: nextOverviewPage },\n    { name: \"prev_overview\", key: and(left, showOverview), fn: prevOverviewPage },\n    { name: \"up_overview\", key: and(up, showOverview), fn: upOverviewPage },\n    { name: \"down_overview\", key: and(down, showOverview), fn: downOverviewPage },\n    {\n      name: \"goto_from_overview\",\n      key: and(enter, showOverview),\n      fn: () => {\n        go(currentOverviewPage.value);\n        showOverview.value = false;\n      }\n    }\n  ];\n  const baseShortcutNames = new Set(shortcuts.map((s) => s.name));\n  for (const setup of setups) {\n    shortcuts = setup(context, shortcuts);\n  }\n  const remainingBaseShortcutNames = shortcuts.filter((s) => s.name && baseShortcutNames.has(s.name));\n  if (remainingBaseShortcutNames.length === 0) {\n    const message = [\n      \"========== WARNING ==========\",\n      \"defineShortcutsSetup did not return any of the base shortcuts.\",\n      \"See https://sli.dev/custom/config-shortcuts.html for migration.\",\n      'If it is intentional, return at least one shortcut with one of the base names (e.g. name:\"goto\").'\n    ].join(\"\\n\\n\");\n    alert(message);\n    console.warn(message);\n  }\n  return shortcuts;\n}\n",
+      "start": 1743409708960,
+      "end": 1743409709033,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/shortcuts.ts"
+        ],
+        "sourcesContent": [
+          "import type { NavOperations, ShortcutOptions } from '@slidev/types'\nimport setups from '#slidev/setups/shortcuts'\nimport { and, not, or } from '@vueuse/math'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useNav } from '../composables/useNav'\nimport { toggleDark } from '../logic/dark'\nimport { activeDragElement, magicKeys, showGotoDialog, showOverview, toggleOverview } from '../state'\nimport { downloadPDF } from '../utils'\nimport { currentOverviewPage, downOverviewPage, nextOverviewPage, prevOverviewPage, upOverviewPage } from './../logic/overview'\n\nexport default function setupShortcuts() {\n  const { go, goFirst, goLast, next, nextSlide, prev, prevSlide } = useNav()\n  const { drawingEnabled } = useDrawings()\n  const { escape, space, shift, left, right, up, down, enter, d, g, o, '`': backtick } = magicKeys\n\n  const context: NavOperations = {\n    next,\n    prev,\n    nextSlide,\n    prevSlide,\n    go,\n    goFirst,\n    goLast,\n    downloadPDF,\n    toggleDark,\n    toggleOverview,\n    toggleDrawing: () => drawingEnabled.value = !drawingEnabled.value,\n    escapeOverview: () => showOverview.value = false,\n    showGotoDialog: () => showGotoDialog.value = !showGotoDialog.value,\n  }\n\n  const navViaArrowKeys = and(not(showOverview), not(activeDragElement))\n\n  let shortcuts: ShortcutOptions[] = [\n    { name: 'next_space', key: and(space, not(shift)), fn: next, autoRepeat: true },\n    { name: 'prev_space', key: and(space, shift), fn: prev, autoRepeat: true },\n    { name: 'next_right', key: and(right, not(shift), navViaArrowKeys), fn: next, autoRepeat: true },\n    { name: 'prev_left', key: and(left, not(shift), navViaArrowKeys), fn: prev, autoRepeat: true },\n    { name: 'next_page_key', key: 'pageDown', fn: next, autoRepeat: true },\n    { name: 'prev_page_key', key: 'pageUp', fn: prev, autoRepeat: true },\n    { name: 'next_down', key: and(down, navViaArrowKeys), fn: nextSlide, autoRepeat: true },\n    { name: 'prev_up', key: and(up, navViaArrowKeys), fn: prevSlide, autoRepeat: true },\n    { name: 'next_shift', key: and(right, shift), fn: nextSlide, autoRepeat: true },\n    { name: 'prev_shift', key: and(left, shift), fn: prevSlide, autoRepeat: true },\n    { name: 'toggle_dark', key: and(d, not(drawingEnabled)), fn: toggleDark },\n    { name: 'toggle_overview', key: and(or(o, backtick), not(drawingEnabled)), fn: toggleOverview },\n    { name: 'hide_overview', key: and(escape, not(drawingEnabled)), fn: () => showOverview.value = false },\n    { name: 'goto', key: and(g, not(drawingEnabled)), fn: () => showGotoDialog.value = !showGotoDialog.value },\n    { name: 'next_overview', key: and(right, showOverview), fn: nextOverviewPage },\n    { name: 'prev_overview', key: and(left, showOverview), fn: prevOverviewPage },\n    { name: 'up_overview', key: and(up, showOverview), fn: upOverviewPage },\n    { name: 'down_overview', key: and(down, showOverview), fn: downOverviewPage },\n    {\n      name: 'goto_from_overview',\n      key: and(enter, showOverview),\n      fn: () => {\n        go(currentOverviewPage.value)\n        showOverview.value = false\n      },\n    },\n  ]\n\n  const baseShortcutNames = new Set(shortcuts.map(s => s.name))\n\n  for (const setup of setups) {\n    shortcuts = setup(context, shortcuts)\n  }\n\n  const remainingBaseShortcutNames = shortcuts.filter(s => s.name && baseShortcutNames.has(s.name))\n  if (remainingBaseShortcutNames.length === 0) {\n    const message = [\n      '========== WARNING ==========',\n      'defineShortcutsSetup did not return any of the base shortcuts.',\n      'See https://sli.dev/custom/config-shortcuts.html for migration.',\n      'If it is intentional, return at least one shortcut with one of the base names (e.g. name:\"goto\").',\n    ].join('\\n\\n')\n    // eslint-disable-next-line no-alert\n    alert(message)\n\n    console.warn(message)\n  }\n\n  return shortcuts\n}\n"
+        ],
+        "mappings": "AACA,OAAO,YAAY;AACnB,SAAS,KAAK,KAAK,UAAU;AAC7B,SAAS,mBAAmB;AAC5B,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAC3B,SAAS,mBAAmB,WAAW,gBAAgB,cAAc,sBAAsB;AAC3F,SAAS,mBAAmB;AAC5B,SAAS,qBAAqB,kBAAkB,kBAAkB,kBAAkB,sBAAsB;AAE1G,wBAAwB,iBAAiB;AACvC,QAAM,EAAE,IAAI,SAAS,QAAQ,MAAM,WAAW,MAAM,UAAU,IAAI,OAAO;AACzE,QAAM,EAAE,eAAe,IAAI,YAAY;AACvC,QAAM,EAAE,QAAQ,OAAO,OAAO,MAAM,OAAO,IAAI,MAAM,OAAO,GAAG,GAAG,GAAG,KAAK,SAAS,IAAI;AAEvF,QAAM,UAAyB;AAAA,IAC7B;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA,eAAe,MAAM,eAAe,QAAQ,CAAC,eAAe;AAAA,IAC5D,gBAAgB,MAAM,aAAa,QAAQ;AAAA,IAC3C,gBAAgB,MAAM,eAAe,QAAQ,CAAC,eAAe;AAAA,EAC/D;AAEA,QAAM,kBAAkB,IAAI,IAAI,YAAY,GAAG,IAAI,iBAAiB,CAAC;AAErE,MAAI,YAA+B;AAAA,IACjC,EAAE,MAAM,cAAc,KAAK,IAAI,OAAO,IAAI,KAAK,CAAC,GAAG,IAAI,MAAM,YAAY,KAAK;AAAA,IAC9E,EAAE,MAAM,cAAc,KAAK,IAAI,OAAO,KAAK,GAAG,IAAI,MAAM,YAAY,KAAK;AAAA,IACzE,EAAE,MAAM,cAAc,KAAK,IAAI,OAAO,IAAI,KAAK,GAAG,eAAe,GAAG,IAAI,MAAM,YAAY,KAAK;AAAA,IAC/F,EAAE,MAAM,aAAa,KAAK,IAAI,MAAM,IAAI,KAAK,GAAG,eAAe,GAAG,IAAI,MAAM,YAAY,KAAK;AAAA,IAC7F,EAAE,MAAM,iBAAiB,KAAK,YAAY,IAAI,MAAM,YAAY,KAAK;AAAA,IACrE,EAAE,MAAM,iBAAiB,KAAK,UAAU,IAAI,MAAM,YAAY,KAAK;AAAA,IACnE,EAAE,MAAM,aAAa,KAAK,IAAI,MAAM,eAAe,GAAG,IAAI,WAAW,YAAY,KAAK;AAAA,IACtF,EAAE,MAAM,WAAW,KAAK,IAAI,IAAI,eAAe,GAAG,IAAI,WAAW,YAAY,KAAK;AAAA,IAClF,EAAE,MAAM,cAAc,KAAK,IAAI,OAAO,KAAK,GAAG,IAAI,WAAW,YAAY,KAAK;AAAA,IAC9E,EAAE,MAAM,cAAc,KAAK,IAAI,MAAM,KAAK,GAAG,IAAI,WAAW,YAAY,KAAK;AAAA,IAC7E,EAAE,MAAM,eAAe,KAAK,IAAI,GAAG,IAAI,cAAc,CAAC,GAAG,IAAI,WAAW;AAAA,IACxE,EAAE,MAAM,mBAAmB,KAAK,IAAI,GAAG,GAAG,QAAQ,GAAG,IAAI,cAAc,CAAC,GAAG,IAAI,eAAe;AAAA,IAC9F,EAAE,MAAM,iBAAiB,KAAK,IAAI,QAAQ,IAAI,cAAc,CAAC,GAAG,IAAI,MAAM,aAAa,QAAQ,MAAM;AAAA,IACrG,EAAE,MAAM,QAAQ,KAAK,IAAI,GAAG,IAAI,cAAc,CAAC,GAAG,IAAI,MAAM,eAAe,QAAQ,CAAC,eAAe,MAAM;AAAA,IACzG,EAAE,MAAM,iBAAiB,KAAK,IAAI,OAAO,YAAY,GAAG,IAAI,iBAAiB;AAAA,IAC7E,EAAE,MAAM,iBAAiB,KAAK,IAAI,MAAM,YAAY,GAAG,IAAI,iBAAiB;AAAA,IAC5E,EAAE,MAAM,eAAe,KAAK,IAAI,IAAI,YAAY,GAAG,IAAI,eAAe;AAAA,IACtE,EAAE,MAAM,iBAAiB,KAAK,IAAI,MAAM,YAAY,GAAG,IAAI,iBAAiB;AAAA,IAC5E;AAAA,MACE,MAAM;AAAA,MACN,KAAK,IAAI,OAAO,YAAY;AAAA,MAC5B,IAAI,MAAM;AACR,WAAG,oBAAoB,KAAK;AAC5B,qBAAa,QAAQ;AAAA,MACvB;AAAA,IACF;AAAA,EACF;AAEA,QAAM,oBAAoB,IAAI,IAAI,UAAU,IAAI,OAAK,EAAE,IAAI,CAAC;AAE5D,aAAW,SAAS,QAAQ;AAC1B,gBAAY,MAAM,SAAS,SAAS;AAAA,EACtC;AAEA,QAAM,6BAA6B,UAAU,OAAO,OAAK,EAAE,QAAQ,kBAAkB,IAAI,EAAE,IAAI,CAAC;AAChG,MAAI,2BAA2B,WAAW,GAAG;AAC3C,UAAM,UAAU;AAAA,MACd;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,IACF,EAAE,KAAK,MAAM;AAEb,UAAM,OAAO;AAEb,YAAQ,KAAK,OAAO;AAAA,EACtB;AAEA,SAAO;AACT;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    }
+  ]
+}

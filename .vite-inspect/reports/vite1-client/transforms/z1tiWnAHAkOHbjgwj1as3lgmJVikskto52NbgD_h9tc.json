@@ -1,0 +1,188 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_2.md",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "# About This Series\n** ** \n**Content**\n\nThis presentation is part of a new ongoing series where we explore technical and IT-related topics relevant to our work as researchers and scientists.\n\n**Key Features**\n\n\n- 📁 <span v-mark.circle.orange=\"1\">Git, GitHub</span>\n- 💻 R & Python tips\n- 🗺️ GIS tools & geospatial workflows\n- 🛰️ Remote sensing\n- 📊 Data visualization & dashboards\n- ⚡ Improving code performance\n- … and more!",
+      "start": 1743409708817,
+      "end": 1743409708817,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "result": "<template><div><h1>About This Series</h1>\n<hr />\n<p><strong>Content</strong></p>\n<p>This presentation is part of a new ongoing series where we explore technical and IT-related topics relevant to our work as researchers and scientists.</p>\n<p><strong>Key Features</strong></p>\n<ul>\n<li>📁 <span v-mark.circle.orange=\"1\">Git, GitHub</span></li>\n<li>💻 R &amp; Python tips</li>\n<li>🗺️ GIS tools &amp; geospatial workflows</li>\n<li>🛰️ Remote sensing</li>\n<li>📊 Data visualization &amp; dashboards</li>\n<li>⚡ Improving code performance</li>\n<li>… and more!</li>\n</ul>\n</div></template>\n<script setup>\n</script>",
+      "start": 1743409708817,
+      "end": 1743409708820,
+      "order": "pre",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "result": "<template>\n<InjectedLayout v-bind=\"_frontmatterToProps($frontmatter,1)\">\n<h1>About This Series</h1>\n<hr />\n<p><strong>Content</strong></p>\n<p>This presentation is part of a new ongoing series where we explore technical and IT-related topics relevant to our work as researchers and scientists.</p>\n<p><strong>Key Features</strong></p>\n<ul>\n<li>📁 <span v-mark.circle.orange=\"1\">Git, GitHub</span></li>\n<li>💻 R &amp; Python tips</li>\n<li>🗺️ GIS tools &amp; geospatial workflows</li>\n<li>🛰️ Remote sensing</li>\n<li>📊 Data visualization &amp; dashboards</li>\n<li>⚡ Improving code performance</li>\n<li>… and more!</li>\n</ul>\n\n</InjectedLayout>\n</template>\n\n<script setup>\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n</script>",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708820,
+      "end": 1743409708820,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, resolveDirective as _resolveDirective, openBlock as _openBlock, createElementBlock as _createElementBlock, withDirectives as _withDirectives, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_2',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _directive_mark = _resolveDirective(\"mark\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),1))), {\n    default: _withCtx(() => [\n      _cache[8] || (_cache[8] = _createElementVNode(\"h1\", null, \"About This Series\", -1 /* HOISTED */)),\n      _cache[9] || (_cache[9] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[10] || (_cache[10] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Content\")\n      ], -1 /* HOISTED */)),\n      _cache[11] || (_cache[11] = _createElementVNode(\"p\", null, \"This presentation is part of a new ongoing series where we explore technical and IT-related topics relevant to our work as researchers and scientists.\", -1 /* HOISTED */)),\n      _cache[12] || (_cache[12] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Key Features\")\n      ], -1 /* HOISTED */)),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _cache[1] || (_cache[1] = _createTextVNode(\"📁 \")),\n          _withDirectives((_openBlock(), _createElementBlock(\"span\", null, _cache[0] || (_cache[0] = [\n            _createTextVNode(\"Git, GitHub\")\n          ]))), [\n            [\n              _directive_mark,\n              1,\n              void 0,\n              {\n                circle: true,\n                orange: true\n              }\n            ]\n          ])\n        ]),\n        _cache[2] || (_cache[2] = _createElementVNode(\"li\", null, \"💻 R & Python tips\", -1 /* HOISTED */)),\n        _cache[3] || (_cache[3] = _createElementVNode(\"li\", null, \"🗺️ GIS tools & geospatial workflows\", -1 /* HOISTED */)),\n        _cache[4] || (_cache[4] = _createElementVNode(\"li\", null, \"🛰️ Remote sensing\", -1 /* HOISTED */)),\n        _cache[5] || (_cache[5] = _createElementVNode(\"li\", null, \"📊 Data visualization & dashboards\", -1 /* HOISTED */)),\n        _cache[6] || (_cache[6] = _createElementVNode(\"li\", null, \"⚡ Improving code performance\", -1 /* HOISTED */)),\n        _cache[7] || (_cache[7] = _createElementVNode(\"li\", null, \"… and more!\", -1 /* HOISTED */))\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708820,
+      "end": 1743409708821,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, resolveDirective as _resolveDirective, openBlock as _openBlock, createElementBlock as _createElementBlock, withDirectives as _withDirectives, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_2',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _directive_mark = _resolveDirective(\"mark\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),1))), {\n    default: _withCtx(() => [\n      _cache[8] || (_cache[8] = _createElementVNode(\"h1\", null, \"About This Series\", -1 /* HOISTED */)),\n      _cache[9] || (_cache[9] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[10] || (_cache[10] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Content\")\n      ], -1 /* HOISTED */)),\n      _cache[11] || (_cache[11] = _createElementVNode(\"p\", null, \"This presentation is part of a new ongoing series where we explore technical and IT-related topics relevant to our work as researchers and scientists.\", -1 /* HOISTED */)),\n      _cache[12] || (_cache[12] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Key Features\")\n      ], -1 /* HOISTED */)),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _cache[1] || (_cache[1] = _createTextVNode(\"📁 \")),\n          _withDirectives((_openBlock(), _createElementBlock(\"span\", null, _cache[0] || (_cache[0] = [\n            _createTextVNode(\"Git, GitHub\")\n          ]))), [\n            [\n              _directive_mark,\n              1,\n              void 0,\n              {\n                circle: true,\n                orange: true\n              }\n            ]\n          ])\n        ]),\n        _cache[2] || (_cache[2] = _createElementVNode(\"li\", null, \"💻 R & Python tips\", -1 /* HOISTED */)),\n        _cache[3] || (_cache[3] = _createElementVNode(\"li\", null, \"🗺️ GIS tools & geospatial workflows\", -1 /* HOISTED */)),\n        _cache[4] || (_cache[4] = _createElementVNode(\"li\", null, \"🛰️ Remote sensing\", -1 /* HOISTED */)),\n        _cache[5] || (_cache[5] = _createElementVNode(\"li\", null, \"📊 Data visualization & dashboards\", -1 /* HOISTED */)),\n        _cache[6] || (_cache[6] = _createElementVNode(\"li\", null, \"⚡ Improving code performance\", -1 /* HOISTED */)),\n        _cache[7] || (_cache[7] = _createElementVNode(\"li\", null, \"… and more!\", -1 /* HOISTED */))\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708821,
+      "end": 1743409708821,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, resolveDirective as _resolveDirective, openBlock as _openBlock, createElementBlock as _createElementBlock, withDirectives as _withDirectives, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_2',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _directive_mark = _resolveDirective(\"mark\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),1))), {\n    default: _withCtx(() => [\n      _cache[8] || (_cache[8] = _createElementVNode(\"h1\", null, \"About This Series\", -1 /* HOISTED */)),\n      _cache[9] || (_cache[9] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[10] || (_cache[10] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Content\")\n      ], -1 /* HOISTED */)),\n      _cache[11] || (_cache[11] = _createElementVNode(\"p\", null, \"This presentation is part of a new ongoing series where we explore technical and IT-related topics relevant to our work as researchers and scientists.\", -1 /* HOISTED */)),\n      _cache[12] || (_cache[12] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Key Features\")\n      ], -1 /* HOISTED */)),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _cache[1] || (_cache[1] = _createTextVNode(\"📁 \")),\n          _withDirectives((_openBlock(), _createElementBlock(\"span\", null, _cache[0] || (_cache[0] = [\n            _createTextVNode(\"Git, GitHub\")\n          ]))), [\n            [\n              _directive_mark,\n              1,\n              void 0,\n              {\n                circle: true,\n                orange: true\n              }\n            ]\n          ])\n        ]),\n        _cache[2] || (_cache[2] = _createElementVNode(\"li\", null, \"💻 R & Python tips\", -1 /* HOISTED */)),\n        _cache[3] || (_cache[3] = _createElementVNode(\"li\", null, \"🗺️ GIS tools & geospatial workflows\", -1 /* HOISTED */)),\n        _cache[4] || (_cache[4] = _createElementVNode(\"li\", null, \"🛰️ Remote sensing\", -1 /* HOISTED */)),\n        _cache[5] || (_cache[5] = _createElementVNode(\"li\", null, \"📊 Data visualization & dashboards\", -1 /* HOISTED */)),\n        _cache[6] || (_cache[6] = _createElementVNode(\"li\", null, \"⚡ Improving code performance\", -1 /* HOISTED */)),\n        _cache[7] || (_cache[7] = _createElementVNode(\"li\", null, \"… and more!\", -1 /* HOISTED */))\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708821,
+      "end": 1743409708822,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_2.md"
+        ],
+        "sourcesContent": [
+          "import { unref as _unref, createElementVNode as _createElementVNode, createTextVNode as _createTextVNode, resolveDirective as _resolveDirective, openBlock as _openBlock, createElementBlock as _createElementBlock, withDirectives as _withDirectives, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, createBlock as _createBlock } from \"vue\"\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/default.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_2',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _directive_mark = _resolveDirective(\"mark\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),1))), {\n    default: _withCtx(() => [\n      _cache[8] || (_cache[8] = _createElementVNode(\"h1\", null, \"About This Series\", -1 /* HOISTED */)),\n      _cache[9] || (_cache[9] = _createElementVNode(\"hr\", null, null, -1 /* HOISTED */)),\n      _cache[10] || (_cache[10] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Content\")\n      ], -1 /* HOISTED */)),\n      _cache[11] || (_cache[11] = _createElementVNode(\"p\", null, \"This presentation is part of a new ongoing series where we explore technical and IT-related topics relevant to our work as researchers and scientists.\", -1 /* HOISTED */)),\n      _cache[12] || (_cache[12] = _createElementVNode(\"p\", null, [\n        _createElementVNode(\"strong\", null, \"Key Features\")\n      ], -1 /* HOISTED */)),\n      _createElementVNode(\"ul\", null, [\n        _createElementVNode(\"li\", null, [\n          _cache[1] || (_cache[1] = _createTextVNode(\"📁 \")),\n          _withDirectives((_openBlock(), _createElementBlock(\"span\", null, _cache[0] || (_cache[0] = [\n            _createTextVNode(\"Git, GitHub\")\n          ]))), [\n            [\n              _directive_mark,\n              1,\n              void 0,\n              {\n                circle: true,\n                orange: true\n              }\n            ]\n          ])\n        ]),\n        _cache[2] || (_cache[2] = _createElementVNode(\"li\", null, \"💻 R & Python tips\", -1 /* HOISTED */)),\n        _cache[3] || (_cache[3] = _createElementVNode(\"li\", null, \"🗺️ GIS tools & geospatial workflows\", -1 /* HOISTED */)),\n        _cache[4] || (_cache[4] = _createElementVNode(\"li\", null, \"🛰️ Remote sensing\", -1 /* HOISTED */)),\n        _cache[5] || (_cache[5] = _createElementVNode(\"li\", null, \"📊 Data visualization & dashboards\", -1 /* HOISTED */)),\n        _cache[6] || (_cache[6] = _createElementVNode(\"li\", null, \"⚡ Improving code performance\", -1 /* HOISTED */)),\n        _cache[7] || (_cache[7] = _createElementVNode(\"li\", null, \"… and more!\", -1 /* HOISTED */))\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708822,
+      "end": 1743409708822,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708822,
+      "end": 1743409708822,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708822,
+      "end": 1743409708822,
+      "order": "normal"
+    }
+  ]
+}

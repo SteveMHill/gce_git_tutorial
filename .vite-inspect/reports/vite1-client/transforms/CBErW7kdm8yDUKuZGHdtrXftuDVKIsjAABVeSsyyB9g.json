@@ -1,0 +1,164 @@
+{
+  "resolvedId": "/@server-reactive/snapshots?diff",
+  "transforms": [
+    {
+      "name": "vite-plugin-vue-server-ref",
+      "result": "\nimport { reactive, watch } from \"vue\"\nimport { randId, stringify, parse, define, apply, reactiveSet, clone, diff } from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/vite-plugin-vue-server-ref/dist/client.mjs\"\nconst data = reactive({})\nlet onSet = []\nlet onPatch = []\ndefine(data, '$syncUp', true)\ndefine(data, '$syncDown', true)\ndefine(data, '$paused', false)\ndefine(data, '$onSet', fn => onSet.push(fn))\ndefine(data, '$onPatch', fn => onPatch.push(fn))\nconst id = randId()\nif (import.meta.hot) {\n  let skipWatch = false\n  let timer = null\n  let copy = null\n  function post(payload) {\n    return fetch('/@server-reactive/snapshots', {\n      method: 'POST',\n      headers: {\n        'Content-Type': 'application/json',\n      },\n      body: stringify(payload)\n    })\n  }\n  function makeClone() {\n    copy = clone(data)\n  }\n  function getDiff() {\n    return diff(data, copy)\n  }\n  function applyPatch(patch, trigger = true) {\n    skipWatch = true\n    if (trigger) {\n      onPatch.forEach(fn => fn(patch))\n    }\n    apply(data, patch)\n    makeClone()\n    skipWatch = false\n  }\n  function applySet(newData) {\n    skipWatch = true\n    onSet.forEach(fn => fn(newData))\n    reactiveSet(data, newData)\n    makeClone()\n    skipWatch = false\n  }\n  import.meta.hot.on(\"vue-server-ref\", (payload) => {\n    if (!data.$syncDown || data.$paused || payload.key !== \"snapshots\" || payload.source === id)\n      return\n    if (payload.patch)\n      applyPatch(payload.patch)\n    else\n      applySet(payload.data)\n  })\n  define(data, '$patch', async (patch) => {\n    if (!data.$syncUp || data.$paused)\n      return false\n    applyPatch(patch, false)\n    return post({\n      source: id,\n      patch,\n      timestamp: Date.now(),\n    })\n  })\n  watch(data, (v) => {\n    if (timer)\n      clearTimeout(timer)\n    if (!data.$syncUp || data.$paused || skipWatch)\n      return\n    timer = setTimeout(()=>{\n      post({\n        source: id,\n        patch: getDiff(),\n        timestamp: Date.now(),\n      })\n    }, 10)\n  }, { flush: 'sync', deep: true })\n}\nelse {\n  define(data, '$patch', async () => false)\n}\nexport default data\n",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709320,
+      "end": 1743409709320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { reactive, watch } from \"vue\";\nimport { randId, stringify, parse, define, apply, reactiveSet, clone, diff } from \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/vite-plugin-vue-server-ref/dist/client.mjs\";\nconst data = reactive({});\nlet onSet = [];\nlet onPatch = [];\ndefine(data, \"$syncUp\", true);\ndefine(data, \"$syncDown\", true);\ndefine(data, \"$paused\", false);\ndefine(data, \"$onSet\", (fn) => onSet.push(fn));\ndefine(data, \"$onPatch\", (fn) => onPatch.push(fn));\nconst id = randId();\nif (void 0) {\n  let post = function(payload) {\n    return fetch(\"/@server-reactive/snapshots\", {\n      method: \"POST\",\n      headers: {\n        \"Content-Type\": \"application/json\"\n      },\n      body: stringify(payload)\n    });\n  }, makeClone = function() {\n    copy = clone(data);\n  }, getDiff = function() {\n    return diff(data, copy);\n  }, applyPatch = function(patch, trigger = true) {\n    skipWatch = true;\n    if (trigger) {\n      onPatch.forEach((fn) => fn(patch));\n    }\n    apply(data, patch);\n    makeClone();\n    skipWatch = false;\n  }, applySet = function(newData) {\n    skipWatch = true;\n    onSet.forEach((fn) => fn(newData));\n    reactiveSet(data, newData);\n    makeClone();\n    skipWatch = false;\n  };\n  let skipWatch = false;\n  let timer = null;\n  let copy = null;\n  (void 0).on(\"vue-server-ref\", (payload) => {\n    if (!data.$syncDown || data.$paused || payload.key !== \"snapshots\" || payload.source === id)\n      return;\n    if (payload.patch)\n      applyPatch(payload.patch);\n    else\n      applySet(payload.data);\n  });\n  define(data, \"$patch\", async (patch) => {\n    if (!data.$syncUp || data.$paused)\n      return false;\n    applyPatch(patch, false);\n    return post({\n      source: id,\n      patch,\n      timestamp: Date.now()\n    });\n  });\n  watch(data, (v) => {\n    if (timer)\n      clearTimeout(timer);\n    if (!data.$syncUp || data.$paused || skipWatch)\n      return;\n    timer = setTimeout(() => {\n      post({\n        source: id,\n        patch: getDiff(),\n        timestamp: Date.now()\n      });\n    }, 10);\n  }, { flush: \"sync\", deep: true });\n} else {\n  define(data, \"$patch\", async () => false);\n}\nexport default data;\n",
+      "start": 1743409709320,
+      "end": 1743409709407,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709407,
+      "end": 1743409709407,
+      "order": "normal"
+    }
+  ]
+}

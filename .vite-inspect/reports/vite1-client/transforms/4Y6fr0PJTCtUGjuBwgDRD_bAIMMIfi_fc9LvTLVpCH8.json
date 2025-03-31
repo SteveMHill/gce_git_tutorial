@@ -1,0 +1,198 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormSlider.vue?vue&type=style&index=0&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.slider {\n  appearance: none;\n  height: 22px;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: 0.2s;\n  transition: opacity 0.2s;\n  --uno: border border-main rounded of-hidden bg-gray/5;\n}\n\n.slider:hover {\n  opacity: 1;\n}\n\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n\n.slider::-moz-range-thumb {\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n",
+      "start": 1743409709318,
+      "end": 1743409709318
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709318,
+      "end": 1743409709318,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709318,
+      "end": 1743409709318,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": "\n.slider {\n  appearance: none;\n  height: 22px;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: 0.2s;\n  transition: opacity 0.2s;\n  overflow:hidden;border-width:1px;border-color:rgb(156 163 175 / 0.2);border-radius:0.25rem;background-color:rgb(156 163 175 / 0.05) /* #9ca3af */;\n}\n\n.slider:hover {\n  opacity: 1;\n}\n\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n\n.slider::-moz-range-thumb {\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n",
+      "start": 1743409709318,
+      "end": 1743409709319,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": ";AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC;AACD;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormSlider.vue?vue&type=style&index=0&lang.css"
+        ],
+        "sourcesContent": [
+          "\n.slider {\n  appearance: none;\n  height: 22px;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: 0.2s;\n  transition: opacity 0.2s;\n  overflow:hidden;border-width:1px;border-color:rgb(156 163 175 / 0.2);border-radius:0.25rem;background-color:rgb(156 163 175 / 0.05) /* #9ca3af */;\n}\n\n.slider:hover {\n  opacity: 1;\n}\n\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n\n.slider::-moz-range-thumb {\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "\n.slider {\n  appearance: none;\n  height: 22px;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: 0.2s;\n  transition: opacity 0.2s;\n  overflow:hidden;border-width:1px;border-color:rgb(156 163 175 / 0.2);border-radius:0.25rem;background-color:rgb(156 163 175 / 0.05) /* #9ca3af */;\n}\n\n.slider:hover {\n  opacity: 1;\n}\n\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n\n.slider::-moz-range-thumb {\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\n.slider {\n  appearance: none;\n  height: 22px;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: 0.2s;\n  transition: opacity 0.2s;\n  overflow:hidden;border-width:1px;border-color:rgb(156 163 175 / 0.2);border-radius:0.25rem;background-color:rgb(156 163 175 / 0.05) /* #9ca3af */;\n}\n.slider:hover {\n  opacity: 1;\n}\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n.slider::-moz-range-thumb {\n  width: 5px;\n  height: 22px;\n  background: var(--slidev-theme-primary);\n  cursor: pointer;\n  z-index: 10;\n}\n",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/FormSlider.vue?vue&type=style&index=0&lang.css"
+        ],
+        "sourcesContent": [
+          ""
+        ],
+        "names": [],
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709319,
+      "end": 1743409709319,
+      "order": "normal"
+    }
+  ]
+}

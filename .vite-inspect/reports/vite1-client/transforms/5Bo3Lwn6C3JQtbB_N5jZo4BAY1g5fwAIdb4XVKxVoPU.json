@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideLoading.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"h-full w-full flex items-center justify-center gap-2 slidev-slide-loading\" }\n\nimport { onMounted, ref } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SlideLoading',\n  setup(__props) {\n\nconst timeout = ref(false)\nonMounted(() => {\n  setTimeout(() => {\n    timeout.value = true\n  }, 200)\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (timeout.value)\n      ? (_openBlock(), _createElementBlock(_Fragment, { key: 0 }, [\n          _cache[0] || (_cache[0] = _createElementVNode(\"div\", { class: \"i-svg-spinners-90-ring-with-bg text-xl\" }, null, -1 /* HOISTED */)),\n          _cache[1] || (_cache[1] = _createElementVNode(\"div\", null, \"Loading slide...\", -1 /* HOISTED */))\n        ], 64 /* STABLE_FRAGMENT */))\n      : _createCommentVNode(\"v-if\", true)\n  ]))\n}\n}\n\n})",
+      "start": 1743409708952,
+      "end": 1743409708952
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = { class: \"h-full w-full flex items-center justify-center gap-2 slidev-slide-loading\" };\nimport { onMounted, ref } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideLoading\",\n  setup(__props) {\n    const timeout = ref(false);\n    onMounted(() => {\n      setTimeout(() => {\n        timeout.value = true;\n      }, 200);\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        timeout.value ? (_openBlock(), _createElementBlock(\n          _Fragment,\n          { key: 0 },\n          [\n            _cache[0] || (_cache[0] = _createElementVNode(\n              \"div\",\n              { class: \"i-svg-spinners-90-ring-with-bg text-xl\" },\n              null,\n              -1\n              /* HOISTED */\n            )),\n            _cache[1] || (_cache[1] = _createElementVNode(\n              \"div\",\n              null,\n              \"Loading slide...\",\n              -1\n              /* HOISTED */\n            ))\n          ],\n          64\n          /* STABLE_FRAGMENT */\n        )) : _createCommentVNode(\"v-if\", true)\n      ]);\n    };\n  }\n});\n",
+      "start": 1743409708952,
+      "end": 1743409709030,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideLoading.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"h-full w-full flex items-center justify-center gap-2 slidev-slide-loading\" }\n\nimport { onMounted, ref } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'SlideLoading',\n  setup(__props) {\n\nconst timeout = ref(false)\nonMounted(() => {\n  setTimeout(() => {\n    timeout.value = true\n  }, 200)\n})\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (timeout.value)\n      ? (_openBlock(), _createElementBlock(_Fragment, { key: 0 }, [\n          _cache[0] || (_cache[0] = _createElementVNode(\"div\", { class: \"i-svg-spinners-90-ring-with-bg text-xl\" }, null, -1 /* HOISTED */)),\n          _cache[1] || (_cache[1] = _createElementVNode(\"div\", null, \"Loading slide...\", -1 /* HOISTED */))\n        ], 64 /* STABLE_FRAGMENT */))\n      : _createCommentVNode(\"v-if\", true)\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,sBAAsB,qBAAqB,YAAY,WAAW,aAAa,YAAY,sBAAsB,qBAAqB,sBAAsB,2BAA2B;AAEhM,MAAM,aAAa,EAAE,OAAO,4EAA4E;AAExG,SAAS,WAAW,WAAW;AAG/B,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAEjB,UAAM,UAAU,IAAI,KAAK;AACzB,cAAU,MAAM;AACd,iBAAW,MAAM;AACf,gBAAQ,QAAQ;AAAA,MAClB,GAAG,GAAG;AAAA,IACR,CAAC;AAED,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,QAC1D,QAAQ,SACJ,WAAW,GAAG;AAAA,UAAoB;AAAA,UAAW,EAAE,KAAK,EAAE;AAAA,UAAG;AAAA,YACxD,OAAO,CAAC,MAAM,OAAO,CAAC,IAAI;AAAA,cAAoB;AAAA,cAAO,EAAE,OAAO,yCAAyC;AAAA,cAAG;AAAA,cAAM;AAAA;AAAA,YAAgB;AAAA,YAChI,OAAO,CAAC,MAAM,OAAO,CAAC,IAAI;AAAA,cAAoB;AAAA,cAAO;AAAA,cAAM;AAAA,cAAoB;AAAA;AAAA,YAAgB;AAAA,UACjG;AAAA,UAAG;AAAA;AAAA,QAAwB,KAC3B,oBAAoB,QAAQ,IAAI;AAAA,MACtC,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709030,
+      "end": 1743409709030,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = { class: \"h-full w-full flex items-center justify-center gap-2 slidev-slide-loading\" };\nimport { onMounted, ref } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideLoading\",\n  setup(__props) {\n    const timeout = ref(false);\n    onMounted(() => {\n      setTimeout(() => {\n        timeout.value = true;\n      }, 200);\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        timeout.value ? (_openBlock(), _createElementBlock(\n          _Fragment,\n          { key: 0 },\n          [\n            _cache[0] || (_cache[0] = _createElementVNode(\n              \"div\",\n              { class: \"i-svg-spinners-90-ring-with-bg text-xl\" },\n              null,\n              -1\n              /* HOISTED */\n            )),\n            _cache[1] || (_cache[1] = _createElementVNode(\n              \"div\",\n              null,\n              \"Loading slide...\",\n              -1\n              /* HOISTED */\n            ))\n          ],\n          64\n          /* STABLE_FRAGMENT */\n        )) : _createCommentVNode(\"v-if\", true)\n      ]);\n    };\n  }\n});\n",
+      "start": 1743409709030,
+      "end": 1743409709031,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideLoading.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nconst _hoisted_1 = { class: \"h-full w-full flex items-center justify-center gap-2 slidev-slide-loading\" };\nimport { onMounted, ref } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"SlideLoading\",\n  setup(__props) {\n    const timeout = ref(false);\n    onMounted(() => {\n      setTimeout(() => {\n        timeout.value = true;\n      }, 200);\n    });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        timeout.value ? (_openBlock(), _createElementBlock(\n          _Fragment,\n          { key: 0 },\n          [\n            _cache[0] || (_cache[0] = _createElementVNode(\n              \"div\",\n              { class: \"i-svg-spinners-90-ring-with-bg text-xl\" },\n              null,\n              -1\n              /* HOISTED */\n            )),\n            _cache[1] || (_cache[1] = _createElementVNode(\n              \"div\",\n              null,\n              \"Loading slide...\",\n              -1\n              /* HOISTED */\n            ))\n          ],\n          64\n          /* STABLE_FRAGMENT */\n        )) : _createCommentVNode(\"v-if\", true)\n      ]);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709031,
+      "end": 1743409709031,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709031,
+      "end": 1743409709031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709031,
+      "end": 1743409709031,
+      "order": "normal"
+    }
+  ]
+}

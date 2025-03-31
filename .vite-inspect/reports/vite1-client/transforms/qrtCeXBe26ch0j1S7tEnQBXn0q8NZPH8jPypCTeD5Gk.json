@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/routes.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'\nimport configs from '#slidev/configs'\nimport setups from '#slidev/setups/routes'\n\nexport default function setupRoutes() {\n  const routes: RouteRecordRaw[] = []\n\n  function passwordGuard(to: RouteLocationNormalized) {\n    if (!configs.remote || configs.remote === to.query.password)\n      return true\n    if (configs.remote && to.query.password === undefined) {\n      // eslint-disable-next-line no-alert\n      const password = prompt('Enter password')\n      if (configs.remote === password)\n        return true\n    }\n    if (to.params.no)\n      return { path: `/${to.params.no}` }\n    return { path: '' }\n  }\n\n  if (__SLIDEV_FEATURE_PRESENTER__) {\n    routes.push(\n      {\n        name: 'entry',\n        path: '/entry',\n        component: () => import('../pages/entry.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        name: 'overview',\n        path: '/overview',\n        component: () => import('../pages/overview.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        name: 'notes',\n        path: '/notes',\n        component: () => import('../pages/notes.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        name: 'presenter',\n        path: '/presenter/:no',\n        component: () => import('../pages/presenter.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        path: '/presenter',\n        redirect: { path: '/presenter/1' },\n      },\n    )\n  }\n\n  if (__SLIDEV_FEATURE_PRINT__) {\n    routes.push(\n      {\n        name: 'print',\n        path: '/print',\n        component: () => import('../pages/print.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        path: '/presenter/print',\n        component: () => import('../pages/presenter/print.vue'),\n        beforeEnter: passwordGuard,\n      },\n    )\n  }\n\n  if (__SLIDEV_FEATURE_BROWSER_EXPORTER__) {\n    routes.push(\n      {\n        name: 'export',\n        path: '/export/:no?',\n        component: () => import('../pages/export.vue'),\n        beforeEnter: passwordGuard,\n      },\n    )\n  }\n\n  routes.push(\n    {\n      name: 'play',\n      path: '/:no',\n      component: () => import('../pages/play.vue'),\n    },\n    {\n      path: '',\n      redirect: { path: '/1' },\n    },\n    {\n      path: '/:pathMatch(.*)*',\n      name: 'NotFound',\n      component: () => import('../pages/404.vue'),\n    },\n  )\n\n  return setups.reduce((routes, setup) => setup(routes), routes)\n}\n",
+      "start": 1743409708376,
+      "end": 1743409708384,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import configs from \"#slidev/configs\";\nimport setups from \"#slidev/setups/routes\";\nexport default function setupRoutes() {\n  const routes = [];\n  function passwordGuard(to) {\n    if (!configs.remote || configs.remote === to.query.password)\n      return true;\n    if (configs.remote && to.query.password === void 0) {\n      const password = prompt(\"Enter password\");\n      if (configs.remote === password)\n        return true;\n    }\n    if (to.params.no)\n      return { path: `/${to.params.no}` };\n    return { path: \"\" };\n  }\n  if (__SLIDEV_FEATURE_PRESENTER__) {\n    routes.push(\n      {\n        name: \"entry\",\n        path: \"/entry\",\n        component: () => import(\"../pages/entry.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"overview\",\n        path: \"/overview\",\n        component: () => import(\"../pages/overview.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"notes\",\n        path: \"/notes\",\n        component: () => import(\"../pages/notes.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"presenter\",\n        path: \"/presenter/:no\",\n        component: () => import(\"../pages/presenter.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        path: \"/presenter\",\n        redirect: { path: \"/presenter/1\" }\n      }\n    );\n  }\n  if (__SLIDEV_FEATURE_PRINT__) {\n    routes.push(\n      {\n        name: \"print\",\n        path: \"/print\",\n        component: () => import(\"../pages/print.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        path: \"/presenter/print\",\n        component: () => import(\"../pages/presenter/print.vue\"),\n        beforeEnter: passwordGuard\n      }\n    );\n  }\n  if (__SLIDEV_FEATURE_BROWSER_EXPORTER__) {\n    routes.push(\n      {\n        name: \"export\",\n        path: \"/export/:no?\",\n        component: () => import(\"../pages/export.vue\"),\n        beforeEnter: passwordGuard\n      }\n    );\n  }\n  routes.push(\n    {\n      name: \"play\",\n      path: \"/:no\",\n      component: () => import(\"../pages/play.vue\")\n    },\n    {\n      path: \"\",\n      redirect: { path: \"/1\" }\n    },\n    {\n      path: \"/:pathMatch(.*)*\",\n      name: \"NotFound\",\n      component: () => import(\"../pages/404.vue\")\n    }\n  );\n  return setups.reduce((routes2, setup) => setup(routes2), routes);\n}\n",
+      "start": 1743409708384,
+      "end": 1743409708467,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/setup/routes.ts"
+        ],
+        "sourcesContent": [
+          "import type { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'\nimport configs from '#slidev/configs'\nimport setups from '#slidev/setups/routes'\n\nexport default function setupRoutes() {\n  const routes: RouteRecordRaw[] = []\n\n  function passwordGuard(to: RouteLocationNormalized) {\n    if (!configs.remote || configs.remote === to.query.password)\n      return true\n    if (configs.remote && to.query.password === undefined) {\n      // eslint-disable-next-line no-alert\n      const password = prompt('Enter password')\n      if (configs.remote === password)\n        return true\n    }\n    if (to.params.no)\n      return { path: `/${to.params.no}` }\n    return { path: '' }\n  }\n\n  if (__SLIDEV_FEATURE_PRESENTER__) {\n    routes.push(\n      {\n        name: 'entry',\n        path: '/entry',\n        component: () => import('../pages/entry.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        name: 'overview',\n        path: '/overview',\n        component: () => import('../pages/overview.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        name: 'notes',\n        path: '/notes',\n        component: () => import('../pages/notes.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        name: 'presenter',\n        path: '/presenter/:no',\n        component: () => import('../pages/presenter.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        path: '/presenter',\n        redirect: { path: '/presenter/1' },\n      },\n    )\n  }\n\n  if (__SLIDEV_FEATURE_PRINT__) {\n    routes.push(\n      {\n        name: 'print',\n        path: '/print',\n        component: () => import('../pages/print.vue'),\n        beforeEnter: passwordGuard,\n      },\n      {\n        path: '/presenter/print',\n        component: () => import('../pages/presenter/print.vue'),\n        beforeEnter: passwordGuard,\n      },\n    )\n  }\n\n  if (__SLIDEV_FEATURE_BROWSER_EXPORTER__) {\n    routes.push(\n      {\n        name: 'export',\n        path: '/export/:no?',\n        component: () => import('../pages/export.vue'),\n        beforeEnter: passwordGuard,\n      },\n    )\n  }\n\n  routes.push(\n    {\n      name: 'play',\n      path: '/:no',\n      component: () => import('../pages/play.vue'),\n    },\n    {\n      path: '',\n      redirect: { path: '/1' },\n    },\n    {\n      path: '/:pathMatch(.*)*',\n      name: 'NotFound',\n      component: () => import('../pages/404.vue'),\n    },\n  )\n\n  return setups.reduce((routes, setup) => setup(routes), routes)\n}\n"
+        ],
+        "mappings": "AACA,OAAO,aAAa;AACpB,OAAO,YAAY;AAEnB,wBAAwB,cAAc;AACpC,QAAM,SAA2B,CAAC;AAElC,WAAS,cAAc,IAA6B;AAClD,QAAI,CAAC,QAAQ,UAAU,QAAQ,WAAW,GAAG,MAAM;AACjD,aAAO;AACT,QAAI,QAAQ,UAAU,GAAG,MAAM,aAAa,QAAW;AAErD,YAAM,WAAW,OAAO,gBAAgB;AACxC,UAAI,QAAQ,WAAW;AACrB,eAAO;AAAA,IACX;AACA,QAAI,GAAG,OAAO;AACZ,aAAO,EAAE,MAAM,IAAI,GAAG,OAAO,EAAE,GAAG;AACpC,WAAO,EAAE,MAAM,GAAG;AAAA,EACpB;AAEA,MAAI,8BAA8B;AAChC,WAAO;AAAA,MACL;AAAA,QACE,MAAM;AAAA,QACN,MAAM;AAAA,QACN,WAAW,MAAM,OAAO,oBAAoB;AAAA,QAC5C,aAAa;AAAA,MACf;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,MAAM;AAAA,QACN,WAAW,MAAM,OAAO,uBAAuB;AAAA,QAC/C,aAAa;AAAA,MACf;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,MAAM;AAAA,QACN,WAAW,MAAM,OAAO,oBAAoB;AAAA,QAC5C,aAAa;AAAA,MACf;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,MAAM;AAAA,QACN,WAAW,MAAM,OAAO,wBAAwB;AAAA,QAChD,aAAa;AAAA,MACf;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,UAAU,EAAE,MAAM,eAAe;AAAA,MACnC;AAAA,IACF;AAAA,EACF;AAEA,MAAI,0BAA0B;AAC5B,WAAO;AAAA,MACL;AAAA,QACE,MAAM;AAAA,QACN,MAAM;AAAA,QACN,WAAW,MAAM,OAAO,oBAAoB;AAAA,QAC5C,aAAa;AAAA,MACf;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,WAAW,MAAM,OAAO,8BAA8B;AAAA,QACtD,aAAa;AAAA,MACf;AAAA,IACF;AAAA,EACF;AAEA,MAAI,qCAAqC;AACvC,WAAO;AAAA,MACL;AAAA,QACE,MAAM;AAAA,QACN,MAAM;AAAA,QACN,WAAW,MAAM,OAAO,qBAAqB;AAAA,QAC7C,aAAa;AAAA,MACf;AAAA,IACF;AAAA,EACF;AAEA,SAAO;AAAA,IACL;AAAA,MACE,MAAM;AAAA,MACN,MAAM;AAAA,MACN,WAAW,MAAM,OAAO,mBAAmB;AAAA,IAC7C;AAAA,IACA;AAAA,MACE,MAAM;AAAA,MACN,UAAU,EAAE,MAAM,KAAK;AAAA,IACzB;AAAA,IACA;AAAA,MACE,MAAM;AAAA,MACN,MAAM;AAAA,MACN,WAAW,MAAM,OAAO,kBAAkB;AAAA,IAC5C;AAAA,EACF;AAEA,SAAO,OAAO,OAAO,CAACA,SAAQ,UAAU,MAAMA,OAAM,GAAG,MAAM;AAC/D;",
+        "names": [
+          "routes"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708467,
+      "end": 1743409708467,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import configs from \"#slidev/configs\";\nimport setups from \"#slidev/setups/routes\";\nexport default function setupRoutes() {\n  const routes = [];\n  function passwordGuard(to) {\n    if (!configs.remote || configs.remote === to.query.password)\n      return true;\n    if (configs.remote && to.query.password === void 0) {\n      const password = prompt(\"Enter password\");\n      if (configs.remote === password)\n        return true;\n    }\n    if (to.params.no)\n      return { path: `/${to.params.no}` };\n    return { path: \"\" };\n  }\n  if (true) {\n    routes.push(\n      {\n        name: \"entry\",\n        path: \"/entry\",\n        component: () => import(\"../pages/entry.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"overview\",\n        path: \"/overview\",\n        component: () => import(\"../pages/overview.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"notes\",\n        path: \"/notes\",\n        component: () => import(\"../pages/notes.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"presenter\",\n        path: \"/presenter/:no\",\n        component: () => import(\"../pages/presenter.vue\"),\n        beforeEnter: passwordGuard\n      },\n      {\n        path: \"/presenter\",\n        redirect: { path: \"/presenter/1\" }\n      }\n    );\n  }\n  if (false) {\n    routes.push(\n      {\n        name: \"print\",\n        path: \"/print\",\n        component: () => null,\n        beforeEnter: passwordGuard\n      },\n      {\n        path: \"/presenter/print\",\n        component: () => null,\n        beforeEnter: passwordGuard\n      }\n    );\n  }\n  if (false) {\n    routes.push(\n      {\n        name: \"export\",\n        path: \"/export/:no?\",\n        component: () => null,\n        beforeEnter: passwordGuard\n      }\n    );\n  }\n  routes.push(\n    {\n      name: \"play\",\n      path: \"/:no\",\n      component: () => import(\"../pages/play.vue\")\n    },\n    {\n      path: \"\",\n      redirect: { path: \"/1\" }\n    },\n    {\n      path: \"/:pathMatch(.*)*\",\n      name: \"NotFound\",\n      component: () => import(\"../pages/404.vue\")\n    }\n  );\n  return setups.reduce((routes2, setup) => setup(routes2), routes);\n}\n",
+      "start": 1743409708467,
+      "end": 1743409708489,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708489,
+      "end": 1743409708489,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import configs from \"#slidev/configs\";\nimport setups from \"#slidev/setups/routes\";\nexport default function setupRoutes() {\n  const routes = [];\n  function passwordGuard(to) {\n    if (!configs.remote || configs.remote === to.query.password)\n      return true;\n    if (configs.remote && to.query.password === void 0) {\n      const password = prompt(\"Enter password\");\n      if (configs.remote === password)\n        return true;\n    }\n    if (to.params.no)\n      return { path: `/${to.params.no}` };\n    return { path: \"\" };\n  }\n  if (true) {\n    routes.push(\n      {\n        name: \"entry\",\n        path: \"/entry\",\n        component: () => __vitePreload(() => import(\"../pages/entry.vue\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"overview\",\n        path: \"/overview\",\n        component: () => __vitePreload(() => import(\"../pages/overview.vue\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"notes\",\n        path: \"/notes\",\n        component: () => __vitePreload(() => import(\"../pages/notes.vue\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0),\n        beforeEnter: passwordGuard\n      },\n      {\n        name: \"presenter\",\n        path: \"/presenter/:no\",\n        component: () => __vitePreload(() => import(\"../pages/presenter.vue\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0),\n        beforeEnter: passwordGuard\n      },\n      {\n        path: \"/presenter\",\n        redirect: { path: \"/presenter/1\" }\n      }\n    );\n  }\n  if (false) {\n    routes.push(\n      {\n        name: \"print\",\n        path: \"/print\",\n        component: () => null,\n        beforeEnter: passwordGuard\n      },\n      {\n        path: \"/presenter/print\",\n        component: () => null,\n        beforeEnter: passwordGuard\n      }\n    );\n  }\n  if (false) {\n    routes.push(\n      {\n        name: \"export\",\n        path: \"/export/:no?\",\n        component: () => null,\n        beforeEnter: passwordGuard\n      }\n    );\n  }\n  routes.push(\n    {\n      name: \"play\",\n      path: \"/:no\",\n      component: () => __vitePreload(() => import(\"../pages/play.vue\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0)\n    },\n    {\n      path: \"\",\n      redirect: { path: \"/1\" }\n    },\n    {\n      path: \"/:pathMatch(.*)*\",\n      name: \"NotFound\",\n      component: () => __vitePreload(() => import(\"../pages/404.vue\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0)\n    }\n  );\n  return setups.reduce((routes2, setup) => setup(routes2), routes);\n}\n",
+      "start": 1743409708489,
+      "end": 1743409708490,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708490,
+      "end": 1743409708490,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/context.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { injectLocal, objectOmit } from '@vueuse/core'\nimport { computed, ref, toRef } from 'vue'\nimport {\n  FRONTMATTER_FIELDS,\n  HEADMATTER_FIELDS,\n  injectionClicksContext,\n  injectionCurrentPage,\n  injectionFrontmatter,\n  injectionRenderContext,\n  injectionRoute,\n  injectionSlideScale,\n  injectionSlidevContext,\n  injectionSlideZoom,\n} from './constants'\n\n/**\n * Get the current slide context, should be called inside the setup function of a component inside slide\n */\nexport function useSlideContext() {\n  const $slidev = injectLocal(injectionSlidevContext)!\n  const $nav = toRef($slidev, 'nav')\n  const $clicksContext = injectLocal(injectionClicksContext)!.value\n  const $clicks = toRef($clicksContext, 'current')\n  const $page = injectLocal(injectionCurrentPage)!\n  const $renderContext = injectLocal(injectionRenderContext)!\n  const $frontmatter = injectLocal(injectionFrontmatter, {})\n  const $route = injectLocal(injectionRoute, undefined)\n  const $scale = injectLocal(injectionSlideScale, ref(1))\n  const $zoom = injectLocal(injectionSlideZoom, computed(() => 1))\n\n  return {\n    $slidev,\n    $nav,\n    $clicksContext,\n    $clicks,\n    $page,\n    $route,\n    $renderContext,\n    $frontmatter,\n    $scale,\n    $zoom,\n  }\n}\n\nexport type SlideContext = ReturnType<typeof useSlideContext>\n\n/**\n * Convert frontmatter options to props for v-bind\n * It removes known options fields, and expose an extra `frontmatter` field that contains full frontmatter\n *\n * @internal\n */\nexport function frontmatterToProps(frontmatter: Record<string, any>, pageNo: number) {\n  return {\n    ...objectOmit(frontmatter, pageNo === 0 ? HEADMATTER_FIELDS : FRONTMATTER_FIELDS),\n    frontmatter,\n  }\n}\n",
+      "start": 1743409708714,
+      "end": 1743409708716,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708716,
+      "end": 1743409708716,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { injectLocal, objectOmit } from \"@vueuse/core\";\nimport { computed, ref, toRef } from \"vue\";\nimport {\n  FRONTMATTER_FIELDS,\n  HEADMATTER_FIELDS,\n  injectionClicksContext,\n  injectionCurrentPage,\n  injectionFrontmatter,\n  injectionRenderContext,\n  injectionRoute,\n  injectionSlideScale,\n  injectionSlidevContext,\n  injectionSlideZoom\n} from \"./constants\";\nexport function useSlideContext() {\n  const $slidev = injectLocal(injectionSlidevContext);\n  const $nav = toRef($slidev, \"nav\");\n  const $clicksContext = injectLocal(injectionClicksContext).value;\n  const $clicks = toRef($clicksContext, \"current\");\n  const $page = injectLocal(injectionCurrentPage);\n  const $renderContext = injectLocal(injectionRenderContext);\n  const $frontmatter = injectLocal(injectionFrontmatter, {});\n  const $route = injectLocal(injectionRoute, void 0);\n  const $scale = injectLocal(injectionSlideScale, ref(1));\n  const $zoom = injectLocal(injectionSlideZoom, computed(() => 1));\n  return {\n    $slidev,\n    $nav,\n    $clicksContext,\n    $clicks,\n    $page,\n    $route,\n    $renderContext,\n    $frontmatter,\n    $scale,\n    $zoom\n  };\n}\nexport function frontmatterToProps(frontmatter, pageNo) {\n  return {\n    ...objectOmit(frontmatter, pageNo === 0 ? HEADMATTER_FIELDS : FRONTMATTER_FIELDS),\n    frontmatter\n  };\n}\n",
+      "start": 1743409708716,
+      "end": 1743409708879,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/context.ts"
+        ],
+        "sourcesContent": [
+          "import { injectLocal, objectOmit } from '@vueuse/core'\nimport { computed, ref, toRef } from 'vue'\nimport {\n  FRONTMATTER_FIELDS,\n  HEADMATTER_FIELDS,\n  injectionClicksContext,\n  injectionCurrentPage,\n  injectionFrontmatter,\n  injectionRenderContext,\n  injectionRoute,\n  injectionSlideScale,\n  injectionSlidevContext,\n  injectionSlideZoom,\n} from './constants'\n\n/**\n * Get the current slide context, should be called inside the setup function of a component inside slide\n */\nexport function useSlideContext() {\n  const $slidev = injectLocal(injectionSlidevContext)!\n  const $nav = toRef($slidev, 'nav')\n  const $clicksContext = injectLocal(injectionClicksContext)!.value\n  const $clicks = toRef($clicksContext, 'current')\n  const $page = injectLocal(injectionCurrentPage)!\n  const $renderContext = injectLocal(injectionRenderContext)!\n  const $frontmatter = injectLocal(injectionFrontmatter, {})\n  const $route = injectLocal(injectionRoute, undefined)\n  const $scale = injectLocal(injectionSlideScale, ref(1))\n  const $zoom = injectLocal(injectionSlideZoom, computed(() => 1))\n\n  return {\n    $slidev,\n    $nav,\n    $clicksContext,\n    $clicks,\n    $page,\n    $route,\n    $renderContext,\n    $frontmatter,\n    $scale,\n    $zoom,\n  }\n}\n\nexport type SlideContext = ReturnType<typeof useSlideContext>\n\n/**\n * Convert frontmatter options to props for v-bind\n * It removes known options fields, and expose an extra `frontmatter` field that contains full frontmatter\n *\n * @internal\n */\nexport function frontmatterToProps(frontmatter: Record<string, any>, pageNo: number) {\n  return {\n    ...objectOmit(frontmatter, pageNo === 0 ? HEADMATTER_FIELDS : FRONTMATTER_FIELDS),\n    frontmatter,\n  }\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,aAAa,kBAAkB;AACxC,SAAS,UAAU,KAAK,aAAa;AACrC;AAAA,EACE;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,OACK;AAKA,gBAAS,kBAAkB;AAChC,QAAM,UAAU,YAAY,sBAAsB;AAClD,QAAM,OAAO,MAAM,SAAS,KAAK;AACjC,QAAM,iBAAiB,YAAY,sBAAsB,EAAG;AAC5D,QAAM,UAAU,MAAM,gBAAgB,SAAS;AAC/C,QAAM,QAAQ,YAAY,oBAAoB;AAC9C,QAAM,iBAAiB,YAAY,sBAAsB;AACzD,QAAM,eAAe,YAAY,sBAAsB,CAAC,CAAC;AACzD,QAAM,SAAS,YAAY,gBAAgB,MAAS;AACpD,QAAM,SAAS,YAAY,qBAAqB,IAAI,CAAC,CAAC;AACtD,QAAM,QAAQ,YAAY,oBAAoB,SAAS,MAAM,CAAC,CAAC;AAE/D,SAAO;AAAA,IACL;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,EACF;AACF;AAUO,gBAAS,mBAAmB,aAAkC,QAAgB;AACnF,SAAO;AAAA,IACL,GAAG,WAAW,aAAa,WAAW,IAAI,oBAAoB,kBAAkB;AAAA,IAChF;AAAA,EACF;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "normal"
+    }
+  ]
+}

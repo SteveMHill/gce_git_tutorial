@@ -1,0 +1,163 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/index.html",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"slidev:entry\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Bytes, Bugs and Biology - Slidev</title>\n<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Avenir+Next:wght@200;400;600&family=Nunito+Sans:wght@200;400;600&family=Fira+Code:wght@200;400;600&display=swap\" type=\"text/css\">\n<link rel=\"icon\" href=\"https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png\">\n<meta property=\"slidev:version\" content=\"51.5.0\">\n<meta property=\"og:title\" content=\"Bytes, Bugs and Biology - Slidev\"></head>\n<body>\n<div id=\"app\"></div>\n<script type=\"module\" src=\"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/main.ts\"></script>\n<div id=\"mermaid-rendering-container\"></div>\n</body>\n</html>\n",
+      "start": 1743409708154,
+      "end": 1743409708157,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708157,
+      "end": 1743409708157,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708157,
+      "end": 1743409708157,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708157,
+      "end": 1743409708158,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708158,
+      "end": 1743409708158,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708159,
+      "end": 1743409708159,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708159,
+      "end": 1743409708159,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708159,
+      "end": 1743409708159,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708159,
+      "end": 1743409708159,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708159,
+      "end": 1743409708159,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708160,
+      "end": 1743409708160,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708160,
+      "end": 1743409708160,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708160,
+      "end": 1743409708160,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708160,
+      "end": 1743409708160,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708160,
+      "end": 1743409708160,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708160,
+      "end": 1743409708160,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708160,
+      "end": 1743409708160,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "result": "import \"vite/modulepreload-polyfill\";\n\nimport \"/@fs/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/main.ts\"",
+      "start": 1743409708160,
+      "end": 1743409708349,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708349,
+      "end": 1743409708349,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708349,
+      "end": 1743409708349,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708349,
+      "end": 1743409708349,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708349,
+      "end": 1743409708349,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708350,
+      "end": 1743409708350,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708350,
+      "end": 1743409708350,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708350,
+      "end": 1743409708350,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708350,
+      "end": 1743409708350,
+      "order": "normal"
+    }
+  ]
+}

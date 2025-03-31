@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/schema/yaml-1.1/timestamp.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { stringifyNumber } from '../../stringify/stringifyNumber.js';\n\n/** Internal types handle bigint as number, because TS can't figure it out. */\nfunction parseSexagesimal(str, asBigInt) {\n    const sign = str[0];\n    const parts = sign === '-' || sign === '+' ? str.substring(1) : str;\n    const num = (n) => asBigInt ? BigInt(n) : Number(n);\n    const res = parts\n        .replace(/_/g, '')\n        .split(':')\n        .reduce((res, p) => res * num(60) + num(p), num(0));\n    return (sign === '-' ? num(-1) * res : res);\n}\n/**\n * hhhh:mm:ss.sss\n *\n * Internal types handle bigint as number, because TS can't figure it out.\n */\nfunction stringifySexagesimal(node) {\n    let { value } = node;\n    let num = (n) => n;\n    if (typeof value === 'bigint')\n        num = n => BigInt(n);\n    else if (isNaN(value) || !isFinite(value))\n        return stringifyNumber(node);\n    let sign = '';\n    if (value < 0) {\n        sign = '-';\n        value *= num(-1);\n    }\n    const _60 = num(60);\n    const parts = [value % _60]; // seconds, including ms\n    if (value < 60) {\n        parts.unshift(0); // at least one : is required\n    }\n    else {\n        value = (value - parts[0]) / _60;\n        parts.unshift(value % _60); // minutes\n        if (value >= 60) {\n            value = (value - parts[0]) / _60;\n            parts.unshift(value); // hours\n        }\n    }\n    return (sign +\n        parts\n            .map(n => String(n).padStart(2, '0'))\n            .join(':')\n            .replace(/000000\\d*$/, '') // % 60 may introduce error\n    );\n}\nconst intTime = {\n    identify: value => typeof value === 'bigint' || Number.isInteger(value),\n    default: true,\n    tag: 'tag:yaml.org,2002:int',\n    format: 'TIME',\n    test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+$/,\n    resolve: (str, _onError, { intAsBigInt }) => parseSexagesimal(str, intAsBigInt),\n    stringify: stringifySexagesimal\n};\nconst floatTime = {\n    identify: value => typeof value === 'number',\n    default: true,\n    tag: 'tag:yaml.org,2002:float',\n    format: 'TIME',\n    test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*$/,\n    resolve: str => parseSexagesimal(str, false),\n    stringify: stringifySexagesimal\n};\nconst timestamp = {\n    identify: value => value instanceof Date,\n    default: true,\n    tag: 'tag:yaml.org,2002:timestamp',\n    // If the time zone is omitted, the timestamp is assumed to be specified in UTC. The time part\n    // may be omitted altogether, resulting in a date format. In such a case, the time part is\n    // assumed to be 00:00:00Z (start of day, UTC).\n    test: RegExp('^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})' + // YYYY-Mm-Dd\n        '(?:' + // time is optional\n        '(?:t|T|[ \\\\t]+)' + // t | T | whitespace\n        '([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}(\\\\.[0-9]+)?)' + // Hh:Mm:Ss(.ss)?\n        '(?:[ \\\\t]*(Z|[-+][012]?[0-9](?::[0-9]{2})?))?' + // Z | +5 | -03:30\n        ')?$'),\n    resolve(str) {\n        const match = str.match(timestamp.test);\n        if (!match)\n            throw new Error('!!timestamp expects a date, starting with yyyy-mm-dd');\n        const [, year, month, day, hour, minute, second] = match.map(Number);\n        const millisec = match[7] ? Number((match[7] + '00').substr(1, 3)) : 0;\n        let date = Date.UTC(year, month - 1, day, hour || 0, minute || 0, second || 0, millisec);\n        const tz = match[8];\n        if (tz && tz !== 'Z') {\n            let d = parseSexagesimal(tz, false);\n            if (Math.abs(d) < 30)\n                d *= 60;\n            date -= 60000 * d;\n        }\n        return new Date(date);\n    },\n    stringify: ({ value }) => value?.toISOString().replace(/(T00:00:00)?\\.000Z$/, '') ?? ''\n};\n\nexport { floatTime, intTime, timestamp };\n",
+      "start": 1743409708653,
+      "end": 1743409708661,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    }
+  ]
+}

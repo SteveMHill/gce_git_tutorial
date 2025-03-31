@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/compose/compose-collection.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isNode } from '../nodes/identity.js';\nimport { Scalar } from '../nodes/Scalar.js';\nimport { YAMLMap } from '../nodes/YAMLMap.js';\nimport { YAMLSeq } from '../nodes/YAMLSeq.js';\nimport { resolveBlockMap } from './resolve-block-map.js';\nimport { resolveBlockSeq } from './resolve-block-seq.js';\nimport { resolveFlowCollection } from './resolve-flow-collection.js';\n\nfunction resolveCollection(CN, ctx, token, onError, tagName, tag) {\n    const coll = token.type === 'block-map'\n        ? resolveBlockMap(CN, ctx, token, onError, tag)\n        : token.type === 'block-seq'\n            ? resolveBlockSeq(CN, ctx, token, onError, tag)\n            : resolveFlowCollection(CN, ctx, token, onError, tag);\n    const Coll = coll.constructor;\n    // If we got a tagName matching the class, or the tag name is '!',\n    // then use the tagName from the node class used to create it.\n    if (tagName === '!' || tagName === Coll.tagName) {\n        coll.tag = Coll.tagName;\n        return coll;\n    }\n    if (tagName)\n        coll.tag = tagName;\n    return coll;\n}\nfunction composeCollection(CN, ctx, token, props, onError) {\n    const tagToken = props.tag;\n    const tagName = !tagToken\n        ? null\n        : ctx.directives.tagName(tagToken.source, msg => onError(tagToken, 'TAG_RESOLVE_FAILED', msg));\n    if (token.type === 'block-seq') {\n        const { anchor, newlineAfterProp: nl } = props;\n        const lastProp = anchor && tagToken\n            ? anchor.offset > tagToken.offset\n                ? anchor\n                : tagToken\n            : (anchor ?? tagToken);\n        if (lastProp && (!nl || nl.offset < lastProp.offset)) {\n            const message = 'Missing newline after block sequence props';\n            onError(lastProp, 'MISSING_CHAR', message);\n        }\n    }\n    const expType = token.type === 'block-map'\n        ? 'map'\n        : token.type === 'block-seq'\n            ? 'seq'\n            : token.start.source === '{'\n                ? 'map'\n                : 'seq';\n    // shortcut: check if it's a generic YAMLMap or YAMLSeq\n    // before jumping into the custom tag logic.\n    if (!tagToken ||\n        !tagName ||\n        tagName === '!' ||\n        (tagName === YAMLMap.tagName && expType === 'map') ||\n        (tagName === YAMLSeq.tagName && expType === 'seq')) {\n        return resolveCollection(CN, ctx, token, onError, tagName);\n    }\n    let tag = ctx.schema.tags.find(t => t.tag === tagName && t.collection === expType);\n    if (!tag) {\n        const kt = ctx.schema.knownTags[tagName];\n        if (kt && kt.collection === expType) {\n            ctx.schema.tags.push(Object.assign({}, kt, { default: false }));\n            tag = kt;\n        }\n        else {\n            if (kt) {\n                onError(tagToken, 'BAD_COLLECTION_TYPE', `${kt.tag} used for ${expType} collection, but expects ${kt.collection ?? 'scalar'}`, true);\n            }\n            else {\n                onError(tagToken, 'TAG_RESOLVE_FAILED', `Unresolved tag: ${tagName}`, true);\n            }\n            return resolveCollection(CN, ctx, token, onError, tagName);\n        }\n    }\n    const coll = resolveCollection(CN, ctx, token, onError, tagName, tag);\n    const res = tag.resolve?.(coll, msg => onError(tagToken, 'TAG_RESOLVE_FAILED', msg), ctx.options) ?? coll;\n    const node = isNode(res)\n        ? res\n        : new Scalar(res);\n    node.range = coll.range;\n    node.tag = tagName;\n    if (tag?.format)\n        node.format = tag.format;\n    return node;\n}\n\nexport { composeCollection };\n",
+      "start": 1743409708667,
+      "end": 1743409708670,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708670,
+      "end": 1743409708670,
+      "order": "normal"
+    }
+  ]
+}

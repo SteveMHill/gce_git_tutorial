@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/stringify/stringifyPair.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isCollection, isNode, isScalar, isSeq } from '../nodes/identity.js';\nimport { Scalar } from '../nodes/Scalar.js';\nimport { stringify } from './stringify.js';\nimport { lineComment, indentComment } from './stringifyComment.js';\n\nfunction stringifyPair({ key, value }, ctx, onComment, onChompKeep) {\n    const { allNullValues, doc, indent, indentStep, options: { commentString, indentSeq, simpleKeys } } = ctx;\n    let keyComment = (isNode(key) && key.comment) || null;\n    if (simpleKeys) {\n        if (keyComment) {\n            throw new Error('With simple keys, key nodes cannot have comments');\n        }\n        if (isCollection(key) || (!isNode(key) && typeof key === 'object')) {\n            const msg = 'With simple keys, collection cannot be used as a key value';\n            throw new Error(msg);\n        }\n    }\n    let explicitKey = !simpleKeys &&\n        (!key ||\n            (keyComment && value == null && !ctx.inFlow) ||\n            isCollection(key) ||\n            (isScalar(key)\n                ? key.type === Scalar.BLOCK_FOLDED || key.type === Scalar.BLOCK_LITERAL\n                : typeof key === 'object'));\n    ctx = Object.assign({}, ctx, {\n        allNullValues: false,\n        implicitKey: !explicitKey && (simpleKeys || !allNullValues),\n        indent: indent + indentStep\n    });\n    let keyCommentDone = false;\n    let chompKeep = false;\n    let str = stringify(key, ctx, () => (keyCommentDone = true), () => (chompKeep = true));\n    if (!explicitKey && !ctx.inFlow && str.length > 1024) {\n        if (simpleKeys)\n            throw new Error('With simple keys, single line scalar must not span more than 1024 characters');\n        explicitKey = true;\n    }\n    if (ctx.inFlow) {\n        if (allNullValues || value == null) {\n            if (keyCommentDone && onComment)\n                onComment();\n            return str === '' ? '?' : explicitKey ? `? ${str}` : str;\n        }\n    }\n    else if ((allNullValues && !simpleKeys) || (value == null && explicitKey)) {\n        str = `? ${str}`;\n        if (keyComment && !keyCommentDone) {\n            str += lineComment(str, ctx.indent, commentString(keyComment));\n        }\n        else if (chompKeep && onChompKeep)\n            onChompKeep();\n        return str;\n    }\n    if (keyCommentDone)\n        keyComment = null;\n    if (explicitKey) {\n        if (keyComment)\n            str += lineComment(str, ctx.indent, commentString(keyComment));\n        str = `? ${str}\\n${indent}:`;\n    }\n    else {\n        str = `${str}:`;\n        if (keyComment)\n            str += lineComment(str, ctx.indent, commentString(keyComment));\n    }\n    let vsb, vcb, valueComment;\n    if (isNode(value)) {\n        vsb = !!value.spaceBefore;\n        vcb = value.commentBefore;\n        valueComment = value.comment;\n    }\n    else {\n        vsb = false;\n        vcb = null;\n        valueComment = null;\n        if (value && typeof value === 'object')\n            value = doc.createNode(value);\n    }\n    ctx.implicitKey = false;\n    if (!explicitKey && !keyComment && isScalar(value))\n        ctx.indentAtStart = str.length + 1;\n    chompKeep = false;\n    if (!indentSeq &&\n        indentStep.length >= 2 &&\n        !ctx.inFlow &&\n        !explicitKey &&\n        isSeq(value) &&\n        !value.flow &&\n        !value.tag &&\n        !value.anchor) {\n        // If indentSeq === false, consider '- ' as part of indentation where possible\n        ctx.indent = ctx.indent.substring(2);\n    }\n    let valueCommentDone = false;\n    const valueStr = stringify(value, ctx, () => (valueCommentDone = true), () => (chompKeep = true));\n    let ws = ' ';\n    if (keyComment || vsb || vcb) {\n        ws = vsb ? '\\n' : '';\n        if (vcb) {\n            const cs = commentString(vcb);\n            ws += `\\n${indentComment(cs, ctx.indent)}`;\n        }\n        if (valueStr === '' && !ctx.inFlow) {\n            if (ws === '\\n')\n                ws = '\\n\\n';\n        }\n        else {\n            ws += `\\n${ctx.indent}`;\n        }\n    }\n    else if (!explicitKey && isCollection(value)) {\n        const vs0 = valueStr[0];\n        const nl0 = valueStr.indexOf('\\n');\n        const hasNewline = nl0 !== -1;\n        const flow = ctx.inFlow ?? value.flow ?? value.items.length === 0;\n        if (hasNewline || !flow) {\n            let hasPropsLine = false;\n            if (hasNewline && (vs0 === '&' || vs0 === '!')) {\n                let sp0 = valueStr.indexOf(' ');\n                if (vs0 === '&' &&\n                    sp0 !== -1 &&\n                    sp0 < nl0 &&\n                    valueStr[sp0 + 1] === '!') {\n                    sp0 = valueStr.indexOf(' ', sp0 + 1);\n                }\n                if (sp0 === -1 || nl0 < sp0)\n                    hasPropsLine = true;\n            }\n            if (!hasPropsLine)\n                ws = `\\n${ctx.indent}`;\n        }\n    }\n    else if (valueStr === '' || valueStr[0] === '\\n') {\n        ws = '';\n    }\n    str += ws + valueStr;\n    if (ctx.inFlow) {\n        if (valueCommentDone && onComment)\n            onComment();\n    }\n    else if (valueComment && !valueCommentDone) {\n        str += lineComment(str, ctx.indent, commentString(valueComment));\n    }\n    else if (chompKeep && onChompKeep) {\n        onChompKeep();\n    }\n    return str;\n}\n\nexport { stringifyPair };\n",
+      "start": 1743409708642,
+      "end": 1743409708651,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708651,
+      "end": 1743409708651,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708652,
+      "end": 1743409708652,
+      "order": "normal"
+    }
+  ]
+}

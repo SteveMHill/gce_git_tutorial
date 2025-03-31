@@ -1,0 +1,198 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/presenter.vue?vue&type=style&index=0&scoped=9c4d0758&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.slidev-presenter {\n  --slidev-controls-foreground: current;\n}\n\n.grid-container {\n  --uno: bg-gray/20;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  gap: 1px 1px;\n}\n\n.grid-container.layout1 {\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'main main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout2 {\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'note main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout3 {\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: 1fr 1fr min-content;\n  grid-template-areas:\n    'note next'\n    'main next'\n    'bottom bottom';\n}\n\n@media (max-aspect-ratio: 3/5) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr;\n    grid-template-rows: 1fr 1fr 1fr min-content;\n    grid-template-areas:\n      'main'\n      'note'\n      'next'\n      'bottom';\n  }\n}\n\n@media (min-aspect-ratio: 1/1) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr 1.1fr 0.9fr;\n    grid-template-rows: 1fr 2fr min-content;\n    grid-template-areas:\n      'main main next'\n      'main main note'\n      'bottom bottom bottom';\n  }\n}\n\n.progress-bar {\n  --uno: fixed left-0 right-0 top-0;\n}\n\n.grid-section {\n  --uno: bg-main;\n}\n\n.grid-section.top {\n  grid-area: top;\n}\n.grid-section.main {\n  grid-area: main;\n}\n.grid-section.next {\n  grid-area: next;\n}\n.grid-section.note {\n  grid-area: note;\n}\n.grid-section.bottom {\n  grid-area: bottom;\n}\n",
+      "start": 1743409708698,
+      "end": 1743409708698
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708699,
+      "end": 1743409708699,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708699,
+      "end": 1743409708699,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": "\n.slidev-presenter {\n  --slidev-controls-foreground: current;\n}\n\n.grid-container {\n  background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  gap: 1px 1px;\n}\n\n.grid-container.layout1 {\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'main main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout2 {\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'note main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout3 {\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: 1fr 1fr min-content;\n  grid-template-areas:\n    'note next'\n    'main next'\n    'bottom bottom';\n}\n\n@media (max-aspect-ratio: 3/5) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr;\n    grid-template-rows: 1fr 1fr 1fr min-content;\n    grid-template-areas:\n      'main'\n      'note'\n      'next'\n      'bottom';\n  }\n}\n\n@media (min-aspect-ratio: 1/1) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr 1.1fr 0.9fr;\n    grid-template-rows: 1fr 2fr min-content;\n    grid-template-areas:\n      'main main next'\n      'main main note'\n      'bottom bottom bottom';\n  }\n}\n\n.progress-bar {\n  position:fixed;left:0;right:0;top:0;\n}\n\n.grid-section {\n  ;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n}.dark .grid-section{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n\n.grid-section.top {\n  grid-area: top;\n}\n.grid-section.main {\n  grid-area: main;\n}\n.grid-section.next {\n  grid-area: next;\n}\n.grid-section.note {\n  grid-area: note;\n}\n.grid-section.bottom {\n  grid-area: bottom;\n}\n",
+      "start": 1743409708699,
+      "end": 1743409708702,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": ";AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC;AACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,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AC,CAAC,CAAC,CAAC,CAAC;AAChB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/presenter.vue?vue&type=style&index=0&scoped=9c4d0758&lang.css"
+        ],
+        "sourcesContent": [
+          "\n.slidev-presenter {\n  --slidev-controls-foreground: current;\n}\n\n.grid-container {\n  background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  gap: 1px 1px;\n}\n\n.grid-container.layout1 {\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'main main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout2 {\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'note main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout3 {\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: 1fr 1fr min-content;\n  grid-template-areas:\n    'note next'\n    'main next'\n    'bottom bottom';\n}\n\n@media (max-aspect-ratio: 3/5) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr;\n    grid-template-rows: 1fr 1fr 1fr min-content;\n    grid-template-areas:\n      'main'\n      'note'\n      'next'\n      'bottom';\n  }\n}\n\n@media (min-aspect-ratio: 1/1) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr 1.1fr 0.9fr;\n    grid-template-rows: 1fr 2fr min-content;\n    grid-template-areas:\n      'main main next'\n      'main main note'\n      'bottom bottom bottom';\n  }\n}\n\n.progress-bar {\n  position:fixed;left:0;right:0;top:0;\n}\n\n.grid-section {\n  ;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n}.dark .grid-section{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n\n.grid-section.top {\n  grid-area: top;\n}\n.grid-section.main {\n  grid-area: main;\n}\n.grid-section.next {\n  grid-area: next;\n}\n.grid-section.note {\n  grid-area: note;\n}\n.grid-section.bottom {\n  grid-area: bottom;\n}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "\n.slidev-presenter {\n  --slidev-controls-foreground: current;\n}\n\n.grid-container {\n  background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  gap: 1px 1px;\n}\n\n.grid-container.layout1 {\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'main main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout2 {\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'note main'\n    'note next'\n    'bottom bottom';\n}\n\n.grid-container.layout3 {\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: 1fr 1fr min-content;\n  grid-template-areas:\n    'note next'\n    'main next'\n    'bottom bottom';\n}\n\n@media (max-aspect-ratio: 3/5) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr;\n    grid-template-rows: 1fr 1fr 1fr min-content;\n    grid-template-areas:\n      'main'\n      'note'\n      'next'\n      'bottom';\n  }\n}\n\n@media (min-aspect-ratio: 1/1) {\n  .grid-container.layout1 {\n    grid-template-columns: 1fr 1.1fr 0.9fr;\n    grid-template-rows: 1fr 2fr min-content;\n    grid-template-areas:\n      'main main next'\n      'main main note'\n      'bottom bottom bottom';\n  }\n}\n\n.progress-bar {\n  position:fixed;left:0;right:0;top:0;\n}\n\n.grid-section {\n  ;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n}.dark .grid-section{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n\n.grid-section.top {\n  grid-area: top;\n}\n.grid-section.main {\n  grid-area: main;\n}\n.grid-section.next {\n  grid-area: next;\n}\n.grid-section.note {\n  grid-area: note;\n}\n.grid-section.bottom {\n  grid-area: bottom;\n}\n",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708702,
+      "end": 1743409708702,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\n.slidev-presenter[data-v-9c4d0758] {\n  --slidev-controls-foreground: current;\n}\n.grid-container[data-v-9c4d0758] {\n  background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  gap: 1px 1px;\n}\n.grid-container.layout1[data-v-9c4d0758] {\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'main main'\n    'note next'\n    'bottom bottom';\n}\n.grid-container.layout2[data-v-9c4d0758] {\n  grid-template-columns: 3fr 2fr;\n  grid-template-rows: 2fr 1fr min-content;\n  grid-template-areas:\n    'note main'\n    'note next'\n    'bottom bottom';\n}\n.grid-container.layout3[data-v-9c4d0758] {\n  grid-template-columns: 2fr 3fr;\n  grid-template-rows: 1fr 1fr min-content;\n  grid-template-areas:\n    'note next'\n    'main next'\n    'bottom bottom';\n}\n@media (max-aspect-ratio: 3/5) {\n.grid-container.layout1[data-v-9c4d0758] {\n    grid-template-columns: 1fr;\n    grid-template-rows: 1fr 1fr 1fr min-content;\n    grid-template-areas:\n      'main'\n      'note'\n      'next'\n      'bottom';\n}\n}\n@media (min-aspect-ratio: 1/1) {\n.grid-container.layout1[data-v-9c4d0758] {\n    grid-template-columns: 1fr 1.1fr 0.9fr;\n    grid-template-rows: 1fr 2fr min-content;\n    grid-template-areas:\n      'main main next'\n      'main main note'\n      'bottom bottom bottom';\n}\n}\n.progress-bar[data-v-9c4d0758] {\n  position:fixed;left:0;right:0;top:0;\n}\n.grid-section[data-v-9c4d0758] {\n  ;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity)) /* #fff */;\n}.dark .grid-section[data-v-9c4d0758]{--un-bg-opacity:1;background-color:rgb(18 18 18 / var(--un-bg-opacity)) /* #121212 */;}\n.grid-section.top[data-v-9c4d0758] {\n  grid-area: top;\n}\n.grid-section.main[data-v-9c4d0758] {\n  grid-area: main;\n}\n.grid-section.next[data-v-9c4d0758] {\n  grid-area: next;\n}\n.grid-section.note[data-v-9c4d0758] {\n  grid-area: note;\n}\n.grid-section.bottom[data-v-9c4d0758] {\n  grid-area: bottom;\n}\n",
+      "start": 1743409708702,
+      "end": 1743409708704,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/presenter.vue?vue&type=style&index=0&scoped=9c4d0758&lang.css"
+        ],
+        "sourcesContent": [
+          ""
+        ],
+        "names": [],
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "normal"
+    }
+  ]
+}

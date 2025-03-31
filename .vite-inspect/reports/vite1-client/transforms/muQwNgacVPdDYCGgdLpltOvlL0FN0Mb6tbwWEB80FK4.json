@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/public-api.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { Composer } from './compose/composer.js';\nimport { Document } from './doc/Document.js';\nimport { prettifyError, YAMLParseError } from './errors.js';\nimport { warn } from './log.js';\nimport { isDocument } from './nodes/identity.js';\nimport { LineCounter } from './parse/line-counter.js';\nimport { Parser } from './parse/parser.js';\n\nfunction parseOptions(options) {\n    const prettyErrors = options.prettyErrors !== false;\n    const lineCounter = options.lineCounter || (prettyErrors && new LineCounter()) || null;\n    return { lineCounter, prettyErrors };\n}\n/**\n * Parse the input as a stream of YAML documents.\n *\n * Documents should be separated from each other by `...` or `---` marker lines.\n *\n * @returns If an empty `docs` array is returned, it will be of type\n *   EmptyStream and contain additional stream information. In\n *   TypeScript, you should use `'empty' in docs` as a type guard for it.\n */\nfunction parseAllDocuments(source, options = {}) {\n    const { lineCounter, prettyErrors } = parseOptions(options);\n    const parser = new Parser(lineCounter?.addNewLine);\n    const composer = new Composer(options);\n    const docs = Array.from(composer.compose(parser.parse(source)));\n    if (prettyErrors && lineCounter)\n        for (const doc of docs) {\n            doc.errors.forEach(prettifyError(source, lineCounter));\n            doc.warnings.forEach(prettifyError(source, lineCounter));\n        }\n    if (docs.length > 0)\n        return docs;\n    return Object.assign([], { empty: true }, composer.streamInfo());\n}\n/** Parse an input string into a single YAML.Document */\nfunction parseDocument(source, options = {}) {\n    const { lineCounter, prettyErrors } = parseOptions(options);\n    const parser = new Parser(lineCounter?.addNewLine);\n    const composer = new Composer(options);\n    // `doc` is always set by compose.end(true) at the very latest\n    let doc = null;\n    for (const _doc of composer.compose(parser.parse(source), true, source.length)) {\n        if (!doc)\n            doc = _doc;\n        else if (doc.options.logLevel !== 'silent') {\n            doc.errors.push(new YAMLParseError(_doc.range.slice(0, 2), 'MULTIPLE_DOCS', 'Source contains multiple documents; please use YAML.parseAllDocuments()'));\n            break;\n        }\n    }\n    if (prettyErrors && lineCounter) {\n        doc.errors.forEach(prettifyError(source, lineCounter));\n        doc.warnings.forEach(prettifyError(source, lineCounter));\n    }\n    return doc;\n}\nfunction parse(src, reviver, options) {\n    let _reviver = undefined;\n    if (typeof reviver === 'function') {\n        _reviver = reviver;\n    }\n    else if (options === undefined && reviver && typeof reviver === 'object') {\n        options = reviver;\n    }\n    const doc = parseDocument(src, options);\n    if (!doc)\n        return null;\n    doc.warnings.forEach(warning => warn(doc.options.logLevel, warning));\n    if (doc.errors.length > 0) {\n        if (doc.options.logLevel !== 'silent')\n            throw doc.errors[0];\n        else\n            doc.errors = [];\n    }\n    return doc.toJS(Object.assign({ reviver: _reviver }, options));\n}\nfunction stringify(value, replacer, options) {\n    let _replacer = null;\n    if (typeof replacer === 'function' || Array.isArray(replacer)) {\n        _replacer = replacer;\n    }\n    else if (options === undefined && replacer) {\n        options = replacer;\n    }\n    if (typeof options === 'string')\n        options = options.length;\n    if (typeof options === 'number') {\n        const indent = Math.round(options);\n        options = indent < 1 ? undefined : indent > 8 ? { indent: 8 } : { indent };\n    }\n    if (value === undefined) {\n        const { keepUndefined } = options ?? replacer ?? {};\n        if (!keepUndefined)\n            return undefined;\n    }\n    if (isDocument(value) && !_replacer)\n        return value.toString(options);\n    return new Document(value, _replacer, options).toString(options);\n}\n\nexport { parse, parseAllDocuments, parseDocument, stringify };\n",
+      "start": 1743409708622,
+      "end": 1743409708635,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708635,
+      "end": 1743409708635,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708636,
+      "end": 1743409708636,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708636,
+      "end": 1743409708636,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708636,
+      "end": 1743409708636,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708636,
+      "end": 1743409708636,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708636,
+      "end": 1743409708636,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708636,
+      "end": 1743409708636,
+      "order": "normal"
+    }
+  ]
+}

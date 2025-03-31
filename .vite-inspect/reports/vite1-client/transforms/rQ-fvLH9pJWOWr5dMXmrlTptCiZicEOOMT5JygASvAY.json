@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/global-bottom.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!-- global-bottom.vue -->\n<template>\n  <Scroll/>\n  <footer class=\"absolute bottom-5 left-0 right-7 text-right\"><SlideCurrentNo/>/<SlidesTotal/></footer>\n</template>",
+      "start": 1743409708988,
+      "end": 1743409709006,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "result": "<script setup>\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n</script>\n<!-- global-bottom.vue -->\n<template>\n  <Scroll/>\n  <footer class=\"absolute bottom-5 left-0 right-7 text-right\"><SlideCurrentNo/>/<SlidesTotal/></footer>\n</template>",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { resolveComponent as _resolveComponent, createVNode as _createVNode, createTextVNode as _createTextVNode, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"absolute bottom-5 left-0 right-7 text-right\" }\n\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'global-bottom',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n\nreturn (_ctx, _cache) => {\n  const _component_Scroll = _resolveComponent(\"Scroll\")\n  const _component_SlideCurrentNo = _resolveComponent(\"SlideCurrentNo\")\n  const _component_SlidesTotal = _resolveComponent(\"SlidesTotal\")\n\n  return (_openBlock(), _createElementBlock(_Fragment, null, [\n    _createVNode(_component_Scroll),\n    _createElementVNode(\"footer\", _hoisted_1, [\n      _createVNode(_component_SlideCurrentNo),\n      _cache[0] || (_cache[0] = _createTextVNode(\"/\")),\n      _createVNode(_component_SlidesTotal)\n    ])\n  ], 64 /* STABLE_FRAGMENT */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import __unplugin_components_1 from '/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/SlidesTotal.vue';\nimport __unplugin_components_0 from '/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/builtin/SlideCurrentNo.vue';\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, createTextVNode as _createTextVNode, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"absolute bottom-5 left-0 right-7 text-right\" }\n\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'global-bottom',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n\nreturn (_ctx, _cache) => {\n  const _component_Scroll = _resolveComponent(\"Scroll\")\n  const _component_SlideCurrentNo = __unplugin_components_0\n  const _component_SlidesTotal = __unplugin_components_1\n\n  return (_openBlock(), _createElementBlock(_Fragment, null, [\n    _createVNode(_component_Scroll),\n    _createElementVNode(\"footer\", _hoisted_1, [\n      _createVNode(_component_SlideCurrentNo),\n      _cache[0] || (_cache[0] = _createTextVNode(\"/\")),\n      _createVNode(_component_SlidesTotal)\n    ])\n  ], 64 /* STABLE_FRAGMENT */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/global-bottom.vue"
+        ],
+        "sourcesContent": [
+          "import { resolveComponent as _resolveComponent, createVNode as _createVNode, createTextVNode as _createTextVNode, createElementVNode as _createElementVNode, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"absolute bottom-5 left-0 right-7 text-right\" }\n\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'global-bottom',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n/* @slidev-injection */\n\nreturn (_ctx, _cache) => {\n  const _component_Scroll = _resolveComponent(\"Scroll\")\n  const _component_SlideCurrentNo = _resolveComponent(\"SlideCurrentNo\")\n  const _component_SlidesTotal = _resolveComponent(\"SlidesTotal\")\n\n  return (_openBlock(), _createElementBlock(_Fragment, null, [\n    _createVNode(_component_Scroll),\n    _createElementVNode(\"footer\", _hoisted_1, [\n      _createVNode(_component_SlideCurrentNo),\n      _cache[0] || (_cache[0] = _createTextVNode(\"/\")),\n      _createVNode(_component_SlidesTotal)\n    ])\n  ], 64 /* STABLE_FRAGMENT */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main"
+        ],
+        "names": [],
+        "mappings": ";;AAAA,MAAM,CAAC,CAAC,CAAC,gBAAgB,CAAC,EAAE,CAAC,iBAAiB,CAAC,CAAC,WAAW,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,QAAQ,CAAC,EAAE,CAAC,SAAS,CAAC,CAAC,SAAS,CAAC,EAAE,CAAC,UAAU,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,GAAG;;AAElQ,KAAK,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,QAAQ,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;;AAE1E,MAAM,CAAC,CAAC,CAAC,eAAe,CAAC,EAAE,CAAC,gBAAgB,CAAC,CAAC,kBAAkB,CAAC,EAAE,CAAC,mBAAmB,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,EAAE;;AAEzH,KAAK,CAAC,SAAS,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC;AACzB,CAAC,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;;AAEjB,KAAK,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC;AACzG,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,SAAS,CAAC,CAAC;;AAEtB,MAAM,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,KAAK,CAAC,iBAAiB,CAAC,CAAC,CAAC,iBAAiB,CAAC,CAAC,MAAM,CAAC;AACtD,CAAC,CAAC,KAAK,CAAC,yBAAyB,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,KAAK,CAAC,sBAAsB,CAAC,CAAC,CAAC;;AAEjC,CAAC,CAAC,MAAM,CAAC,CAAC,UAAU,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,SAAS,CAAC,CAAC,IAAI,CAAC,CAAC;AAC7D,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,iBAAiB,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,mBAAmB,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,UAAU,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,yBAAyB,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,gBAAgB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,YAAY,CAAC,sBAAsB;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,eAAe,CAAC,CAAC,CAAC,CAAC;AAC9B;AACA;;AAEA;;;;AAIA,MAAM,CAAC,OAAO,CAAC"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709006,
+      "end": 1743409709006,
+      "order": "normal"
+    }
+  ]
+}

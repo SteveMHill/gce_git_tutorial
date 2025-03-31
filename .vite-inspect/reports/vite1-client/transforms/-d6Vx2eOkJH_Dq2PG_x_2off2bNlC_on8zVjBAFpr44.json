@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useSwipeControls.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { Ref } from 'vue'\nimport { timestamp, usePointerSwipe } from '@vueuse/core'\nimport { ref } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { useDrawings } from './useDrawings'\n\nexport function useSwipeControls(root: Ref<HTMLElement | undefined>) {\n  const { next, nextSlide, prev, prevSlide } = useNav()\n  const { isDrawing } = useDrawings()\n\n  const swipeBegin = ref(0)\n  const { direction, distanceX, distanceY } = usePointerSwipe(root, {\n    pointerTypes: ['touch'],\n    onSwipeStart() {\n      if (isDrawing.value)\n        return\n      swipeBegin.value = timestamp()\n    },\n    onSwipeEnd() {\n      if (!swipeBegin.value)\n        return\n      if (isDrawing.value)\n        return\n\n      const x = Math.abs(distanceX.value)\n      const y = Math.abs(distanceY.value)\n      if (x / window.innerWidth > 0.3 || x > 75) {\n        if (direction.value === 'left')\n          next()\n\n        else\n          prev()\n      }\n      else if (y / window.innerHeight > 0.4 || y > 200) {\n        if (direction.value === 'down')\n          prevSlide()\n\n        else\n          nextSlide()\n      }\n    },\n  })\n}\n",
+      "start": 1743409708751,
+      "end": 1743409708775,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708775,
+      "end": 1743409708775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { timestamp, usePointerSwipe } from \"@vueuse/core\";\nimport { ref } from \"vue\";\nimport { useNav } from \"../composables/useNav\";\nimport { useDrawings } from \"./useDrawings\";\nexport function useSwipeControls(root) {\n  const { next, nextSlide, prev, prevSlide } = useNav();\n  const { isDrawing } = useDrawings();\n  const swipeBegin = ref(0);\n  const { direction, distanceX, distanceY } = usePointerSwipe(root, {\n    pointerTypes: [\"touch\"],\n    onSwipeStart() {\n      if (isDrawing.value)\n        return;\n      swipeBegin.value = timestamp();\n    },\n    onSwipeEnd() {\n      if (!swipeBegin.value)\n        return;\n      if (isDrawing.value)\n        return;\n      const x = Math.abs(distanceX.value);\n      const y = Math.abs(distanceY.value);\n      if (x / window.innerWidth > 0.3 || x > 75) {\n        if (direction.value === \"left\")\n          next();\n        else\n          prev();\n      } else if (y / window.innerHeight > 0.4 || y > 200) {\n        if (direction.value === \"down\")\n          prevSlide();\n        else\n          nextSlide();\n      }\n    }\n  });\n}\n",
+      "start": 1743409708775,
+      "end": 1743409708909,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useSwipeControls.ts"
+        ],
+        "sourcesContent": [
+          "import type { Ref } from 'vue'\nimport { timestamp, usePointerSwipe } from '@vueuse/core'\nimport { ref } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { useDrawings } from './useDrawings'\n\nexport function useSwipeControls(root: Ref<HTMLElement | undefined>) {\n  const { next, nextSlide, prev, prevSlide } = useNav()\n  const { isDrawing } = useDrawings()\n\n  const swipeBegin = ref(0)\n  const { direction, distanceX, distanceY } = usePointerSwipe(root, {\n    pointerTypes: ['touch'],\n    onSwipeStart() {\n      if (isDrawing.value)\n        return\n      swipeBegin.value = timestamp()\n    },\n    onSwipeEnd() {\n      if (!swipeBegin.value)\n        return\n      if (isDrawing.value)\n        return\n\n      const x = Math.abs(distanceX.value)\n      const y = Math.abs(distanceY.value)\n      if (x / window.innerWidth > 0.3 || x > 75) {\n        if (direction.value === 'left')\n          next()\n\n        else\n          prev()\n      }\n      else if (y / window.innerHeight > 0.4 || y > 200) {\n        if (direction.value === 'down')\n          prevSlide()\n\n        else\n          nextSlide()\n      }\n    },\n  })\n}\n"
+        ],
+        "mappings": "AACA,SAAS,WAAW,uBAAuB;AAC3C,SAAS,WAAW;AACpB,SAAS,cAAc;AACvB,SAAS,mBAAmB;AAErB,gBAAS,iBAAiB,MAAoC;AACnE,QAAM,EAAE,MAAM,WAAW,MAAM,UAAU,IAAI,OAAO;AACpD,QAAM,EAAE,UAAU,IAAI,YAAY;AAElC,QAAM,aAAa,IAAI,CAAC;AACxB,QAAM,EAAE,WAAW,WAAW,UAAU,IAAI,gBAAgB,MAAM;AAAA,IAChE,cAAc,CAAC,OAAO;AAAA,IACtB,eAAe;AACb,UAAI,UAAU;AACZ;AACF,iBAAW,QAAQ,UAAU;AAAA,IAC/B;AAAA,IACA,aAAa;AACX,UAAI,CAAC,WAAW;AACd;AACF,UAAI,UAAU;AACZ;AAEF,YAAM,IAAI,KAAK,IAAI,UAAU,KAAK;AAClC,YAAM,IAAI,KAAK,IAAI,UAAU,KAAK;AAClC,UAAI,IAAI,OAAO,aAAa,OAAO,IAAI,IAAI;AACzC,YAAI,UAAU,UAAU;AACtB,eAAK;AAAA;AAGL,eAAK;AAAA,MACT,WACS,IAAI,OAAO,cAAc,OAAO,IAAI,KAAK;AAChD,YAAI,UAAU,UAAU;AACtB,oBAAU;AAAA;AAGV,oBAAU;AAAA,MACd;AAAA,IACF;AAAA,EACF,CAAC;AACH;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

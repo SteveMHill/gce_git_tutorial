@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport type { ClicksContext, SlideRoute } from '@slidev/types'\nimport { useHead } from '@unhead/vue'\nimport { computed, nextTick, onMounted, reactive, ref, shallowRef } from 'vue'\nimport { createFixedClicks } from '../composables/useClicks'\nimport { useNav } from '../composables/useNav'\nimport { CLICKS_MAX } from '../constants'\nimport { pathPrefix, slidesTitle } from '../env'\nimport ClicksSlider from '../internals/ClicksSlider.vue'\nimport DrawingPreview from '../internals/DrawingPreview.vue'\nimport IconButton from '../internals/IconButton.vue'\nimport NoteEditable from '../internals/NoteEditable.vue'\nimport SlideContainer from '../internals/SlideContainer.vue'\nimport SlideWrapper from '../internals/SlideWrapper.vue'\nimport { isColorSchemaConfigured, isDark, toggleDark } from '../logic/dark'\nimport { getSlidePath } from '../logic/slides'\n\nconst cardWidth = 450\n\nuseHead({ title: `Overview - ${slidesTitle}` })\n\nconst { openInEditor, slides } = useNav()\n\nconst blocks: Map<number, HTMLElement> = reactive(new Map())\nconst activeBlocks = ref<number[]>([])\nconst edittingNote = ref<number | null>(null)\nconst wordCounts = computed(() => slides.value.map(route => wordCount(route.meta?.slide?.note || '')))\nconst totalWords = computed(() => wordCounts.value.reduce((a, b) => a + b, 0))\nconst totalClicks = computed(() => slides.value.map(route => getSlideClicks(route)).reduce((a, b) => a + b, 0))\n\nconst activeSlide = shallowRef<SlideRoute>()\nconst clicksContextMap = new WeakMap<SlideRoute, ClicksContext>()\nfunction getClicksContext(route: SlideRoute) {\n  // We create a local clicks context to calculate the total clicks of the slide\n  if (!clicksContextMap.has(route))\n    clicksContextMap.set(route, createFixedClicks(route, CLICKS_MAX))\n  return clicksContextMap.get(route)!\n}\n\nfunction getSlideClicks(route: SlideRoute) {\n  return route.meta?.clicks || getClicksContext(route)?.total\n}\n\nfunction toggleRoute(route: SlideRoute) {\n  if (activeSlide.value === route)\n    activeSlide.value = undefined\n  else\n    activeSlide.value = route\n}\n\nfunction wordCount(str: string) {\n  const pattern = /[\\w`'\\-\\u0392-\\u03C9\\u00C0-\\u00FF\\u0600-\\u06FF\\u0400-\\u04FF]+|[\\u4E00-\\u9FFF\\u3400-\\u4DBF\\uF900-\\uFAFF\\u3040-\\u309F\\uAC00-\\uD7AF]+/g\n  const m = str.match(pattern)\n  let count = 0\n  if (!m)\n    return 0\n  for (let i = 0; i < m.length; i++) {\n    if (m[i].charCodeAt(0) >= 0x4E00) {\n      count += m[i].length\n    }\n    else {\n      count += 1\n    }\n  }\n  return count\n}\n\nfunction isElementInViewport(el: HTMLElement) {\n  const rect = el.getBoundingClientRect()\n  const delta = 20\n  return (\n    rect.top >= 0 - delta\n    && rect.left >= 0 - delta\n    && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + delta\n    && rect.right <= (window.innerWidth || document.documentElement.clientWidth) + delta\n  )\n}\n\nfunction checkActiveBlocks() {\n  const active: number[] = []\n  Array.from(blocks.entries())\n    .forEach(([idx, el]) => {\n      if (isElementInViewport(el))\n        active.push(idx)\n    })\n  activeBlocks.value = active\n}\n\nfunction openSlideInNewTab(path: string) {\n  const a = document.createElement('a')\n  a.target = '_blank'\n  a.href = pathPrefix + path.slice(1)\n  a.click()\n}\n\nfunction scrollToSlide(idx: number) {\n  const el = blocks.get(idx)\n  if (el)\n    el.scrollIntoView({ behavior: 'smooth', block: 'start' })\n}\n\nfunction onMarkerClick(e: MouseEvent, clicks: number, route: SlideRoute) {\n  const ctx = getClicksContext(route)\n  if (ctx.current === clicks)\n    ctx.current = CLICKS_MAX\n  else\n    ctx.current = clicks\n  e.preventDefault()\n}\n\nonMounted(() => {\n  nextTick(() => {\n    checkActiveBlocks()\n  })\n})\n</script>\n\n<template>\n  <div class=\"h-screen w-screen of-hidden flex\">\n    <nav class=\"grid grid-rows-[auto_max-content] border-r border-main select-none max-h-full h-full\">\n      <div class=\"relative\">\n        <div class=\"absolute left-0 top-0 bottom-0 w-200 flex flex-col flex-auto items-end group p2 gap-1 max-h-full of-x-visible of-y-auto\" style=\"direction:rtl\">\n          <div\n            v-for=\"(route, idx) of slides\"\n            :key=\"route.no\"\n            class=\"relative\"\n            style=\"direction:ltr\"\n          >\n            <button\n              class=\"relative transition duration-300 w-8 h-8 rounded hover:bg-active hover:op100\"\n              :class=\"activeBlocks.includes(idx) ? 'op100 text-primary bg-gray:5' : 'op20'\"\n              @click=\"scrollToSlide(idx)\"\n            >\n              <div>{{ idx + 1 }}</div>\n            </button>\n            <div\n              v-if=\"route.meta?.slide?.title\"\n              class=\"pointer-events-none select-none absolute left-110% top-50% translate-y--50% ws-nowrap z-label px2 slidev-glass-effect transition duration-400 op0 group-hover:op100\"\n              :class=\"activeBlocks.includes(idx) ? 'text-primary' : 'text-main important-text-op-50'\"\n            >\n              {{ route.meta?.slide?.title }}\n            </div>\n          </div>\n        </div>\n      </div>\n      <div p2 border=\"t main\">\n        <IconButton\n          v-if=\"!isColorSchemaConfigured\"\n          :title=\"isDark ? 'Switch to light mode theme' : 'Switch to dark mode theme'\"\n          @click=\"toggleDark()\"\n        >\n          <carbon-moon v-if=\"isDark\" />\n          <carbon-sun v-else />\n        </IconButton>\n        <IconButton\n          v-else\n          :title=\"isDark ? 'Dark mode' : 'Light mode'\"\n          pointer-events-none op50\n        >\n          <carbon-moon v-if=\"isDark\" />\n          <carbon-sun v-else />\n        </IconButton>\n      </div>\n    </nav>\n    <main\n      class=\"flex-1 h-full of-auto\"\n      :style=\"`grid-template-columns: repeat(auto-fit,minmax(${cardWidth}px,1fr))`\"\n      @scroll=\"checkActiveBlocks\"\n    >\n      <div\n        v-for=\"(route, idx) of slides\"\n        :key=\"route.no\"\n        :ref=\"el => blocks.set(idx, el as any)\"\n        class=\"relative border-t border-main of-hidden flex gap-4 min-h-50 group\"\n        :class=\"idx === 0 ? 'pt5' : ''\"\n      >\n        <div class=\"select-none w-13 text-right my4 flex flex-col gap-1 items-end\">\n          <div class=\"text-3xl op20 mb2\">\n            {{ idx + 1 }}\n          </div>\n          <IconButton\n            class=\"mr--3 op0 group-hover:op80\"\n            title=\"Play in new tab\"\n            @click=\"openSlideInNewTab(getSlidePath(route, false))\"\n          >\n            <div class=\"i-carbon:presentation-file\" />\n          </IconButton>\n          <IconButton\n            v-if=\"__DEV__ && route.meta?.slide\"\n            class=\"mr--3 op0 group-hover:op80\"\n            title=\"Open in editor\"\n            @click=\"openInEditor(`${route.meta.slide.filepath}:${route.meta.slide.start}`)\"\n          >\n            <div class=\"i-carbon:cics-program\" />\n          </IconButton>\n        </div>\n        <div class=\"flex flex-col gap-2 my5\" :style=\"{ width: `${cardWidth}px` }\">\n          <div\n            class=\"border rounded border-main overflow-hidden bg-main select-none h-max\"\n            @dblclick=\"openSlideInNewTab(getSlidePath(route, false))\"\n          >\n            <SlideContainer\n              :key=\"route.no\"\n              :width=\"cardWidth\"\n              class=\"pointer-events-none important:[&_*]:select-none\"\n            >\n              <SlideWrapper\n                :clicks-context=\"getClicksContext(route)\"\n                :route=\"route\"\n                render-context=\"overview\"\n              />\n              <DrawingPreview :page=\"route.no\" />\n            </SlideContainer>\n          </div>\n          <ClicksSlider\n            v-if=\"getSlideClicks(route)\"\n            :active=\"activeSlide === route\"\n            :clicks-context=\"getClicksContext(route)\"\n            class=\"w-full mt-2\"\n            @dblclick=\"toggleRoute(route)\"\n            @click=\"activeSlide = route\"\n          />\n        </div>\n        <div class=\"py3 mt-0.5 mr--8 ml--4 op0 transition group-hover:op100\">\n          <IconButton\n            title=\"Edit Note\"\n            class=\"rounded-full w-9 h-9 text-sm\"\n            :class=\"edittingNote === route.no ? 'important:op0' : ''\"\n            @click=\"edittingNote = route.no\"\n          >\n            <div class=\"i-carbon:pen\" />\n          </IconButton>\n        </div>\n        <NoteEditable\n          :no=\"route.no\"\n          class=\"max-w-250 w-250 text-lg rounded p3\"\n          :auto-height=\"true\"\n          :highlight=\"activeSlide === route\"\n          :editing=\"edittingNote === route.no\"\n          :clicks-context=\"getClicksContext(route)\"\n          @dblclick=\"edittingNote !== route.no ? edittingNote = route.no : null\"\n          @update:editing=\"edittingNote = null\"\n          @marker-click=\"(e, clicks) => onMarkerClick(e, clicks, route)\"\n        />\n        <div\n          v-if=\"wordCounts[idx] > 0\"\n          class=\"select-none absolute bottom-0 right-0 bg-main rounded-tl p2 op35 text-xs\"\n        >\n          {{ wordCounts[idx] }} words\n        </div>\n      </div>\n    </main>\n    <div class=\"absolute top-0 right-0 px3 py1.5 border-b border-l rounded-lb bg-main border-main select-none\">\n      <div class=\"text-xs op50\">\n        {{ slides.length }} slides ·\n        {{ totalClicks + slides.length - 1 }} clicks ·\n        {{ totalWords }} words\n      </div>\n    </div>\n  </div>\n</template>\n",
+      "start": 1743409708498,
+      "end": 1743409708527,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708527,
+      "end": 1743409708527,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "result": "<script setup lang=\"ts\">\nimport type { ClicksContext, SlideRoute } from '@slidev/types'\nimport { useHead } from '@unhead/vue'\nimport { computed, nextTick, onMounted, reactive, ref, shallowRef } from 'vue'\nimport { createFixedClicks } from '../composables/useClicks'\nimport { useNav } from '../composables/useNav'\nimport { CLICKS_MAX } from '../constants'\nimport { pathPrefix, slidesTitle } from '../env'\nimport ClicksSlider from '../internals/ClicksSlider.vue'\nimport DrawingPreview from '../internals/DrawingPreview.vue'\nimport IconButton from '../internals/IconButton.vue'\nimport NoteEditable from '../internals/NoteEditable.vue'\nimport SlideContainer from '../internals/SlideContainer.vue'\nimport SlideWrapper from '../internals/SlideWrapper.vue'\nimport { isColorSchemaConfigured, isDark, toggleDark } from '../logic/dark'\nimport { getSlidePath } from '../logic/slides'\n\nconst cardWidth = 450\n\nuseHead({ title: `Overview - ${slidesTitle}` })\n\nconst { openInEditor, slides } = useNav()\n\nconst blocks: Map<number, HTMLElement> = reactive(new Map())\nconst activeBlocks = ref<number[]>([])\nconst edittingNote = ref<number | null>(null)\nconst wordCounts = computed(() => slides.value.map(route => wordCount(route.meta?.slide?.note || '')))\nconst totalWords = computed(() => wordCounts.value.reduce((a, b) => a + b, 0))\nconst totalClicks = computed(() => slides.value.map(route => getSlideClicks(route)).reduce((a, b) => a + b, 0))\n\nconst activeSlide = shallowRef<SlideRoute>()\nconst clicksContextMap = new WeakMap<SlideRoute, ClicksContext>()\nfunction getClicksContext(route: SlideRoute) {\n  // We create a local clicks context to calculate the total clicks of the slide\n  if (!clicksContextMap.has(route))\n    clicksContextMap.set(route, createFixedClicks(route, CLICKS_MAX))\n  return clicksContextMap.get(route)!\n}\n\nfunction getSlideClicks(route: SlideRoute) {\n  return route.meta?.clicks || getClicksContext(route)?.total\n}\n\nfunction toggleRoute(route: SlideRoute) {\n  if (activeSlide.value === route)\n    activeSlide.value = undefined\n  else\n    activeSlide.value = route\n}\n\nfunction wordCount(str: string) {\n  const pattern = /[\\w`'\\-\\u0392-\\u03C9\\u00C0-\\u00FF\\u0600-\\u06FF\\u0400-\\u04FF]+|[\\u4E00-\\u9FFF\\u3400-\\u4DBF\\uF900-\\uFAFF\\u3040-\\u309F\\uAC00-\\uD7AF]+/g\n  const m = str.match(pattern)\n  let count = 0\n  if (!m)\n    return 0\n  for (let i = 0; i < m.length; i++) {\n    if (m[i].charCodeAt(0) >= 0x4E00) {\n      count += m[i].length\n    }\n    else {\n      count += 1\n    }\n  }\n  return count\n}\n\nfunction isElementInViewport(el: HTMLElement) {\n  const rect = el.getBoundingClientRect()\n  const delta = 20\n  return (\n    rect.top >= 0 - delta\n    && rect.left >= 0 - delta\n    && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + delta\n    && rect.right <= (window.innerWidth || document.documentElement.clientWidth) + delta\n  )\n}\n\nfunction checkActiveBlocks() {\n  const active: number[] = []\n  Array.from(blocks.entries())\n    .forEach(([idx, el]) => {\n      if (isElementInViewport(el))\n        active.push(idx)\n    })\n  activeBlocks.value = active\n}\n\nfunction openSlideInNewTab(path: string) {\n  const a = document.createElement('a')\n  a.target = '_blank'\n  a.href = pathPrefix + path.slice(1)\n  a.click()\n}\n\nfunction scrollToSlide(idx: number) {\n  const el = blocks.get(idx)\n  if (el)\n    el.scrollIntoView({ behavior: 'smooth', block: 'start' })\n}\n\nfunction onMarkerClick(e: MouseEvent, clicks: number, route: SlideRoute) {\n  const ctx = getClicksContext(route)\n  if (ctx.current === clicks)\n    ctx.current = CLICKS_MAX\n  else\n    ctx.current = clicks\n  e.preventDefault()\n}\n\nonMounted(() => {\n  nextTick(() => {\n    checkActiveBlocks()\n  })\n})\n</script>\n\n<template>\n  <div class=\"h-screen w-screen of-hidden flex\">\n    <nav class=\"grid grid-rows-[auto_max-content] border-r border-main select-none max-h-full h-full\">\n      <div class=\"relative\">\n        <div class=\"absolute left-0 top-0 bottom-0 w-200 flex flex-col flex-auto items-end group p2 gap-1 max-h-full of-x-visible of-y-auto\" style=\"direction:rtl\">\n          <div\n            v-for=\"(route, idx) of slides\"\n            :key=\"route.no\"\n            class=\"relative\"\n            style=\"direction:ltr\"\n          >\n            <button\n              class=\"relative transition duration-300 w-8 h-8 rounded hover:bg-active hover:op100\"\n              :class=\"activeBlocks.includes(idx) ? 'op100 text-primary bg-gray:5' : 'op20'\"\n              @click=\"scrollToSlide(idx)\"\n            >\n              <div>{{ idx + 1 }}</div>\n            </button>\n            <div\n              v-if=\"route.meta?.slide?.title\"\n              class=\"pointer-events-none select-none absolute left-110% top-50% translate-y--50% ws-nowrap z-label px2 slidev-glass-effect transition duration-400 op0 group-hover:op100\"\n              :class=\"activeBlocks.includes(idx) ? 'text-primary' : 'text-main important-text-op-50'\"\n            >\n              {{ route.meta?.slide?.title }}\n            </div>\n          </div>\n        </div>\n      </div>\n      <div p2 border=\"t main\">\n        <IconButton\n          v-if=\"!isColorSchemaConfigured\"\n          :title=\"isDark ? 'Switch to light mode theme' : 'Switch to dark mode theme'\"\n          @click=\"toggleDark()\"\n        >\n          <carbon-moon v-if=\"isDark\" />\n          <carbon-sun v-else />\n        </IconButton>\n        <IconButton\n          v-else\n          :title=\"isDark ? 'Dark mode' : 'Light mode'\"\n          pointer-events-none op50\n        >\n          <carbon-moon v-if=\"isDark\" />\n          <carbon-sun v-else />\n        </IconButton>\n      </div>\n    </nav>\n    <main\n      class=\"flex-1 h-full of-auto\"\n      :style=\"`grid-template-columns: repeat(auto-fit,minmax(${cardWidth}px,1fr))`\"\n      @scroll=\"checkActiveBlocks\"\n    >\n      <div\n        v-for=\"(route, idx) of slides\"\n        :key=\"route.no\"\n        :ref=\"el => blocks.set(idx, el as any)\"\n        class=\"relative border-t border-main of-hidden flex gap-4 min-h-50 group\"\n        :class=\"idx === 0 ? 'pt5' : ''\"\n      >\n        <div class=\"select-none w-13 text-right my4 flex flex-col gap-1 items-end\">\n          <div class=\"text-3xl op20 mb2\">\n            {{ idx + 1 }}\n          </div>\n          <IconButton\n            class=\"mr--3 op0 group-hover:op80\"\n            title=\"Play in new tab\"\n            @click=\"openSlideInNewTab(getSlidePath(route, false))\"\n          >\n            <div class=\"i-carbon:presentation-file\" />\n          </IconButton>\n          <IconButton\n            v-if=\"false && route.meta?.slide\"\n            class=\"mr--3 op0 group-hover:op80\"\n            title=\"Open in editor\"\n            @click=\"openInEditor(`${route.meta.slide.filepath}:${route.meta.slide.start}`)\"\n          >\n            <div class=\"i-carbon:cics-program\" />\n          </IconButton>\n        </div>\n        <div class=\"flex flex-col gap-2 my5\" :style=\"{ width: `${cardWidth}px` }\">\n          <div\n            class=\"border rounded border-main overflow-hidden bg-main select-none h-max\"\n            @dblclick=\"openSlideInNewTab(getSlidePath(route, false))\"\n          >\n            <SlideContainer\n              :key=\"route.no\"\n              :width=\"cardWidth\"\n              class=\"pointer-events-none important:[&_*]:select-none\"\n            >\n              <SlideWrapper\n                :clicks-context=\"getClicksContext(route)\"\n                :route=\"route\"\n                render-context=\"overview\"\n              />\n              <DrawingPreview :page=\"route.no\" />\n            </SlideContainer>\n          </div>\n          <ClicksSlider\n            v-if=\"getSlideClicks(route)\"\n            :active=\"activeSlide === route\"\n            :clicks-context=\"getClicksContext(route)\"\n            class=\"w-full mt-2\"\n            @dblclick=\"toggleRoute(route)\"\n            @click=\"activeSlide = route\"\n          />\n        </div>\n        <div class=\"py3 mt-0.5 mr--8 ml--4 op0 transition group-hover:op100\">\n          <IconButton\n            title=\"Edit Note\"\n            class=\"rounded-full w-9 h-9 text-sm\"\n            :class=\"edittingNote === route.no ? 'important:op0' : ''\"\n            @click=\"edittingNote = route.no\"\n          >\n            <div class=\"i-carbon:pen\" />\n          </IconButton>\n        </div>\n        <NoteEditable\n          :no=\"route.no\"\n          class=\"max-w-250 w-250 text-lg rounded p3\"\n          :auto-height=\"true\"\n          :highlight=\"activeSlide === route\"\n          :editing=\"edittingNote === route.no\"\n          :clicks-context=\"getClicksContext(route)\"\n          @dblclick=\"edittingNote !== route.no ? edittingNote = route.no : null\"\n          @update:editing=\"edittingNote = null\"\n          @marker-click=\"(e, clicks) => onMarkerClick(e, clicks, route)\"\n        />\n        <div\n          v-if=\"wordCounts[idx] > 0\"\n          class=\"select-none absolute bottom-0 right-0 bg-main rounded-tl p2 op35 text-xs\"\n        >\n          {{ wordCounts[idx] }} words\n        </div>\n      </div>\n    </main>\n    <div class=\"absolute top-0 right-0 px3 py1.5 border-b border-l rounded-lb bg-main border-main select-none\">\n      <div class=\"text-xs op50\">\n        {{ slides.length }} slides ·\n        {{ totalClicks + slides.length - 1 }} clicks ·\n        {{ totalWords }} words\n      </div>\n    </div>\n  </div>\n</template>\n",
+      "start": 1743409708527,
+      "end": 1743409708527,
+      "order": "pre",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708527,
+      "end": 1743409708527,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708527,
+      "end": 1743409708527,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708528,
+      "end": 1743409708528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708528,
+      "end": 1743409708528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708528,
+      "end": 1743409708528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708528,
+      "end": 1743409708528,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708528,
+      "end": 1743409708528,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708528,
+      "end": 1743409708528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708528,
+      "end": 1743409708528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708528,
+      "end": 1743409708694,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708694,
+      "end": 1743409708694,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/overview.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,KAAK,CAAC,QAAQ,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC5I,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,KAAK,CAAC,QAAQ,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACpI,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    }
+  ]
+}

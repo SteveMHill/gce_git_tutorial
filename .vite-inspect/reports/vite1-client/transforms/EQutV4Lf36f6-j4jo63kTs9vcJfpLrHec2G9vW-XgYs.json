@@ -1,0 +1,168 @@
+{
+  "resolvedId": "/@slidev/slides",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "import { defineAsyncComponent, shallowRef } from 'vue'\nimport SlideError from '/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/error.vue'\nimport SlideLoading from '@slidev/client/internals/SlideLoading.vue'\nconst componentsCache = new Array(16)\nconst getAsyncComponent = (idx, loader) => defineAsyncComponent({\n  loader,\n  delay: 300,\n  loadingComponent: SlideLoading,\n  errorComponent: SlideError,\n  onError: e => console.error('Failed to load slide ' + (idx + 1), e) \n})\nimport { meta as f1 } from '/@slidev/slides/1/frontmatter'\nconst load1 = async () => {\n  try { return componentsCache[0] ??= await import('/@slidev/slides/1/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f2 } from '/@slidev/slides/2/frontmatter'\nconst load2 = async () => {\n  try { return componentsCache[1] ??= await import('/@slidev/slides/2/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f3 } from '/@slidev/slides/3/frontmatter'\nconst load3 = async () => {\n  try { return componentsCache[2] ??= await import('/@slidev/slides/3/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f4 } from '/@slidev/slides/4/frontmatter'\nconst load4 = async () => {\n  try { return componentsCache[3] ??= await import('/@slidev/slides/4/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f5 } from '/@slidev/slides/5/frontmatter'\nconst load5 = async () => {\n  try { return componentsCache[4] ??= await import('/@slidev/slides/5/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f6 } from '/@slidev/slides/6/frontmatter'\nconst load6 = async () => {\n  try { return componentsCache[5] ??= await import('/@slidev/slides/6/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f7 } from '/@slidev/slides/7/frontmatter'\nconst load7 = async () => {\n  try { return componentsCache[6] ??= await import('/@slidev/slides/7/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f8 } from '/@slidev/slides/8/frontmatter'\nconst load8 = async () => {\n  try { return componentsCache[7] ??= await import('/@slidev/slides/8/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f9 } from '/@slidev/slides/9/frontmatter'\nconst load9 = async () => {\n  try { return componentsCache[8] ??= await import('/@slidev/slides/9/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f10 } from '/@slidev/slides/10/frontmatter'\nconst load10 = async () => {\n  try { return componentsCache[9] ??= await import('/@slidev/slides/10/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f11 } from '/@slidev/slides/11/frontmatter'\nconst load11 = async () => {\n  try { return componentsCache[10] ??= await import('/@slidev/slides/11/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f12 } from '/@slidev/slides/12/frontmatter'\nconst load12 = async () => {\n  try { return componentsCache[11] ??= await import('/@slidev/slides/12/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f13 } from '/@slidev/slides/13/frontmatter'\nconst load13 = async () => {\n  try { return componentsCache[12] ??= await import('/@slidev/slides/13/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f14 } from '/@slidev/slides/14/frontmatter'\nconst load14 = async () => {\n  try { return componentsCache[13] ??= await import('/@slidev/slides/14/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f15 } from '/@slidev/slides/15/frontmatter'\nconst load15 = async () => {\n  try { return componentsCache[14] ??= await import('/@slidev/slides/15/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nimport { meta as f16 } from '/@slidev/slides/16/frontmatter'\nconst load16 = async () => {\n  try { return componentsCache[15] ??= await import('/@slidev/slides/16/md') }\n  catch (e) { console.error('slide failed to load', e); return SlideError }\n}\nconst data = [\n{ no: 1, meta: f1, load: load1, component: getAsyncComponent(0, load1) },\n{ no: 2, meta: f2, load: load2, component: getAsyncComponent(1, load2) },\n{ no: 3, meta: f3, load: load3, component: getAsyncComponent(2, load3) },\n{ no: 4, meta: f4, load: load4, component: getAsyncComponent(3, load4) },\n{ no: 5, meta: f5, load: load5, component: getAsyncComponent(4, load5) },\n{ no: 6, meta: f6, load: load6, component: getAsyncComponent(5, load6) },\n{ no: 7, meta: f7, load: load7, component: getAsyncComponent(6, load7) },\n{ no: 8, meta: f8, load: load8, component: getAsyncComponent(7, load8) },\n{ no: 9, meta: f9, load: load9, component: getAsyncComponent(8, load9) },\n{ no: 10, meta: f10, load: load10, component: getAsyncComponent(9, load10) },\n{ no: 11, meta: f11, load: load11, component: getAsyncComponent(10, load11) },\n{ no: 12, meta: f12, load: load12, component: getAsyncComponent(11, load12) },\n{ no: 13, meta: f13, load: load13, component: getAsyncComponent(12, load13) },\n{ no: 14, meta: f14, load: load14, component: getAsyncComponent(13, load14) },\n{ no: 15, meta: f15, load: load15, component: getAsyncComponent(14, load15) },\n{ no: 16, meta: f16, load: load16, component: getAsyncComponent(15, load16) }\n]\nif (import.meta.hot) {\n  import.meta.hot.data.slides ??= shallowRef()\n  import.meta.hot.data.slides.value = data\n  import.meta.hot.dispose(() => componentsCache.length = 0)\n  import.meta.hot.accept()\n}\nexport const slides = import.meta.hot ? import.meta.hot.data.slides : shallowRef(data)",
+      "start": 1743409708709,
+      "end": 1743409708714,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708714,
+      "end": 1743409708714,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { defineAsyncComponent, shallowRef } from \"vue\";\nimport SlideError from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/error.vue\";\nimport SlideLoading from \"@slidev/client/internals/SlideLoading.vue\";\nconst componentsCache = new Array(16);\nconst getAsyncComponent = (idx, loader) => defineAsyncComponent({\n  loader,\n  delay: 300,\n  loadingComponent: SlideLoading,\n  errorComponent: SlideError,\n  onError: (e) => console.error(\"Failed to load slide \" + (idx + 1), e)\n});\nimport { meta as f1 } from \"/@slidev/slides/1/frontmatter\";\nconst load1 = async () => {\n  try {\n    return componentsCache[0] ??= await import(\"/@slidev/slides/1/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f2 } from \"/@slidev/slides/2/frontmatter\";\nconst load2 = async () => {\n  try {\n    return componentsCache[1] ??= await import(\"/@slidev/slides/2/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f3 } from \"/@slidev/slides/3/frontmatter\";\nconst load3 = async () => {\n  try {\n    return componentsCache[2] ??= await import(\"/@slidev/slides/3/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f4 } from \"/@slidev/slides/4/frontmatter\";\nconst load4 = async () => {\n  try {\n    return componentsCache[3] ??= await import(\"/@slidev/slides/4/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f5 } from \"/@slidev/slides/5/frontmatter\";\nconst load5 = async () => {\n  try {\n    return componentsCache[4] ??= await import(\"/@slidev/slides/5/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f6 } from \"/@slidev/slides/6/frontmatter\";\nconst load6 = async () => {\n  try {\n    return componentsCache[5] ??= await import(\"/@slidev/slides/6/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f7 } from \"/@slidev/slides/7/frontmatter\";\nconst load7 = async () => {\n  try {\n    return componentsCache[6] ??= await import(\"/@slidev/slides/7/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f8 } from \"/@slidev/slides/8/frontmatter\";\nconst load8 = async () => {\n  try {\n    return componentsCache[7] ??= await import(\"/@slidev/slides/8/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f9 } from \"/@slidev/slides/9/frontmatter\";\nconst load9 = async () => {\n  try {\n    return componentsCache[8] ??= await import(\"/@slidev/slides/9/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f10 } from \"/@slidev/slides/10/frontmatter\";\nconst load10 = async () => {\n  try {\n    return componentsCache[9] ??= await import(\"/@slidev/slides/10/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f11 } from \"/@slidev/slides/11/frontmatter\";\nconst load11 = async () => {\n  try {\n    return componentsCache[10] ??= await import(\"/@slidev/slides/11/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f12 } from \"/@slidev/slides/12/frontmatter\";\nconst load12 = async () => {\n  try {\n    return componentsCache[11] ??= await import(\"/@slidev/slides/12/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f13 } from \"/@slidev/slides/13/frontmatter\";\nconst load13 = async () => {\n  try {\n    return componentsCache[12] ??= await import(\"/@slidev/slides/13/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f14 } from \"/@slidev/slides/14/frontmatter\";\nconst load14 = async () => {\n  try {\n    return componentsCache[13] ??= await import(\"/@slidev/slides/14/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f15 } from \"/@slidev/slides/15/frontmatter\";\nconst load15 = async () => {\n  try {\n    return componentsCache[14] ??= await import(\"/@slidev/slides/15/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f16 } from \"/@slidev/slides/16/frontmatter\";\nconst load16 = async () => {\n  try {\n    return componentsCache[15] ??= await import(\"/@slidev/slides/16/md\");\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nconst data = [\n  { no: 1, meta: f1, load: load1, component: getAsyncComponent(0, load1) },\n  { no: 2, meta: f2, load: load2, component: getAsyncComponent(1, load2) },\n  { no: 3, meta: f3, load: load3, component: getAsyncComponent(2, load3) },\n  { no: 4, meta: f4, load: load4, component: getAsyncComponent(3, load4) },\n  { no: 5, meta: f5, load: load5, component: getAsyncComponent(4, load5) },\n  { no: 6, meta: f6, load: load6, component: getAsyncComponent(5, load6) },\n  { no: 7, meta: f7, load: load7, component: getAsyncComponent(6, load7) },\n  { no: 8, meta: f8, load: load8, component: getAsyncComponent(7, load8) },\n  { no: 9, meta: f9, load: load9, component: getAsyncComponent(8, load9) },\n  { no: 10, meta: f10, load: load10, component: getAsyncComponent(9, load10) },\n  { no: 11, meta: f11, load: load11, component: getAsyncComponent(10, load11) },\n  { no: 12, meta: f12, load: load12, component: getAsyncComponent(11, load12) },\n  { no: 13, meta: f13, load: load13, component: getAsyncComponent(12, load13) },\n  { no: 14, meta: f14, load: load14, component: getAsyncComponent(13, load14) },\n  { no: 15, meta: f15, load: load15, component: getAsyncComponent(14, load15) },\n  { no: 16, meta: f16, load: load16, component: getAsyncComponent(15, load16) }\n];\nif (void 0) {\n  (void 0).data.slides ??= shallowRef();\n  (void 0).data.slides.value = data;\n  (void 0).dispose(() => componentsCache.length = 0);\n  (void 0).accept();\n}\nexport const slides = void 0 ? (void 0).data.slides : shallowRef(data);\n",
+      "start": 1743409708714,
+      "end": 1743409708752,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent, shallowRef } from \"vue\";\nimport SlideError from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/error.vue\";\nimport SlideLoading from \"@slidev/client/internals/SlideLoading.vue\";\nconst componentsCache = new Array(16);\nconst getAsyncComponent = (idx, loader) => defineAsyncComponent({\n  loader,\n  delay: 300,\n  loadingComponent: SlideLoading,\n  errorComponent: SlideError,\n  onError: (e) => console.error(\"Failed to load slide \" + (idx + 1), e)\n});\nimport { meta as f1 } from \"/@slidev/slides/1/frontmatter\";\nconst load1 = async () => {\n  try {\n    return componentsCache[0] ??= await __vitePreload(() => import(\"/@slidev/slides/1/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f2 } from \"/@slidev/slides/2/frontmatter\";\nconst load2 = async () => {\n  try {\n    return componentsCache[1] ??= await __vitePreload(() => import(\"/@slidev/slides/2/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f3 } from \"/@slidev/slides/3/frontmatter\";\nconst load3 = async () => {\n  try {\n    return componentsCache[2] ??= await __vitePreload(() => import(\"/@slidev/slides/3/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f4 } from \"/@slidev/slides/4/frontmatter\";\nconst load4 = async () => {\n  try {\n    return componentsCache[3] ??= await __vitePreload(() => import(\"/@slidev/slides/4/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f5 } from \"/@slidev/slides/5/frontmatter\";\nconst load5 = async () => {\n  try {\n    return componentsCache[4] ??= await __vitePreload(() => import(\"/@slidev/slides/5/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f6 } from \"/@slidev/slides/6/frontmatter\";\nconst load6 = async () => {\n  try {\n    return componentsCache[5] ??= await __vitePreload(() => import(\"/@slidev/slides/6/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f7 } from \"/@slidev/slides/7/frontmatter\";\nconst load7 = async () => {\n  try {\n    return componentsCache[6] ??= await __vitePreload(() => import(\"/@slidev/slides/7/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f8 } from \"/@slidev/slides/8/frontmatter\";\nconst load8 = async () => {\n  try {\n    return componentsCache[7] ??= await __vitePreload(() => import(\"/@slidev/slides/8/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f9 } from \"/@slidev/slides/9/frontmatter\";\nconst load9 = async () => {\n  try {\n    return componentsCache[8] ??= await __vitePreload(() => import(\"/@slidev/slides/9/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f10 } from \"/@slidev/slides/10/frontmatter\";\nconst load10 = async () => {\n  try {\n    return componentsCache[9] ??= await __vitePreload(() => import(\"/@slidev/slides/10/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f11 } from \"/@slidev/slides/11/frontmatter\";\nconst load11 = async () => {\n  try {\n    return componentsCache[10] ??= await __vitePreload(() => import(\"/@slidev/slides/11/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f12 } from \"/@slidev/slides/12/frontmatter\";\nconst load12 = async () => {\n  try {\n    return componentsCache[11] ??= await __vitePreload(() => import(\"/@slidev/slides/12/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f13 } from \"/@slidev/slides/13/frontmatter\";\nconst load13 = async () => {\n  try {\n    return componentsCache[12] ??= await __vitePreload(() => import(\"/@slidev/slides/13/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f14 } from \"/@slidev/slides/14/frontmatter\";\nconst load14 = async () => {\n  try {\n    return componentsCache[13] ??= await __vitePreload(() => import(\"/@slidev/slides/14/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f15 } from \"/@slidev/slides/15/frontmatter\";\nconst load15 = async () => {\n  try {\n    return componentsCache[14] ??= await __vitePreload(() => import(\"/@slidev/slides/15/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nimport { meta as f16 } from \"/@slidev/slides/16/frontmatter\";\nconst load16 = async () => {\n  try {\n    return componentsCache[15] ??= await __vitePreload(() => import(\"/@slidev/slides/16/md\"),__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  } catch (e) {\n    console.error(\"slide failed to load\", e);\n    return SlideError;\n  }\n};\nconst data = [\n  { no: 1, meta: f1, load: load1, component: getAsyncComponent(0, load1) },\n  { no: 2, meta: f2, load: load2, component: getAsyncComponent(1, load2) },\n  { no: 3, meta: f3, load: load3, component: getAsyncComponent(2, load3) },\n  { no: 4, meta: f4, load: load4, component: getAsyncComponent(3, load4) },\n  { no: 5, meta: f5, load: load5, component: getAsyncComponent(4, load5) },\n  { no: 6, meta: f6, load: load6, component: getAsyncComponent(5, load6) },\n  { no: 7, meta: f7, load: load7, component: getAsyncComponent(6, load7) },\n  { no: 8, meta: f8, load: load8, component: getAsyncComponent(7, load8) },\n  { no: 9, meta: f9, load: load9, component: getAsyncComponent(8, load9) },\n  { no: 10, meta: f10, load: load10, component: getAsyncComponent(9, load10) },\n  { no: 11, meta: f11, load: load11, component: getAsyncComponent(10, load11) },\n  { no: 12, meta: f12, load: load12, component: getAsyncComponent(11, load12) },\n  { no: 13, meta: f13, load: load13, component: getAsyncComponent(12, load13) },\n  { no: 14, meta: f14, load: load14, component: getAsyncComponent(13, load14) },\n  { no: 15, meta: f15, load: load15, component: getAsyncComponent(14, load15) },\n  { no: 16, meta: f16, load: load16, component: getAsyncComponent(15, load16) }\n];\nif (void 0) {\n  (void 0).data.slides ??= shallowRef();\n  (void 0).data.slides.value = data;\n  (void 0).dispose(() => componentsCache.length = 0);\n  (void 0).accept();\n}\nexport const slides = void 0 ? (void 0).data.slides : shallowRef(data);\n",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708752,
+      "end": 1743409708752,
+      "order": "normal"
+    }
+  ]
+}

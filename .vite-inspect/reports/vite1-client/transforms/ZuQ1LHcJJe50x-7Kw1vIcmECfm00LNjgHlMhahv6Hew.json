@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport TitleRenderer from '#slidev/title-renderer'\nimport Fuse from 'fuse.js'\nimport { computed, ref, watch } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { activeElement, showGotoDialog } from '../state'\n\nconst container = ref<HTMLDivElement>()\nconst input = ref<HTMLInputElement>()\nconst list = ref<HTMLUListElement>()\nconst items = ref<HTMLLIElement[]>()\nconst text = ref('')\nconst selectedIndex = ref(0)\n\nconst { go, slides } = useNav()\n\nfunction notNull<T>(value: T | null | undefined): value is T {\n  return value !== null && value !== undefined\n}\n\nconst fuse = computed(() => new Fuse(slides.value.map(i => i.meta?.slide).filter(notNull), {\n  keys: ['no', 'title'],\n  threshold: 0.3,\n  shouldSort: true,\n  minMatchCharLength: 1,\n}))\n\nconst path = computed(() => text.value.startsWith('/') ? text.value.substring(1) : text.value)\nconst result = computed(() => fuse.value.search(path.value).map(result => result.item))\nconst valid = computed(() => !!result.value.length)\n\nfunction goTo() {\n  if (valid.value) {\n    const item = result.value.at(selectedIndex.value || 0)\n    if (item)\n      go(item.no)\n  }\n  close()\n}\n\nfunction close() {\n  text.value = ''\n  showGotoDialog.value = false\n}\n\nfunction focusDown(event: Event) {\n  event.preventDefault()\n  selectedIndex.value++\n  if (selectedIndex.value >= result.value.length)\n    selectedIndex.value = 0\n  scroll()\n}\n\nfunction focusUp(event: Event) {\n  event.preventDefault()\n  selectedIndex.value--\n  if (selectedIndex.value <= -2)\n    selectedIndex.value = result.value.length - 1\n  scroll()\n}\n\nfunction scroll() {\n  const item = items.value?.[selectedIndex.value]\n  if (item && list.value) {\n    if (item.offsetTop + item.offsetHeight > list.value.offsetHeight + list.value.scrollTop) {\n      list.value.scrollTo({\n        behavior: 'smooth',\n        top: item.offsetTop + item.offsetHeight - list.value.offsetHeight + 1,\n      })\n    }\n    else if (item.offsetTop < list.value.scrollTop) {\n      list.value.scrollTo({\n        behavior: 'smooth',\n        top: item.offsetTop,\n      })\n    }\n  }\n}\n\nfunction updateText(event: Event) {\n  selectedIndex.value = 0\n  text.value = (event.target as HTMLInputElement).value\n}\n\nfunction select(no: number) {\n  go(no)\n  close()\n}\n\nwatch(showGotoDialog, async (show) => {\n  if (show) {\n    text.value = ''\n    selectedIndex.value = 0\n    // delay the focus to avoid the g character coming from the key that triggered showGotoDialog\n    setTimeout(() => input.value?.focus(), 0)\n  }\n  else {\n    input.value?.blur()\n  }\n})\n\nwatch(activeElement, () => {\n  if (!container.value?.contains(activeElement.value as Node))\n    close()\n})\n</script>\n\n<template>\n  <div\n    id=\"slidev-goto-dialog\"\n    ref=\"container\"\n    class=\"fixed right-5 transition-all\"\n    w-90 max-w-90 min-w-90\n    :class=\"showGotoDialog ? 'top-5' : '-top-20'\"\n  >\n    <div\n      class=\"bg-main transform\"\n      shadow=\"~\"\n      p=\"x-4 y-2\"\n      border=\"~ transparent rounded dark:main\"\n    >\n      <input\n        id=\"slidev-goto-input\"\n        ref=\"input\"\n        :value=\"text\"\n        type=\"text\"\n        :disabled=\"!showGotoDialog\"\n        class=\"outline-none bg-transparent\"\n        placeholder=\"Goto...\"\n        :class=\"{ 'text-red-400': !valid && text }\"\n        @keydown.enter=\"goTo\"\n        @keydown.escape=\"close\"\n        @keydown.down=\"focusDown\"\n        @keydown.up=\"focusUp\"\n        @input=\"updateText\"\n      >\n    </div>\n    <div\n      v-if=\"result.length > 0\"\n      ref=\"list\"\n      class=\"autocomplete-list\"\n      shadow=\"~\"\n      border=\"~ transparent rounded dark:main\"\n    >\n      <ul table w-full border-collapse>\n        <li\n          v-for=\"(item, index) of result\"\n          ref=\"items\"\n          :key=\"item.id\"\n          role=\"button\"\n          tabindex=\"0\"\n          cursor-pointer\n          hover=\"op100\"\n          table-row\n          items-center\n          :border=\"index === 0 ? undefined : 't main'\"\n          :class=\"selectedIndex === index ? 'bg-active op100' : 'op80'\"\n          @click.stop.prevent=\"select(item.no)\"\n        >\n          <div text-right op50 text-sm table-cell py-2 pl-4 pr-3 vertical-middle>\n            {{ item.no }}\n          </div>\n          <TitleRenderer table-cell py-2 pr-4 w-full :no=\"item.no\" />\n        </li>\n      </ul>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.autocomplete-list {\n  --uno: bg-main mt-1;\n  overflow: auto;\n  max-height: calc(100vh - 100px);\n}\n\n.autocomplete {\n  cursor: pointer;\n}\n</style>\n",
+      "start": 1743409708751,
+      "end": 1743409708784,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708784,
+      "end": 1743409708784,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=style&index=0&scoped=cba06e55&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-cba06e55\"]]);\n",
+      "start": 1743409708784,
+      "end": 1743409708909,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=style&index=0&scoped=cba06e55&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-cba06e55\"]]);\n",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Goto.vue?vue&type=style&index=0&scoped=cba06e55&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-cba06e55\"]]);\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC5I,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACpI,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,QAAQ,CAAC,IAAI,CAAC,GAAG,CAAC;AAC1I,MAAM,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,MAAM,CAAC,MAAM,CAAC;AACpD,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

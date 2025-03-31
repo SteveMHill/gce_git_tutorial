@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/image-right.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { renderSlot as _renderSlot, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"grid grid-cols-2 w-full h-full auto-rows-fr\" }\n\nimport { computed } from 'vue'\nimport { handleBackground } from '../layoutHelper'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'image-right',\n  props: {\n  image: {\n    type: String,\n  },\n  class: {\n    type: String,\n  },\n  backgroundSize: {\n    type: String,\n    default: 'cover',\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\nconst style = computed(() => handleBackground(props.image, false, props.backgroundSize))\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", {\n      class: _normalizeClass([\"slidev-layout default\", props.class])\n    }, [\n      _renderSlot(_ctx.$slots, \"default\")\n    ], 2 /* CLASS */),\n    _createElementVNode(\"div\", {\n      class: \"w-full h-full\",\n      style: _normalizeStyle(style.value)\n    }, null, 4 /* STYLE */)\n  ]))\n}\n}\n\n})",
+      "start": 1743409708952,
+      "end": 1743409708952
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708952,
+      "end": 1743409708952,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderSlot as _renderSlot, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { class: \"grid grid-cols-2 w-full h-full auto-rows-fr\" };\nimport { computed } from \"vue\";\nimport { handleBackground } from \"../layoutHelper\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"image-right\",\n  props: {\n    image: {\n      type: String\n    },\n    class: {\n      type: String\n    },\n    backgroundSize: {\n      type: String,\n      default: \"cover\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const style = computed(() => handleBackground(props.image, false, props.backgroundSize));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\n          \"div\",\n          {\n            class: _normalizeClass([\"slidev-layout default\", props.class])\n          },\n          [\n            _renderSlot(_ctx.$slots, \"default\")\n          ],\n          2\n          /* CLASS */\n        ),\n        _createElementVNode(\n          \"div\",\n          {\n            class: \"w-full h-full\",\n            style: _normalizeStyle(style.value)\n          },\n          null,\n          4\n          /* STYLE */\n        )\n      ]);\n    };\n  }\n});\n",
+      "start": 1743409708952,
+      "end": 1743409709021,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/image-right.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { renderSlot as _renderSlot, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"grid grid-cols-2 w-full h-full auto-rows-fr\" }\n\nimport { computed } from 'vue'\nimport { handleBackground } from '../layoutHelper'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'image-right',\n  props: {\n  image: {\n    type: String,\n  },\n  class: {\n    type: String,\n  },\n  backgroundSize: {\n    type: String,\n    default: 'cover',\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\nconst style = computed(() => handleBackground(props.image, false, props.backgroundSize))\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", {\n      class: _normalizeClass([\"slidev-layout default\", props.class])\n    }, [\n      _renderSlot(_ctx.$slots, \"default\")\n    ], 2 /* CLASS */),\n    _createElementVNode(\"div\", {\n      class: \"w-full h-full\",\n      style: _normalizeStyle(style.value)\n    }, null, 4 /* STYLE */)\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,cAAc,aAAa,kBAAkB,iBAAiB,sBAAsB,qBAAqB,kBAAkB,iBAAiB,aAAa,YAAY,sBAAsB,2BAA2B;AAE/N,MAAM,aAAa,EAAE,OAAO,8CAA8C;AAE1E,SAAS,gBAAgB;AACzB,SAAS,wBAAwB;AAGjC,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACP,OAAO;AAAA,MACL,MAAM;AAAA,IACR;AAAA,IACA,OAAO;AAAA,MACL,MAAM;AAAA,IACR;AAAA,IACA,gBAAgB;AAAA,MACd,MAAM;AAAA,MACN,SAAS;AAAA,IACX;AAAA,EACF;AAAA,EACE,MAAM,SAAS;AAEjB,UAAM,QAAQ;AAEd,UAAM,QAAQ,SAAS,MAAM,iBAAiB,MAAM,OAAO,OAAO,MAAM,cAAc,CAAC;AAEvF,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,QAC3D;AAAA,UAAoB;AAAA,UAAO;AAAA,YACzB,OAAO,gBAAgB,CAAC,yBAAyB,MAAM,KAAK,CAAC;AAAA,UAC/D;AAAA,UAAG;AAAA,YACD,YAAY,KAAK,QAAQ,SAAS;AAAA,UACpC;AAAA,UAAG;AAAA;AAAA,QAAa;AAAA,QAChB;AAAA,UAAoB;AAAA,UAAO;AAAA,YACzB,OAAO;AAAA,YACP,OAAO,gBAAgB,MAAM,KAAK;AAAA,UACpC;AAAA,UAAG;AAAA,UAAM;AAAA;AAAA,QAAa;AAAA,MACxB,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { renderSlot as _renderSlot, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { class: \"grid grid-cols-2 w-full h-full auto-rows-fr\" };\nimport { computed } from \"vue\";\nimport { handleBackground } from \"../layoutHelper\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"image-right\",\n  props: {\n    image: {\n      type: String\n    },\n    class: {\n      type: String\n    },\n    backgroundSize: {\n      type: String,\n      default: \"cover\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const style = computed(() => handleBackground(props.image, false, props.backgroundSize));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\n          \"div\",\n          {\n            class: _normalizeClass([\"slidev-layout default\", props.class])\n          },\n          [\n            _renderSlot(_ctx.$slots, \"default\")\n          ],\n          2\n          /* CLASS */\n        ),\n        _createElementVNode(\n          \"div\",\n          {\n            class: \"w-full h-full\",\n            style: _normalizeStyle(style.value)\n          },\n          null,\n          4\n          /* STYLE */\n        )\n      ]);\n    };\n  }\n});\n",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/layouts/image-right.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { renderSlot as _renderSlot, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { class: \"grid grid-cols-2 w-full h-full auto-rows-fr\" };\nimport { computed } from \"vue\";\nimport { handleBackground } from \"../layoutHelper\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"image-right\",\n  props: {\n    image: {\n      type: String\n    },\n    class: {\n      type: String\n    },\n    backgroundSize: {\n      type: String,\n      default: \"cover\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const style = computed(() => handleBackground(props.image, false, props.backgroundSize));\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\n          \"div\",\n          {\n            class: _normalizeClass([\"slidev-layout default\", props.class])\n          },\n          [\n            _renderSlot(_ctx.$slots, \"default\")\n          ],\n          2\n          /* CLASS */\n        ),\n        _createElementVNode(\n          \"div\",\n          {\n            class: \"w-full h-full\",\n            style: _normalizeStyle(style.value)\n          },\n          null,\n          4\n          /* STYLE */\n        )\n      ]);\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709021,
+      "end": 1743409709021,
+      "order": "normal"
+    }
+  ]
+}

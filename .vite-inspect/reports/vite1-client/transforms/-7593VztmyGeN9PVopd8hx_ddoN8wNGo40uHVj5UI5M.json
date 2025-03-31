@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/visit.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isDocument, isNode, isPair, isCollection, isMap, isSeq, isScalar, isAlias } from './nodes/identity.js';\n\nconst BREAK = Symbol('break visit');\nconst SKIP = Symbol('skip children');\nconst REMOVE = Symbol('remove node');\n/**\n * Apply a visitor to an AST node or document.\n *\n * Walks through the tree (depth-first) starting from `node`, calling a\n * `visitor` function with three arguments:\n *   - `key`: For sequence values and map `Pair`, the node's index in the\n *     collection. Within a `Pair`, `'key'` or `'value'`, correspondingly.\n *     `null` for the root node.\n *   - `node`: The current node.\n *   - `path`: The ancestry of the current node.\n *\n * The return value of the visitor may be used to control the traversal:\n *   - `undefined` (default): Do nothing and continue\n *   - `visit.SKIP`: Do not visit the children of this node, continue with next\n *     sibling\n *   - `visit.BREAK`: Terminate traversal completely\n *   - `visit.REMOVE`: Remove the current node, then continue with the next one\n *   - `Node`: Replace the current node, then continue by visiting it\n *   - `number`: While iterating the items of a sequence or map, set the index\n *     of the next step. This is useful especially if the index of the current\n *     node has changed.\n *\n * If `visitor` is a single function, it will be called with all values\n * encountered in the tree, including e.g. `null` values. Alternatively,\n * separate visitor functions may be defined for each `Map`, `Pair`, `Seq`,\n * `Alias` and `Scalar` node. To define the same visitor function for more than\n * one node type, use the `Collection` (map and seq), `Value` (map, seq & scalar)\n * and `Node` (alias, map, seq & scalar) targets. Of all these, only the most\n * specific defined one will be used for each node.\n */\nfunction visit(node, visitor) {\n    const visitor_ = initVisitor(visitor);\n    if (isDocument(node)) {\n        const cd = visit_(null, node.contents, visitor_, Object.freeze([node]));\n        if (cd === REMOVE)\n            node.contents = null;\n    }\n    else\n        visit_(null, node, visitor_, Object.freeze([]));\n}\n// Without the `as symbol` casts, TS declares these in the `visit`\n// namespace using `var`, but then complains about that because\n// `unique symbol` must be `const`.\n/** Terminate visit traversal completely */\nvisit.BREAK = BREAK;\n/** Do not visit the children of the current node */\nvisit.SKIP = SKIP;\n/** Remove the current node */\nvisit.REMOVE = REMOVE;\nfunction visit_(key, node, visitor, path) {\n    const ctrl = callVisitor(key, node, visitor, path);\n    if (isNode(ctrl) || isPair(ctrl)) {\n        replaceNode(key, path, ctrl);\n        return visit_(key, ctrl, visitor, path);\n    }\n    if (typeof ctrl !== 'symbol') {\n        if (isCollection(node)) {\n            path = Object.freeze(path.concat(node));\n            for (let i = 0; i < node.items.length; ++i) {\n                const ci = visit_(i, node.items[i], visitor, path);\n                if (typeof ci === 'number')\n                    i = ci - 1;\n                else if (ci === BREAK)\n                    return BREAK;\n                else if (ci === REMOVE) {\n                    node.items.splice(i, 1);\n                    i -= 1;\n                }\n            }\n        }\n        else if (isPair(node)) {\n            path = Object.freeze(path.concat(node));\n            const ck = visit_('key', node.key, visitor, path);\n            if (ck === BREAK)\n                return BREAK;\n            else if (ck === REMOVE)\n                node.key = null;\n            const cv = visit_('value', node.value, visitor, path);\n            if (cv === BREAK)\n                return BREAK;\n            else if (cv === REMOVE)\n                node.value = null;\n        }\n    }\n    return ctrl;\n}\n/**\n * Apply an async visitor to an AST node or document.\n *\n * Walks through the tree (depth-first) starting from `node`, calling a\n * `visitor` function with three arguments:\n *   - `key`: For sequence values and map `Pair`, the node's index in the\n *     collection. Within a `Pair`, `'key'` or `'value'`, correspondingly.\n *     `null` for the root node.\n *   - `node`: The current node.\n *   - `path`: The ancestry of the current node.\n *\n * The return value of the visitor may be used to control the traversal:\n *   - `Promise`: Must resolve to one of the following values\n *   - `undefined` (default): Do nothing and continue\n *   - `visit.SKIP`: Do not visit the children of this node, continue with next\n *     sibling\n *   - `visit.BREAK`: Terminate traversal completely\n *   - `visit.REMOVE`: Remove the current node, then continue with the next one\n *   - `Node`: Replace the current node, then continue by visiting it\n *   - `number`: While iterating the items of a sequence or map, set the index\n *     of the next step. This is useful especially if the index of the current\n *     node has changed.\n *\n * If `visitor` is a single function, it will be called with all values\n * encountered in the tree, including e.g. `null` values. Alternatively,\n * separate visitor functions may be defined for each `Map`, `Pair`, `Seq`,\n * `Alias` and `Scalar` node. To define the same visitor function for more than\n * one node type, use the `Collection` (map and seq), `Value` (map, seq & scalar)\n * and `Node` (alias, map, seq & scalar) targets. Of all these, only the most\n * specific defined one will be used for each node.\n */\nasync function visitAsync(node, visitor) {\n    const visitor_ = initVisitor(visitor);\n    if (isDocument(node)) {\n        const cd = await visitAsync_(null, node.contents, visitor_, Object.freeze([node]));\n        if (cd === REMOVE)\n            node.contents = null;\n    }\n    else\n        await visitAsync_(null, node, visitor_, Object.freeze([]));\n}\n// Without the `as symbol` casts, TS declares these in the `visit`\n// namespace using `var`, but then complains about that because\n// `unique symbol` must be `const`.\n/** Terminate visit traversal completely */\nvisitAsync.BREAK = BREAK;\n/** Do not visit the children of the current node */\nvisitAsync.SKIP = SKIP;\n/** Remove the current node */\nvisitAsync.REMOVE = REMOVE;\nasync function visitAsync_(key, node, visitor, path) {\n    const ctrl = await callVisitor(key, node, visitor, path);\n    if (isNode(ctrl) || isPair(ctrl)) {\n        replaceNode(key, path, ctrl);\n        return visitAsync_(key, ctrl, visitor, path);\n    }\n    if (typeof ctrl !== 'symbol') {\n        if (isCollection(node)) {\n            path = Object.freeze(path.concat(node));\n            for (let i = 0; i < node.items.length; ++i) {\n                const ci = await visitAsync_(i, node.items[i], visitor, path);\n                if (typeof ci === 'number')\n                    i = ci - 1;\n                else if (ci === BREAK)\n                    return BREAK;\n                else if (ci === REMOVE) {\n                    node.items.splice(i, 1);\n                    i -= 1;\n                }\n            }\n        }\n        else if (isPair(node)) {\n            path = Object.freeze(path.concat(node));\n            const ck = await visitAsync_('key', node.key, visitor, path);\n            if (ck === BREAK)\n                return BREAK;\n            else if (ck === REMOVE)\n                node.key = null;\n            const cv = await visitAsync_('value', node.value, visitor, path);\n            if (cv === BREAK)\n                return BREAK;\n            else if (cv === REMOVE)\n                node.value = null;\n        }\n    }\n    return ctrl;\n}\nfunction initVisitor(visitor) {\n    if (typeof visitor === 'object' &&\n        (visitor.Collection || visitor.Node || visitor.Value)) {\n        return Object.assign({\n            Alias: visitor.Node,\n            Map: visitor.Node,\n            Scalar: visitor.Node,\n            Seq: visitor.Node\n        }, visitor.Value && {\n            Map: visitor.Value,\n            Scalar: visitor.Value,\n            Seq: visitor.Value\n        }, visitor.Collection && {\n            Map: visitor.Collection,\n            Seq: visitor.Collection\n        }, visitor);\n    }\n    return visitor;\n}\nfunction callVisitor(key, node, visitor, path) {\n    if (typeof visitor === 'function')\n        return visitor(key, node, path);\n    if (isMap(node))\n        return visitor.Map?.(key, node, path);\n    if (isSeq(node))\n        return visitor.Seq?.(key, node, path);\n    if (isPair(node))\n        return visitor.Pair?.(key, node, path);\n    if (isScalar(node))\n        return visitor.Scalar?.(key, node, path);\n    if (isAlias(node))\n        return visitor.Alias?.(key, node, path);\n    return undefined;\n}\nfunction replaceNode(key, path, node) {\n    const parent = path[path.length - 1];\n    if (isCollection(parent)) {\n        parent.items[key] = node;\n    }\n    else if (isPair(parent)) {\n        if (key === 'key')\n            parent.key = node;\n        else\n            parent.value = node;\n    }\n    else if (isDocument(parent)) {\n        parent.contents = node;\n    }\n    else {\n        const pt = isAlias(parent) ? 'alias' : 'scalar';\n        throw new Error(`Cannot replace node with ${pt} parent`);\n    }\n}\n\nexport { visit, visitAsync };\n",
+      "start": 1743409708622,
+      "end": 1743409708639,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708639,
+      "end": 1743409708639,
+      "order": "normal"
+    }
+  ]
+}

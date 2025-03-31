@@ -1,0 +1,198 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/404.vue?vue&type=style&index=0&scoped=2af184e6&lang.postcss",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.page-link {\n  @apply py-2 px-4 bg-gray/10 hover:bg-gray/20 rounded;\n}\n",
+      "start": 1743409708704,
+      "end": 1743409708704
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708704,
+      "end": 1743409708704,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": "\n.page-link {\n  border-radius:0.25rem;background-color:rgb(156 163 175 / 0.1) /* #9ca3af */;padding-top:0.5rem;padding-bottom:0.5rem;padding-left:1rem;padding-right:1rem;\n}.page-link:hover{background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;}\n",
+      "start": 1743409708704,
+      "end": 1743409708705,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": ";AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC;AACD",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/404.vue?vue&type=style&index=0&scoped=2af184e6&lang.postcss"
+        ],
+        "sourcesContent": [
+          "\n.page-link {\n  border-radius:0.25rem;background-color:rgb(156 163 175 / 0.1) /* #9ca3af */;padding-top:0.5rem;padding-bottom:0.5rem;padding-left:1rem;padding-right:1rem;\n}.page-link:hover{background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "\n.page-link {\n  border-radius:0.25rem;background-color:rgb(156 163 175 / 0.1) /* #9ca3af */;padding-top:0.5rem;padding-bottom:0.5rem;padding-left:1rem;padding-right:1rem;\n}.page-link:hover{background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;}\n",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\n.page-link[data-v-2af184e6] {\n  border-radius:0.25rem;background-color:rgb(156 163 175 / 0.1) /* #9ca3af */;padding-top:0.5rem;padding-bottom:0.5rem;padding-left:1rem;padding-right:1rem;\n}.page-link[data-v-2af184e6]:hover{background-color:rgb(156 163 175 / 0.2) /* #9ca3af */;}\n",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/pages/404.vue?vue&type=style&index=0&scoped=2af184e6&lang.postcss"
+        ],
+        "sourcesContent": [
+          ""
+        ],
+        "names": [],
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708705,
+      "end": 1743409708705,
+      "order": "normal"
+    }
+  ]
+}

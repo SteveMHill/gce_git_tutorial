@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/compose/resolve-props.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function resolveProps(tokens, { flow, indicator, next, offset, onError, parentIndent, startOnNewline }) {\n    let spaceBefore = false;\n    let atNewline = startOnNewline;\n    let hasSpace = startOnNewline;\n    let comment = '';\n    let commentSep = '';\n    let hasNewline = false;\n    let reqSpace = false;\n    let tab = null;\n    let anchor = null;\n    let tag = null;\n    let newlineAfterProp = null;\n    let comma = null;\n    let found = null;\n    let start = null;\n    for (const token of tokens) {\n        if (reqSpace) {\n            if (token.type !== 'space' &&\n                token.type !== 'newline' &&\n                token.type !== 'comma')\n                onError(token.offset, 'MISSING_CHAR', 'Tags and anchors must be separated from the next token by white space');\n            reqSpace = false;\n        }\n        if (tab) {\n            if (atNewline && token.type !== 'comment' && token.type !== 'newline') {\n                onError(tab, 'TAB_AS_INDENT', 'Tabs are not allowed as indentation');\n            }\n            tab = null;\n        }\n        switch (token.type) {\n            case 'space':\n                // At the doc level, tabs at line start may be parsed\n                // as leading white space rather than indentation.\n                // In a flow collection, only the parser handles indent.\n                if (!flow &&\n                    (indicator !== 'doc-start' || next?.type !== 'flow-collection') &&\n                    token.source.includes('\\t')) {\n                    tab = token;\n                }\n                hasSpace = true;\n                break;\n            case 'comment': {\n                if (!hasSpace)\n                    onError(token, 'MISSING_CHAR', 'Comments must be separated from other tokens by white space characters');\n                const cb = token.source.substring(1) || ' ';\n                if (!comment)\n                    comment = cb;\n                else\n                    comment += commentSep + cb;\n                commentSep = '';\n                atNewline = false;\n                break;\n            }\n            case 'newline':\n                if (atNewline) {\n                    if (comment)\n                        comment += token.source;\n                    else if (!found || indicator !== 'seq-item-ind')\n                        spaceBefore = true;\n                }\n                else\n                    commentSep += token.source;\n                atNewline = true;\n                hasNewline = true;\n                if (anchor || tag)\n                    newlineAfterProp = token;\n                hasSpace = true;\n                break;\n            case 'anchor':\n                if (anchor)\n                    onError(token, 'MULTIPLE_ANCHORS', 'A node can have at most one anchor');\n                if (token.source.endsWith(':'))\n                    onError(token.offset + token.source.length - 1, 'BAD_ALIAS', 'Anchor ending in : is ambiguous', true);\n                anchor = token;\n                if (start === null)\n                    start = token.offset;\n                atNewline = false;\n                hasSpace = false;\n                reqSpace = true;\n                break;\n            case 'tag': {\n                if (tag)\n                    onError(token, 'MULTIPLE_TAGS', 'A node can have at most one tag');\n                tag = token;\n                if (start === null)\n                    start = token.offset;\n                atNewline = false;\n                hasSpace = false;\n                reqSpace = true;\n                break;\n            }\n            case indicator:\n                // Could here handle preceding comments differently\n                if (anchor || tag)\n                    onError(token, 'BAD_PROP_ORDER', `Anchors and tags must be after the ${token.source} indicator`);\n                if (found)\n                    onError(token, 'UNEXPECTED_TOKEN', `Unexpected ${token.source} in ${flow ?? 'collection'}`);\n                found = token;\n                atNewline =\n                    indicator === 'seq-item-ind' || indicator === 'explicit-key-ind';\n                hasSpace = false;\n                break;\n            case 'comma':\n                if (flow) {\n                    if (comma)\n                        onError(token, 'UNEXPECTED_TOKEN', `Unexpected , in ${flow}`);\n                    comma = token;\n                    atNewline = false;\n                    hasSpace = false;\n                    break;\n                }\n            // else fallthrough\n            default:\n                onError(token, 'UNEXPECTED_TOKEN', `Unexpected ${token.type} token`);\n                atNewline = false;\n                hasSpace = false;\n        }\n    }\n    const last = tokens[tokens.length - 1];\n    const end = last ? last.offset + last.source.length : offset;\n    if (reqSpace &&\n        next &&\n        next.type !== 'space' &&\n        next.type !== 'newline' &&\n        next.type !== 'comma' &&\n        (next.type !== 'scalar' || next.source !== '')) {\n        onError(next.offset, 'MISSING_CHAR', 'Tags and anchors must be separated from the next token by white space');\n    }\n    if (tab &&\n        ((atNewline && tab.indent <= parentIndent) ||\n            next?.type === 'block-map' ||\n            next?.type === 'block-seq'))\n        onError(tab, 'TAB_AS_INDENT', 'Tabs are not allowed as indentation');\n    return {\n        comma,\n        found,\n        spaceBefore,\n        comment,\n        hasNewline,\n        anchor,\n        tag,\n        newlineAfterProp,\n        end,\n        start: start ?? end\n    };\n}\n\nexport { resolveProps };\n",
+      "start": 1743409708656,
+      "end": 1743409708663,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708663,
+      "end": 1743409708663,
+      "order": "normal"
+    }
+  ]
+}

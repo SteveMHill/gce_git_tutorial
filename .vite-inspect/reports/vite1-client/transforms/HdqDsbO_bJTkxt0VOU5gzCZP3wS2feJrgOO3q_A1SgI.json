@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@unhead/vue/dist/shared/vue.BYLJNEcq.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { SafeInputPlugin, FlatMetaPlugin } from 'unhead/plugins';\nimport { walkResolver } from 'unhead/utils';\nimport { hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'vue';\nimport { V as VueResolver } from './vue.N9zWjxoK.mjs';\n\nconst headSymbol = \"usehead\";\nfunction vueInstall(head) {\n  const plugin = {\n    install(app) {\n      app.config.globalProperties.$unhead = head;\n      app.config.globalProperties.$head = head;\n      app.provide(headSymbol, head);\n    }\n  };\n  return plugin.install;\n}\n\nfunction injectHead() {\n  if (hasInjectionContext()) {\n    const instance = inject(headSymbol);\n    if (!instance) {\n      throw new Error(\"useHead() was called without provide context, ensure you call it through the setup() function.\");\n    }\n    return instance;\n  }\n  throw new Error(\"useHead() was called without provide context, ensure you call it through the setup() function.\");\n}\nfunction useHead(input, options = {}) {\n  const head = options.head || injectHead();\n  return head.ssr ? head.push(input || {}, options) : clientUseHead(head, input, options);\n}\nfunction clientUseHead(head, input, options = {}) {\n  const deactivated = ref(false);\n  let entry;\n  watchEffect(() => {\n    const i = deactivated.value ? {} : walkResolver(input, VueResolver);\n    if (entry) {\n      entry.patch(i);\n    } else {\n      entry = head.push(i, options);\n    }\n  });\n  const vm = getCurrentInstance();\n  if (vm) {\n    onBeforeUnmount(() => {\n      entry.dispose();\n    });\n    onDeactivated(() => {\n      deactivated.value = true;\n    });\n    onActivated(() => {\n      deactivated.value = false;\n    });\n  }\n  return entry;\n}\nfunction useHeadSafe(input = {}, options = {}) {\n  const head = options.head || injectHead();\n  head.use(SafeInputPlugin);\n  options._safe = true;\n  return useHead(input, options);\n}\nfunction useSeoMeta(input = {}, options = {}) {\n  const head = options.head || injectHead();\n  head.use(FlatMetaPlugin);\n  const { title, titleTemplate, ...meta } = input;\n  return useHead({\n    title,\n    titleTemplate,\n    _flatMeta: meta\n  }, options);\n}\nfunction useServerHead(input, options = {}) {\n  return useHead(input, { ...options, mode: \"server\" });\n}\nfunction useServerHeadSafe(input, options = {}) {\n  return useHeadSafe(input, { ...options, mode: \"server\" });\n}\nfunction useServerSeoMeta(input, options = {}) {\n  return useSeoMeta(input, { ...options, mode: \"server\" });\n}\n\nexport { useHeadSafe as a, useSeoMeta as b, useServerHead as c, useServerHeadSafe as d, useServerSeoMeta as e, headSymbol as h, injectHead as i, useHead as u, vueInstall as v };\n",
+      "start": 1743409708386,
+      "end": 1743409708415,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708415,
+      "end": 1743409708415,
+      "order": "normal"
+    }
+  ]
+}

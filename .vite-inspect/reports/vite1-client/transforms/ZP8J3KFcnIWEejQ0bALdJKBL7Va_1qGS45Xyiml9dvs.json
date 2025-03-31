@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/unhead/dist/plugins.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export { A as AliasSortingPlugin, D as DeprecationsPlugin, P as PromisesPlugin, T as TemplateParamsPlugin } from './shared/unhead.DeCxexjU.mjs';\nimport { d as defineHeadPlugin } from './shared/unhead.CApf5sj3.mjs';\nexport { F as FlatMetaPlugin, S as SafeInputPlugin } from './shared/unhead.CApf5sj3.mjs';\nimport './shared/unhead.DZbvapt-.mjs';\nimport './shared/unhead.C13swrCa.mjs';\nimport './shared/unhead.DQc16pHI.mjs';\nimport './shared/unhead.yem5I2v_.mjs';\n\nfunction CanonicalPlugin(options) {\n  return (head) => {\n    function resolvePath(path) {\n      if (options?.customResolver) {\n        return options.customResolver(path);\n      }\n      let host = options.canonicalHost || (!head.ssr ? window.location.origin : \"\");\n      if (!host.startsWith(\"http\") && !host.startsWith(\"//\")) {\n        host = `https://${host}`;\n      }\n      host = new URL(host).origin;\n      if (path.startsWith(\"http\") || path.startsWith(\"//\"))\n        return path;\n      try {\n        return new URL(path, host).toString();\n      } catch {\n        return path;\n      }\n    }\n    return {\n      key: \"canonical\",\n      hooks: {\n        \"tags:resolve\": (ctx) => {\n          for (const tag of ctx.tags) {\n            if (tag.tag === \"meta\") {\n              if (tag.props.property?.startsWith(\"og:image\") || tag.props.name?.startsWith(\"twitter:image\")) {\n                tag.props.content = resolvePath(tag.props.content);\n              } else if (tag.props?.property === \"og:url\") {\n                tag.props.content = resolvePath(tag.props.content);\n              }\n            } else if (tag.tag === \"link\" && tag.props.rel === \"canonical\") {\n              tag.props.href = resolvePath(tag.props.href);\n            }\n          }\n        }\n      }\n    };\n  };\n}\n\nfunction InferSeoMetaPlugin(options = {}) {\n  return defineHeadPlugin((head) => {\n    head.push({\n      meta: [\n        {\n          name: \"twitter:card\",\n          content: options.twitterCard || \"summary_large_image\",\n          tagPriority: \"low\"\n        },\n        {\n          \"property\": \"og:title\",\n          \"tagPriority\": \"low\",\n          \"data-infer\": \"\"\n        },\n        {\n          \"property\": \"og:description\",\n          \"tagPriority\": \"low\",\n          \"data-infer\": \"\"\n        }\n      ]\n    });\n    return {\n      key: \"infer-seo-meta\",\n      hooks: {\n        \"tags:beforeResolve\": ({ tagMap }) => {\n          let title = head._title || \"\";\n          const titleTemplate = head._titleTemplate;\n          const ogTitle = tagMap.get(\"meta:og:title\");\n          if (typeof ogTitle?.props[\"data-infer\"] !== \"undefined\") {\n            if (titleTemplate) {\n              title = typeof titleTemplate === \"function\" ? titleTemplate(title) : titleTemplate.replace(\"%s\", title);\n            }\n            ogTitle.props.content = options.ogTitle ? options.ogTitle(title) : title || \"\";\n          }\n          const description = tagMap.get(\"meta:description\")?.props?.content;\n          const ogDescription = tagMap.get(\"meta:og:description\");\n          if (typeof ogDescription?.props[\"data-infer\"] !== \"undefined\") {\n            ogDescription.props.content = options.ogDescription ? options.ogDescription(description) : description || \"\";\n          }\n        }\n      }\n    };\n  });\n}\n\nexport { CanonicalPlugin, InferSeoMetaPlugin, defineHeadPlugin };\n",
+      "start": 1743409708386,
+      "end": 1743409708414,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708414,
+      "end": 1743409708414,
+      "order": "normal"
+    }
+  ]
+}

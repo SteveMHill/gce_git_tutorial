@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/chunk-CCYIEPPW.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  AbstractMermaidTokenBuilder,\n  AbstractMermaidValueConverter,\n  ArchitectureGeneratedModule,\n  EmptyFileSystem,\n  MermaidGeneratedSharedModule,\n  __name as __name2,\n  createDefaultCoreModule,\n  createDefaultSharedCoreModule,\n  inject,\n  lib_exports\n} from \"./chunk-R4WPHL2B.mjs\";\nimport {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// ../parser/dist/chunks/mermaid-parser.core/chunk-C4OEIS7N.mjs\nvar ArchitectureTokenBuilder = class extends AbstractMermaidTokenBuilder {\n  static {\n    __name(this, \"ArchitectureTokenBuilder\");\n  }\n  static {\n    __name2(this, \"ArchitectureTokenBuilder\");\n  }\n  constructor() {\n    super([\"architecture\"]);\n  }\n};\nvar ArchitectureValueConverter = class extends AbstractMermaidValueConverter {\n  static {\n    __name(this, \"ArchitectureValueConverter\");\n  }\n  static {\n    __name2(this, \"ArchitectureValueConverter\");\n  }\n  runCustomConverter(rule, input, _cstNode) {\n    if (rule.name === \"ARCH_ICON\") {\n      return input.replace(/[()]/g, \"\").trim();\n    } else if (rule.name === \"ARCH_TEXT_ICON\") {\n      return input.replace(/[\"()]/g, \"\");\n    } else if (rule.name === \"ARCH_TITLE\") {\n      return input.replace(/[[\\]]/g, \"\").trim();\n    }\n    return void 0;\n  }\n};\nvar ArchitectureModule = {\n  parser: {\n    TokenBuilder: /* @__PURE__ */ __name2(() => new ArchitectureTokenBuilder(), \"TokenBuilder\"),\n    ValueConverter: /* @__PURE__ */ __name2(() => new ArchitectureValueConverter(), \"ValueConverter\")\n  }\n};\nfunction createArchitectureServices(context = EmptyFileSystem) {\n  const shared = inject(\n    createDefaultSharedCoreModule(context),\n    MermaidGeneratedSharedModule\n  );\n  const Architecture = inject(\n    createDefaultCoreModule({ shared }),\n    ArchitectureGeneratedModule,\n    ArchitectureModule\n  );\n  shared.ServiceRegistry.register(Architecture);\n  return { shared, Architecture };\n}\n__name(createArchitectureServices, \"createArchitectureServices\");\n__name2(createArchitectureServices, \"createArchitectureServices\");\n\nexport {\n  ArchitectureModule,\n  createArchitectureServices\n};\n",
+      "start": 1743409709193,
+      "end": 1743409709301,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709301,
+      "end": 1743409709301,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/styles/code.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "html.dark:root {\n  color-scheme: dark;\n}\n\n/* Shiki */\nhtml.dark .shiki {\n  color: var(--shiki-dark, inherit);\n  --twoslash-popup-bg: var(--shiki-dark-bg, inherit);\n}\n\nhtml.dark .shiki span {\n  color: var(--shiki-dark);\n}\n\nhtml:not(.dark) .shiki {\n  color: var(--shiki-light, inherit);\n  --twoslash-popup-bg: var(--shiki-light-bg, inherit);\n}\n\nhtml:not(.dark) .shiki span {\n  color: var(--shiki-light);\n}\n\n.twoslash-meta-line.twoslash-popover-line {\n  margin-top: -10px;\n}\n\n/* Slidev */\n.slidev-code-wrapper {\n  margin: var(--slidev-code-margin) !important;\n  scroll-padding: var(--slidev-code-padding);\n  &:-webkit-scrollbar {\n    width: 0px;\n  }\n}\n\n.slidev-code {\n  font-family: var(--slidev-code-font-family) !important;\n  padding: var(--slidev-code-padding) !important;\n  font-size: var(--slidev-code-font-size) !important;\n  line-height: var(--slidev-code-line-height) !important;\n  border-radius: var(--slidev-code-radius) !important;\n  background: var(--slidev-code-background);\n  overflow: auto;\n}\n\n.slidev-code .slidev-code-highlighted {\n}\n.slidev-code .slidev-code-dishonored {\n  opacity: 0.3;\n  pointer-events: none;\n}\n\n.slidev-code-line-numbers .slidev-code code {\n  counter-reset: step;\n  counter-increment: step calc(var(--start, 1) - 1);\n}\n\n.slidev-code-line-numbers .slidev-code code .line::before {\n  content: counter(step);\n  counter-increment: step;\n  display: inline-block;\n  text-align: right;\n  --uno: w-4 mr-6 text-gray-400 dark-text-gray-600;\n}\n\n/* Inline Code */\n.slidev-layout :not(pre) > code {\n  font-size: 0.9em;\n  background: var(--slidev-code-background);\n  border-radius: var(--slidev-code-radius);\n  --uno: font-light py-0.5 px-1.5;\n}\n\n.slidev-layout :not(pre) > code:before {\n  margin-right: -0.08em;\n}\n\n/* Revert CSS reset for KaTex */\n.katex,\n.katex :after,\n.katex :before {\n  border-color: currentColor;\n}\n",
+      "start": 1743409708380,
+      "end": 1743409708408,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708408,
+      "end": 1743409708408,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708408,
+      "end": 1743409708408,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "result": "html.dark:root {\n  color-scheme: dark;\n}\n\n/* Shiki */\nhtml.dark .shiki {\n  color: var(--shiki-dark, inherit);\n  --twoslash-popup-bg: var(--shiki-dark-bg, inherit);\n}\n\nhtml.dark .shiki span {\n  color: var(--shiki-dark);\n}\n\nhtml:not(.dark) .shiki {\n  color: var(--shiki-light, inherit);\n  --twoslash-popup-bg: var(--shiki-light-bg, inherit);\n}\n\nhtml:not(.dark) .shiki span {\n  color: var(--shiki-light);\n}\n\n.twoslash-meta-line.twoslash-popover-line {\n  margin-top: -10px;\n}\n\n/* Slidev */\n.slidev-code-wrapper {\n  margin: var(--slidev-code-margin) !important;\n  scroll-padding: var(--slidev-code-padding);\n  &:-webkit-scrollbar {\n    width: 0px;\n  }\n}\n\n.slidev-code {\n  font-family: var(--slidev-code-font-family) !important;\n  padding: var(--slidev-code-padding) !important;\n  font-size: var(--slidev-code-font-size) !important;\n  line-height: var(--slidev-code-line-height) !important;\n  border-radius: var(--slidev-code-radius) !important;\n  background: var(--slidev-code-background);\n  overflow: auto;\n}\n\n.slidev-code .slidev-code-highlighted {\n}\n.slidev-code .slidev-code-dishonored {\n  opacity: 0.3;\n  pointer-events: none;\n}\n\n.slidev-code-line-numbers .slidev-code code {\n  counter-reset: step;\n  counter-increment: step calc(var(--start, 1) - 1);\n}\n\n.slidev-code-line-numbers .slidev-code code .line::before {\n  content: counter(step);\n  counter-increment: step;\n  display: inline-block;\n  text-align: right;\n  ;margin-right:1.5rem;width:1rem;--un-text-opacity:1;color:rgb(156 163 175 / var(--un-text-opacity)) /* #9ca3af */;\n}.dark .slidev-code-line-numbers .slidev-code code .line::before{--un-text-opacity:1;color:rgb(75 85 99 / var(--un-text-opacity)) /* #4b5563 */;}\n\n/* Inline Code */\n.slidev-layout :not(pre) > code {\n  font-size: 0.9em;\n  background: var(--slidev-code-background);\n  border-radius: var(--slidev-code-radius);\n  padding-top:0.125rem;padding-bottom:0.125rem;padding-left:0.375rem;padding-right:0.375rem;font-weight:300;\n}\n\n.slidev-layout :not(pre) > code:before {\n  margin-right: -0.08em;\n}\n\n/* Revert CSS reset for KaTex */\n.katex,\n.katex :after,\n.katex :before {\n  border-color: currentColor;\n}\n",
+      "start": 1743409708408,
+      "end": 1743409708412,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "mappings": "AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC;AACF;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,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",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/styles/code.css"
+        ],
+        "sourcesContent": [
+          "html.dark:root {\n  color-scheme: dark;\n}\n\n/* Shiki */\nhtml.dark .shiki {\n  color: var(--shiki-dark, inherit);\n  --twoslash-popup-bg: var(--shiki-dark-bg, inherit);\n}\n\nhtml.dark .shiki span {\n  color: var(--shiki-dark);\n}\n\nhtml:not(.dark) .shiki {\n  color: var(--shiki-light, inherit);\n  --twoslash-popup-bg: var(--shiki-light-bg, inherit);\n}\n\nhtml:not(.dark) .shiki span {\n  color: var(--shiki-light);\n}\n\n.twoslash-meta-line.twoslash-popover-line {\n  margin-top: -10px;\n}\n\n/* Slidev */\n.slidev-code-wrapper {\n  margin: var(--slidev-code-margin) !important;\n  scroll-padding: var(--slidev-code-padding);\n  &:-webkit-scrollbar {\n    width: 0px;\n  }\n}\n\n.slidev-code {\n  font-family: var(--slidev-code-font-family) !important;\n  padding: var(--slidev-code-padding) !important;\n  font-size: var(--slidev-code-font-size) !important;\n  line-height: var(--slidev-code-line-height) !important;\n  border-radius: var(--slidev-code-radius) !important;\n  background: var(--slidev-code-background);\n  overflow: auto;\n}\n\n.slidev-code .slidev-code-highlighted {\n}\n.slidev-code .slidev-code-dishonored {\n  opacity: 0.3;\n  pointer-events: none;\n}\n\n.slidev-code-line-numbers .slidev-code code {\n  counter-reset: step;\n  counter-increment: step calc(var(--start, 1) - 1);\n}\n\n.slidev-code-line-numbers .slidev-code code .line::before {\n  content: counter(step);\n  counter-increment: step;\n  display: inline-block;\n  text-align: right;\n  ;margin-right:1.5rem;width:1rem;--un-text-opacity:1;color:rgb(156 163 175 / var(--un-text-opacity)) /* #9ca3af */;\n}.dark .slidev-code-line-numbers .slidev-code code .line::before{--un-text-opacity:1;color:rgb(75 85 99 / var(--un-text-opacity)) /* #4b5563 */;}\n\n/* Inline Code */\n.slidev-layout :not(pre) > code {\n  font-size: 0.9em;\n  background: var(--slidev-code-background);\n  border-radius: var(--slidev-code-radius);\n  padding-top:0.125rem;padding-bottom:0.125rem;padding-left:0.375rem;padding-right:0.375rem;font-weight:300;\n}\n\n.slidev-layout :not(pre) > code:before {\n  margin-right: -0.08em;\n}\n\n/* Revert CSS reset for KaTex */\n.katex,\n.katex :after,\n.katex :before {\n  border-color: currentColor;\n}\n"
+        ]
+      }
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708412,
+      "end": 1743409708412,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "html.dark:root {\n  color-scheme: dark;\n}\n\n/* Shiki */\nhtml.dark .shiki {\n  color: var(--shiki-dark, inherit);\n  --twoslash-popup-bg: var(--shiki-dark-bg, inherit);\n}\n\nhtml.dark .shiki span {\n  color: var(--shiki-dark);\n}\n\nhtml:not(.dark) .shiki {\n  color: var(--shiki-light, inherit);\n  --twoslash-popup-bg: var(--shiki-light-bg, inherit);\n}\n\nhtml:not(.dark) .shiki span {\n  color: var(--shiki-light);\n}\n\n.twoslash-meta-line.twoslash-popover-line {\n  margin-top: -10px;\n}\n\n/* Slidev */\n.slidev-code-wrapper {\n  margin: var(--slidev-code-margin) !important;\n  scroll-padding: var(--slidev-code-padding);\n}\n.slidev-code-wrapper:-webkit-scrollbar {\n    width: 0px;\n  }\n\n.slidev-code {\n  font-family: var(--slidev-code-font-family) !important;\n  padding: var(--slidev-code-padding) !important;\n  font-size: var(--slidev-code-font-size) !important;\n  line-height: var(--slidev-code-line-height) !important;\n  border-radius: var(--slidev-code-radius) !important;\n  background: var(--slidev-code-background);\n  overflow: auto;\n}\n\n.slidev-code .slidev-code-highlighted {\n}\n.slidev-code .slidev-code-dishonored {\n  opacity: 0.3;\n  pointer-events: none;\n}\n\n.slidev-code-line-numbers .slidev-code code {\n  counter-reset: step;\n  counter-increment: step calc(var(--start, 1) - 1);\n}\n\n.slidev-code-line-numbers .slidev-code code .line::before {\n  content: counter(step);\n  counter-increment: step;\n  display: inline-block;\n  text-align: right;\n  ;margin-right:1.5rem;width:1rem;--un-text-opacity:1;color:rgb(156 163 175 / var(--un-text-opacity)) /* #9ca3af */;\n}.dark .slidev-code-line-numbers .slidev-code code .line::before{--un-text-opacity:1;color:rgb(75 85 99 / var(--un-text-opacity)) /* #4b5563 */;}\n\n/* Inline Code */\n.slidev-layout :not(pre) > code {\n  font-size: 0.9em;\n  background: var(--slidev-code-background);\n  border-radius: var(--slidev-code-radius);\n  padding-top:0.125rem;padding-bottom:0.125rem;padding-left:0.375rem;padding-right:0.375rem;font-weight:300;\n}\n\n.slidev-layout :not(pre) > code:before {\n  margin-right: -0.08em;\n}\n\n/* Revert CSS reset for KaTex */\n.katex,\n.katex :after,\n.katex :before {\n  border-color: currentColor;\n}\n",
+      "start": 1743409708412,
+      "end": 1743409708429,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708434,
+      "end": 1743409708434,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708435,
+      "end": 1743409708435,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708436,
+      "end": 1743409708436,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708437,
+      "end": 1743409708437,
+      "order": "normal"
+    }
+  ]
+}

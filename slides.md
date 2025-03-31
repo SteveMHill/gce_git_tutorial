@@ -1,7 +1,7 @@
 ---
 # You can also start simply with 'default'
 theme: ./theme
-background: ./images/cover.png
+background: '/images/cover.png'
 title: Bytes, Bugs and Biology
 colorSchema: light
 mdc: true

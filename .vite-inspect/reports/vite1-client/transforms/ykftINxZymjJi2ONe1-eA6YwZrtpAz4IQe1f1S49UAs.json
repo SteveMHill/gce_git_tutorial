@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useDrawings.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { Brush, Options as DrauuOptions, DrawingMode } from 'drauu'\nimport { createSharedComposable, toReactive, useLocalStorage } from '@vueuse/core'\nimport { createDrauu } from 'drauu'\nimport { computed, markRaw, nextTick, reactive, ref, watch } from 'vue'\nimport { configs } from '../env'\nimport { isInputting } from '../state'\nimport { drawingState, onPatchDrawingState, patchDrawingState } from '../state/drawings'\nimport { useNav } from './useNav'\n\nexport const useDrawings = createSharedComposable(() => {\n  const { currentSlideNo, isPresenter } = useNav()\n\n  const brushColors = [\n    '#ff595e',\n    '#ffca3a',\n    '#8ac926',\n    '#1982c4',\n    '#6a4c93',\n    '#ffffff',\n    '#000000',\n  ]\n\n  const drawingEnabled = useLocalStorage('slidev-drawing-enabled', false)\n  const drawingPinned = useLocalStorage('slidev-drawing-pinned', false)\n  const brush = toReactive(useLocalStorage<Brush>('slidev-drawing-brush', {\n    color: brushColors[0],\n    size: 4,\n    mode: 'stylus',\n  }))\n\n  const isDrawing = ref(false)\n  const canUndo = ref(false)\n  const canRedo = ref(false)\n  const canClear = ref(false)\n\n  const _mode = ref<DrawingMode | 'arrow'>('stylus')\n  const syncUp = computed(() => configs.drawings.syncAll || isPresenter.value)\n  let disableDump = false\n\n  const drawingMode = computed({\n    get() {\n      return _mode.value\n    },\n    set(v: DrawingMode | 'arrow') {\n      _mode.value = v\n      if (v === 'arrow') {\n        // eslint-disable-next-line ts/no-use-before-define\n        drauu.mode = 'line'\n        brush.arrowEnd = true\n      }\n      else {\n        // eslint-disable-next-line ts/no-use-before-define\n        drauu.mode = v\n        brush.arrowEnd = false\n      }\n    },\n  })\n\n  const drauuOptions: DrauuOptions = reactive({\n    brush,\n    acceptsInputTypes: computed(() => (drawingEnabled.value && (!configs.drawings.presenterOnly || isPresenter.value)) ? undefined : ['pen' as const]),\n    coordinateTransform: false,\n  })\n\n  const drauu = markRaw(createDrauu(drauuOptions))\n\n  function clearDrauu() {\n    drauu.clear()\n    if (syncUp.value)\n      patchDrawingState(currentSlideNo.value, '')\n  }\n\n  function updateState() {\n    canRedo.value = drauu.canRedo()\n    canUndo.value = drauu.canUndo()\n    canClear.value = !!drauu.el?.children.length\n  }\n\n  function loadCanvas(page?: number) {\n    disableDump = true\n    const data = drawingState[page || currentSlideNo.value]\n    if (data != null)\n      drauu.load(data)\n    else\n      drauu.clear()\n    updateState()\n    disableDump = false\n  }\n\n  drauu.on('changed', () => {\n    updateState()\n    if (!disableDump) {\n      const dump = drauu.dump()\n      const key = currentSlideNo.value\n      if ((drawingState[key] || '') !== dump && syncUp.value)\n        patchDrawingState(key, drauu.dump())\n    }\n  })\n\n  onPatchDrawingState((state) => {\n    disableDump = true\n    if (state[currentSlideNo.value] != null)\n      drauu.load(state[currentSlideNo.value] || '')\n    disableDump = false\n    updateState()\n  })\n\n  nextTick(() => {\n    watch(currentSlideNo, () => {\n      if (!drauu.mounted)\n        return\n      loadCanvas()\n    }, { immediate: true })\n  })\n\n  drauu.on('start', () => isDrawing.value = true)\n  drauu.on('end', () => isDrawing.value = false)\n\n  window.addEventListener('keydown', (e) => {\n    if (!drawingEnabled.value || isInputting.value)\n      return\n\n    const noModifier = !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey\n    let handled = true\n    if (e.code === 'KeyZ' && (e.ctrlKey || e.metaKey)) {\n      if (e.shiftKey)\n        drauu.redo()\n      else\n        drauu.undo()\n    }\n    else if (e.code === 'Escape') {\n      drawingEnabled.value = false\n    }\n    else if (e.code === 'KeyL' && noModifier) {\n      drawingMode.value = 'line'\n    }\n    else if (e.code === 'KeyA' && noModifier) {\n      drawingMode.value = 'arrow'\n    }\n    else if (e.code === 'KeyS' && noModifier) {\n      drawingMode.value = 'stylus'\n    }\n    else if (e.code === 'KeyR' && noModifier) {\n      drawingMode.value = 'rectangle'\n    }\n    else if (e.code === 'KeyE' && noModifier) {\n      drawingMode.value = 'ellipse'\n    }\n    else if (e.code === 'KeyC' && noModifier) {\n      clearDrauu()\n    }\n    else if (e.code.startsWith('Digit') && noModifier && +e.code[5] <= brushColors.length) {\n      brush.color = brushColors[+e.code[5] - 1]\n    }\n    else {\n      handled = false\n    }\n\n    if (handled) {\n      e.preventDefault()\n      e.stopPropagation()\n    }\n  }, false)\n\n  return {\n    brush,\n    brushColors,\n    canClear,\n    canRedo,\n    canUndo,\n    clear: clearDrauu,\n    drauu,\n    drauuOptions,\n    drawingEnabled,\n    drawingMode,\n    drawingPinned,\n    drawingState,\n    isDrawing,\n    loadCanvas,\n  }\n})\n",
+      "start": 1743409708751,
+      "end": 1743409708775,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708776,
+      "end": 1743409708776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { createSharedComposable, toReactive, useLocalStorage } from \"@vueuse/core\";\nimport { createDrauu } from \"drauu\";\nimport { computed, markRaw, nextTick, reactive, ref, watch } from \"vue\";\nimport { configs } from \"../env\";\nimport { isInputting } from \"../state\";\nimport { drawingState, onPatchDrawingState, patchDrawingState } from \"../state/drawings\";\nimport { useNav } from \"./useNav\";\nexport const useDrawings = createSharedComposable(() => {\n  const { currentSlideNo, isPresenter } = useNav();\n  const brushColors = [\n    \"#ff595e\",\n    \"#ffca3a\",\n    \"#8ac926\",\n    \"#1982c4\",\n    \"#6a4c93\",\n    \"#ffffff\",\n    \"#000000\"\n  ];\n  const drawingEnabled = useLocalStorage(\"slidev-drawing-enabled\", false);\n  const drawingPinned = useLocalStorage(\"slidev-drawing-pinned\", false);\n  const brush = toReactive(useLocalStorage(\"slidev-drawing-brush\", {\n    color: brushColors[0],\n    size: 4,\n    mode: \"stylus\"\n  }));\n  const isDrawing = ref(false);\n  const canUndo = ref(false);\n  const canRedo = ref(false);\n  const canClear = ref(false);\n  const _mode = ref(\"stylus\");\n  const syncUp = computed(() => configs.drawings.syncAll || isPresenter.value);\n  let disableDump = false;\n  const drawingMode = computed({\n    get() {\n      return _mode.value;\n    },\n    set(v) {\n      _mode.value = v;\n      if (v === \"arrow\") {\n        drauu.mode = \"line\";\n        brush.arrowEnd = true;\n      } else {\n        drauu.mode = v;\n        brush.arrowEnd = false;\n      }\n    }\n  });\n  const drauuOptions = reactive({\n    brush,\n    acceptsInputTypes: computed(() => drawingEnabled.value && (!configs.drawings.presenterOnly || isPresenter.value) ? void 0 : [\"pen\"]),\n    coordinateTransform: false\n  });\n  const drauu = markRaw(createDrauu(drauuOptions));\n  function clearDrauu() {\n    drauu.clear();\n    if (syncUp.value)\n      patchDrawingState(currentSlideNo.value, \"\");\n  }\n  function updateState() {\n    canRedo.value = drauu.canRedo();\n    canUndo.value = drauu.canUndo();\n    canClear.value = !!drauu.el?.children.length;\n  }\n  function loadCanvas(page) {\n    disableDump = true;\n    const data = drawingState[page || currentSlideNo.value];\n    if (data != null)\n      drauu.load(data);\n    else\n      drauu.clear();\n    updateState();\n    disableDump = false;\n  }\n  drauu.on(\"changed\", () => {\n    updateState();\n    if (!disableDump) {\n      const dump = drauu.dump();\n      const key = currentSlideNo.value;\n      if ((drawingState[key] || \"\") !== dump && syncUp.value)\n        patchDrawingState(key, drauu.dump());\n    }\n  });\n  onPatchDrawingState((state) => {\n    disableDump = true;\n    if (state[currentSlideNo.value] != null)\n      drauu.load(state[currentSlideNo.value] || \"\");\n    disableDump = false;\n    updateState();\n  });\n  nextTick(() => {\n    watch(currentSlideNo, () => {\n      if (!drauu.mounted)\n        return;\n      loadCanvas();\n    }, { immediate: true });\n  });\n  drauu.on(\"start\", () => isDrawing.value = true);\n  drauu.on(\"end\", () => isDrawing.value = false);\n  window.addEventListener(\"keydown\", (e) => {\n    if (!drawingEnabled.value || isInputting.value)\n      return;\n    const noModifier = !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey;\n    let handled = true;\n    if (e.code === \"KeyZ\" && (e.ctrlKey || e.metaKey)) {\n      if (e.shiftKey)\n        drauu.redo();\n      else\n        drauu.undo();\n    } else if (e.code === \"Escape\") {\n      drawingEnabled.value = false;\n    } else if (e.code === \"KeyL\" && noModifier) {\n      drawingMode.value = \"line\";\n    } else if (e.code === \"KeyA\" && noModifier) {\n      drawingMode.value = \"arrow\";\n    } else if (e.code === \"KeyS\" && noModifier) {\n      drawingMode.value = \"stylus\";\n    } else if (e.code === \"KeyR\" && noModifier) {\n      drawingMode.value = \"rectangle\";\n    } else if (e.code === \"KeyE\" && noModifier) {\n      drawingMode.value = \"ellipse\";\n    } else if (e.code === \"KeyC\" && noModifier) {\n      clearDrauu();\n    } else if (e.code.startsWith(\"Digit\") && noModifier && +e.code[5] <= brushColors.length) {\n      brush.color = brushColors[+e.code[5] - 1];\n    } else {\n      handled = false;\n    }\n    if (handled) {\n      e.preventDefault();\n      e.stopPropagation();\n    }\n  }, false);\n  return {\n    brush,\n    brushColors,\n    canClear,\n    canRedo,\n    canUndo,\n    clear: clearDrauu,\n    drauu,\n    drauuOptions,\n    drawingEnabled,\n    drawingMode,\n    drawingPinned,\n    drawingState,\n    isDrawing,\n    loadCanvas\n  };\n});\n",
+      "start": 1743409708776,
+      "end": 1743409708930,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useDrawings.ts"
+        ],
+        "sourcesContent": [
+          "import type { Brush, Options as DrauuOptions, DrawingMode } from 'drauu'\nimport { createSharedComposable, toReactive, useLocalStorage } from '@vueuse/core'\nimport { createDrauu } from 'drauu'\nimport { computed, markRaw, nextTick, reactive, ref, watch } from 'vue'\nimport { configs } from '../env'\nimport { isInputting } from '../state'\nimport { drawingState, onPatchDrawingState, patchDrawingState } from '../state/drawings'\nimport { useNav } from './useNav'\n\nexport const useDrawings = createSharedComposable(() => {\n  const { currentSlideNo, isPresenter } = useNav()\n\n  const brushColors = [\n    '#ff595e',\n    '#ffca3a',\n    '#8ac926',\n    '#1982c4',\n    '#6a4c93',\n    '#ffffff',\n    '#000000',\n  ]\n\n  const drawingEnabled = useLocalStorage('slidev-drawing-enabled', false)\n  const drawingPinned = useLocalStorage('slidev-drawing-pinned', false)\n  const brush = toReactive(useLocalStorage<Brush>('slidev-drawing-brush', {\n    color: brushColors[0],\n    size: 4,\n    mode: 'stylus',\n  }))\n\n  const isDrawing = ref(false)\n  const canUndo = ref(false)\n  const canRedo = ref(false)\n  const canClear = ref(false)\n\n  const _mode = ref<DrawingMode | 'arrow'>('stylus')\n  const syncUp = computed(() => configs.drawings.syncAll || isPresenter.value)\n  let disableDump = false\n\n  const drawingMode = computed({\n    get() {\n      return _mode.value\n    },\n    set(v: DrawingMode | 'arrow') {\n      _mode.value = v\n      if (v === 'arrow') {\n        // eslint-disable-next-line ts/no-use-before-define\n        drauu.mode = 'line'\n        brush.arrowEnd = true\n      }\n      else {\n        // eslint-disable-next-line ts/no-use-before-define\n        drauu.mode = v\n        brush.arrowEnd = false\n      }\n    },\n  })\n\n  const drauuOptions: DrauuOptions = reactive({\n    brush,\n    acceptsInputTypes: computed(() => (drawingEnabled.value && (!configs.drawings.presenterOnly || isPresenter.value)) ? undefined : ['pen' as const]),\n    coordinateTransform: false,\n  })\n\n  const drauu = markRaw(createDrauu(drauuOptions))\n\n  function clearDrauu() {\n    drauu.clear()\n    if (syncUp.value)\n      patchDrawingState(currentSlideNo.value, '')\n  }\n\n  function updateState() {\n    canRedo.value = drauu.canRedo()\n    canUndo.value = drauu.canUndo()\n    canClear.value = !!drauu.el?.children.length\n  }\n\n  function loadCanvas(page?: number) {\n    disableDump = true\n    const data = drawingState[page || currentSlideNo.value]\n    if (data != null)\n      drauu.load(data)\n    else\n      drauu.clear()\n    updateState()\n    disableDump = false\n  }\n\n  drauu.on('changed', () => {\n    updateState()\n    if (!disableDump) {\n      const dump = drauu.dump()\n      const key = currentSlideNo.value\n      if ((drawingState[key] || '') !== dump && syncUp.value)\n        patchDrawingState(key, drauu.dump())\n    }\n  })\n\n  onPatchDrawingState((state) => {\n    disableDump = true\n    if (state[currentSlideNo.value] != null)\n      drauu.load(state[currentSlideNo.value] || '')\n    disableDump = false\n    updateState()\n  })\n\n  nextTick(() => {\n    watch(currentSlideNo, () => {\n      if (!drauu.mounted)\n        return\n      loadCanvas()\n    }, { immediate: true })\n  })\n\n  drauu.on('start', () => isDrawing.value = true)\n  drauu.on('end', () => isDrawing.value = false)\n\n  window.addEventListener('keydown', (e) => {\n    if (!drawingEnabled.value || isInputting.value)\n      return\n\n    const noModifier = !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey\n    let handled = true\n    if (e.code === 'KeyZ' && (e.ctrlKey || e.metaKey)) {\n      if (e.shiftKey)\n        drauu.redo()\n      else\n        drauu.undo()\n    }\n    else if (e.code === 'Escape') {\n      drawingEnabled.value = false\n    }\n    else if (e.code === 'KeyL' && noModifier) {\n      drawingMode.value = 'line'\n    }\n    else if (e.code === 'KeyA' && noModifier) {\n      drawingMode.value = 'arrow'\n    }\n    else if (e.code === 'KeyS' && noModifier) {\n      drawingMode.value = 'stylus'\n    }\n    else if (e.code === 'KeyR' && noModifier) {\n      drawingMode.value = 'rectangle'\n    }\n    else if (e.code === 'KeyE' && noModifier) {\n      drawingMode.value = 'ellipse'\n    }\n    else if (e.code === 'KeyC' && noModifier) {\n      clearDrauu()\n    }\n    else if (e.code.startsWith('Digit') && noModifier && +e.code[5] <= brushColors.length) {\n      brush.color = brushColors[+e.code[5] - 1]\n    }\n    else {\n      handled = false\n    }\n\n    if (handled) {\n      e.preventDefault()\n      e.stopPropagation()\n    }\n  }, false)\n\n  return {\n    brush,\n    brushColors,\n    canClear,\n    canRedo,\n    canUndo,\n    clear: clearDrauu,\n    drauu,\n    drauuOptions,\n    drawingEnabled,\n    drawingMode,\n    drawingPinned,\n    drawingState,\n    isDrawing,\n    loadCanvas,\n  }\n})\n"
+        ],
+        "mappings": "AACA,SAAS,wBAAwB,YAAY,uBAAuB;AACpE,SAAS,mBAAmB;AAC5B,SAAS,UAAU,SAAS,UAAU,UAAU,KAAK,aAAa;AAClE,SAAS,eAAe;AACxB,SAAS,mBAAmB;AAC5B,SAAS,cAAc,qBAAqB,yBAAyB;AACrE,SAAS,cAAc;AAEhB,aAAM,cAAc,uBAAuB,MAAM;AACtD,QAAM,EAAE,gBAAgB,YAAY,IAAI,OAAO;AAE/C,QAAM,cAAc;AAAA,IAClB;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,EACF;AAEA,QAAM,iBAAiB,gBAAgB,0BAA0B,KAAK;AACtE,QAAM,gBAAgB,gBAAgB,yBAAyB,KAAK;AACpE,QAAM,QAAQ,WAAW,gBAAuB,wBAAwB;AAAA,IACtE,OAAO,YAAY,CAAC;AAAA,IACpB,MAAM;AAAA,IACN,MAAM;AAAA,EACR,CAAC,CAAC;AAEF,QAAM,YAAY,IAAI,KAAK;AAC3B,QAAM,UAAU,IAAI,KAAK;AACzB,QAAM,UAAU,IAAI,KAAK;AACzB,QAAM,WAAW,IAAI,KAAK;AAE1B,QAAM,QAAQ,IAA2B,QAAQ;AACjD,QAAM,SAAS,SAAS,MAAM,QAAQ,SAAS,WAAW,YAAY,KAAK;AAC3E,MAAI,cAAc;AAElB,QAAM,cAAc,SAAS;AAAA,IAC3B,MAAM;AACJ,aAAO,MAAM;AAAA,IACf;AAAA,IACA,IAAI,GAA0B;AAC5B,YAAM,QAAQ;AACd,UAAI,MAAM,SAAS;AAEjB,cAAM,OAAO;AACb,cAAM,WAAW;AAAA,MACnB,OACK;AAEH,cAAM,OAAO;AACb,cAAM,WAAW;AAAA,MACnB;AAAA,IACF;AAAA,EACF,CAAC;AAED,QAAM,eAA6B,SAAS;AAAA,IAC1C;AAAA,IACA,mBAAmB,SAAS,MAAO,eAAe,UAAU,CAAC,QAAQ,SAAS,iBAAiB,YAAY,SAAU,SAAY,CAAC,KAAc,CAAC;AAAA,IACjJ,qBAAqB;AAAA,EACvB,CAAC;AAED,QAAM,QAAQ,QAAQ,YAAY,YAAY,CAAC;AAE/C,WAAS,aAAa;AACpB,UAAM,MAAM;AACZ,QAAI,OAAO;AACT,wBAAkB,eAAe,OAAO,EAAE;AAAA,EAC9C;AAEA,WAAS,cAAc;AACrB,YAAQ,QAAQ,MAAM,QAAQ;AAC9B,YAAQ,QAAQ,MAAM,QAAQ;AAC9B,aAAS,QAAQ,CAAC,CAAC,MAAM,IAAI,SAAS;AAAA,EACxC;AAEA,WAAS,WAAW,MAAe;AACjC,kBAAc;AACd,UAAM,OAAO,aAAa,QAAQ,eAAe,KAAK;AACtD,QAAI,QAAQ;AACV,YAAM,KAAK,IAAI;AAAA;AAEf,YAAM,MAAM;AACd,gBAAY;AACZ,kBAAc;AAAA,EAChB;AAEA,QAAM,GAAG,WAAW,MAAM;AACxB,gBAAY;AACZ,QAAI,CAAC,aAAa;AAChB,YAAM,OAAO,MAAM,KAAK;AACxB,YAAM,MAAM,eAAe;AAC3B,WAAK,aAAa,GAAG,KAAK,QAAQ,QAAQ,OAAO;AAC/C,0BAAkB,KAAK,MAAM,KAAK,CAAC;AAAA,IACvC;AAAA,EACF,CAAC;AAED,sBAAoB,CAAC,UAAU;AAC7B,kBAAc;AACd,QAAI,MAAM,eAAe,KAAK,KAAK;AACjC,YAAM,KAAK,MAAM,eAAe,KAAK,KAAK,EAAE;AAC9C,kBAAc;AACd,gBAAY;AAAA,EACd,CAAC;AAED,WAAS,MAAM;AACb,UAAM,gBAAgB,MAAM;AAC1B,UAAI,CAAC,MAAM;AACT;AACF,iBAAW;AAAA,IACb,GAAG,EAAE,WAAW,KAAK,CAAC;AAAA,EACxB,CAAC;AAED,QAAM,GAAG,SAAS,MAAM,UAAU,QAAQ,IAAI;AAC9C,QAAM,GAAG,OAAO,MAAM,UAAU,QAAQ,KAAK;AAE7C,SAAO,iBAAiB,WAAW,CAAC,MAAM;AACxC,QAAI,CAAC,eAAe,SAAS,YAAY;AACvC;AAEF,UAAM,aAAa,CAAC,EAAE,WAAW,CAAC,EAAE,UAAU,CAAC,EAAE,YAAY,CAAC,EAAE;AAChE,QAAI,UAAU;AACd,QAAI,EAAE,SAAS,WAAW,EAAE,WAAW,EAAE,UAAU;AACjD,UAAI,EAAE;AACJ,cAAM,KAAK;AAAA;AAEX,cAAM,KAAK;AAAA,IACf,WACS,EAAE,SAAS,UAAU;AAC5B,qBAAe,QAAQ;AAAA,IACzB,WACS,EAAE,SAAS,UAAU,YAAY;AACxC,kBAAY,QAAQ;AAAA,IACtB,WACS,EAAE,SAAS,UAAU,YAAY;AACxC,kBAAY,QAAQ;AAAA,IACtB,WACS,EAAE,SAAS,UAAU,YAAY;AACxC,kBAAY,QAAQ;AAAA,IACtB,WACS,EAAE,SAAS,UAAU,YAAY;AACxC,kBAAY,QAAQ;AAAA,IACtB,WACS,EAAE,SAAS,UAAU,YAAY;AACxC,kBAAY,QAAQ;AAAA,IACtB,WACS,EAAE,SAAS,UAAU,YAAY;AACxC,iBAAW;AAAA,IACb,WACS,EAAE,KAAK,WAAW,OAAO,KAAK,cAAc,CAAC,EAAE,KAAK,CAAC,KAAK,YAAY,QAAQ;AACrF,YAAM,QAAQ,YAAY,CAAC,EAAE,KAAK,CAAC,IAAI,CAAC;AAAA,IAC1C,OACK;AACH,gBAAU;AAAA,IACZ;AAEA,QAAI,SAAS;AACX,QAAE,eAAe;AACjB,QAAE,gBAAgB;AAAA,IACpB;AAAA,EACF,GAAG,KAAK;AAER,SAAO;AAAA,IACL;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA,OAAO;AAAA,IACP;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,EACF;AACF,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708930,
+      "end": 1743409708930,
+      "order": "normal"
+    }
+  ]
+}

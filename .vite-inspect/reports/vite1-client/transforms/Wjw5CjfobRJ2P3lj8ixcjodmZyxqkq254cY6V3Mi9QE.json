@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/pieDiagram-FPR3CNQC.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  populateCommonDb\n} from \"./chunk-K2ZEYYM2.mjs\";\nimport {\n  parse\n} from \"./chunk-XIYN7VYH.mjs\";\nimport \"./chunk-SDBY772Q.mjs\";\nimport \"./chunk-CCYIEPPW.mjs\";\nimport \"./chunk-OTG2ZAWT.mjs\";\nimport \"./chunk-7JTU5PD2.mjs\";\nimport {\n  selectSvgElement\n} from \"./chunk-YIX7P6T4.mjs\";\nimport {\n  cleanAndMerge,\n  parseFontSize\n} from \"./chunk-YFKFDTKC.mjs\";\nimport \"./chunk-GKOISANM.mjs\";\nimport {\n  arc_default,\n  clear,\n  configureSvgSize,\n  defaultConfig_default,\n  getAccDescription,\n  getAccTitle,\n  getConfig2 as getConfig,\n  getDiagramTitle,\n  log,\n  ordinal,\n  pie_default,\n  setAccDescription,\n  setAccTitle,\n  setDiagramTitle\n} from \"./chunk-3L32CQKD.mjs\";\nimport \"./chunk-GTV5PL3S.mjs\";\nimport \"./chunk-4AQQYWZS.mjs\";\nimport \"./chunk-R4WPHL2B.mjs\";\nimport \"./chunk-TGZYFRKZ.mjs\";\nimport \"./chunk-GRZAG2UZ.mjs\";\nimport \"./chunk-HD3LK5B5.mjs\";\nimport {\n  __name\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// src/diagrams/pie/pieDb.ts\nvar DEFAULT_PIE_CONFIG = defaultConfig_default.pie;\nvar DEFAULT_PIE_DB = {\n  sections: /* @__PURE__ */ new Map(),\n  showData: false,\n  config: DEFAULT_PIE_CONFIG\n};\nvar sections = DEFAULT_PIE_DB.sections;\nvar showData = DEFAULT_PIE_DB.showData;\nvar config = structuredClone(DEFAULT_PIE_CONFIG);\nvar getConfig2 = /* @__PURE__ */ __name(() => structuredClone(config), \"getConfig\");\nvar clear2 = /* @__PURE__ */ __name(() => {\n  sections = /* @__PURE__ */ new Map();\n  showData = DEFAULT_PIE_DB.showData;\n  clear();\n}, \"clear\");\nvar addSection = /* @__PURE__ */ __name(({ label, value }) => {\n  if (!sections.has(label)) {\n    sections.set(label, value);\n    log.debug(`added new section: ${label}, with value: ${value}`);\n  }\n}, \"addSection\");\nvar getSections = /* @__PURE__ */ __name(() => sections, \"getSections\");\nvar setShowData = /* @__PURE__ */ __name((toggle) => {\n  showData = toggle;\n}, \"setShowData\");\nvar getShowData = /* @__PURE__ */ __name(() => showData, \"getShowData\");\nvar db = {\n  getConfig: getConfig2,\n  clear: clear2,\n  setDiagramTitle,\n  getDiagramTitle,\n  setAccTitle,\n  getAccTitle,\n  setAccDescription,\n  getAccDescription,\n  addSection,\n  getSections,\n  setShowData,\n  getShowData\n};\n\n// src/diagrams/pie/pieParser.ts\nvar populateDb = /* @__PURE__ */ __name((ast, db2) => {\n  populateCommonDb(ast, db2);\n  db2.setShowData(ast.showData);\n  ast.sections.map(db2.addSection);\n}, \"populateDb\");\nvar parser = {\n  parse: /* @__PURE__ */ __name(async (input) => {\n    const ast = await parse(\"pie\", input);\n    log.debug(ast);\n    populateDb(ast, db);\n  }, \"parse\")\n};\n\n// src/diagrams/pie/pieStyles.ts\nvar getStyles = /* @__PURE__ */ __name((options) => `\n  .pieCircle{\n    stroke: ${options.pieStrokeColor};\n    stroke-width : ${options.pieStrokeWidth};\n    opacity : ${options.pieOpacity};\n  }\n  .pieOuterCircle{\n    stroke: ${options.pieOuterStrokeColor};\n    stroke-width: ${options.pieOuterStrokeWidth};\n    fill: none;\n  }\n  .pieTitleText {\n    text-anchor: middle;\n    font-size: ${options.pieTitleTextSize};\n    fill: ${options.pieTitleTextColor};\n    font-family: ${options.fontFamily};\n  }\n  .slice {\n    font-family: ${options.fontFamily};\n    fill: ${options.pieSectionTextColor};\n    font-size:${options.pieSectionTextSize};\n    // fill: white;\n  }\n  .legend text {\n    fill: ${options.pieLegendTextColor};\n    font-family: ${options.fontFamily};\n    font-size: ${options.pieLegendTextSize};\n  }\n`, \"getStyles\");\nvar pieStyles_default = getStyles;\n\n// src/diagrams/pie/pieRenderer.ts\nvar createPieArcs = /* @__PURE__ */ __name((sections2) => {\n  const pieData = [...sections2.entries()].map((element) => {\n    return {\n      label: element[0],\n      value: element[1]\n    };\n  }).sort((a, b) => {\n    return b.value - a.value;\n  });\n  const pie = pie_default().value(\n    (d3Section) => d3Section.value\n  );\n  return pie(pieData);\n}, \"createPieArcs\");\nvar draw = /* @__PURE__ */ __name((text, id, _version, diagObj) => {\n  log.debug(\"rendering pie chart\\n\" + text);\n  const db2 = diagObj.db;\n  const globalConfig = getConfig();\n  const pieConfig = cleanAndMerge(db2.getConfig(), globalConfig.pie);\n  const MARGIN = 40;\n  const LEGEND_RECT_SIZE = 18;\n  const LEGEND_SPACING = 4;\n  const height = 450;\n  const pieWidth = height;\n  const svg = selectSvgElement(id);\n  const group = svg.append(\"g\");\n  group.attr(\"transform\", \"translate(\" + pieWidth / 2 + \",\" + height / 2 + \")\");\n  const { themeVariables } = globalConfig;\n  let [outerStrokeWidth] = parseFontSize(themeVariables.pieOuterStrokeWidth);\n  outerStrokeWidth ??= 2;\n  const textPosition = pieConfig.textPosition;\n  const radius = Math.min(pieWidth, height) / 2 - MARGIN;\n  const arcGenerator = arc_default().innerRadius(0).outerRadius(radius);\n  const labelArcGenerator = arc_default().innerRadius(radius * textPosition).outerRadius(radius * textPosition);\n  group.append(\"circle\").attr(\"cx\", 0).attr(\"cy\", 0).attr(\"r\", radius + outerStrokeWidth / 2).attr(\"class\", \"pieOuterCircle\");\n  const sections2 = db2.getSections();\n  const arcs = createPieArcs(sections2);\n  const myGeneratedColors = [\n    themeVariables.pie1,\n    themeVariables.pie2,\n    themeVariables.pie3,\n    themeVariables.pie4,\n    themeVariables.pie5,\n    themeVariables.pie6,\n    themeVariables.pie7,\n    themeVariables.pie8,\n    themeVariables.pie9,\n    themeVariables.pie10,\n    themeVariables.pie11,\n    themeVariables.pie12\n  ];\n  const color = ordinal(myGeneratedColors);\n  group.selectAll(\"mySlices\").data(arcs).enter().append(\"path\").attr(\"d\", arcGenerator).attr(\"fill\", (datum) => {\n    return color(datum.data.label);\n  }).attr(\"class\", \"pieCircle\");\n  let sum = 0;\n  sections2.forEach((section) => {\n    sum += section;\n  });\n  group.selectAll(\"mySlices\").data(arcs).enter().append(\"text\").text((datum) => {\n    return (datum.data.value / sum * 100).toFixed(0) + \"%\";\n  }).attr(\"transform\", (datum) => {\n    return \"translate(\" + labelArcGenerator.centroid(datum) + \")\";\n  }).style(\"text-anchor\", \"middle\").attr(\"class\", \"slice\");\n  group.append(\"text\").text(db2.getDiagramTitle()).attr(\"x\", 0).attr(\"y\", -(height - 50) / 2).attr(\"class\", \"pieTitleText\");\n  const legend = group.selectAll(\".legend\").data(color.domain()).enter().append(\"g\").attr(\"class\", \"legend\").attr(\"transform\", (_datum, index) => {\n    const height2 = LEGEND_RECT_SIZE + LEGEND_SPACING;\n    const offset = height2 * color.domain().length / 2;\n    const horizontal = 12 * LEGEND_RECT_SIZE;\n    const vertical = index * height2 - offset;\n    return \"translate(\" + horizontal + \",\" + vertical + \")\";\n  });\n  legend.append(\"rect\").attr(\"width\", LEGEND_RECT_SIZE).attr(\"height\", LEGEND_RECT_SIZE).style(\"fill\", color).style(\"stroke\", color);\n  legend.data(arcs).append(\"text\").attr(\"x\", LEGEND_RECT_SIZE + LEGEND_SPACING).attr(\"y\", LEGEND_RECT_SIZE - LEGEND_SPACING).text((datum) => {\n    const { label, value } = datum.data;\n    if (db2.getShowData()) {\n      return `${label} [${value}]`;\n    }\n    return label;\n  });\n  const longestTextWidth = Math.max(\n    ...legend.selectAll(\"text\").nodes().map((node) => node?.getBoundingClientRect().width ?? 0)\n  );\n  const totalWidth = pieWidth + MARGIN + LEGEND_RECT_SIZE + LEGEND_SPACING + longestTextWidth;\n  svg.attr(\"viewBox\", `0 0 ${totalWidth} ${height}`);\n  configureSvgSize(svg, height, totalWidth, pieConfig.useMaxWidth);\n}, \"draw\");\nvar renderer = { draw };\n\n// src/diagrams/pie/pieDiagram.ts\nvar diagram = {\n  parser,\n  db,\n  renderer,\n  styles: pieStyles_default\n};\nexport {\n  diagram\n};\n",
+      "start": 1743409709070,
+      "end": 1743409709186,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709186,
+      "end": 1743409709186,
+      "order": "normal"
+    }
+  ]
+}

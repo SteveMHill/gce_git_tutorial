@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport type { ClicksContext } from '@slidev/types'\nimport { clamp, range } from '@antfu/utils'\nimport { computed } from 'vue'\nimport { CLICKS_MAX } from '../constants'\n\nconst props = withDefaults(defineProps<{\n  clicksContext: ClicksContext\n  readonly?: boolean\n  active?: boolean\n}>(), {\n  active: true,\n})\n\nconst total = computed(() => props.clicksContext.total)\nconst start = computed(() => clamp(0, props.clicksContext.clicksStart, total.value))\nconst length = computed(() => total.value - start.value + 1)\nconst current = computed({\n  get() {\n    return props.clicksContext.current > total.value ? -1 : props.clicksContext.current\n  },\n  set(value: number) {\n    // eslint-disable-next-line vue/no-mutating-props\n    props.clicksContext.current = value\n  },\n})\n\nconst clicksRange = computed(() => range(start.value, total.value + 1))\n\nfunction onMousedown() {\n  if (props.readonly)\n    return\n  if (current.value < 0 || current.value > total.value)\n    current.value = 0\n}\n</script>\n\n<template>\n  <div\n    class=\"flex gap-1 items-center select-none\"\n    :title=\"`Clicks in this slide: ${length}`\"\n    :class=\"length && props.clicksContext.isMounted ? '' : 'op50'\"\n  >\n    <div class=\"flex gap-0.2 items-center min-w-16 font-mono mr1\">\n      <div class=\"i-carbon:cursor-1 text-sm op50\" />\n      <template v-if=\"current >= 0 && current !== CLICKS_MAX && active\">\n        <div flex-auto />\n        <span text-primary>{{ current }}</span>\n        <span op25 text-sm>/</span>\n        <span op50 text-sm>{{ total }}</span>\n      </template>\n      <div\n        v-else\n        op50 flex-auto pl1\n      >\n        {{ total }}\n      </div>\n    </div>\n    <div\n      relative flex-auto h5 font-mono flex=\"~\"\n    >\n      <div\n        v-for=\"i of clicksRange\" :key=\"i\"\n        border=\"y main\" of-hidden relative\n        :class=\"[\n          i === 0 ? 'rounded-l border-l' : '',\n          i === total ? 'rounded-r border-r' : '',\n        ]\"\n        :style=\"{ width: length > 0 ? `${1 / length * 100}%` : '100%' }\"\n      >\n        <div\n          absolute inset-0\n          :class=\"(i <= current && active) ? 'bg-primary op15' : ''\"\n        />\n        <div\n          :class=\"[\n            (+i === +current && active) ? 'text-primary font-bold op100 border-primary' : 'op30 border-main',\n            i === 0 ? 'rounded-l' : '',\n            i === total ? 'rounded-r' : 'border-r-2',\n          ]\"\n          w-full h-full text-xs flex items-center justify-center z-1\n        >\n          {{ i }}\n        </div>\n      </div>\n      <input\n        v-model=\"current\"\n        class=\"range\"\n        type=\"range\" :min=\"start\" :max=\"total\" :step=\"1\"\n        absolute inset-0 z-label op0\n        :class=\"readonly ? 'pointer-events-none' : ''\"\n        :style=\"{ '--thumb-width': `${1 / (length + 1) * 100}%` }\"\n        @mousedown=\"onMousedown\"\n        @focus=\"event => (event.currentTarget as HTMLElement)?.blur()\"\n      >\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.range {\n  -webkit-appearance: none;\n  appearance: none;\n  background: transparent;\n}\n.range::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  height: 100%;\n  width: var(--thumb-width, 0.5rem);\n}\n\n.range::-moz-range-thumb {\n  height: 100%;\n  width: var(--thumb-width, 0.5rem);\n}\n</style>\n",
+      "start": 1743409708736,
+      "end": 1743409708754,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708754,
+      "end": 1743409708754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=style&index=0&scoped=b214048c&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-b214048c\"]]);\n",
+      "start": 1743409708754,
+      "end": 1743409708908,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=style&index=0&scoped=b214048c&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-b214048c\"]]);\n",
+      "start": 1743409708908,
+      "end": 1743409708909,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/ClicksSlider.vue?vue&type=style&index=0&scoped=b214048c&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-b214048c\"]]);\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACpJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC5I,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,QAAQ,CAAC,IAAI,CAAC,GAAG,CAAC;AAClJ,MAAM,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,MAAM,CAAC,MAAM,CAAC;AACpD,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

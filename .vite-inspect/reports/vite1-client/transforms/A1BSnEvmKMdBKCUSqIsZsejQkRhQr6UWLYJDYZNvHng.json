@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport {\n  getHashColorFromString,\n  getHsla,\n} from '../logic/color'\n\nconst props = withDefaults(\n  defineProps<{\n    text?: string\n    color?: boolean | number\n    as?: string\n    size?: string\n  }>(),\n  {\n    color: true,\n  },\n)\n\nconst style = computed(() => {\n  if (!props.text || props.color === false)\n    return {}\n  return {\n    color: typeof props.color === 'number'\n      ? getHsla(props.color)\n      : getHashColorFromString(props.text),\n    background: typeof props.color === 'number'\n      ? getHsla(props.color, 0.1)\n      : getHashColorFromString(props.text, 0.1),\n  }\n})\n\nconst sizeClasses = computed(() => {\n  switch (props.size || 'sm') {\n    case 'sm':\n      return 'px-1.5 text-11px leading-1.6em'\n  }\n  return ''\n})\n</script>\n\n<template>\n  <component :is=\"as || 'span'\" ws-nowrap rounded :class=\"sizeClasses\" :style>\n    <slot>\n      <span v-text=\"props.text\" />\n    </slot>\n  </component>\n</template>\n",
+      "start": 1743409708964,
+      "end": 1743409708967,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708967,
+      "end": 1743409708967,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708967,
+      "end": 1743409709036,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Badge.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC7I,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACrI,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709036,
+      "end": 1743409709036,
+      "order": "normal"
+    }
+  ]
+}

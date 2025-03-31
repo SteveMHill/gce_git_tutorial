@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/schema/yaml-1.1/set.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isMap, isPair, isScalar } from '../../nodes/identity.js';\nimport { Pair, createPair } from '../../nodes/Pair.js';\nimport { YAMLMap, findPair } from '../../nodes/YAMLMap.js';\n\nclass YAMLSet extends YAMLMap {\n    constructor(schema) {\n        super(schema);\n        this.tag = YAMLSet.tag;\n    }\n    add(key) {\n        let pair;\n        if (isPair(key))\n            pair = key;\n        else if (key &&\n            typeof key === 'object' &&\n            'key' in key &&\n            'value' in key &&\n            key.value === null)\n            pair = new Pair(key.key, null);\n        else\n            pair = new Pair(key, null);\n        const prev = findPair(this.items, pair.key);\n        if (!prev)\n            this.items.push(pair);\n    }\n    /**\n     * If `keepPair` is `true`, returns the Pair matching `key`.\n     * Otherwise, returns the value of that Pair's key.\n     */\n    get(key, keepPair) {\n        const pair = findPair(this.items, key);\n        return !keepPair && isPair(pair)\n            ? isScalar(pair.key)\n                ? pair.key.value\n                : pair.key\n            : pair;\n    }\n    set(key, value) {\n        if (typeof value !== 'boolean')\n            throw new Error(`Expected boolean value for set(key, value) in a YAML set, not ${typeof value}`);\n        const prev = findPair(this.items, key);\n        if (prev && !value) {\n            this.items.splice(this.items.indexOf(prev), 1);\n        }\n        else if (!prev && value) {\n            this.items.push(new Pair(key));\n        }\n    }\n    toJSON(_, ctx) {\n        return super.toJSON(_, ctx, Set);\n    }\n    toString(ctx, onComment, onChompKeep) {\n        if (!ctx)\n            return JSON.stringify(this);\n        if (this.hasAllNullValues(true))\n            return super.toString(Object.assign({}, ctx, { allNullValues: true }), onComment, onChompKeep);\n        else\n            throw new Error('Set items must all have null values');\n    }\n    static from(schema, iterable, ctx) {\n        const { replacer } = ctx;\n        const set = new this(schema);\n        if (iterable && Symbol.iterator in Object(iterable))\n            for (let value of iterable) {\n                if (typeof replacer === 'function')\n                    value = replacer.call(iterable, value, value);\n                set.items.push(createPair(value, null, ctx));\n            }\n        return set;\n    }\n}\nYAMLSet.tag = 'tag:yaml.org,2002:set';\nconst set = {\n    collection: 'map',\n    identify: value => value instanceof Set,\n    nodeClass: YAMLSet,\n    default: false,\n    tag: 'tag:yaml.org,2002:set',\n    createNode: (schema, iterable, ctx) => YAMLSet.from(schema, iterable, ctx),\n    resolve(map, onError) {\n        if (isMap(map)) {\n            if (map.hasAllNullValues(true))\n                return Object.assign(new YAMLSet(), map);\n            else\n                onError('Set items must all have null values');\n        }\n        else\n            onError('Expected a mapping for this tag');\n        return map;\n    }\n};\n\nexport { YAMLSet, set };\n",
+      "start": 1743409708653,
+      "end": 1743409708661,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708661,
+      "end": 1743409708661,
+      "order": "normal"
+    }
+  ]
+}

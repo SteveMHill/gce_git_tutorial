@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/popmotion/dist/es/utils/distance.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isPoint } from './is-point.mjs';\nimport { isPoint3D } from './is-point-3d.mjs';\nimport { isNum } from './inc.mjs';\n\nconst distance1D = (a, b) => Math.abs(a - b);\nfunction distance(a, b) {\n    if (isNum(a) && isNum(b)) {\n        return distance1D(a, b);\n    }\n    else if (isPoint(a) && isPoint(b)) {\n        const xDelta = distance1D(a.x, b.x);\n        const yDelta = distance1D(a.y, b.y);\n        const zDelta = isPoint3D(a) && isPoint3D(b) ? distance1D(a.z, b.z) : 0;\n        return Math.sqrt(Math.pow(xDelta, 2) + Math.pow(yDelta, 2) + Math.pow(zDelta, 2));\n    }\n}\n\nexport { distance };\n",
+      "start": 1743409708601,
+      "end": 1743409708609,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708609,
+      "end": 1743409708609,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708610,
+      "end": 1743409708610,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708610,
+      "end": 1743409708610,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708610,
+      "end": 1743409708610,
+      "order": "normal"
+    }
+  ]
+}

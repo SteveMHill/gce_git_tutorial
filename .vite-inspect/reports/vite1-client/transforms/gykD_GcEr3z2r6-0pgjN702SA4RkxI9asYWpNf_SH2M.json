@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/schema/yaml-1.1/merge.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { isScalar, isAlias, isSeq, isMap } from '../../nodes/identity.js';\nimport { Scalar } from '../../nodes/Scalar.js';\n\n// If the value associated with a merge key is a single mapping node, each of\n// its key/value pairs is inserted into the current mapping, unless the key\n// already exists in it. If the value associated with the merge key is a\n// sequence, then this sequence is expected to contain mapping nodes and each\n// of these nodes is merged in turn according to its order in the sequence.\n// Keys in mapping nodes earlier in the sequence override keys specified in\n// later mapping nodes. -- http://yaml.org/type/merge.html\nconst MERGE_KEY = '<<';\nconst merge = {\n    identify: value => value === MERGE_KEY ||\n        (typeof value === 'symbol' && value.description === MERGE_KEY),\n    default: 'key',\n    tag: 'tag:yaml.org,2002:merge',\n    test: /^<<$/,\n    resolve: () => Object.assign(new Scalar(Symbol(MERGE_KEY)), {\n        addToJSMap: addMergeToJSMap\n    }),\n    stringify: () => MERGE_KEY\n};\nconst isMergeKey = (ctx, key) => (merge.identify(key) ||\n    (isScalar(key) &&\n        (!key.type || key.type === Scalar.PLAIN) &&\n        merge.identify(key.value))) &&\n    ctx?.doc.schema.tags.some(tag => tag.tag === merge.tag && tag.default);\nfunction addMergeToJSMap(ctx, map, value) {\n    value = ctx && isAlias(value) ? value.resolve(ctx.doc) : value;\n    if (isSeq(value))\n        for (const it of value.items)\n            mergeValue(ctx, map, it);\n    else if (Array.isArray(value))\n        for (const it of value)\n            mergeValue(ctx, map, it);\n    else\n        mergeValue(ctx, map, value);\n}\nfunction mergeValue(ctx, map, value) {\n    const source = ctx && isAlias(value) ? value.resolve(ctx.doc) : value;\n    if (!isMap(source))\n        throw new Error('Merge sources must be maps or map aliases');\n    const srcMap = source.toJSON(null, ctx, Map);\n    for (const [key, value] of srcMap) {\n        if (map instanceof Map) {\n            if (!map.has(key))\n                map.set(key, value);\n        }\n        else if (map instanceof Set) {\n            map.add(key);\n        }\n        else if (!Object.prototype.hasOwnProperty.call(map, key)) {\n            Object.defineProperty(map, key, {\n                value,\n                writable: true,\n                enumerable: true,\n                configurable: true\n            });\n        }\n    }\n    return map;\n}\n\nexport { addMergeToJSMap, isMergeKey, merge };\n",
+      "start": 1743409708653,
+      "end": 1743409708660,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708660,
+      "end": 1743409708660,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Draggable.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderSlot as _renderSlot, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { useDraggable, useLocalStorage } from '@vueuse/core'\nimport { ref } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'Draggable',\n  props: {\n    storageKey: {},\n    initial: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst el = ref<HTMLElement | null>(null)\nconst initial = props.initial ?? { x: 0, y: 0 }\nconst point = props.storageKey\n  ? useLocalStorage(props.storageKey, initial)\n  : ref(initial)\nconst { style } = useDraggable(el, { initialValue: point })\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", {\n    ref_key: \"el\",\n    ref: el,\n    class: \"fixed\",\n    style: _normalizeStyle(_unref(style))\n  }, [\n    _renderSlot(_ctx.$slots, \"default\")\n  ], 4 /* STYLE */))\n}\n}\n\n})",
+      "start": 1743409709043,
+      "end": 1743409709043
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709043,
+      "end": 1743409709043,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709043,
+      "end": 1743409709043,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709043,
+      "end": 1743409709043,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709043,
+      "end": 1743409709043,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709043,
+      "end": 1743409709043,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { useDraggable, useLocalStorage } from \"@vueuse/core\";\nimport { ref } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Draggable\",\n  props: {\n    storageKey: {},\n    initial: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const el = ref(null);\n    const initial = props.initial ?? { x: 0, y: 0 };\n    const point = props.storageKey ? useLocalStorage(props.storageKey, initial) : ref(initial);\n    const { style } = useDraggable(el, { initialValue: point });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"div\",\n        {\n          ref_key: \"el\",\n          ref: el,\n          class: \"fixed\",\n          style: _normalizeStyle(_unref(style))\n        },\n        [\n          _renderSlot(_ctx.$slots, \"default\")\n        ],\n        4\n        /* STYLE */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709043,
+      "end": 1743409709065,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Draggable.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderSlot as _renderSlot, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport { useDraggable, useLocalStorage } from '@vueuse/core'\nimport { ref } from 'vue'\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'Draggable',\n  props: {\n    storageKey: {},\n    initial: {}\n  },\n  setup(__props: any) {\n\nconst props = __props\n\nconst el = ref<HTMLElement | null>(null)\nconst initial = props.initial ?? { x: 0, y: 0 }\nconst point = props.storageKey\n  ? useLocalStorage(props.storageKey, initial)\n  : ref(initial)\nconst { style } = useDraggable(el, { initialValue: point })\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", {\n    ref_key: \"el\",\n    ref: el,\n    class: \"fixed\",\n    style: _normalizeStyle(_unref(style))\n  }, [\n    _renderSlot(_ctx.$slots, \"default\")\n  ], 4 /* STYLE */))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,cAAc,aAAa,kBAAkB,iBAAiB,aAAa,YAAY,sBAAsB,2BAA2B;AAElK,SAAS,cAAc,uBAAuB;AAC9C,SAAS,WAAW;AAGpB,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACL,YAAY,CAAC;AAAA,IACb,SAAS,CAAC;AAAA,EACZ;AAAA,EACA,MAAM,SAAc;AAEtB,UAAM,QAAQ;AAEd,UAAM,KAAK,IAAwB,IAAI;AACvC,UAAM,UAAU,MAAM,WAAW,EAAE,GAAG,GAAG,GAAG,EAAE;AAC9C,UAAM,QAAQ,MAAM,aAChB,gBAAgB,MAAM,YAAY,OAAO,IACzC,IAAI,OAAO;AACf,UAAM,EAAE,MAAM,IAAI,aAAa,IAAI,EAAE,cAAc,MAAM,CAAC;AAE1D,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG;AAAA,QAAoB;AAAA,QAAO;AAAA,UAC/C,SAAS;AAAA,UACT,KAAK;AAAA,UACL,OAAO;AAAA,UACP,OAAO,gBAAgB,OAAO,KAAK,CAAC;AAAA,QACtC;AAAA,QAAG;AAAA,UACD,YAAY,KAAK,QAAQ,SAAS;AAAA,QACpC;AAAA,QAAG;AAAA;AAAA,MAAa;AAAA,IAClB;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { useDraggable, useLocalStorage } from \"@vueuse/core\";\nimport { ref } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Draggable\",\n  props: {\n    storageKey: {},\n    initial: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const el = ref(null);\n    const initial = props.initial ?? { x: 0, y: 0 };\n    const point = props.storageKey ? useLocalStorage(props.storageKey, initial) : ref(initial);\n    const { style } = useDraggable(el, { initialValue: point });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"div\",\n        {\n          ref_key: \"el\",\n          ref: el,\n          class: \"fixed\",\n          style: _normalizeStyle(_unref(style))\n        },\n        [\n          _renderSlot(_ctx.$slots, \"default\")\n        ],\n        4\n        /* STYLE */\n      );\n    };\n  }\n});\n",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/Draggable.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nimport { useDraggable, useLocalStorage } from \"@vueuse/core\";\nimport { ref } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Draggable\",\n  props: {\n    storageKey: {},\n    initial: {}\n  },\n  setup(__props) {\n    const props = __props;\n    const el = ref(null);\n    const initial = props.initial ?? { x: 0, y: 0 };\n    const point = props.storageKey ? useLocalStorage(props.storageKey, initial) : ref(initial);\n    const { style } = useDraggable(el, { initialValue: point });\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\n        \"div\",\n        {\n          ref_key: \"el\",\n          ref: el,\n          class: \"fixed\",\n          style: _normalizeStyle(_unref(style))\n        },\n        [\n          _renderSlot(_ctx.$slots, \"default\")\n        ],\n        4\n        /* STYLE */\n      );\n    };\n  }\n});\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709065,
+      "end": 1743409709065,
+      "order": "normal"
+    }
+  ]
+}

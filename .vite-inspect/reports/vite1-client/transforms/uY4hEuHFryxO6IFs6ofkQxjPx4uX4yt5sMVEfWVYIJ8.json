@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/yaml/browser/dist/compose/resolve-block-seq.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { YAMLSeq } from '../nodes/YAMLSeq.js';\nimport { resolveProps } from './resolve-props.js';\nimport { flowIndentCheck } from './util-flow-indent-check.js';\n\nfunction resolveBlockSeq({ composeNode, composeEmptyNode }, ctx, bs, onError, tag) {\n    const NodeClass = tag?.nodeClass ?? YAMLSeq;\n    const seq = new NodeClass(ctx.schema);\n    if (ctx.atRoot)\n        ctx.atRoot = false;\n    if (ctx.atKey)\n        ctx.atKey = false;\n    let offset = bs.offset;\n    let commentEnd = null;\n    for (const { start, value } of bs.items) {\n        const props = resolveProps(start, {\n            indicator: 'seq-item-ind',\n            next: value,\n            offset,\n            onError,\n            parentIndent: bs.indent,\n            startOnNewline: true\n        });\n        if (!props.found) {\n            if (props.anchor || props.tag || value) {\n                if (value && value.type === 'block-seq')\n                    onError(props.end, 'BAD_INDENT', 'All sequence items must start at the same column');\n                else\n                    onError(offset, 'MISSING_CHAR', 'Sequence item without - indicator');\n            }\n            else {\n                commentEnd = props.end;\n                if (props.comment)\n                    seq.comment = props.comment;\n                continue;\n            }\n        }\n        const node = value\n            ? composeNode(ctx, value, props, onError)\n            : composeEmptyNode(ctx, props.end, start, null, props, onError);\n        if (ctx.schema.compat)\n            flowIndentCheck(bs.indent, value, onError);\n        offset = node.range[2];\n        seq.items.push(node);\n    }\n    seq.range = [bs.offset, offset, commentEnd ?? offset];\n    return seq;\n}\n\nexport { resolveBlockSeq };\n",
+      "start": 1743409708672,
+      "end": 1743409708680,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708680,
+      "end": 1743409708680,
+      "order": "normal"
+    }
+  ]
+}

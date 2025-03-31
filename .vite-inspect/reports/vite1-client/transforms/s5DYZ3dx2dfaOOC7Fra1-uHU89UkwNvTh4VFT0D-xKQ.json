@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/popmotion/dist/es/easing/index.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createExpoIn, reverseEasing, mirrorEasing, createBackIn, createAnticipate } from './utils.mjs';\n\nconst DEFAULT_OVERSHOOT_STRENGTH = 1.525;\nconst BOUNCE_FIRST_THRESHOLD = 4.0 / 11.0;\nconst BOUNCE_SECOND_THRESHOLD = 8.0 / 11.0;\nconst BOUNCE_THIRD_THRESHOLD = 9.0 / 10.0;\nconst linear = p => p;\nconst easeIn = createExpoIn(2);\nconst easeOut = reverseEasing(easeIn);\nconst easeInOut = mirrorEasing(easeIn);\nconst circIn = p => 1 - Math.sin(Math.acos(p));\nconst circOut = reverseEasing(circIn);\nconst circInOut = mirrorEasing(circOut);\nconst backIn = createBackIn(DEFAULT_OVERSHOOT_STRENGTH);\nconst backOut = reverseEasing(backIn);\nconst backInOut = mirrorEasing(backIn);\nconst anticipate = createAnticipate(DEFAULT_OVERSHOOT_STRENGTH);\nconst ca = 4356.0 / 361.0;\nconst cb = 35442.0 / 1805.0;\nconst cc = 16061.0 / 1805.0;\nconst bounceOut = (p) => {\n    if (p === 1 || p === 0)\n        return p;\n    const p2 = p * p;\n    return p < BOUNCE_FIRST_THRESHOLD\n        ? 7.5625 * p2\n        : p < BOUNCE_SECOND_THRESHOLD\n            ? 9.075 * p2 - 9.9 * p + 3.4\n            : p < BOUNCE_THIRD_THRESHOLD\n                ? ca * p2 - cb * p + cc\n                : 10.8 * p * p - 20.52 * p + 10.72;\n};\nconst bounceIn = reverseEasing(bounceOut);\nconst bounceInOut = (p) => p < 0.5\n    ? 0.5 * (1.0 - bounceOut(1.0 - p * 2.0))\n    : 0.5 * bounceOut(p * 2.0 - 1.0) + 0.5;\n\nexport { anticipate, backIn, backInOut, backOut, bounceIn, bounceInOut, bounceOut, circIn, circInOut, circOut, easeIn, easeInOut, easeOut, linear };\n",
+      "start": 1743409708609,
+      "end": 1743409708614,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708614,
+      "end": 1743409708614,
+      "order": "normal"
+    }
+  ]
+}

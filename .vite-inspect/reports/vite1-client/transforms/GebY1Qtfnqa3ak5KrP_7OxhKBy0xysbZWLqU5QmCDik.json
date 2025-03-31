@@ -1,0 +1,180 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport CustomNavControls from '#slidev/custom-nav-controls'\nimport { computed, ref, shallowRef } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useNav } from '../composables/useNav'\nimport { configs } from '../env'\nimport { isColorSchemaConfigured, isDark, toggleDark } from '../logic/dark'\nimport { activeElement, breakpoints, fullscreen, hasViewerCssFilter, presenterLayout, showEditor, showInfoDialog, showPresenterCursor, toggleOverview, togglePresenterLayout } from '../state'\nimport { downloadPDF } from '../utils'\nimport IconButton from './IconButton.vue'\nimport MenuButton from './MenuButton.vue'\nimport Settings from './Settings.vue'\nimport SyncControls from './SyncControls.vue'\n\nimport VerticalDivider from './VerticalDivider.vue'\n\nconst props = defineProps({\n  persist: {\n    default: false,\n  },\n})\n\nconst {\n  currentSlideNo,\n  hasNext,\n  hasPrev,\n  isEmbedded,\n  isPresenter,\n  isPresenterAvailable,\n  next,\n  prev,\n  total,\n  enterPresenter,\n  exitPresenter,\n} = useNav()\nconst {\n  brush,\n  drawingEnabled,\n} = useDrawings()\n\nconst md = breakpoints.smaller('md')\nconst { isFullscreen, toggle: toggleFullscreen } = fullscreen\n\nconst root = ref<HTMLDivElement>()\nfunction onMouseLeave() {\n  if (root.value && activeElement.value && root.value.contains(activeElement.value))\n    activeElement.value.blur()\n}\n\nconst barStyle = computed(() => props.persist\n  ? 'text-$slidev-controls-foreground bg-transparent'\n  : 'rounded-md bg-main shadow-xl border border-main')\n\nconst RecordingControls = shallowRef<any>()\nif (__SLIDEV_FEATURE_RECORD__)\n  import('./RecordingControls.vue').then(v => RecordingControls.value = v.default)\n</script>\n\n<template>\n  <nav ref=\"root\" class=\"flex flex-col\">\n    <div\n      class=\"flex flex-wrap-reverse text-xl gap-0.5 p-1 lg:p-2\"\n      :class=\"barStyle\"\n      @mouseleave=\"onMouseLeave\"\n    >\n      <IconButton v-if=\"!isEmbedded\" :title=\"isFullscreen ? 'Close fullscreen' : 'Enter fullscreen'\" @click=\"toggleFullscreen\">\n        <div v-if=\"isFullscreen\" class=\"i-carbon:minimize\" />\n        <div v-else class=\"i-carbon:maximize\" />\n      </IconButton>\n      <IconButton :class=\"{ disabled: !hasPrev }\" title=\"Go to previous slide\" @click=\"prev\">\n        <div class=\"i-carbon:arrow-left\" />\n      </IconButton>\n      <IconButton :class=\"{ disabled: !hasNext }\" title=\"Go to next slide\" @click=\"next\">\n        <div class=\"i-carbon:arrow-right\" />\n      </IconButton>\n      <IconButton v-if=\"!isEmbedded\" title=\"Show slide overview\" @click=\"toggleOverview()\">\n        <div class=\"i-carbon:apps\" />\n      </IconButton>\n      <IconButton\n        v-if=\"!isColorSchemaConfigured\"\n        :title=\"isDark ? 'Switch to light mode theme' : 'Switch to dark mode theme'\"\n        @click=\"toggleDark()\"\n      >\n        <carbon-moon v-if=\"isDark\" />\n        <carbon-sun v-else />\n      </IconButton>\n\n      <VerticalDivider />\n\n      <template v-if=\"!isEmbedded\">\n        <template v-if=\"!isPresenter && !md && RecordingControls\">\n          <RecordingControls />\n          <VerticalDivider />\n        </template>\n\n        <IconButton\n          v-if=\"isPresenter\"\n          :title=\"showPresenterCursor ? 'Hide presenter cursor' : 'Show presenter cursor'\"\n          @click=\"showPresenterCursor = !showPresenterCursor\"\n        >\n          <ph-cursor-fill v-if=\"showPresenterCursor\" />\n          <ph-cursor-duotone v-else />\n        </IconButton>\n      </template>\n\n      <template v-if=\"__SLIDEV_FEATURE_DRAWINGS__ && (!configs.drawings.presenterOnly || isPresenter) && !isEmbedded\">\n        <IconButton class=\"relative\" :title=\"drawingEnabled ? 'Hide drawing toolbar' : 'Show drawing toolbar'\" @click=\"drawingEnabled = !drawingEnabled\">\n          <div class=\"i-carbon:pen\" />\n          <div\n            v-if=\"drawingEnabled\"\n            class=\"absolute left-1 right-1 bottom-0 h-0.7 rounded-full\"\n            :style=\"{ background: brush.color }\"\n          />\n        </IconButton>\n        <VerticalDivider />\n      </template>\n\n      <template v-if=\"!isEmbedded\">\n        <IconButton v-if=\"isPresenter\" title=\"Play Mode\" @click=\"exitPresenter\">\n          <div class=\"i-carbon:presentation-file\" />\n        </IconButton>\n        <IconButton v-if=\"__SLIDEV_FEATURE_PRESENTER__ && isPresenterAvailable\" title=\"Presenter Mode\" @click=\"enterPresenter\">\n          <div class=\"i-carbon:user-speaker\" />\n        </IconButton>\n\n        <IconButton\n          v-if=\"__DEV__ && __SLIDEV_FEATURE_EDITOR__\"\n          :title=\"showEditor ? 'Hide editor' : 'Show editor'\"\n          class=\"lt-md:hidden\"\n          @click=\"showEditor = !showEditor\"\n        >\n          <div class=\"i-carbon:text-annotation-toggle\" />\n        </IconButton>\n      </template>\n\n      <template v-if=\"!__DEV__\">\n        <IconButton v-if=\"configs.download\" title=\"Download as PDF\" @click=\"downloadPDF\">\n          <div class=\"i-carbon:download\" />\n        </IconButton>\n      </template>\n\n      <template v-if=\"__SLIDEV_FEATURE_BROWSER_EXPORTER__ && !isEmbedded && !isPresenter\">\n        <IconButton title=\"Browser Exporter\" to=\"/export\">\n          <div class=\"i-carbon:document-pdf\" />\n        </IconButton>\n      </template>\n\n      <IconButton\n        v-if=\"!isPresenter && configs.info && !isEmbedded\"\n        title=\"Show info\"\n        @click=\"showInfoDialog = !showInfoDialog\"\n      >\n        <div class=\"i-carbon:information\" />\n      </IconButton>\n\n      <template v-if=\"!isEmbedded\">\n        <VerticalDivider />\n\n        <IconButton v-if=\"isPresenter\" title=\"Toggle Presenter Layout\" class=\"aspect-ratio-initial flex items-center\" @click=\"togglePresenterLayout\">\n          <div class=\"i-carbon:template\" />\n          {{ presenterLayout }}\n        </IconButton>\n\n        <SyncControls v-if=\"__SLIDEV_FEATURE_PRESENTER__\" />\n\n        <MenuButton>\n          <template #button>\n            <IconButton title=\"More Options\">\n              <div class=\"i-carbon:settings-adjust\" />\n              <div v-if=\"hasViewerCssFilter\" w-2 h-2 bg-primary rounded-full absolute top-0.5 right-0.5 />\n            </IconButton>\n          </template>\n          <template #menu>\n            <Settings />\n          </template>\n        </MenuButton>\n      </template>\n\n      <VerticalDivider v-if=\"!isEmbedded\" />\n\n      <div class=\"h-40px flex\" p=\"l-1 t-0.5 r-2\" text=\"sm leading-2\">\n        <div class=\"my-auto\">\n          {{ currentSlideNo }}\n          <span class=\"opacity-50\">/ {{ total }}</span>\n        </div>\n      </div>\n\n      <CustomNavControls />\n    </div>\n  </nav>\n</template>\n",
+      "start": 1743409708751,
+      "end": 1743409708778,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708778,
+      "end": 1743409708778,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "result": "<script setup lang=\"ts\">\nimport CustomNavControls from '#slidev/custom-nav-controls'\nimport { computed, ref, shallowRef } from 'vue'\nimport { useDrawings } from '../composables/useDrawings'\nimport { useNav } from '../composables/useNav'\nimport { configs } from '../env'\nimport { isColorSchemaConfigured, isDark, toggleDark } from '../logic/dark'\nimport { activeElement, breakpoints, fullscreen, hasViewerCssFilter, presenterLayout, showEditor, showInfoDialog, showPresenterCursor, toggleOverview, togglePresenterLayout } from '../state'\nimport { downloadPDF } from '../utils'\nimport IconButton from './IconButton.vue'\nimport MenuButton from './MenuButton.vue'\nimport Settings from './Settings.vue'\nimport SyncControls from './SyncControls.vue'\n\nimport VerticalDivider from './VerticalDivider.vue'\n\nconst props = defineProps({\n  persist: {\n    default: false,\n  },\n})\n\nconst {\n  currentSlideNo,\n  hasNext,\n  hasPrev,\n  isEmbedded,\n  isPresenter,\n  isPresenterAvailable,\n  next,\n  prev,\n  total,\n  enterPresenter,\n  exitPresenter,\n} = useNav()\nconst {\n  brush,\n  drawingEnabled,\n} = useDrawings()\n\nconst md = breakpoints.smaller('md')\nconst { isFullscreen, toggle: toggleFullscreen } = fullscreen\n\nconst root = ref<HTMLDivElement>()\nfunction onMouseLeave() {\n  if (root.value && activeElement.value && root.value.contains(activeElement.value))\n    activeElement.value.blur()\n}\n\nconst barStyle = computed(() => props.persist\n  ? 'text-$slidev-controls-foreground bg-transparent'\n  : 'rounded-md bg-main shadow-xl border border-main')\n\nconst RecordingControls = shallowRef<any>()\nif (false)\n  import('./RecordingControls.vue').then(v => RecordingControls.value = v.default)\n</script>\n\n<template>\n  <nav ref=\"root\" class=\"flex flex-col\">\n    <div\n      class=\"flex flex-wrap-reverse text-xl gap-0.5 p-1 lg:p-2\"\n      :class=\"barStyle\"\n      @mouseleave=\"onMouseLeave\"\n    >\n      <IconButton v-if=\"!isEmbedded\" :title=\"isFullscreen ? 'Close fullscreen' : 'Enter fullscreen'\" @click=\"toggleFullscreen\">\n        <div v-if=\"isFullscreen\" class=\"i-carbon:minimize\" />\n        <div v-else class=\"i-carbon:maximize\" />\n      </IconButton>\n      <IconButton :class=\"{ disabled: !hasPrev }\" title=\"Go to previous slide\" @click=\"prev\">\n        <div class=\"i-carbon:arrow-left\" />\n      </IconButton>\n      <IconButton :class=\"{ disabled: !hasNext }\" title=\"Go to next slide\" @click=\"next\">\n        <div class=\"i-carbon:arrow-right\" />\n      </IconButton>\n      <IconButton v-if=\"!isEmbedded\" title=\"Show slide overview\" @click=\"toggleOverview()\">\n        <div class=\"i-carbon:apps\" />\n      </IconButton>\n      <IconButton\n        v-if=\"!isColorSchemaConfigured\"\n        :title=\"isDark ? 'Switch to light mode theme' : 'Switch to dark mode theme'\"\n        @click=\"toggleDark()\"\n      >\n        <carbon-moon v-if=\"isDark\" />\n        <carbon-sun v-else />\n      </IconButton>\n\n      <VerticalDivider />\n\n      <template v-if=\"!isEmbedded\">\n        <template v-if=\"!isPresenter && !md && RecordingControls\">\n          <RecordingControls />\n          <VerticalDivider />\n        </template>\n\n        <IconButton\n          v-if=\"isPresenter\"\n          :title=\"showPresenterCursor ? 'Hide presenter cursor' : 'Show presenter cursor'\"\n          @click=\"showPresenterCursor = !showPresenterCursor\"\n        >\n          <ph-cursor-fill v-if=\"showPresenterCursor\" />\n          <ph-cursor-duotone v-else />\n        </IconButton>\n      </template>\n\n      <template v-if=\"true && (!configs.drawings.presenterOnly || isPresenter) && !isEmbedded\">\n        <IconButton class=\"relative\" :title=\"drawingEnabled ? 'Hide drawing toolbar' : 'Show drawing toolbar'\" @click=\"drawingEnabled = !drawingEnabled\">\n          <div class=\"i-carbon:pen\" />\n          <div\n            v-if=\"drawingEnabled\"\n            class=\"absolute left-1 right-1 bottom-0 h-0.7 rounded-full\"\n            :style=\"{ background: brush.color }\"\n          />\n        </IconButton>\n        <VerticalDivider />\n      </template>\n\n      <template v-if=\"!isEmbedded\">\n        <IconButton v-if=\"isPresenter\" title=\"Play Mode\" @click=\"exitPresenter\">\n          <div class=\"i-carbon:presentation-file\" />\n        </IconButton>\n        <IconButton v-if=\"true && isPresenterAvailable\" title=\"Presenter Mode\" @click=\"enterPresenter\">\n          <div class=\"i-carbon:user-speaker\" />\n        </IconButton>\n\n        <IconButton\n          v-if=\"false && false\"\n          :title=\"showEditor ? 'Hide editor' : 'Show editor'\"\n          class=\"lt-md:hidden\"\n          @click=\"showEditor = !showEditor\"\n        >\n          <div class=\"i-carbon:text-annotation-toggle\" />\n        </IconButton>\n      </template>\n\n      <template v-if=\"!false\">\n        <IconButton v-if=\"configs.download\" title=\"Download as PDF\" @click=\"downloadPDF\">\n          <div class=\"i-carbon:download\" />\n        </IconButton>\n      </template>\n\n      <template v-if=\"false && !isEmbedded && !isPresenter\">\n        <IconButton title=\"Browser Exporter\" to=\"/export\">\n          <div class=\"i-carbon:document-pdf\" />\n        </IconButton>\n      </template>\n\n      <IconButton\n        v-if=\"!isPresenter && configs.info && !isEmbedded\"\n        title=\"Show info\"\n        @click=\"showInfoDialog = !showInfoDialog\"\n      >\n        <div class=\"i-carbon:information\" />\n      </IconButton>\n\n      <template v-if=\"!isEmbedded\">\n        <VerticalDivider />\n\n        <IconButton v-if=\"isPresenter\" title=\"Toggle Presenter Layout\" class=\"aspect-ratio-initial flex items-center\" @click=\"togglePresenterLayout\">\n          <div class=\"i-carbon:template\" />\n          {{ presenterLayout }}\n        </IconButton>\n\n        <SyncControls v-if=\"true\" />\n\n        <MenuButton>\n          <template #button>\n            <IconButton title=\"More Options\">\n              <div class=\"i-carbon:settings-adjust\" />\n              <div v-if=\"hasViewerCssFilter\" w-2 h-2 bg-primary rounded-full absolute top-0.5 right-0.5 />\n            </IconButton>\n          </template>\n          <template #menu>\n            <Settings />\n          </template>\n        </MenuButton>\n      </template>\n\n      <VerticalDivider v-if=\"!isEmbedded\" />\n\n      <div class=\"h-40px flex\" p=\"l-1 t-0.5 r-2\" text=\"sm leading-2\">\n        <div class=\"my-auto\">\n          {{ currentSlideNo }}\n          <span class=\"opacity-50\">/ {{ total }}</span>\n        </div>\n      </div>\n\n      <CustomNavControls />\n    </div>\n  </nav>\n</template>\n",
+      "start": 1743409708778,
+      "end": 1743409708778,
+      "order": "pre",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708778,
+      "end": 1743409708778,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708778,
+      "end": 1743409708778,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708779,
+      "end": 1743409708779,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708779,
+      "end": 1743409708779,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708779,
+      "end": 1743409708779,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708779,
+      "end": 1743409708779,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708779,
+      "end": 1743409708779,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708779,
+      "end": 1743409708779,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708779,
+      "end": 1743409708779,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708779,
+      "end": 1743409708908,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708908,
+      "end": 1743409708908,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
+      "start": 1743409708908,
+      "end": 1743409708909,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/NavControls.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACnJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,WAAW,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC3I,MAAM,CAAC,OAAO,CAAC,SAAS;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708909,
+      "end": 1743409708909,
+      "order": "normal"
+    }
+  ]
+}

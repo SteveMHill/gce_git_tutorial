@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport type { ClicksContext, RenderContext, SlideRoute } from '@slidev/types'\nimport type { CSSProperties, PropType } from 'vue'\nimport { SlideBottom, SlideTop } from '#slidev/global-layers'\nimport { provideLocal } from '@vueuse/core'\nimport { computed, ref, toRef } from 'vue'\nimport { injectionClicksContext, injectionCurrentPage, injectionFrontmatter, injectionRenderContext, injectionRoute, injectionSlideZoom } from '../constants'\nimport { configs } from '../env'\nimport { getSlideClass } from '../utils'\n\nconst props = defineProps({\n  clicksContext: {\n    type: Object as PropType<ClicksContext>,\n    required: true,\n  },\n  renderContext: {\n    type: String as PropType<RenderContext>,\n    default: 'slide',\n  },\n  route: {\n    type: Object as PropType<SlideRoute>,\n    required: true,\n  },\n})\n\nconst zoom = computed(() => props.route.meta?.slide?.frontmatter.zoom ?? 1)\n\nprovideLocal(injectionRoute, props.route)\nprovideLocal(injectionFrontmatter, props.route.meta.slide.frontmatter)\nprovideLocal(injectionCurrentPage, ref(props.route.no))\nprovideLocal(injectionRenderContext, ref(props.renderContext))\nprovideLocal(injectionClicksContext, toRef(props, 'clicksContext'))\nprovideLocal(injectionSlideZoom, zoom)\n\nconst zoomStyle = computed(() => {\n  return zoom.value === 1\n    ? undefined\n    : {\n        width: `${100 / zoom.value}%`,\n        height: `${100 / zoom.value}%`,\n        transformOrigin: 'top left',\n        transform: `scale(${zoom.value})`,\n      }\n})\nconst style = computed<CSSProperties>(() => ({\n  ...zoomStyle.value,\n  'user-select': configs.selectable ? undefined : 'none',\n}))\n</script>\n\n<template>\n  <div\n    :data-slidev-no=\"props.route.no\"\n    :class=\"getSlideClass(route, ['slide', 'presenter'].includes(props.renderContext) ? '' : 'disable-view-transition')\"\n    :style=\"style\"\n    :lang=\"props.route.meta.slide.frontmatter.lang\"\n  >\n    <SlideBottom />\n    <component :is=\"props.route.component\" />\n    <SlideTop />\n  </div>\n</template>\n\n<style scoped>\n.disable-view-transition:deep(*) {\n  view-transition-name: none !important;\n}\n\n.slidev-page {\n  position: absolute;\n  inset: 0;\n}\n</style>\n",
+      "start": 1743409708768,
+      "end": 1743409708879,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708879,
+      "end": 1743409708879,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708880,
+      "end": 1743409708880,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708880,
+      "end": 1743409708880,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708880,
+      "end": 1743409708880,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708880,
+      "end": 1743409708880,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708880,
+      "end": 1743409708880,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708880,
+      "end": 1743409708880,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708880,
+      "end": 1743409708880,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=style&index=0&scoped=a155920e&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-a155920e\"]]);\n",
+      "start": 1743409708880,
+      "end": 1743409708945,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=style&index=0&scoped=a155920e&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-a155920e\"]]);\n",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideWrapper.vue?vue&type=style&index=0&scoped=a155920e&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-a155920e\"]]);\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACpJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC5I,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,QAAQ,CAAC,IAAI,CAAC,GAAG,CAAC;AAClJ,MAAM,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,MAAM,CAAC,MAAM,CAAC;AACpD,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708945,
+      "end": 1743409708945,
+      "order": "normal"
+    }
+  ]
+}

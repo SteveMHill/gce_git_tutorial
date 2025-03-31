@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/utils.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { SlideRoute } from '@slidev/types'\nimport type { DirectiveBinding, InjectionKey } from 'vue'\nimport { configs } from './env'\n\nexport function getSlideClass(route?: SlideRoute, extra = '') {\n  const classes = ['slidev-page', extra]\n\n  const no = route?.meta?.slide?.no\n  if (no != null)\n    classes.push(`slidev-page-${no}`)\n\n  return classes.filter(Boolean).join(' ')\n}\n\nexport async function downloadPDF() {\n  const { saveAs } = await import('file-saver')\n  saveAs(\n    typeof configs.download === 'string'\n      ? configs.download\n      : configs.exportFilename\n        ? `${configs.exportFilename}.pdf`\n        : `${import.meta.env.BASE_URL}slidev-exported.pdf`,\n    `${configs.title}.pdf`,\n  )\n}\n\nexport function directiveInject<T = unknown>(dir: DirectiveBinding<any>, key: InjectionKey<T> | string, defaultValue?: T): T | undefined {\n  return (dir.instance?.$ as any).provides[key as any] ?? defaultValue\n}\n\nexport function directiveProvide<T = unknown>(dir: DirectiveBinding<any>, key: InjectionKey<T> | string, value?: T) {\n  const instance = dir.instance?.$ as any\n  if (instance) {\n    let provides = instance.provides\n    const parentProvides = instance.parent?.provides\n    if (provides === parentProvides)\n      provides = instance.provides = Object.create(parentProvides)\n    provides[key as any] = value\n  }\n}\n",
+      "start": 1743409708467,
+      "end": 1743409708470,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708470,
+      "end": 1743409708470,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708470,
+      "end": 1743409708470,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708470,
+      "end": 1743409708470,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708470,
+      "end": 1743409708470,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708470,
+      "end": 1743409708470,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { configs } from \"./env\";\nexport function getSlideClass(route, extra = \"\") {\n  const classes = [\"slidev-page\", extra];\n  const no = route?.meta?.slide?.no;\n  if (no != null)\n    classes.push(`slidev-page-${no}`);\n  return classes.filter(Boolean).join(\" \");\n}\nexport async function downloadPDF() {\n  const { saveAs } = await import(\"file-saver\");\n  saveAs(\n    typeof configs.download === \"string\" ? configs.download : configs.exportFilename ? `${configs.exportFilename}.pdf` : `${import.meta.env.BASE_URL}slidev-exported.pdf`,\n    `${configs.title}.pdf`\n  );\n}\nexport function directiveInject(dir, key, defaultValue) {\n  return (dir.instance?.$).provides[key] ?? defaultValue;\n}\nexport function directiveProvide(dir, key, value) {\n  const instance = dir.instance?.$;\n  if (instance) {\n    let provides = instance.provides;\n    const parentProvides = instance.parent?.provides;\n    if (provides === parentProvides)\n      provides = instance.provides = Object.create(parentProvides);\n    provides[key] = value;\n  }\n}\n",
+      "start": 1743409708470,
+      "end": 1743409708497,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/utils.ts"
+        ],
+        "sourcesContent": [
+          "import type { SlideRoute } from '@slidev/types'\nimport type { DirectiveBinding, InjectionKey } from 'vue'\nimport { configs } from './env'\n\nexport function getSlideClass(route?: SlideRoute, extra = '') {\n  const classes = ['slidev-page', extra]\n\n  const no = route?.meta?.slide?.no\n  if (no != null)\n    classes.push(`slidev-page-${no}`)\n\n  return classes.filter(Boolean).join(' ')\n}\n\nexport async function downloadPDF() {\n  const { saveAs } = await import('file-saver')\n  saveAs(\n    typeof configs.download === 'string'\n      ? configs.download\n      : configs.exportFilename\n        ? `${configs.exportFilename}.pdf`\n        : `${import.meta.env.BASE_URL}slidev-exported.pdf`,\n    `${configs.title}.pdf`,\n  )\n}\n\nexport function directiveInject<T = unknown>(dir: DirectiveBinding<any>, key: InjectionKey<T> | string, defaultValue?: T): T | undefined {\n  return (dir.instance?.$ as any).provides[key as any] ?? defaultValue\n}\n\nexport function directiveProvide<T = unknown>(dir: DirectiveBinding<any>, key: InjectionKey<T> | string, value?: T) {\n  const instance = dir.instance?.$ as any\n  if (instance) {\n    let provides = instance.provides\n    const parentProvides = instance.parent?.provides\n    if (provides === parentProvides)\n      provides = instance.provides = Object.create(parentProvides)\n    provides[key as any] = value\n  }\n}\n"
+        ],
+        "mappings": "AAEA,SAAS,eAAe;AAEjB,gBAAS,cAAc,OAAoB,QAAQ,IAAI;AAC5D,QAAM,UAAU,CAAC,eAAe,KAAK;AAErC,QAAM,KAAK,OAAO,MAAM,OAAO;AAC/B,MAAI,MAAM;AACR,YAAQ,KAAK,eAAe,EAAE,EAAE;AAElC,SAAO,QAAQ,OAAO,OAAO,EAAE,KAAK,GAAG;AACzC;AAEA,sBAAsB,cAAc;AAClC,QAAM,EAAE,OAAO,IAAI,MAAM,OAAO,YAAY;AAC5C;AAAA,IACE,OAAO,QAAQ,aAAa,WACxB,QAAQ,WACR,QAAQ,iBACN,GAAG,QAAQ,cAAc,SACzB,GAAG,YAAY,IAAI,QAAQ;AAAA,IACjC,GAAG,QAAQ,KAAK;AAAA,EAClB;AACF;AAEO,gBAAS,gBAA6B,KAA4B,KAA+B,cAAiC;AACvI,UAAQ,IAAI,UAAU,GAAU,SAAS,GAAU,KAAK;AAC1D;AAEO,gBAAS,iBAA8B,KAA4B,KAA+B,OAAW;AAClH,QAAM,WAAW,IAAI,UAAU;AAC/B,MAAI,UAAU;AACZ,QAAI,WAAW,SAAS;AACxB,UAAM,iBAAiB,SAAS,QAAQ;AACxC,QAAI,aAAa;AACf,iBAAW,SAAS,WAAW,OAAO,OAAO,cAAc;AAC7D,aAAS,GAAU,IAAI;AAAA,EACzB;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708497,
+      "end": 1743409708497,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { configs } from \"./env\";\nexport function getSlideClass(route, extra = \"\") {\n  const classes = [\"slidev-page\", extra];\n  const no = route?.meta?.slide?.no;\n  if (no != null)\n    classes.push(`slidev-page-${no}`);\n  return classes.filter(Boolean).join(\" \");\n}\nexport async function downloadPDF() {\n  const { saveAs } = await import(\"file-saver\");\n  saveAs(\n    typeof configs.download === \"string\" ? configs.download : configs.exportFilename ? `${configs.exportFilename}.pdf` : `${\"/\"}slidev-exported.pdf`,\n    `${configs.title}.pdf`\n  );\n}\nexport function directiveInject(dir, key, defaultValue) {\n  return (dir.instance?.$).provides[key] ?? defaultValue;\n}\nexport function directiveProvide(dir, key, value) {\n  const instance = dir.instance?.$;\n  if (instance) {\n    let provides = instance.provides;\n    const parentProvides = instance.parent?.provides;\n    if (provides === parentProvides)\n      provides = instance.provides = Object.create(parentProvides);\n    provides[key] = value;\n  }\n}\n",
+      "start": 1743409708497,
+      "end": 1743409708618,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { configs } from \"./env\";\nexport function getSlideClass(route, extra = \"\") {\n  const classes = [\"slidev-page\", extra];\n  const no = route?.meta?.slide?.no;\n  if (no != null)\n    classes.push(`slidev-page-${no}`);\n  return classes.filter(Boolean).join(\" \");\n}\nexport async function downloadPDF() {\n  const { saveAs } = await __vitePreload(async () => { const { saveAs } = await import(\"file-saver\");return { saveAs }},__VITE_IS_MODERN__?__VITE_PRELOAD__:void 0);\n  saveAs(\n    typeof configs.download === \"string\" ? configs.download : configs.exportFilename ? `${configs.exportFilename}.pdf` : `${\"/\"}slidev-exported.pdf`,\n    `${configs.title}.pdf`\n  );\n}\nexport function directiveInject(dir, key, defaultValue) {\n  return (dir.instance?.$).provides[key] ?? defaultValue;\n}\nexport function directiveProvide(dir, key, value) {\n  const instance = dir.instance?.$;\n  if (instance) {\n    let provides = instance.provides;\n    const parentProvides = instance.parent?.provides;\n    if (provides === parentProvides)\n      provides = instance.provides = Object.create(parentProvides);\n    provides[key] = value;\n  }\n}\n",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708618,
+      "end": 1743409708618,
+      "order": "normal"
+    }
+  ]
+}

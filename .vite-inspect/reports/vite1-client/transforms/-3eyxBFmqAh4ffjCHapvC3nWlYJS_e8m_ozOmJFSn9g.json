@@ -1,0 +1,178 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup lang=\"ts\">\nimport { provideLocal, useElementSize } from '@vueuse/core'\nimport { computed, onUnmounted, ref, watchEffect } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { injectionSlideElement, injectionSlideScale } from '../constants'\nimport { slideAspect, slideHeight, slideWidth } from '../env'\nimport { isDark } from '../logic/dark'\nimport { snapshotManager } from '../logic/snapshot'\nimport { slideScale } from '../state'\n\nconst props = defineProps({\n  width: {\n    type: Number,\n  },\n  meta: {\n    default: () => ({}) as any,\n  },\n  isMain: {\n    type: Boolean,\n    default: false,\n  },\n  no: {\n    type: Number,\n    required: false,\n  },\n  useSnapshot: {\n    type: Boolean,\n    default: false,\n  },\n  contentStyle: {\n    type: Object,\n    default: () => ({}),\n  },\n})\n\nconst { isPrintMode } = useNav()\n\nconst container = ref<HTMLDivElement | null>(null)\nconst containerSize = useElementSize(container)\nconst slideElement = ref<HTMLElement | null>(null)\n\nconst width = computed(() => props.width ?? containerSize.width.value)\nconst height = computed(() => props.width ? props.width / slideAspect.value : containerSize.height.value)\n\nconst scale = computed(() => {\n  if (slideScale.value && !isPrintMode.value)\n    return +slideScale.value\n  return Math.min(width.value / slideWidth.value, height.value / slideHeight.value)\n})\n\nconst contentStyle = computed(() => ({\n  ...props.contentStyle,\n  'height': `${slideHeight.value}px`,\n  'width': `${slideWidth.value}px`,\n  'transform': `translate(-50%, -50%) scale(${scale.value})`,\n  '--slidev-slide-scale': scale.value,\n}))\n\nconst containerStyle = computed(() => props.width\n  ? {\n      width: `${props.width}px`,\n      height: `${props.width / slideAspect.value}px`,\n    }\n  : {},\n)\n\nif (props.isMain) {\n  const rootStyle = document.documentElement.style\n  watchEffect(() => rootStyle.setProperty('--slidev-slide-scale', scale.value.toString()))\n  onUnmounted(() => rootStyle.removeProperty('--slidev-slide-scale'))\n}\n\nprovideLocal(injectionSlideScale, scale)\nprovideLocal(injectionSlideElement, slideElement)\n\nconst snapshot = computed(() => {\n  if (props.no == null || !props.useSnapshot)\n    return undefined\n  return snapshotManager.getSnapshot(props.no, isDark.value)\n})\n</script>\n\n<template>\n  <div\n    v-if=\"!snapshot\"\n    :id=\"isMain ? 'slide-container' : undefined\"\n    ref=\"container\"\n    class=\"slidev-slide-container\"\n    :style=\"containerStyle\"\n  >\n    <div\n      :id=\"isMain ? 'slide-content' : undefined\"\n      ref=\"slideElement\"\n      class=\"slidev-slide-content\"\n      :style=\"contentStyle\"\n    >\n      <slot />\n    </div>\n    <slot name=\"controls\" />\n  </div>\n  <!-- Image Snapshot -->\n  <div v-else class=\"slidev-slide-container w-full h-full relative\">\n    <img\n      :src=\"snapshot\"\n      class=\"w-full h-full object-cover\"\n      :style=\"containerStyle\"\n    >\n    <div absolute bottom-1 right-1 p0.5 text-cyan:75 bg-cyan:10 rounded title=\"Snapshot\">\n      <div class=\"i-carbon-camera\" />\n    </div>\n  </div>\n</template>\n\n<style scoped lang=\"postcss\">\n.slidev-slide-container {\n  @apply relative w-full h-full overflow-hidden;\n}\n\n.slidev-slide-content {\n  @apply absolute left-1/2 top-1/2 overflow-hidden bg-main;\n}\n</style>\n",
+      "start": 1743409708751,
+      "end": 1743409708804,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708804,
+      "end": 1743409708804,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=style&index=0&scoped=e9bf4cb5&lang.postcss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e9bf4cb5\"]]);\n",
+      "start": 1743409708804,
+      "end": 1743409708935,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=style&index=0&scoped=e9bf4cb5&lang.postcss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e9bf4cb5\"]]);\n",
+      "start": 1743409708935,
+      "end": 1743409708935,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue"
+        ],
+        "sourcesContent": [
+          "import _sfc_main from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/internals/SlideContainer.vue?vue&type=style&index=0&scoped=e9bf4cb5&lang.postcss\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e9bf4cb5\"]]);\n"
+        ],
+        "names": [],
+        "mappings": "sCAAA,MAAM,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,cAAc,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AACtJ,MAAM,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,cAAc,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,EAAE,CAAC;AAC9I,MAAM,CAAC,CAAC,CAAC,KAAK,CAAC,UAAU,CAAC,gBAAgB,CAAC,YAAY,CAAC,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,CAAC,cAAc,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,QAAQ,CAAC,IAAI,CAAC,OAAO,CAAC;AACxJ,MAAM,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC,OAAO,CAAC,GAAG,CAAC,MAAM,CAAC,MAAM,CAAC;AACpD,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708936,
+      "end": 1743409708936,
+      "order": "normal"
+    }
+  ]
+}

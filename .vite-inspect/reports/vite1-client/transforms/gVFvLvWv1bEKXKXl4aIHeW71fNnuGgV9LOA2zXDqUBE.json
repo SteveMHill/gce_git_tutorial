@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/snapshot.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// @ts-expect-error - virtual module\nimport serverSnapshotState from 'server-reactive:snapshots?diff'\nimport { createSyncState } from './syncState'\n\nexport type SnapshotState = Record<string, {\n  revision: string\n  image: string\n}>\n\nexport const snapshotState = createSyncState<SnapshotState>(\n  serverSnapshotState,\n  serverSnapshotState,\n  true,\n)\n",
+      "start": 1743409709186,
+      "end": 1743409709294,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709294,
+      "end": 1743409709294,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import serverSnapshotState from \"server-reactive:snapshots?diff\";\nimport { createSyncState } from \"./syncState\";\nexport const snapshotState = createSyncState(\n  serverSnapshotState,\n  serverSnapshotState,\n  true\n);\n",
+      "start": 1743409709294,
+      "end": 1743409709311,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/snapshot.ts"
+        ],
+        "sourcesContent": [
+          "// @ts-expect-error - virtual module\nimport serverSnapshotState from 'server-reactive:snapshots?diff'\nimport { createSyncState } from './syncState'\n\nexport type SnapshotState = Record<string, {\n  revision: string\n  image: string\n}>\n\nexport const snapshotState = createSyncState<SnapshotState>(\n  serverSnapshotState,\n  serverSnapshotState,\n  true,\n)\n"
+        ],
+        "mappings": "AACA,OAAO,yBAAyB;AAChC,SAAS,uBAAuB;AAOzB,aAAM,gBAAgB;AAAA,EAC3B;AAAA,EACA;AAAA,EACA;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709311,
+      "end": 1743409709311,
+      "order": "normal"
+    }
+  ]
+}

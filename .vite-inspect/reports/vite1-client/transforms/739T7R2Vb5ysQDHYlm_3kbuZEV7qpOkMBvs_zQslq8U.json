@@ -1,0 +1,188 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_1.md",
+  "transforms": [
+    {
+      "name": "slidev:loader",
+      "result": "# Bytes, Bugs, Biology\n\n Keep Calm, Shift Happens \n\n<div class=\"abs-br m-6 text-xl\">\n  <a href=\"https://github.com/slidevjs/slidev\" target=\"_blank\" class=\"slidev-icon-btn\">\n    <carbon:logo-github />\n  </a>\n</div>",
+      "start": 1743409708810,
+      "end": 1743409708810,
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "result": "<template><div><h1>Bytes, Bugs, Biology</h1>\n<p>Keep Calm, Shift Happens</p>\n<div class=\"abs-br m-6 text-xl\">\n  <a href=\"https://github.com/slidevjs/slidev\" target=\"_blank\" class=\"slidev-icon-btn\">\n    <carbon:logo-github />\n  </a>\n</div></div></template>\n<script setup>\n</script>",
+      "start": 1743409708810,
+      "end": 1743409708815,
+      "order": "pre",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708815,
+      "end": 1743409708815,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708815,
+      "end": 1743409708815,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708815,
+      "end": 1743409708815,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708815,
+      "end": 1743409708815,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708815,
+      "end": 1743409708815,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708815,
+      "end": 1743409708815,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708815,
+      "end": 1743409708815,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "result": "<template>\n<InjectedLayout v-bind=\"_frontmatterToProps($frontmatter,0)\">\n<h1>Bytes, Bugs, Biology</h1>\n<p>Keep Calm, Shift Happens</p>\n<div class=\"abs-br m-6 text-xl\">\n  <a href=\"https://github.com/slidevjs/slidev\" target=\"_blank\" class=\"slidev-icon-btn\">\n    <carbon:logo-github />\n  </a>\n</div>\n</InjectedLayout>\n</template>\n\n<script setup>\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n</script>",
+      "start": 1743409708815,
+      "end": 1743409708816,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"abs-br m-6 text-xl\" }\nconst _hoisted_2 = {\n  href: \"https://github.com/slidevjs/slidev\",\n  target: \"_blank\",\n  class: \"slidev-icon-btn\"\n}\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_1',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_carbon58logo_github = _resolveComponent(\"carbon:logo-github\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),0))), {\n    default: _withCtx(() => [\n      _cache[0] || (_cache[0] = _createElementVNode(\"h1\", null, \"Bytes, Bugs, Biology\", -1 /* HOISTED */)),\n      _cache[1] || (_cache[1] = _createElementVNode(\"p\", null, \"Keep Calm, Shift Happens\", -1 /* HOISTED */)),\n      _createElementVNode(\"div\", _hoisted_1, [\n        _createElementVNode(\"a\", _hoisted_2, [\n          _createVNode(_component_carbon58logo_github)\n        ])\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "result": "import { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"abs-br m-6 text-xl\" }\nconst _hoisted_2 = {\n  href: \"https://github.com/slidevjs/slidev\",\n  target: \"_blank\",\n  class: \"slidev-icon-btn\"\n}\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_1',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_carbon58logo_github = _resolveComponent(\"carbon:logo-github\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),0))), {\n    default: _withCtx(() => [\n      _cache[0] || (_cache[0] = _createElementVNode(\"h1\", null, \"Bytes, Bugs, Biology\", -1 /* HOISTED */)),\n      _cache[1] || (_cache[1] = _createElementVNode(\"p\", null, \"Keep Calm, Shift Happens\", -1 /* HOISTED */)),\n      _createElementVNode(\"div\", _hoisted_1, [\n        _createElementVNode(\"a\", _hoisted_2, [\n          _createVNode(_component_carbon58logo_github)\n        ])\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708816,
+      "end": 1743409708816,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "result": "/* unplugin-vue-components disabled */import __unplugin_components_0 from '~icons/carbon/logo-github';\nimport { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"abs-br m-6 text-xl\" }\nconst _hoisted_2 = {\n  href: \"https://github.com/slidevjs/slidev\",\n  target: \"_blank\",\n  class: \"slidev-icon-btn\"\n}\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_1',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_carbon58logo_github = __unplugin_components_0\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),0))), {\n    default: _withCtx(() => [\n      _cache[0] || (_cache[0] = _createElementVNode(\"h1\", null, \"Bytes, Bugs, Biology\", -1 /* HOISTED */)),\n      _cache[1] || (_cache[1] = _createElementVNode(\"p\", null, \"Keep Calm, Shift Happens\", -1 /* HOISTED */)),\n      _createElementVNode(\"div\", _hoisted_1, [\n        _createElementVNode(\"a\", _hoisted_2, [\n          _createVNode(_component_carbon58logo_github)\n        ])\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1743409708816,
+      "end": 1743409708817,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/slides.md__slidev_1.md"
+        ],
+        "sourcesContent": [
+          "import { unref as _unref, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"abs-br m-6 text-xl\" }\nconst _hoisted_2 = {\n  href: \"https://github.com/slidevjs/slidev\",\n  target: \"_blank\",\n  class: \"slidev-icon-btn\"\n}\n\nimport InjectedLayout from \"/@fs/Users/stevenhill/gce_git_tutorial/theme/layouts/cover.vue\"\nimport { useSlideContext as _useSlideContext, frontmatterToProps as _frontmatterToProps } from \"@slidev/client/context.ts\"\n\nconst _sfc_main = {\n  __name: 'slides.md__slidev_1',\n  setup(__props) {\n\nconst { $slidev, $nav, $clicksContext, $clicks, $page, $renderContext, $frontmatter } = _useSlideContext()\n$clicksContext.setup()\n/* @slidev-injection */\n\n\nreturn (_ctx, _cache) => {\n  const _component_carbon58logo_github = _resolveComponent(\"carbon:logo-github\")\n\n  return (_openBlock(), _createBlock(InjectedLayout, _normalizeProps(_guardReactiveProps(_unref(_frontmatterToProps)(_unref($frontmatter),0))), {\n    default: _withCtx(() => [\n      _cache[0] || (_cache[0] = _createElementVNode(\"h1\", null, \"Bytes, Bugs, Biology\", -1 /* HOISTED */)),\n      _cache[1] || (_cache[1] = _createElementVNode(\"p\", null, \"Keep Calm, Shift Happens\", -1 /* HOISTED */)),\n      _createElementVNode(\"div\", _hoisted_1, [\n        _createElementVNode(\"a\", _hoisted_2, [\n          _createVNode(_component_carbon58logo_github)\n        ])\n      ])\n    ]),\n    _: 1 /* STABLE */\n  }, 16 /* FULL_PROPS */))\n}\n}\n\n}\n\n\n\nexport default _sfc_main"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708817,
+      "end": 1743409708817,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708817,
+      "end": 1743409708817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708817,
+      "end": 1743409708817,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/drawings.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// @ts-expect-error - virtual module\nimport serverDrawingState from 'server-reactive:drawings?diff'\nimport { createSyncState } from './syncState'\n\nexport type DrawingsState = Record<number, string | undefined>\n\nexport const {\n  init: initDrawingState,\n  onPatch: onPatchDrawingState,\n  onUpdate: onDrawingUpdate,\n  patch: patchDrawingState,\n  state: drawingState,\n} = createSyncState<DrawingsState>(\n  serverDrawingState,\n  serverDrawingState,\n  __SLIDEV_FEATURE_DRAWINGS_PERSIST__,\n)\n",
+      "start": 1743409708583,
+      "end": 1743409708586,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import serverDrawingState from \"server-reactive:drawings?diff\";\nimport { createSyncState } from \"./syncState\";\nexport const {\n  init: initDrawingState,\n  onPatch: onPatchDrawingState,\n  onUpdate: onDrawingUpdate,\n  patch: patchDrawingState,\n  state: drawingState\n} = createSyncState(\n  serverDrawingState,\n  serverDrawingState,\n  __SLIDEV_FEATURE_DRAWINGS_PERSIST__\n);\n",
+      "start": 1743409708586,
+      "end": 1743409708694,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/state/drawings.ts"
+        ],
+        "sourcesContent": [
+          "// @ts-expect-error - virtual module\nimport serverDrawingState from 'server-reactive:drawings?diff'\nimport { createSyncState } from './syncState'\n\nexport type DrawingsState = Record<number, string | undefined>\n\nexport const {\n  init: initDrawingState,\n  onPatch: onPatchDrawingState,\n  onUpdate: onDrawingUpdate,\n  patch: patchDrawingState,\n  state: drawingState,\n} = createSyncState<DrawingsState>(\n  serverDrawingState,\n  serverDrawingState,\n  __SLIDEV_FEATURE_DRAWINGS_PERSIST__,\n)\n"
+        ],
+        "mappings": "AACA,OAAO,wBAAwB;AAC/B,SAAS,uBAAuB;AAIzB,aAAM;AAAA,EACX,MAAM;AAAA,EACN,SAAS;AAAA,EACT,UAAU;AAAA,EACV,OAAO;AAAA,EACP,OAAO;AACT,IAAI;AAAA,EACF;AAAA,EACA;AAAA,EACA;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708694,
+      "end": 1743409708694,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708695,
+      "end": 1743409708695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import serverDrawingState from \"server-reactive:drawings?diff\";\nimport { createSyncState } from \"./syncState\";\nexport const {\n  init: initDrawingState,\n  onPatch: onPatchDrawingState,\n  onUpdate: onDrawingUpdate,\n  patch: patchDrawingState,\n  state: drawingState\n} = createSyncState(\n  serverDrawingState,\n  serverDrawingState,\n  false\n);\n",
+      "start": 1743409708695,
+      "end": 1743409708727,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708727,
+      "end": 1743409708727,
+      "order": "normal"
+    }
+  ]
+}

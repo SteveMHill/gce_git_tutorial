@@ -1,0 +1,176 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-mark.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { RoughAnnotationConfig } from '@slidev/rough-notation'\nimport type { RawAtValue } from '@slidev/types'\nimport type { App } from 'vue'\nimport { annotate } from '@slidev/rough-notation'\nimport { computed, watchEffect } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { resolveClick } from './v-click'\n\nexport interface RoughDirectiveOptions extends Partial<RoughAnnotationConfig> {\n  at: RawAtValue\n}\n\nexport type RoughDirectiveValue = RawAtValue | RoughDirectiveOptions\n\nfunction addClass(options: RoughDirectiveOptions, cls: string) {\n  options.class = [options.class, cls].filter(Boolean).join(' ')\n  return options\n}\n\n// Definitions of supported modifiers\nconst vMarkModifiers: Record<string, (options: RoughDirectiveOptions, value?: any) => RoughDirectiveOptions> = {\n  // Types\n  'box': options => Object.assign(options, { type: 'box' }),\n  'circle': options => Object.assign(options, { type: 'circle' }),\n  'underline': options => Object.assign(options, { type: 'underline' }),\n  'highlight': options => Object.assign(options, { type: 'highlight' }),\n  'strike-through': options => Object.assign(options, { type: 'strike-through' }),\n  'crossed-off': options => Object.assign(options, { type: 'crossed-off' }),\n  'bracket': options => Object.assign(options, { type: 'bracket' }),\n\n  // Type Aliases\n  'strike': options => Object.assign(options, { type: 'strike-through' }),\n  'cross': options => Object.assign(options, { type: 'crossed-off' }),\n  'crossed': options => Object.assign(options, { type: 'crossed-off' }),\n  'linethrough': options => Object.assign(options, { type: 'strike-through' }),\n  'line-through': options => Object.assign(options, { type: 'strike-through' }),\n\n  // Colors\n  // @unocss-include\n  'black': options => addClass(options, 'text-black'),\n  'blue': options => addClass(options, 'text-blue'),\n  'cyan': options => addClass(options, 'text-cyan'),\n  'gray': options => addClass(options, 'text-gray'),\n  'green': options => addClass(options, 'text-green'),\n  'indigo': options => addClass(options, 'text-indigo'),\n  'lime': options => addClass(options, 'text-lime'),\n  'orange': options => addClass(options, 'text-orange'),\n  'pink': options => addClass(options, 'text-pink'),\n  'purple': options => addClass(options, 'text-purple'),\n  'red': options => addClass(options, 'text-red'),\n  'teal': options => addClass(options, 'text-teal'),\n  'white': options => addClass(options, 'text-white'),\n  'yellow': options => addClass(options, 'text-yellow'),\n}\n\nconst vMarkModifiersDynamic: [RegExp, (match: RegExpMatchArray, options: RoughDirectiveOptions, value?: any) => RoughDirectiveOptions][] = [\n  // Support setting delay like `v-mark.delay300=\"1\"`\n  [/^delay-?(\\d+)?$/, (match, options, value) => {\n    const ms = (match[1] ? Number.parseInt(match[1]) : value) || 300\n    options.delay = ms\n    return options\n  }],\n  // Support setting opacity like `v-mark.op50=\"1\"`\n  [/^(?:op|opacity)-?(\\d+)?$/, (match, options, value) => {\n    const opacity = (match[1] ? Number.parseInt(match[1]) : value) || 100\n    options.opacity = opacity / 100\n    return options\n  }],\n]\n\n/**\n * This supports v-mark directive to add notations to elements, powered by `rough-notation`.\n */\nexport function createVMarkDirective() {\n  return {\n    install(app: App) {\n      app.directive<HTMLElement, RoughDirectiveValue>('mark', {\n        // @ts-expect-error extra prop\n        name: 'v-mark',\n\n        mounted: (el, binding) => {\n          const { isPrintMode } = useNav()\n\n          const options = computed(() => {\n            const bindingOptions = (typeof binding.value === 'object' && !Array.isArray(binding.value))\n              ? { ...binding.value }\n              : { at: binding.value }\n\n            let modifierOptions: RoughDirectiveOptions = { at: bindingOptions.at }\n            const unknownModifiers = Object.entries(binding.modifiers)\n              .filter(([k, v]) => {\n                if (vMarkModifiers[k]) {\n                  modifierOptions = vMarkModifiers[k](modifierOptions, v)\n                  return false\n                }\n                for (const [re, fn] of vMarkModifiersDynamic) {\n                  const match = k.match(re)\n                  if (match) {\n                    modifierOptions = fn(match, modifierOptions, v)\n                    return false\n                  }\n                }\n                return true\n              })\n\n            if (unknownModifiers.length)\n              console.warn('[Slidev] Invalid modifiers for v-mark:', unknownModifiers)\n\n            const options = {\n              ...modifierOptions,\n              ...bindingOptions,\n            }\n            options.type ||= 'underline'\n\n            if (isPrintMode.value)\n              options.animationDuration = 1 /* millisecond */\n\n            return options\n          })\n\n          const annotation = annotate(el, options.value as RoughAnnotationConfig)\n\n          const resolvedClick = resolveClick(el, binding, options.value.at)\n          if (!resolvedClick) {\n            // No click animation, just show the mark\n            annotation.show()\n            return\n          }\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            let shouldShow: boolean | undefined\n\n            if (options.value.class)\n              annotation.class = options.value.class\n            if (options.value.color)\n              annotation.color = options.value.color\n\n            const at = options.value.at\n\n            if (at === true)\n              shouldShow = true\n            else if (at === false)\n              shouldShow = false\n            else\n              shouldShow = resolvedClick.isActive.value\n\n            if (shouldShow == null)\n              return\n\n            if (shouldShow)\n              annotation.show()\n            else\n              annotation.hide()\n          })\n        },\n\n        unmounted: (el) => {\n          // @ts-expect-error extra prop\n          el.watchStopHandle?.()\n        },\n      })\n    },\n  }\n}\n",
+      "start": 1743409708376,
+      "end": 1743409708383,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708383,
+      "end": 1743409708383,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708384,
+      "end": 1743409708384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { annotate } from \"@slidev/rough-notation\";\nimport { computed, watchEffect } from \"vue\";\nimport { useNav } from \"../composables/useNav\";\nimport { resolveClick } from \"./v-click\";\nfunction addClass(options, cls) {\n  options.class = [options.class, cls].filter(Boolean).join(\" \");\n  return options;\n}\nconst vMarkModifiers = {\n  // Types\n  \"box\": (options) => Object.assign(options, { type: \"box\" }),\n  \"circle\": (options) => Object.assign(options, { type: \"circle\" }),\n  \"underline\": (options) => Object.assign(options, { type: \"underline\" }),\n  \"highlight\": (options) => Object.assign(options, { type: \"highlight\" }),\n  \"strike-through\": (options) => Object.assign(options, { type: \"strike-through\" }),\n  \"crossed-off\": (options) => Object.assign(options, { type: \"crossed-off\" }),\n  \"bracket\": (options) => Object.assign(options, { type: \"bracket\" }),\n  // Type Aliases\n  \"strike\": (options) => Object.assign(options, { type: \"strike-through\" }),\n  \"cross\": (options) => Object.assign(options, { type: \"crossed-off\" }),\n  \"crossed\": (options) => Object.assign(options, { type: \"crossed-off\" }),\n  \"linethrough\": (options) => Object.assign(options, { type: \"strike-through\" }),\n  \"line-through\": (options) => Object.assign(options, { type: \"strike-through\" }),\n  // Colors\n  // @unocss-include\n  \"black\": (options) => addClass(options, \"text-black\"),\n  \"blue\": (options) => addClass(options, \"text-blue\"),\n  \"cyan\": (options) => addClass(options, \"text-cyan\"),\n  \"gray\": (options) => addClass(options, \"text-gray\"),\n  \"green\": (options) => addClass(options, \"text-green\"),\n  \"indigo\": (options) => addClass(options, \"text-indigo\"),\n  \"lime\": (options) => addClass(options, \"text-lime\"),\n  \"orange\": (options) => addClass(options, \"text-orange\"),\n  \"pink\": (options) => addClass(options, \"text-pink\"),\n  \"purple\": (options) => addClass(options, \"text-purple\"),\n  \"red\": (options) => addClass(options, \"text-red\"),\n  \"teal\": (options) => addClass(options, \"text-teal\"),\n  \"white\": (options) => addClass(options, \"text-white\"),\n  \"yellow\": (options) => addClass(options, \"text-yellow\")\n};\nconst vMarkModifiersDynamic = [\n  // Support setting delay like `v-mark.delay300=\"1\"`\n  [/^delay-?(\\d+)?$/, (match, options, value) => {\n    const ms = (match[1] ? Number.parseInt(match[1]) : value) || 300;\n    options.delay = ms;\n    return options;\n  }],\n  // Support setting opacity like `v-mark.op50=\"1\"`\n  [/^(?:op|opacity)-?(\\d+)?$/, (match, options, value) => {\n    const opacity = (match[1] ? Number.parseInt(match[1]) : value) || 100;\n    options.opacity = opacity / 100;\n    return options;\n  }]\n];\nexport function createVMarkDirective() {\n  return {\n    install(app) {\n      app.directive(\"mark\", {\n        // @ts-expect-error extra prop\n        name: \"v-mark\",\n        mounted: (el, binding) => {\n          const { isPrintMode } = useNav();\n          const options = computed(() => {\n            const bindingOptions = typeof binding.value === \"object\" && !Array.isArray(binding.value) ? { ...binding.value } : { at: binding.value };\n            let modifierOptions = { at: bindingOptions.at };\n            const unknownModifiers = Object.entries(binding.modifiers).filter(([k, v]) => {\n              if (vMarkModifiers[k]) {\n                modifierOptions = vMarkModifiers[k](modifierOptions, v);\n                return false;\n              }\n              for (const [re, fn] of vMarkModifiersDynamic) {\n                const match = k.match(re);\n                if (match) {\n                  modifierOptions = fn(match, modifierOptions, v);\n                  return false;\n                }\n              }\n              return true;\n            });\n            if (unknownModifiers.length)\n              console.warn(\"[Slidev] Invalid modifiers for v-mark:\", unknownModifiers);\n            const options2 = {\n              ...modifierOptions,\n              ...bindingOptions\n            };\n            options2.type ||= \"underline\";\n            if (isPrintMode.value)\n              options2.animationDuration = 1;\n            return options2;\n          });\n          const annotation = annotate(el, options.value);\n          const resolvedClick = resolveClick(el, binding, options.value.at);\n          if (!resolvedClick) {\n            annotation.show();\n            return;\n          }\n          el.watchStopHandle = watchEffect(() => {\n            let shouldShow;\n            if (options.value.class)\n              annotation.class = options.value.class;\n            if (options.value.color)\n              annotation.color = options.value.color;\n            const at = options.value.at;\n            if (at === true)\n              shouldShow = true;\n            else if (at === false)\n              shouldShow = false;\n            else\n              shouldShow = resolvedClick.isActive.value;\n            if (shouldShow == null)\n              return;\n            if (shouldShow)\n              annotation.show();\n            else\n              annotation.hide();\n          });\n        },\n        unmounted: (el) => {\n          el.watchStopHandle?.();\n        }\n      });\n    }\n  };\n}\n",
+      "start": 1743409708384,
+      "end": 1743409708466,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/modules/v-mark.ts"
+        ],
+        "sourcesContent": [
+          "import type { RoughAnnotationConfig } from '@slidev/rough-notation'\nimport type { RawAtValue } from '@slidev/types'\nimport type { App } from 'vue'\nimport { annotate } from '@slidev/rough-notation'\nimport { computed, watchEffect } from 'vue'\nimport { useNav } from '../composables/useNav'\nimport { resolveClick } from './v-click'\n\nexport interface RoughDirectiveOptions extends Partial<RoughAnnotationConfig> {\n  at: RawAtValue\n}\n\nexport type RoughDirectiveValue = RawAtValue | RoughDirectiveOptions\n\nfunction addClass(options: RoughDirectiveOptions, cls: string) {\n  options.class = [options.class, cls].filter(Boolean).join(' ')\n  return options\n}\n\n// Definitions of supported modifiers\nconst vMarkModifiers: Record<string, (options: RoughDirectiveOptions, value?: any) => RoughDirectiveOptions> = {\n  // Types\n  'box': options => Object.assign(options, { type: 'box' }),\n  'circle': options => Object.assign(options, { type: 'circle' }),\n  'underline': options => Object.assign(options, { type: 'underline' }),\n  'highlight': options => Object.assign(options, { type: 'highlight' }),\n  'strike-through': options => Object.assign(options, { type: 'strike-through' }),\n  'crossed-off': options => Object.assign(options, { type: 'crossed-off' }),\n  'bracket': options => Object.assign(options, { type: 'bracket' }),\n\n  // Type Aliases\n  'strike': options => Object.assign(options, { type: 'strike-through' }),\n  'cross': options => Object.assign(options, { type: 'crossed-off' }),\n  'crossed': options => Object.assign(options, { type: 'crossed-off' }),\n  'linethrough': options => Object.assign(options, { type: 'strike-through' }),\n  'line-through': options => Object.assign(options, { type: 'strike-through' }),\n\n  // Colors\n  // @unocss-include\n  'black': options => addClass(options, 'text-black'),\n  'blue': options => addClass(options, 'text-blue'),\n  'cyan': options => addClass(options, 'text-cyan'),\n  'gray': options => addClass(options, 'text-gray'),\n  'green': options => addClass(options, 'text-green'),\n  'indigo': options => addClass(options, 'text-indigo'),\n  'lime': options => addClass(options, 'text-lime'),\n  'orange': options => addClass(options, 'text-orange'),\n  'pink': options => addClass(options, 'text-pink'),\n  'purple': options => addClass(options, 'text-purple'),\n  'red': options => addClass(options, 'text-red'),\n  'teal': options => addClass(options, 'text-teal'),\n  'white': options => addClass(options, 'text-white'),\n  'yellow': options => addClass(options, 'text-yellow'),\n}\n\nconst vMarkModifiersDynamic: [RegExp, (match: RegExpMatchArray, options: RoughDirectiveOptions, value?: any) => RoughDirectiveOptions][] = [\n  // Support setting delay like `v-mark.delay300=\"1\"`\n  [/^delay-?(\\d+)?$/, (match, options, value) => {\n    const ms = (match[1] ? Number.parseInt(match[1]) : value) || 300\n    options.delay = ms\n    return options\n  }],\n  // Support setting opacity like `v-mark.op50=\"1\"`\n  [/^(?:op|opacity)-?(\\d+)?$/, (match, options, value) => {\n    const opacity = (match[1] ? Number.parseInt(match[1]) : value) || 100\n    options.opacity = opacity / 100\n    return options\n  }],\n]\n\n/**\n * This supports v-mark directive to add notations to elements, powered by `rough-notation`.\n */\nexport function createVMarkDirective() {\n  return {\n    install(app: App) {\n      app.directive<HTMLElement, RoughDirectiveValue>('mark', {\n        // @ts-expect-error extra prop\n        name: 'v-mark',\n\n        mounted: (el, binding) => {\n          const { isPrintMode } = useNav()\n\n          const options = computed(() => {\n            const bindingOptions = (typeof binding.value === 'object' && !Array.isArray(binding.value))\n              ? { ...binding.value }\n              : { at: binding.value }\n\n            let modifierOptions: RoughDirectiveOptions = { at: bindingOptions.at }\n            const unknownModifiers = Object.entries(binding.modifiers)\n              .filter(([k, v]) => {\n                if (vMarkModifiers[k]) {\n                  modifierOptions = vMarkModifiers[k](modifierOptions, v)\n                  return false\n                }\n                for (const [re, fn] of vMarkModifiersDynamic) {\n                  const match = k.match(re)\n                  if (match) {\n                    modifierOptions = fn(match, modifierOptions, v)\n                    return false\n                  }\n                }\n                return true\n              })\n\n            if (unknownModifiers.length)\n              console.warn('[Slidev] Invalid modifiers for v-mark:', unknownModifiers)\n\n            const options = {\n              ...modifierOptions,\n              ...bindingOptions,\n            }\n            options.type ||= 'underline'\n\n            if (isPrintMode.value)\n              options.animationDuration = 1 /* millisecond */\n\n            return options\n          })\n\n          const annotation = annotate(el, options.value as RoughAnnotationConfig)\n\n          const resolvedClick = resolveClick(el, binding, options.value.at)\n          if (!resolvedClick) {\n            // No click animation, just show the mark\n            annotation.show()\n            return\n          }\n\n          // @ts-expect-error extra prop\n          el.watchStopHandle = watchEffect(() => {\n            let shouldShow: boolean | undefined\n\n            if (options.value.class)\n              annotation.class = options.value.class\n            if (options.value.color)\n              annotation.color = options.value.color\n\n            const at = options.value.at\n\n            if (at === true)\n              shouldShow = true\n            else if (at === false)\n              shouldShow = false\n            else\n              shouldShow = resolvedClick.isActive.value\n\n            if (shouldShow == null)\n              return\n\n            if (shouldShow)\n              annotation.show()\n            else\n              annotation.hide()\n          })\n        },\n\n        unmounted: (el) => {\n          // @ts-expect-error extra prop\n          el.watchStopHandle?.()\n        },\n      })\n    },\n  }\n}\n"
+        ],
+        "mappings": "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",
+        "names": [
+          "options"
+        ]
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708466,
+      "end": 1743409708466,
+      "order": "normal"
+    }
+  ]
+}

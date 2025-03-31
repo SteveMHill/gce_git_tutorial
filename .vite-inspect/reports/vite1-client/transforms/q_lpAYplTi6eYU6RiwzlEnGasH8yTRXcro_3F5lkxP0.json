@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/screenshot.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { computed, ref } from 'vue'\n\nexport async function startScreenshotSession(width: number, height: number) {\n  const canvas = document.createElement('canvas')\n  canvas.width = width\n  canvas.height = height\n  const context = canvas.getContext('2d')!\n  const video = document.createElement('video')\n  video.width = width\n  video.height = height\n\n  const captureStream = ref<MediaStream | null>(await navigator.mediaDevices.getDisplayMedia({\n    video: {\n      // Use a rather small frame rate\n      frameRate: 10,\n      // @ts-expect-error missing types\n      cursor: 'never',\n    },\n    selfBrowserSurface: 'include',\n    preferCurrentTab: true,\n  }))\n  captureStream.value!.addEventListener('inactive', dispose)\n\n  video.srcObject = captureStream.value!\n  video.play()\n\n  function screenshot(element: HTMLElement) {\n    if (!captureStream.value)\n      throw new Error('captureStream inactive')\n    context.clearRect(0, 0, width, height)\n    const { left, top, width: elWidth } = element.getBoundingClientRect()\n    context.drawImage(\n      video,\n      left * window.devicePixelRatio,\n      top * window.devicePixelRatio,\n      elWidth * window.devicePixelRatio,\n      elWidth / width * height * window.devicePixelRatio,\n      0,\n      0,\n      width,\n      height,\n    )\n    return canvas.toDataURL('image/png')\n  }\n\n  function dispose() {\n    captureStream.value?.getTracks().forEach(track => track.stop())\n    captureStream.value = null\n  }\n\n  return {\n    isActive: computed(() => !!captureStream.value),\n    screenshot,\n    dispose,\n  }\n}\n\nexport type ScreenshotSession = Awaited<ReturnType<typeof startScreenshotSession>>\n\nconst chromeVersion = window.navigator.userAgent.match(/Chrome\\/(\\d+)/)?.[1]\nexport const isScreenshotSupported = chromeVersion ? Number(chromeVersion) >= 94 : false\n",
+      "start": 1743409709012,
+      "end": 1743409709033,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709033,
+      "end": 1743409709033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { computed, ref } from \"vue\";\nexport async function startScreenshotSession(width, height) {\n  const canvas = document.createElement(\"canvas\");\n  canvas.width = width;\n  canvas.height = height;\n  const context = canvas.getContext(\"2d\");\n  const video = document.createElement(\"video\");\n  video.width = width;\n  video.height = height;\n  const captureStream = ref(await navigator.mediaDevices.getDisplayMedia({\n    video: {\n      // Use a rather small frame rate\n      frameRate: 10,\n      // @ts-expect-error missing types\n      cursor: \"never\"\n    },\n    selfBrowserSurface: \"include\",\n    preferCurrentTab: true\n  }));\n  captureStream.value.addEventListener(\"inactive\", dispose);\n  video.srcObject = captureStream.value;\n  video.play();\n  function screenshot(element) {\n    if (!captureStream.value)\n      throw new Error(\"captureStream inactive\");\n    context.clearRect(0, 0, width, height);\n    const { left, top, width: elWidth } = element.getBoundingClientRect();\n    context.drawImage(\n      video,\n      left * window.devicePixelRatio,\n      top * window.devicePixelRatio,\n      elWidth * window.devicePixelRatio,\n      elWidth / width * height * window.devicePixelRatio,\n      0,\n      0,\n      width,\n      height\n    );\n    return canvas.toDataURL(\"image/png\");\n  }\n  function dispose() {\n    captureStream.value?.getTracks().forEach((track) => track.stop());\n    captureStream.value = null;\n  }\n  return {\n    isActive: computed(() => !!captureStream.value),\n    screenshot,\n    dispose\n  };\n}\nconst chromeVersion = window.navigator.userAgent.match(/Chrome\\/(\\d+)/)?.[1];\nexport const isScreenshotSupported = chromeVersion ? Number(chromeVersion) >= 94 : false;\n",
+      "start": 1743409709033,
+      "end": 1743409709044,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/logic/screenshot.ts"
+        ],
+        "sourcesContent": [
+          "import { computed, ref } from 'vue'\n\nexport async function startScreenshotSession(width: number, height: number) {\n  const canvas = document.createElement('canvas')\n  canvas.width = width\n  canvas.height = height\n  const context = canvas.getContext('2d')!\n  const video = document.createElement('video')\n  video.width = width\n  video.height = height\n\n  const captureStream = ref<MediaStream | null>(await navigator.mediaDevices.getDisplayMedia({\n    video: {\n      // Use a rather small frame rate\n      frameRate: 10,\n      // @ts-expect-error missing types\n      cursor: 'never',\n    },\n    selfBrowserSurface: 'include',\n    preferCurrentTab: true,\n  }))\n  captureStream.value!.addEventListener('inactive', dispose)\n\n  video.srcObject = captureStream.value!\n  video.play()\n\n  function screenshot(element: HTMLElement) {\n    if (!captureStream.value)\n      throw new Error('captureStream inactive')\n    context.clearRect(0, 0, width, height)\n    const { left, top, width: elWidth } = element.getBoundingClientRect()\n    context.drawImage(\n      video,\n      left * window.devicePixelRatio,\n      top * window.devicePixelRatio,\n      elWidth * window.devicePixelRatio,\n      elWidth / width * height * window.devicePixelRatio,\n      0,\n      0,\n      width,\n      height,\n    )\n    return canvas.toDataURL('image/png')\n  }\n\n  function dispose() {\n    captureStream.value?.getTracks().forEach(track => track.stop())\n    captureStream.value = null\n  }\n\n  return {\n    isActive: computed(() => !!captureStream.value),\n    screenshot,\n    dispose,\n  }\n}\n\nexport type ScreenshotSession = Awaited<ReturnType<typeof startScreenshotSession>>\n\nconst chromeVersion = window.navigator.userAgent.match(/Chrome\\/(\\d+)/)?.[1]\nexport const isScreenshotSupported = chromeVersion ? Number(chromeVersion) >= 94 : false\n"
+        ],
+        "mappings": "AAAA,SAAS,UAAU,WAAW;AAE9B,sBAAsB,uBAAuB,OAAe,QAAgB;AAC1E,QAAM,SAAS,SAAS,cAAc,QAAQ;AAC9C,SAAO,QAAQ;AACf,SAAO,SAAS;AAChB,QAAM,UAAU,OAAO,WAAW,IAAI;AACtC,QAAM,QAAQ,SAAS,cAAc,OAAO;AAC5C,QAAM,QAAQ;AACd,QAAM,SAAS;AAEf,QAAM,gBAAgB,IAAwB,MAAM,UAAU,aAAa,gBAAgB;AAAA,IACzF,OAAO;AAAA;AAAA,MAEL,WAAW;AAAA;AAAA,MAEX,QAAQ;AAAA,IACV;AAAA,IACA,oBAAoB;AAAA,IACpB,kBAAkB;AAAA,EACpB,CAAC,CAAC;AACF,gBAAc,MAAO,iBAAiB,YAAY,OAAO;AAEzD,QAAM,YAAY,cAAc;AAChC,QAAM,KAAK;AAEX,WAAS,WAAW,SAAsB;AACxC,QAAI,CAAC,cAAc;AACjB,YAAM,IAAI,MAAM,wBAAwB;AAC1C,YAAQ,UAAU,GAAG,GAAG,OAAO,MAAM;AACrC,UAAM,EAAE,MAAM,KAAK,OAAO,QAAQ,IAAI,QAAQ,sBAAsB;AACpE,YAAQ;AAAA,MACN;AAAA,MACA,OAAO,OAAO;AAAA,MACd,MAAM,OAAO;AAAA,MACb,UAAU,OAAO;AAAA,MACjB,UAAU,QAAQ,SAAS,OAAO;AAAA,MAClC;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,IACF;AACA,WAAO,OAAO,UAAU,WAAW;AAAA,EACrC;AAEA,WAAS,UAAU;AACjB,kBAAc,OAAO,UAAU,EAAE,QAAQ,WAAS,MAAM,KAAK,CAAC;AAC9D,kBAAc,QAAQ;AAAA,EACxB;AAEA,SAAO;AAAA,IACL,UAAU,SAAS,MAAM,CAAC,CAAC,cAAc,KAAK;AAAA,IAC9C;AAAA,IACA;AAAA,EACF;AACF;AAIA,MAAM,gBAAgB,OAAO,UAAU,UAAU,MAAM,eAAe,IAAI,CAAC;AACpE,aAAM,wBAAwB,gBAAgB,OAAO,aAAa,KAAK,KAAK;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709044,
+      "end": 1743409709044,
+      "order": "normal"
+    }
+  ]
+}

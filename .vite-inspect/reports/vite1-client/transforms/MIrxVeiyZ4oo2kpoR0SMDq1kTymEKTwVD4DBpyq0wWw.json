@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/hachure-fill/bin/hachure.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function rotatePoints(points, center, degrees) {\n    if (points && points.length) {\n        const [cx, cy] = center;\n        const angle = (Math.PI / 180) * degrees;\n        const cos = Math.cos(angle);\n        const sin = Math.sin(angle);\n        for (const p of points) {\n            const [x, y] = p;\n            p[0] = ((x - cx) * cos) - ((y - cy) * sin) + cx;\n            p[1] = ((x - cx) * sin) + ((y - cy) * cos) + cy;\n        }\n    }\n}\nfunction rotateLines(lines, center, degrees) {\n    const points = [];\n    lines.forEach((line) => points.push(...line));\n    rotatePoints(points, center, degrees);\n}\nfunction areSamePoints(p1, p2) {\n    return p1[0] === p2[0] && p1[1] === p2[1];\n}\nexport function hachureLines(polygons, hachureGap, hachureAngle, hachureStepOffset = 1) {\n    const angle = hachureAngle;\n    const gap = Math.max(hachureGap, 0.1);\n    const polygonList = (polygons[0] && polygons[0][0] && (typeof polygons[0][0] === 'number')) ? [polygons] : polygons;\n    const rotationCenter = [0, 0];\n    if (angle) {\n        for (const polygon of polygonList) {\n            rotatePoints(polygon, rotationCenter, angle);\n        }\n    }\n    const lines = straightHachureLines(polygonList, gap, hachureStepOffset);\n    if (angle) {\n        for (const polygon of polygonList) {\n            rotatePoints(polygon, rotationCenter, -angle);\n        }\n        rotateLines(lines, rotationCenter, -angle);\n    }\n    return lines;\n}\nfunction straightHachureLines(polygons, gap, hachureStepOffset) {\n    const vertexArray = [];\n    for (const polygon of polygons) {\n        const vertices = [...polygon];\n        if (!areSamePoints(vertices[0], vertices[vertices.length - 1])) {\n            vertices.push([vertices[0][0], vertices[0][1]]);\n        }\n        if (vertices.length > 2) {\n            vertexArray.push(vertices);\n        }\n    }\n    const lines = [];\n    gap = Math.max(gap, 0.1);\n    // Create sorted edges table\n    const edges = [];\n    for (const vertices of vertexArray) {\n        for (let i = 0; i < vertices.length - 1; i++) {\n            const p1 = vertices[i];\n            const p2 = vertices[i + 1];\n            if (p1[1] !== p2[1]) {\n                const ymin = Math.min(p1[1], p2[1]);\n                edges.push({\n                    ymin,\n                    ymax: Math.max(p1[1], p2[1]),\n                    x: ymin === p1[1] ? p1[0] : p2[0],\n                    islope: (p2[0] - p1[0]) / (p2[1] - p1[1]),\n                });\n            }\n        }\n    }\n    edges.sort((e1, e2) => {\n        if (e1.ymin < e2.ymin) {\n            return -1;\n        }\n        if (e1.ymin > e2.ymin) {\n            return 1;\n        }\n        if (e1.x < e2.x) {\n            return -1;\n        }\n        if (e1.x > e2.x) {\n            return 1;\n        }\n        if (e1.ymax === e2.ymax) {\n            return 0;\n        }\n        return (e1.ymax - e2.ymax) / Math.abs((e1.ymax - e2.ymax));\n    });\n    if (!edges.length) {\n        return lines;\n    }\n    // Start scanning\n    let activeEdges = [];\n    let y = edges[0].ymin;\n    let iteration = 0;\n    while (activeEdges.length || edges.length) {\n        if (edges.length) {\n            let ix = -1;\n            for (let i = 0; i < edges.length; i++) {\n                if (edges[i].ymin > y) {\n                    break;\n                }\n                ix = i;\n            }\n            const removed = edges.splice(0, ix + 1);\n            removed.forEach((edge) => {\n                activeEdges.push({ s: y, edge });\n            });\n        }\n        activeEdges = activeEdges.filter((ae) => {\n            if (ae.edge.ymax <= y) {\n                return false;\n            }\n            return true;\n        });\n        activeEdges.sort((ae1, ae2) => {\n            if (ae1.edge.x === ae2.edge.x) {\n                return 0;\n            }\n            return (ae1.edge.x - ae2.edge.x) / Math.abs((ae1.edge.x - ae2.edge.x));\n        });\n        // fill between the edges\n        if ((hachureStepOffset !== 1) || (iteration % gap === 0)) {\n            if (activeEdges.length > 1) {\n                for (let i = 0; i < activeEdges.length; i = i + 2) {\n                    const nexti = i + 1;\n                    if (nexti >= activeEdges.length) {\n                        break;\n                    }\n                    const ce = activeEdges[i].edge;\n                    const ne = activeEdges[nexti].edge;\n                    lines.push([\n                        [Math.round(ce.x), y],\n                        [Math.round(ne.x), y],\n                    ]);\n                }\n            }\n        }\n        y += hachureStepOffset;\n        activeEdges.forEach((ae) => {\n            ae.edge.x = ae.edge.x + (hachureStepOffset * ae.edge.islope);\n        });\n        iteration++;\n    }\n    return lines;\n}\n",
+      "start": 1743409708567,
+      "end": 1743409708571,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708571,
+      "end": 1743409708571,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708572,
+      "end": 1743409708572,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708572,
+      "end": 1743409708572,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708572,
+      "end": 1743409708572,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708572,
+      "end": 1743409708572,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708572,
+      "end": 1743409708572,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708572,
+      "end": 1743409708572,
+      "order": "normal"
+    }
+  ]
+}

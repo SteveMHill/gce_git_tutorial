@@ -1,0 +1,162 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/mermaid/dist/chunks/mermaid.esm/chunk-YFKFDTKC.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import {\n  require_dist\n} from \"./chunk-GKOISANM.mjs\";\nimport {\n  assignWithDepth_default,\n  basisClosed_default,\n  basisOpen_default,\n  basis_default,\n  bumpX,\n  bumpY,\n  bundle_default,\n  cardinalClosed_default,\n  cardinalOpen_default,\n  cardinal_default,\n  catmullRomClosed_default,\n  catmullRomOpen_default,\n  catmullRom_default,\n  common_default,\n  detectType,\n  directiveRegex,\n  linearClosed_default,\n  linear_default,\n  log,\n  monotoneX,\n  monotoneY,\n  natural_default,\n  sanitizeDirective,\n  select_default,\n  stepAfter,\n  stepBefore,\n  step_default\n} from \"./chunk-3L32CQKD.mjs\";\nimport {\n  memoize_default,\n  merge_default\n} from \"./chunk-HD3LK5B5.mjs\";\nimport {\n  __name,\n  __toESM\n} from \"./chunk-DLQEHMXD.mjs\";\n\n// src/utils.ts\nvar import_sanitize_url = __toESM(require_dist(), 1);\nvar ZERO_WIDTH_SPACE = \"\\u200B\";\nvar d3CurveTypes = {\n  curveBasis: basis_default,\n  curveBasisClosed: basisClosed_default,\n  curveBasisOpen: basisOpen_default,\n  curveBumpX: bumpX,\n  curveBumpY: bumpY,\n  curveBundle: bundle_default,\n  curveCardinalClosed: cardinalClosed_default,\n  curveCardinalOpen: cardinalOpen_default,\n  curveCardinal: cardinal_default,\n  curveCatmullRomClosed: catmullRomClosed_default,\n  curveCatmullRomOpen: catmullRomOpen_default,\n  curveCatmullRom: catmullRom_default,\n  curveLinear: linear_default,\n  curveLinearClosed: linearClosed_default,\n  curveMonotoneX: monotoneX,\n  curveMonotoneY: monotoneY,\n  curveNatural: natural_default,\n  curveStep: step_default,\n  curveStepAfter: stepAfter,\n  curveStepBefore: stepBefore\n};\nvar directiveWithoutOpen = /\\s*(?:(\\w+)(?=:):|(\\w+))\\s*(?:(\\w+)|((?:(?!}%{2}).|\\r?\\n)*))?\\s*(?:}%{2})?/gi;\nvar detectInit = /* @__PURE__ */ __name(function(text, config) {\n  const inits = detectDirective(text, /(?:init\\b)|(?:initialize\\b)/);\n  let results = {};\n  if (Array.isArray(inits)) {\n    const args = inits.map((init) => init.args);\n    sanitizeDirective(args);\n    results = assignWithDepth_default(results, [...args]);\n  } else {\n    results = inits.args;\n  }\n  if (!results) {\n    return;\n  }\n  let type = detectType(text, config);\n  const prop = \"config\";\n  if (results[prop] !== void 0) {\n    if (type === \"flowchart-v2\") {\n      type = \"flowchart\";\n    }\n    results[type] = results[prop];\n    delete results[prop];\n  }\n  return results;\n}, \"detectInit\");\nvar detectDirective = /* @__PURE__ */ __name(function(text, type = null) {\n  try {\n    const commentWithoutDirectives = new RegExp(\n      `[%]{2}(?![{]${directiveWithoutOpen.source})(?=[}][%]{2}).*\n`,\n      \"ig\"\n    );\n    text = text.trim().replace(commentWithoutDirectives, \"\").replace(/'/gm, '\"');\n    log.debug(\n      `Detecting diagram directive${type !== null ? \" type:\" + type : \"\"} based on the text:${text}`\n    );\n    let match;\n    const result = [];\n    while ((match = directiveRegex.exec(text)) !== null) {\n      if (match.index === directiveRegex.lastIndex) {\n        directiveRegex.lastIndex++;\n      }\n      if (match && !type || type && match[1]?.match(type) || type && match[2]?.match(type)) {\n        const type2 = match[1] ? match[1] : match[2];\n        const args = match[3] ? match[3].trim() : match[4] ? JSON.parse(match[4].trim()) : null;\n        result.push({ type: type2, args });\n      }\n    }\n    if (result.length === 0) {\n      return { type: text, args: null };\n    }\n    return result.length === 1 ? result[0] : result;\n  } catch (error) {\n    log.error(\n      `ERROR: ${error.message} - Unable to parse directive type: '${type}' based on the text: '${text}'`\n    );\n    return { type: void 0, args: null };\n  }\n}, \"detectDirective\");\nvar removeDirectives = /* @__PURE__ */ __name(function(text) {\n  return text.replace(directiveRegex, \"\");\n}, \"removeDirectives\");\nvar isSubstringInArray = /* @__PURE__ */ __name(function(str, arr) {\n  for (const [i, element] of arr.entries()) {\n    if (element.match(str)) {\n      return i;\n    }\n  }\n  return -1;\n}, \"isSubstringInArray\");\nfunction interpolateToCurve(interpolate, defaultCurve) {\n  if (!interpolate) {\n    return defaultCurve;\n  }\n  const curveName = `curve${interpolate.charAt(0).toUpperCase() + interpolate.slice(1)}`;\n  return d3CurveTypes[curveName] ?? defaultCurve;\n}\n__name(interpolateToCurve, \"interpolateToCurve\");\nfunction formatUrl(linkStr, config) {\n  const url = linkStr.trim();\n  if (!url) {\n    return void 0;\n  }\n  if (config.securityLevel !== \"loose\") {\n    return (0, import_sanitize_url.sanitizeUrl)(url);\n  }\n  return url;\n}\n__name(formatUrl, \"formatUrl\");\nvar runFunc = /* @__PURE__ */ __name((functionName, ...params) => {\n  const arrPaths = functionName.split(\".\");\n  const len = arrPaths.length - 1;\n  const fnName = arrPaths[len];\n  let obj = window;\n  for (let i = 0; i < len; i++) {\n    obj = obj[arrPaths[i]];\n    if (!obj) {\n      log.error(`Function name: ${functionName} not found in window`);\n      return;\n    }\n  }\n  obj[fnName](...params);\n}, \"runFunc\");\nfunction distance(p1, p2) {\n  if (!p1 || !p2) {\n    return 0;\n  }\n  return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));\n}\n__name(distance, \"distance\");\nfunction traverseEdge(points) {\n  let prevPoint;\n  let totalDistance = 0;\n  points.forEach((point) => {\n    totalDistance += distance(point, prevPoint);\n    prevPoint = point;\n  });\n  const remainingDistance = totalDistance / 2;\n  return calculatePoint(points, remainingDistance);\n}\n__name(traverseEdge, \"traverseEdge\");\nfunction calcLabelPosition(points) {\n  if (points.length === 1) {\n    return points[0];\n  }\n  return traverseEdge(points);\n}\n__name(calcLabelPosition, \"calcLabelPosition\");\nvar roundNumber = /* @__PURE__ */ __name((num, precision = 2) => {\n  const factor = Math.pow(10, precision);\n  return Math.round(num * factor) / factor;\n}, \"roundNumber\");\nvar calculatePoint = /* @__PURE__ */ __name((points, distanceToTraverse) => {\n  let prevPoint = void 0;\n  let remainingDistance = distanceToTraverse;\n  for (const point of points) {\n    if (prevPoint) {\n      const vectorDistance = distance(point, prevPoint);\n      if (vectorDistance === 0) {\n        return prevPoint;\n      }\n      if (vectorDistance < remainingDistance) {\n        remainingDistance -= vectorDistance;\n      } else {\n        const distanceRatio = remainingDistance / vectorDistance;\n        if (distanceRatio <= 0) {\n          return prevPoint;\n        }\n        if (distanceRatio >= 1) {\n          return { x: point.x, y: point.y };\n        }\n        if (distanceRatio > 0 && distanceRatio < 1) {\n          return {\n            x: roundNumber((1 - distanceRatio) * prevPoint.x + distanceRatio * point.x, 5),\n            y: roundNumber((1 - distanceRatio) * prevPoint.y + distanceRatio * point.y, 5)\n          };\n        }\n      }\n    }\n    prevPoint = point;\n  }\n  throw new Error(\"Could not find a suitable point for the given distance\");\n}, \"calculatePoint\");\nvar calcCardinalityPosition = /* @__PURE__ */ __name((isRelationTypePresent, points, initialPosition) => {\n  log.info(`our points ${JSON.stringify(points)}`);\n  if (points[0] !== initialPosition) {\n    points = points.reverse();\n  }\n  const distanceToCardinalityPoint = 25;\n  const center = calculatePoint(points, distanceToCardinalityPoint);\n  const d = isRelationTypePresent ? 10 : 5;\n  const angle = Math.atan2(points[0].y - center.y, points[0].x - center.x);\n  const cardinalityPosition = { x: 0, y: 0 };\n  cardinalityPosition.x = Math.sin(angle) * d + (points[0].x + center.x) / 2;\n  cardinalityPosition.y = -Math.cos(angle) * d + (points[0].y + center.y) / 2;\n  return cardinalityPosition;\n}, \"calcCardinalityPosition\");\nfunction calcTerminalLabelPosition(terminalMarkerSize, position, _points) {\n  const points = structuredClone(_points);\n  log.info(\"our points\", points);\n  if (position !== \"start_left\" && position !== \"start_right\") {\n    points.reverse();\n  }\n  const distanceToCardinalityPoint = 25 + terminalMarkerSize;\n  const center = calculatePoint(points, distanceToCardinalityPoint);\n  const d = 10 + terminalMarkerSize * 0.5;\n  const angle = Math.atan2(points[0].y - center.y, points[0].x - center.x);\n  const cardinalityPosition = { x: 0, y: 0 };\n  if (position === \"start_left\") {\n    cardinalityPosition.x = Math.sin(angle + Math.PI) * d + (points[0].x + center.x) / 2;\n    cardinalityPosition.y = -Math.cos(angle + Math.PI) * d + (points[0].y + center.y) / 2;\n  } else if (position === \"end_right\") {\n    cardinalityPosition.x = Math.sin(angle - Math.PI) * d + (points[0].x + center.x) / 2 - 5;\n    cardinalityPosition.y = -Math.cos(angle - Math.PI) * d + (points[0].y + center.y) / 2 - 5;\n  } else if (position === \"end_left\") {\n    cardinalityPosition.x = Math.sin(angle) * d + (points[0].x + center.x) / 2 - 5;\n    cardinalityPosition.y = -Math.cos(angle) * d + (points[0].y + center.y) / 2 - 5;\n  } else {\n    cardinalityPosition.x = Math.sin(angle) * d + (points[0].x + center.x) / 2;\n    cardinalityPosition.y = -Math.cos(angle) * d + (points[0].y + center.y) / 2;\n  }\n  return cardinalityPosition;\n}\n__name(calcTerminalLabelPosition, \"calcTerminalLabelPosition\");\nfunction getStylesFromArray(arr) {\n  let style = \"\";\n  let labelStyle = \"\";\n  for (const element of arr) {\n    if (element !== void 0) {\n      if (element.startsWith(\"color:\") || element.startsWith(\"text-align:\")) {\n        labelStyle = labelStyle + element + \";\";\n      } else {\n        style = style + element + \";\";\n      }\n    }\n  }\n  return { style, labelStyle };\n}\n__name(getStylesFromArray, \"getStylesFromArray\");\nvar cnt = 0;\nvar generateId = /* @__PURE__ */ __name(() => {\n  cnt++;\n  return \"id-\" + Math.random().toString(36).substr(2, 12) + \"-\" + cnt;\n}, \"generateId\");\nfunction makeRandomHex(length) {\n  let result = \"\";\n  const characters = \"0123456789abcdef\";\n  const charactersLength = characters.length;\n  for (let i = 0; i < length; i++) {\n    result += characters.charAt(Math.floor(Math.random() * charactersLength));\n  }\n  return result;\n}\n__name(makeRandomHex, \"makeRandomHex\");\nvar random = /* @__PURE__ */ __name((options) => {\n  return makeRandomHex(options.length);\n}, \"random\");\nvar getTextObj = /* @__PURE__ */ __name(function() {\n  return {\n    x: 0,\n    y: 0,\n    fill: void 0,\n    anchor: \"start\",\n    style: \"#666\",\n    width: 100,\n    height: 100,\n    textMargin: 0,\n    rx: 0,\n    ry: 0,\n    valign: void 0,\n    text: \"\"\n  };\n}, \"getTextObj\");\nvar drawSimpleText = /* @__PURE__ */ __name(function(elem, textData) {\n  const nText = textData.text.replace(common_default.lineBreakRegex, \" \");\n  const [, _fontSizePx] = parseFontSize(textData.fontSize);\n  const textElem = elem.append(\"text\");\n  textElem.attr(\"x\", textData.x);\n  textElem.attr(\"y\", textData.y);\n  textElem.style(\"text-anchor\", textData.anchor);\n  textElem.style(\"font-family\", textData.fontFamily);\n  textElem.style(\"font-size\", _fontSizePx);\n  textElem.style(\"font-weight\", textData.fontWeight);\n  textElem.attr(\"fill\", textData.fill);\n  if (textData.class !== void 0) {\n    textElem.attr(\"class\", textData.class);\n  }\n  const span = textElem.append(\"tspan\");\n  span.attr(\"x\", textData.x + textData.textMargin * 2);\n  span.attr(\"fill\", textData.fill);\n  span.text(nText);\n  return textElem;\n}, \"drawSimpleText\");\nvar wrapLabel = memoize_default(\n  (label, maxWidth, config) => {\n    if (!label) {\n      return label;\n    }\n    config = Object.assign(\n      { fontSize: 12, fontWeight: 400, fontFamily: \"Arial\", joinWith: \"<br/>\" },\n      config\n    );\n    if (common_default.lineBreakRegex.test(label)) {\n      return label;\n    }\n    const words = label.split(\" \").filter(Boolean);\n    const completedLines = [];\n    let nextLine = \"\";\n    words.forEach((word, index) => {\n      const wordLength = calculateTextWidth(`${word} `, config);\n      const nextLineLength = calculateTextWidth(nextLine, config);\n      if (wordLength > maxWidth) {\n        const { hyphenatedStrings, remainingWord } = breakString(word, maxWidth, \"-\", config);\n        completedLines.push(nextLine, ...hyphenatedStrings);\n        nextLine = remainingWord;\n      } else if (nextLineLength + wordLength >= maxWidth) {\n        completedLines.push(nextLine);\n        nextLine = word;\n      } else {\n        nextLine = [nextLine, word].filter(Boolean).join(\" \");\n      }\n      const currentWord = index + 1;\n      const isLastWord = currentWord === words.length;\n      if (isLastWord) {\n        completedLines.push(nextLine);\n      }\n    });\n    return completedLines.filter((line) => line !== \"\").join(config.joinWith);\n  },\n  (label, maxWidth, config) => `${label}${maxWidth}${config.fontSize}${config.fontWeight}${config.fontFamily}${config.joinWith}`\n);\nvar breakString = memoize_default(\n  (word, maxWidth, hyphenCharacter = \"-\", config) => {\n    config = Object.assign(\n      { fontSize: 12, fontWeight: 400, fontFamily: \"Arial\", margin: 0 },\n      config\n    );\n    const characters = [...word];\n    const lines = [];\n    let currentLine = \"\";\n    characters.forEach((character, index) => {\n      const nextLine = `${currentLine}${character}`;\n      const lineWidth = calculateTextWidth(nextLine, config);\n      if (lineWidth >= maxWidth) {\n        const currentCharacter = index + 1;\n        const isLastLine = characters.length === currentCharacter;\n        const hyphenatedNextLine = `${nextLine}${hyphenCharacter}`;\n        lines.push(isLastLine ? nextLine : hyphenatedNextLine);\n        currentLine = \"\";\n      } else {\n        currentLine = nextLine;\n      }\n    });\n    return { hyphenatedStrings: lines, remainingWord: currentLine };\n  },\n  (word, maxWidth, hyphenCharacter = \"-\", config) => `${word}${maxWidth}${hyphenCharacter}${config.fontSize}${config.fontWeight}${config.fontFamily}`\n);\nfunction calculateTextHeight(text, config) {\n  return calculateTextDimensions(text, config).height;\n}\n__name(calculateTextHeight, \"calculateTextHeight\");\nfunction calculateTextWidth(text, config) {\n  return calculateTextDimensions(text, config).width;\n}\n__name(calculateTextWidth, \"calculateTextWidth\");\nvar calculateTextDimensions = memoize_default(\n  (text, config) => {\n    const { fontSize = 12, fontFamily = \"Arial\", fontWeight = 400 } = config;\n    if (!text) {\n      return { width: 0, height: 0 };\n    }\n    const [, _fontSizePx] = parseFontSize(fontSize);\n    const fontFamilies = [\"sans-serif\", fontFamily];\n    const lines = text.split(common_default.lineBreakRegex);\n    const dims = [];\n    const body = select_default(\"body\");\n    if (!body.remove) {\n      return { width: 0, height: 0, lineHeight: 0 };\n    }\n    const g = body.append(\"svg\");\n    for (const fontFamily2 of fontFamilies) {\n      let cHeight = 0;\n      const dim = { width: 0, height: 0, lineHeight: 0 };\n      for (const line of lines) {\n        const textObj = getTextObj();\n        textObj.text = line || ZERO_WIDTH_SPACE;\n        const textElem = drawSimpleText(g, textObj).style(\"font-size\", _fontSizePx).style(\"font-weight\", fontWeight).style(\"font-family\", fontFamily2);\n        const bBox = (textElem._groups || textElem)[0][0].getBBox();\n        if (bBox.width === 0 && bBox.height === 0) {\n          throw new Error(\"svg element not in render tree\");\n        }\n        dim.width = Math.round(Math.max(dim.width, bBox.width));\n        cHeight = Math.round(bBox.height);\n        dim.height += cHeight;\n        dim.lineHeight = Math.round(Math.max(dim.lineHeight, cHeight));\n      }\n      dims.push(dim);\n    }\n    g.remove();\n    const index = isNaN(dims[1].height) || isNaN(dims[1].width) || isNaN(dims[1].lineHeight) || dims[0].height > dims[1].height && dims[0].width > dims[1].width && dims[0].lineHeight > dims[1].lineHeight ? 0 : 1;\n    return dims[index];\n  },\n  (text, config) => `${text}${config.fontSize}${config.fontWeight}${config.fontFamily}`\n);\nvar InitIDGenerator = class {\n  constructor(deterministic = false, seed) {\n    this.count = 0;\n    this.count = seed ? seed.length : 0;\n    this.next = deterministic ? () => this.count++ : () => Date.now();\n  }\n  static {\n    __name(this, \"InitIDGenerator\");\n  }\n};\nvar decoder;\nvar entityDecode = /* @__PURE__ */ __name(function(html) {\n  decoder = decoder || document.createElement(\"div\");\n  html = escape(html).replace(/%26/g, \"&\").replace(/%23/g, \"#\").replace(/%3B/g, \";\");\n  decoder.innerHTML = html;\n  return unescape(decoder.textContent);\n}, \"entityDecode\");\nfunction isDetailedError(error) {\n  return \"str\" in error;\n}\n__name(isDetailedError, \"isDetailedError\");\nvar insertTitle = /* @__PURE__ */ __name((parent, cssClass, titleTopMargin, title) => {\n  if (!title) {\n    return;\n  }\n  const bounds = parent.node()?.getBBox();\n  if (!bounds) {\n    return;\n  }\n  parent.append(\"text\").text(title).attr(\"text-anchor\", \"middle\").attr(\"x\", bounds.x + bounds.width / 2).attr(\"y\", -titleTopMargin).attr(\"class\", cssClass);\n}, \"insertTitle\");\nvar parseFontSize = /* @__PURE__ */ __name((fontSize) => {\n  if (typeof fontSize === \"number\") {\n    return [fontSize, fontSize + \"px\"];\n  }\n  const fontSizeNumber = parseInt(fontSize ?? \"\", 10);\n  if (Number.isNaN(fontSizeNumber)) {\n    return [void 0, void 0];\n  } else if (fontSize === String(fontSizeNumber)) {\n    return [fontSizeNumber, fontSize + \"px\"];\n  } else {\n    return [fontSizeNumber, fontSize];\n  }\n}, \"parseFontSize\");\nfunction cleanAndMerge(defaultData, data) {\n  return merge_default({}, defaultData, data);\n}\n__name(cleanAndMerge, \"cleanAndMerge\");\nvar utils_default = {\n  assignWithDepth: assignWithDepth_default,\n  wrapLabel,\n  calculateTextHeight,\n  calculateTextWidth,\n  calculateTextDimensions,\n  cleanAndMerge,\n  detectInit,\n  detectDirective,\n  isSubstringInArray,\n  interpolateToCurve,\n  calcLabelPosition,\n  calcCardinalityPosition,\n  calcTerminalLabelPosition,\n  formatUrl,\n  getStylesFromArray,\n  generateId,\n  random,\n  runFunc,\n  entityDecode,\n  insertTitle,\n  parseFontSize,\n  InitIDGenerator\n};\nvar encodeEntities = /* @__PURE__ */ __name(function(text) {\n  let txt = text;\n  txt = txt.replace(/style.*:\\S*#.*;/g, function(s) {\n    return s.substring(0, s.length - 1);\n  });\n  txt = txt.replace(/classDef.*:\\S*#.*;/g, function(s) {\n    return s.substring(0, s.length - 1);\n  });\n  txt = txt.replace(/#\\w+;/g, function(s) {\n    const innerTxt = s.substring(1, s.length - 1);\n    const isInt = /^\\+?\\d+$/.test(innerTxt);\n    if (isInt) {\n      return \"\\uFB02\\xB0\\xB0\" + innerTxt + \"\\xB6\\xDF\";\n    } else {\n      return \"\\uFB02\\xB0\" + innerTxt + \"\\xB6\\xDF\";\n    }\n  });\n  return txt;\n}, \"encodeEntities\");\nvar decodeEntities = /* @__PURE__ */ __name(function(text) {\n  return text.replace(/ﬂ°°/g, \"&#\").replace(/ﬂ°/g, \"&\").replace(/¶ß/g, \";\");\n}, \"decodeEntities\");\nvar getEdgeId = /* @__PURE__ */ __name((from, to, {\n  counter = 0,\n  prefix,\n  suffix\n}, id) => {\n  if (id) {\n    return id;\n  }\n  return `${prefix ? `${prefix}_` : \"\"}${from}_${to}_${counter}${suffix ? `_${suffix}` : \"\"}`;\n}, \"getEdgeId\");\nfunction handleUndefinedAttr(attrValue) {\n  return attrValue ?? null;\n}\n__name(handleUndefinedAttr, \"handleUndefinedAttr\");\n\nexport {\n  ZERO_WIDTH_SPACE,\n  removeDirectives,\n  interpolateToCurve,\n  getStylesFromArray,\n  generateId,\n  random,\n  wrapLabel,\n  calculateTextHeight,\n  calculateTextWidth,\n  isDetailedError,\n  parseFontSize,\n  cleanAndMerge,\n  utils_default,\n  encodeEntities,\n  decodeEntities,\n  getEdgeId,\n  handleUndefinedAttr\n};\n",
+      "start": 1743409709063,
+      "end": 1743409709071,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409709071,
+      "end": 1743409709071,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409709072,
+      "end": 1743409709072,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409709072,
+      "end": 1743409709072,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409709072,
+      "end": 1743409709072,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409709072,
+      "end": 1743409709072,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409709072,
+      "end": 1743409709072,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409709072,
+      "end": 1743409709072,
+      "order": "normal"
+    }
+  ]
+}

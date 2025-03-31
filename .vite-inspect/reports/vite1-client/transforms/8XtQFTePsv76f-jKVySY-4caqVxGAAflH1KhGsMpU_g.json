@@ -1,0 +1,174 @@
+{
+  "resolvedId": "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useEmbeddedCtrl.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { throttledWatch } from '@vueuse/core'\nimport { useNav } from '../composables/useNav'\nimport { isDark } from '../logic/dark'\n\nexport function useEmbeddedControl() {\n  const nav = useNav()\n  const clientId = `${Date.now()}`\n\n  window.addEventListener('message', ({ data }) => {\n    if (data && data.target === 'slidev') {\n      if (data.type === 'navigate') {\n        if (data.no || data.clicks) {\n          nav.go(+data.no, +data.clicks || 0)\n        }\n        else if (typeof data.operation === 'string') {\n          const fn = nav[data.operation as keyof typeof nav]\n          if (typeof fn === 'function')\n            (fn as any)(...(data.args ?? []))\n        }\n      }\n      else if (data.type === 'css-vars') {\n        const root = document.documentElement\n        for (const [key, value] of Object.entries(data.vars || {}))\n          root.style.setProperty(key, value as any)\n      }\n      else if (data.type === 'color-schema') {\n        isDark.value = data.color === 'dark'\n      }\n    }\n  })\n\n  if (nav.isEmbedded.value) {\n    throttledWatch(\n      [nav.currentSlideNo, nav.clicks, nav.hasNext, nav.hasPrev],\n      ([no, clicks, hasNext, hasPrev]) => {\n        window.parent.postMessage(\n          {\n            target: 'slidev',\n            clientId,\n            navState: {\n              no,\n              clicks,\n              hasNext,\n              hasPrev,\n            },\n          },\n          '*',\n        )\n      },\n      {\n        throttle: 300,\n        immediate: true,\n      },\n    )\n  }\n}\n",
+      "start": 1743409708583,
+      "end": 1743409708586,
+      "sourcemaps": null
+    },
+    {
+      "name": "unplugin-vue-markdown",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "slidev:flags",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:transformers:pre",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "unocss:global:build:scan",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1743409708586,
+      "end": 1743409708586,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { throttledWatch } from \"@vueuse/core\";\nimport { useNav } from \"../composables/useNav\";\nimport { isDark } from \"../logic/dark\";\nexport function useEmbeddedControl() {\n  const nav = useNav();\n  const clientId = `${Date.now()}`;\n  window.addEventListener(\"message\", ({ data }) => {\n    if (data && data.target === \"slidev\") {\n      if (data.type === \"navigate\") {\n        if (data.no || data.clicks) {\n          nav.go(+data.no, +data.clicks || 0);\n        } else if (typeof data.operation === \"string\") {\n          const fn = nav[data.operation];\n          if (typeof fn === \"function\")\n            fn(...data.args ?? []);\n        }\n      } else if (data.type === \"css-vars\") {\n        const root = document.documentElement;\n        for (const [key, value] of Object.entries(data.vars || {}))\n          root.style.setProperty(key, value);\n      } else if (data.type === \"color-schema\") {\n        isDark.value = data.color === \"dark\";\n      }\n    }\n  });\n  if (nav.isEmbedded.value) {\n    throttledWatch(\n      [nav.currentSlideNo, nav.clicks, nav.hasNext, nav.hasPrev],\n      ([no, clicks, hasNext, hasPrev]) => {\n        window.parent.postMessage(\n          {\n            target: \"slidev\",\n            clientId,\n            navState: {\n              no,\n              clicks,\n              hasNext,\n              hasPrev\n            }\n          },\n          \"*\"\n        );\n      },\n      {\n        throttle: 300,\n        immediate: true\n      }\n    );\n  }\n}\n",
+      "start": 1743409708586,
+      "end": 1743409708698,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/stevenhill/gce_git_tutorial/node_modules/@slidev/client/composables/useEmbeddedCtrl.ts"
+        ],
+        "sourcesContent": [
+          "import { throttledWatch } from '@vueuse/core'\nimport { useNav } from '../composables/useNav'\nimport { isDark } from '../logic/dark'\n\nexport function useEmbeddedControl() {\n  const nav = useNav()\n  const clientId = `${Date.now()}`\n\n  window.addEventListener('message', ({ data }) => {\n    if (data && data.target === 'slidev') {\n      if (data.type === 'navigate') {\n        if (data.no || data.clicks) {\n          nav.go(+data.no, +data.clicks || 0)\n        }\n        else if (typeof data.operation === 'string') {\n          const fn = nav[data.operation as keyof typeof nav]\n          if (typeof fn === 'function')\n            (fn as any)(...(data.args ?? []))\n        }\n      }\n      else if (data.type === 'css-vars') {\n        const root = document.documentElement\n        for (const [key, value] of Object.entries(data.vars || {}))\n          root.style.setProperty(key, value as any)\n      }\n      else if (data.type === 'color-schema') {\n        isDark.value = data.color === 'dark'\n      }\n    }\n  })\n\n  if (nav.isEmbedded.value) {\n    throttledWatch(\n      [nav.currentSlideNo, nav.clicks, nav.hasNext, nav.hasPrev],\n      ([no, clicks, hasNext, hasPrev]) => {\n        window.parent.postMessage(\n          {\n            target: 'slidev',\n            clientId,\n            navState: {\n              no,\n              clicks,\n              hasNext,\n              hasPrev,\n            },\n          },\n          '*',\n        )\n      },\n      {\n        throttle: 300,\n        immediate: true,\n      },\n    )\n  }\n}\n"
+        ],
+        "mappings": "AAAA,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AAEhB,gBAAS,qBAAqB;AACnC,QAAM,MAAM,OAAO;AACnB,QAAM,WAAW,GAAG,KAAK,IAAI,CAAC;AAE9B,SAAO,iBAAiB,WAAW,CAAC,EAAE,KAAK,MAAM;AAC/C,QAAI,QAAQ,KAAK,WAAW,UAAU;AACpC,UAAI,KAAK,SAAS,YAAY;AAC5B,YAAI,KAAK,MAAM,KAAK,QAAQ;AAC1B,cAAI,GAAG,CAAC,KAAK,IAAI,CAAC,KAAK,UAAU,CAAC;AAAA,QACpC,WACS,OAAO,KAAK,cAAc,UAAU;AAC3C,gBAAM,KAAK,IAAI,KAAK,SAA6B;AACjD,cAAI,OAAO,OAAO;AAChB,YAAC,GAAW,GAAI,KAAK,QAAQ,CAAC,CAAE;AAAA,QACpC;AAAA,MACF,WACS,KAAK,SAAS,YAAY;AACjC,cAAM,OAAO,SAAS;AACtB,mBAAW,CAAC,KAAK,KAAK,KAAK,OAAO,QAAQ,KAAK,QAAQ,CAAC,CAAC;AACvD,eAAK,MAAM,YAAY,KAAK,KAAY;AAAA,MAC5C,WACS,KAAK,SAAS,gBAAgB;AACrC,eAAO,QAAQ,KAAK,UAAU;AAAA,MAChC;AAAA,IACF;AAAA,EACF,CAAC;AAED,MAAI,IAAI,WAAW,OAAO;AACxB;AAAA,MACE,CAAC,IAAI,gBAAgB,IAAI,QAAQ,IAAI,SAAS,IAAI,OAAO;AAAA,MACzD,CAAC,CAAC,IAAI,QAAQ,SAAS,OAAO,MAAM;AAClC,eAAO,OAAO;AAAA,UACZ;AAAA,YACE,QAAQ;AAAA,YACR;AAAA,YACA,UAAU;AAAA,cACR;AAAA,cACA;AAAA,cACA;AAAA,cACA;AAAA,YACF;AAAA,UACF;AAAA,UACA;AAAA,QACF;AAAA,MACF;AAAA,MACA;AAAA,QACE,UAAU;AAAA,QACV,WAAW;AAAA,MACb;AAAA,IACF;AAAA,EACF;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:layout-wrapper",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:context-injection",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "slidev:hmr-patch",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "unocss:transformers:undefined",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "unplugin-vue-components",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "post"
+    },
+    {
+      "name": "unocss:transformers:post",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1743409708698,
+      "end": 1743409708698,
+      "order": "normal"
+    }
+  ]
+}
