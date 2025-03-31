@@ -88,3 +88,28 @@
 .center-table table {
   margin: auto;
 }
+
+.two-column {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 2rem;
+}
+
+.left-column {
+  flex: 1;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-column img {
+  max-height: 50%;
+  max-width: 80%;
+  object-fit: contain;
+}

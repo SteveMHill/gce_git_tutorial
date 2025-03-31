@@ -1,21 +1,19 @@
 ---
 # You can also start simply with 'default'
 theme: ./theme
-background: '/images/cover.png'
 title: Bytes, Bugs and Biology
 colorSchema: light
 mdc: true
 ---
 
+<div class="absolute inset-0 -z-1">
+  <img src="/images/cover.png" class="w-full h-full object-cover" />
+</div>
+
 # Bytes, Bugs, Biology
 
  Keep Calm, Shift Happens 
 
-<div class="abs-br m-6 text-xl">
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
 
 ---
 transition: fade-out
@@ -74,27 +72,31 @@ transition: fade-out
 
 ---
 transition: fade-out
-layout: image-right
-image: './images/bigdata.png'
 ---
 
 ### The Research Landscape is Evolving
-##
 
-We’re working with:
-
-- 📈 More data
-- 💻 More code
-- 👥 More collaborators
-
-<br> </br>
-<v-click>
-That means we need smarter ways to:
-
-- 🔄 Share our work
-- 🧪 Reproduce our analyses
-- 🤝 Collaborate across teams 
-</v-click>
+<div class="two-column">
+  <div class="left-column">
+    <ul>
+      <li>📈 More data</li>
+      <li>💻 More code</li>
+      <li>👥 More collaborators</li>
+    </ul>
+    <br />
+    <v-click>
+      <p>That means we need smarter ways to:</p>
+      <ul>
+        <li>🔄 Share our work</li>
+        <li>🧪 Reproduce our analyses</li>
+        <li>🤝 Collaborate across teams</li>
+      </ul>
+    </v-click>
+  </div>
+  <div class="right-column">
+    <img src="/images/bigdata.png" alt="Big Data" />
+  </div>
+</div>
 
 
 
@@ -124,10 +126,13 @@ transition: fade-out
   class="center_image"
 />
 ---
-layout: image
-image: './images/githeros_fun.png'
 transition: fade-out
 ---
+
+<div class="absolute inset-0 -z-1">
+  <img src="/images/githeros_fun.png" class="w-full h-full object-cover" />
+</div>
+
 
 ---
 layout: two-cols-header
